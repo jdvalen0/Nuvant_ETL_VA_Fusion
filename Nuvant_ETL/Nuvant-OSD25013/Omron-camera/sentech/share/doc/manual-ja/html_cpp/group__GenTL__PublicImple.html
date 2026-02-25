@@ -1,0 +1,2563 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "https://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=9"/>
+<meta name="generator" content="Doxygen 1.8.15"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>Sentech SDK: GenTLモジュール実装部</title>
+<link href="tabs.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="jquery.js"></script>
+<script type="text/javascript" src="dynsections.js"></script>
+<link href="doxygen.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+<div id="top"><!-- do not remove this div, it is closed by doxygen! -->
+<div id="titlearea">
+<table cellspacing="0" cellpadding="0">
+ <tbody>
+ <tr style="height: 56px;">
+  <td id="projectalign" style="padding-left: 0.5em;">
+   <div id="projectname">Sentech SDK
+   </div>
+  </td>
+ </tr>
+ </tbody>
+</table>
+</div>
+<!-- end header part -->
+<!-- 構築: Doxygen 1.8.15 -->
+<script type="text/javascript" src="menudata.js"></script>
+<script type="text/javascript" src="menu.js"></script>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:cf05388f2679ee054f2beb29a391d25f4e673ac3&amp;dn=gpl-2.0.txt GPL-v2 */
+$(function() {
+  initMenu('',false,false,'search.php','検索');
+});
+/* @license-end */</script>
+<div id="main-nav"></div>
+</div><!-- top -->
+<div class="header">
+  <div class="summary">
+<a href="#files">ファイル</a> &#124;
+<a href="#nested-classes">クラス</a> &#124;
+<a href="#define-members">マクロ定義</a> &#124;
+<a href="#typedef-members">型定義</a> &#124;
+<a href="#enum-members">列挙型</a> &#124;
+<a href="#func-members">関数</a>  </div>
+  <div class="headertitle">
+<div class="title">GenTLモジュール実装部</div>  </div>
+</div><!--header-->
+<div class="contents">
+<table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="files"></a>
+ファイル</h2></td></tr>
+<tr class="memitem:StGenTL__Def_8h"><td class="memItemLeft" align="right" valign="top">ファイル &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="StGenTL__Def_8h.html">StGenTL_Def.h</a></td></tr>
+<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:StGenTL__Function_8h"><td class="memItemLeft" align="right" valign="top">ファイル &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="StGenTL__Function_8h.html">StGenTL_Function.h</a></td></tr>
+<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="nested-classes"></a>
+クラス</h2></td></tr>
+<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structGenTL_1_1S__EVENT__NEW__BUFFER.html">GenTL::S_EVENT_NEW_BUFFER</a></td></tr>
+<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structGenTL_1_1S__PORT__REGISTER__STACK__ENTRY.html">GenTL::S_PORT_REGISTER_STACK_ENTRY</a></td></tr>
+<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structGenTL_1_1S__SINGLE__CHUNK__DATA.html">GenTL::S_SINGLE_CHUNK_DATA</a></td></tr>
+<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="define-members"></a>
+マクロ定義</h2></td></tr>
+<tr class="memitem:gac3c1c0fcec93ca9493e65fa22155a09b"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__GenTL__PublicImple.html#gac3c1c0fcec93ca9493e65fa22155a09b">TLTypeGEVName</a>&#160;&#160;&#160;&quot;GEV&quot;</td></tr>
+<tr class="separator:gac3c1c0fcec93ca9493e65fa22155a09b"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga8ac9fb07ce1d92442974484b24024965"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__GenTL__PublicImple.html#ga8ac9fb07ce1d92442974484b24024965">TLTypeCLName</a>&#160;&#160;&#160;&quot;CL&quot;</td></tr>
+<tr class="separator:ga8ac9fb07ce1d92442974484b24024965"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:gae59bcfb69235acd5a164612e6b4ca8bf"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__GenTL__PublicImple.html#gae59bcfb69235acd5a164612e6b4ca8bf">TLTypeCLHSName</a>&#160;&#160;&#160;&quot;CLHS&quot;</td></tr>
+<tr class="separator:gae59bcfb69235acd5a164612e6b4ca8bf"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga636ccd29124e3b1a4b1a8fc8fde82009"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__GenTL__PublicImple.html#ga636ccd29124e3b1a4b1a8fc8fde82009">TLTypeCXPName</a>&#160;&#160;&#160;&quot;CXP&quot;</td></tr>
+<tr class="separator:ga636ccd29124e3b1a4b1a8fc8fde82009"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga4fdea256993008bc43538a0438581696"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__GenTL__PublicImple.html#ga4fdea256993008bc43538a0438581696">TLTypeU3VName</a>&#160;&#160;&#160;&quot;U3V&quot;</td></tr>
+<tr class="separator:ga4fdea256993008bc43538a0438581696"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:gabdcd7386811fc2a1bcdac37f74826b66"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__GenTL__PublicImple.html#gabdcd7386811fc2a1bcdac37f74826b66">TLTypeMixedName</a>&#160;&#160;&#160;&quot;Mixed&quot;</td></tr>
+<tr class="separator:gabdcd7386811fc2a1bcdac37f74826b66"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga71faf5d848df631959c88fbf7b3b2464"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__GenTL__PublicImple.html#ga71faf5d848df631959c88fbf7b3b2464">TLTypeCustomName</a>&#160;&#160;&#160;&quot;Custom&quot;</td></tr>
+<tr class="separator:ga71faf5d848df631959c88fbf7b3b2464"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga49c31263e0b69aeb3736e21a975cb2d2"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__GenTL__PublicImple.html#ga49c31263e0b69aeb3736e21a975cb2d2">TLSystemModuleName</a>&#160;&#160;&#160;&quot;TLSystem&quot;</td></tr>
+<tr class="separator:ga49c31263e0b69aeb3736e21a975cb2d2"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:gaaded2bd9418c2b9b90e4796f2ebe37e1"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__GenTL__PublicImple.html#gaaded2bd9418c2b9b90e4796f2ebe37e1">TLInterfaceModuleName</a>&#160;&#160;&#160;&quot;TLInterface&quot;</td></tr>
+<tr class="separator:gaaded2bd9418c2b9b90e4796f2ebe37e1"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga16a2da9599e49e1ea00f1b93e353d973"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__GenTL__PublicImple.html#ga16a2da9599e49e1ea00f1b93e353d973">TLDeviceModuleName</a>&#160;&#160;&#160;&quot;TLDevice&quot;</td></tr>
+<tr class="separator:ga16a2da9599e49e1ea00f1b93e353d973"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga0b18a8ef50b444a0b126461cb3ec4d6c"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__GenTL__PublicImple.html#ga0b18a8ef50b444a0b126461cb3ec4d6c">TLDataStreamModuleName</a>&#160;&#160;&#160;&quot;TLDataStream&quot;</td></tr>
+<tr class="separator:ga0b18a8ef50b444a0b126461cb3ec4d6c"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga2f12d624981604d3580f9841a46e524d"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__GenTL__PublicImple.html#ga2f12d624981604d3580f9841a46e524d">TLBufferModuleName</a>&#160;&#160;&#160;&quot;TLBuffer&quot;</td></tr>
+<tr class="separator:ga2f12d624981604d3580f9841a46e524d"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga49f1bddeb8efdbd333a3b033aeabd812"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__GenTL__PublicImple.html#ga49f1bddeb8efdbd333a3b033aeabd812">TLRemoteDeviceModuleName</a>&#160;&#160;&#160;&quot;Device&quot;</td></tr>
+<tr class="separator:ga49f1bddeb8efdbd333a3b033aeabd812"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga8cd57d18fa6a564bae8a75f0226f3d60"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__GenTL__PublicImple.html#ga8cd57d18fa6a564bae8a75f0226f3d60">GENTL_INVALID_HANDLE</a>&#160;&#160;&#160;NULL</td></tr>
+<tr class="separator:ga8cd57d18fa6a564bae8a75f0226f3d60"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:gacfad5c2121d8df427d41b4011e886203"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__GenTL__PublicImple.html#gacfad5c2121d8df427d41b4011e886203">GENTL_INFINITE</a>&#160;&#160;&#160;0xFFFFFFFFFFFFFFFFULL</td></tr>
+<tr class="separator:gacfad5c2121d8df427d41b4011e886203"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="typedef-members"></a>
+型定義</h2></td></tr>
+<tr class="memitem:gaf03ad84012d2f0aea8dedd98b9a20bde"><td class="memItemLeft" align="right" valign="top">typedef struct <a class="el" href="structGenTL_1_1S__EVENT__NEW__BUFFER.html">GenTL::S_EVENT_NEW_BUFFER</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__GenTL__PublicImple.html#gaf03ad84012d2f0aea8dedd98b9a20bde">GenTL::EVENT_NEW_BUFFER_DATA</a></td></tr>
+<tr class="separator:gaf03ad84012d2f0aea8dedd98b9a20bde"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga27cd99609d6ad4d2473293c11af37ce9"><td class="memItemLeft" align="right" valign="top">typedef struct <a class="el" href="structGenTL_1_1S__PORT__REGISTER__STACK__ENTRY.html">GenTL::S_PORT_REGISTER_STACK_ENTRY</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__GenTL__PublicImple.html#ga27cd99609d6ad4d2473293c11af37ce9">GenTL::PORT_REGISTER_STACK_ENTRY</a></td></tr>
+<tr class="separator:ga27cd99609d6ad4d2473293c11af37ce9"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga6ab786c6153a12f45f2756bce5adabe7"><td class="memItemLeft" align="right" valign="top">typedef struct <a class="el" href="structGenTL_1_1S__SINGLE__CHUNK__DATA.html">GenTL::S_SINGLE_CHUNK_DATA</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__GenTL__PublicImple.html#ga6ab786c6153a12f45f2756bce5adabe7">GenTL::SINGLE_CHUNK_DATA</a></td></tr>
+<tr class="separator:ga6ab786c6153a12f45f2756bce5adabe7"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:gacf2941780f8cf5e355ebb822ff56afb0"><td class="memItemLeft" align="right" valign="top">typedef void *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__GenTL__PublicImple.html#gacf2941780f8cf5e355ebb822ff56afb0">GenTL::TL_HANDLE</a></td></tr>
+<tr class="separator:gacf2941780f8cf5e355ebb822ff56afb0"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:gad5e904ecb764aeb5bd9ee554b1b3225a"><td class="memItemLeft" align="right" valign="top">typedef void *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__GenTL__PublicImple.html#gad5e904ecb764aeb5bd9ee554b1b3225a">GenTL::IF_HANDLE</a></td></tr>
+<tr class="separator:gad5e904ecb764aeb5bd9ee554b1b3225a"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga94004299e81a24745b8a526f16b513cc"><td class="memItemLeft" align="right" valign="top">typedef void *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__GenTL__PublicImple.html#ga94004299e81a24745b8a526f16b513cc">GenTL::DEV_HANDLE</a></td></tr>
+<tr class="separator:ga94004299e81a24745b8a526f16b513cc"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga3f4e200ebb361b6171cd188aff4e169d"><td class="memItemLeft" align="right" valign="top">typedef void *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__GenTL__PublicImple.html#ga3f4e200ebb361b6171cd188aff4e169d">GenTL::DS_HANDLE</a></td></tr>
+<tr class="separator:ga3f4e200ebb361b6171cd188aff4e169d"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga7e76816dc8e67b45fb42ed668ecb6abf"><td class="memItemLeft" align="right" valign="top">typedef void *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__GenTL__PublicImple.html#ga7e76816dc8e67b45fb42ed668ecb6abf">GenTL::PORT_HANDLE</a></td></tr>
+<tr class="separator:ga7e76816dc8e67b45fb42ed668ecb6abf"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga8b570cca28a881f3e400c9486847af12"><td class="memItemLeft" align="right" valign="top">typedef void *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__GenTL__PublicImple.html#ga8b570cca28a881f3e400c9486847af12">GenTL::BUFFER_HANDLE</a></td></tr>
+<tr class="separator:ga8b570cca28a881f3e400c9486847af12"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga7005e933a14a6f5823de860bc1adca93"><td class="memItemLeft" align="right" valign="top">typedef void *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__GenTL__PublicImple.html#ga7005e933a14a6f5823de860bc1adca93">GenTL::EVENTSRC_HANDLE</a></td></tr>
+<tr class="separator:ga7005e933a14a6f5823de860bc1adca93"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga8fabbbd99ecba7f399b1207daba1df73"><td class="memItemLeft" align="right" valign="top">typedef void *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__GenTL__PublicImple.html#ga8fabbbd99ecba7f399b1207daba1df73">GenTL::EVENT_HANDLE</a></td></tr>
+<tr class="separator:ga8fabbbd99ecba7f399b1207daba1df73"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="enum-members"></a>
+列挙型</h2></td></tr>
+<tr class="memitem:gae7c7803162de516830a5631afa23bf91"><td class="memItemLeft" align="right" valign="top">enum &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__GenTL__PublicImple.html#gae7c7803162de516830a5631afa23bf91">GenTL::DEVICE_ACCESS_FLAGS</a> { <br />
+&#160;&#160;<a class="el" href="group__GenTL__PublicImple.html#gae7c7803162de516830a5631afa23bf91a6aaef7ec74ec154444ae8e921b1fdbf4">GenTL::DEVICE_ACCESS_UNKNOWN</a> = 0, 
+<a class="el" href="group__GenTL__PublicImple.html#gae7c7803162de516830a5631afa23bf91a564f680ca4b285e28c4ae63f5b6db86e">GenTL::DEVICE_ACCESS_NONE</a> = 1, 
+<a class="el" href="group__GenTL__PublicImple.html#gae7c7803162de516830a5631afa23bf91a3d10d80aee2ec3475101543b6145ee31">GenTL::DEVICE_ACCESS_READONLY</a> = 2, 
+<a class="el" href="group__GenTL__PublicImple.html#gae7c7803162de516830a5631afa23bf91a032757c43aa43f2a374381d875c7a5c9">GenTL::DEVICE_ACCESS_CONTROL</a> = 3, 
+<br />
+&#160;&#160;<a class="el" href="group__GenTL__PublicImple.html#gae7c7803162de516830a5631afa23bf91a5ffc93ebb93e58ce329674170d5fc10c">GenTL::DEVICE_ACCESS_EXCLUSIVE</a> = 4, 
+<a class="el" href="group__GenTL__PublicImple.html#gae7c7803162de516830a5631afa23bf91a13f027568ce6166ab95c801041191ef6">GenTL::DEVICE_ACCESS_CUSTOM_ID</a> = 1000
+<br />
+ }</td></tr>
+<tr class="memdesc:gae7c7803162de516830a5631afa23bf91"><td class="mdescLeft">&#160;</td><td class="mdescRight"><a class="el" href="group__GenTL__PublicImple.html#ga6728da52bd8481ef6b22daf56cc677d1" title="Opens the given sDeviceID with the given iOpenFlags on the given hIface.">IFOpenDevice()</a> 関数でデバイス(カメラ)をオープンする際に指定されるアクセスタイプ列挙子  <a href="group__GenTL__PublicImple.html#gae7c7803162de516830a5631afa23bf91">[詳解]</a><br /></td></tr>
+<tr class="separator:gae7c7803162de516830a5631afa23bf91"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga60684a848637fd30b5ef9a8f5832c06e"><td class="memItemLeft" align="right" valign="top">enum &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__GenTL__PublicImple.html#ga60684a848637fd30b5ef9a8f5832c06e">GenTL::ACQ_STOP_FLAGS</a> { <a class="el" href="group__GenTL__PublicImple.html#ga60684a848637fd30b5ef9a8f5832c06eaa9e0fe54189a7fa46c9929e888e28b21">GenTL::ACQ_STOP_FLAGS_DEFAULT</a> = 0, 
+<a class="el" href="group__GenTL__PublicImple.html#ga60684a848637fd30b5ef9a8f5832c06ea369beb4e8cf6fd9194436e1d8e501815">GenTL::ACQ_STOP_FLAGS_KILL</a> = 1, 
+<a class="el" href="group__GenTL__PublicImple.html#ga60684a848637fd30b5ef9a8f5832c06ea74ca9e3e660b7f085c69108698f92707">GenTL::ACQ_STOP_FLAGS_CUSTOM_ID</a> = 1000
+ }</td></tr>
+<tr class="memdesc:ga60684a848637fd30b5ef9a8f5832c06e"><td class="mdescLeft">&#160;</td><td class="mdescRight"><a class="el" href="group__GenTL__PublicImple.html#gafc243754cee2edb4f7b0db77c0202bd1" title="Stops the acquisition engine on the host.">DSStopAcquisition()</a> 関数用取り込みエンジンストップフラグ  <a href="group__GenTL__PublicImple.html#ga60684a848637fd30b5ef9a8f5832c06e">[詳解]</a><br /></td></tr>
+<tr class="separator:ga60684a848637fd30b5ef9a8f5832c06e"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga08ecfa21f443960597b4c135cc089de6"><td class="memItemLeft" align="right" valign="top">enum &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__GenTL__PublicImple.html#ga08ecfa21f443960597b4c135cc089de6">GenTL::ACQ_START_FLAGS</a> { <a class="el" href="group__GenTL__PublicImple.html#ga08ecfa21f443960597b4c135cc089de6a26d7faa90de0451e54132d48aac1ac3a">GenTL::ACQ_START_FLAGS_DEFAULT</a> = 0, 
+<a class="el" href="group__GenTL__PublicImple.html#ga08ecfa21f443960597b4c135cc089de6acc9350efed876d0488d5bb4a9cdd4a69">GenTL::ACQ_START_FLAGS_CUSTOM_ID</a> = 1000
+ }</td></tr>
+<tr class="memdesc:ga08ecfa21f443960597b4c135cc089de6"><td class="mdescLeft">&#160;</td><td class="mdescRight"><a class="el" href="group__GenTL__PublicImple.html#ga08b618fd09d32d01849348bc63b32420" title="Starts the acquisition engine on the host.">DSStartAcquisition()</a> 関数用取り込みエンジンスタートフラグ  <a href="group__GenTL__PublicImple.html#ga08ecfa21f443960597b4c135cc089de6">[詳解]</a><br /></td></tr>
+<tr class="separator:ga08ecfa21f443960597b4c135cc089de6"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="func-members"></a>
+関数</h2></td></tr>
+<tr class="memitem:gae42acc0a2054b763d9976cbc7e2c05b9"><td class="memItemLeft" align="right" valign="top">GC_ERROR&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__GenTL__PublicImple.html#gae42acc0a2054b763d9976cbc7e2c05b9">GenTL::GCCloseLib</a> (void)</td></tr>
+<tr class="memdesc:gae42acc0a2054b763d9976cbc7e2c05b9"><td class="mdescLeft">&#160;</td><td class="mdescRight">This function must be called after no function of the GenTL library is needed anymore to clean up the resources from the GCInitLib function call. Each call to GCCloseLib has to be accompanied by a preceding call to GCInitLib.  <a href="group__GenTL__PublicImple.html#gae42acc0a2054b763d9976cbc7e2c05b9">[詳解]</a><br /></td></tr>
+<tr class="separator:gae42acc0a2054b763d9976cbc7e2c05b9"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga005bf8d8b23e11eb76f855bfdffb6a5e"><td class="memItemLeft" align="right" valign="top">GC_ERROR&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__GenTL__PublicImple.html#ga005bf8d8b23e11eb76f855bfdffb6a5e">GenTL::GCGetInfo</a> (TL_INFO_CMD iInfoCmd, INFO_DATATYPE *piType, void *pBuffer, size_t *piSize)</td></tr>
+<tr class="memdesc:ga005bf8d8b23e11eb76f855bfdffb6a5e"><td class="mdescLeft">&#160;</td><td class="mdescRight">Inquire information about a GenTL implementation without instantiating a System module.  <a href="group__GenTL__PublicImple.html#ga005bf8d8b23e11eb76f855bfdffb6a5e">[詳解]</a><br /></td></tr>
+<tr class="separator:ga005bf8d8b23e11eb76f855bfdffb6a5e"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga33d09aae4d15d241c2534ee26889ed49"><td class="memItemLeft" align="right" valign="top">GC_ERROR&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__GenTL__PublicImple.html#ga33d09aae4d15d241c2534ee26889ed49">GenTL::GCGetLastError</a> (GC_ERROR *piErrorCode, char *sErrorText, size_t *piSize)</td></tr>
+<tr class="memdesc:ga33d09aae4d15d241c2534ee26889ed49"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns a readable text description of the last error occurred in the local thread context.  <a href="group__GenTL__PublicImple.html#ga33d09aae4d15d241c2534ee26889ed49">[詳解]</a><br /></td></tr>
+<tr class="separator:ga33d09aae4d15d241c2534ee26889ed49"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga51462072603c03e855cdbc3eff3117e9"><td class="memItemLeft" align="right" valign="top">GC_ERROR&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__GenTL__PublicImple.html#ga51462072603c03e855cdbc3eff3117e9">GenTL::GCInitLib</a> (void)</td></tr>
+<tr class="memdesc:ga51462072603c03e855cdbc3eff3117e9"><td class="mdescLeft">&#160;</td><td class="mdescRight">This function must be called prior to any other function call to allow global initialization of the GenTL Producer driver.  <a href="group__GenTL__PublicImple.html#ga51462072603c03e855cdbc3eff3117e9">[詳解]</a><br /></td></tr>
+<tr class="separator:ga51462072603c03e855cdbc3eff3117e9"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:gac9f105ecf8f5b0b5f8e4efa0c1377aa8"><td class="memItemLeft" align="right" valign="top">GC_ERROR&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__GenTL__PublicImple.html#gac9f105ecf8f5b0b5f8e4efa0c1377aa8">GenTL::TLClose</a> (<a class="el" href="group__GenTL__PublicImple.html#gacf2941780f8cf5e355ebb822ff56afb0">TL_HANDLE</a> hSystem)</td></tr>
+<tr class="memdesc:gac9f105ecf8f5b0b5f8e4efa0c1377aa8"><td class="mdescLeft">&#160;</td><td class="mdescRight">Closes the System module associated with the given hSystem handle. This closes the whole GenTL Producer driver and frees all resources.  <a href="group__GenTL__PublicImple.html#gac9f105ecf8f5b0b5f8e4efa0c1377aa8">[詳解]</a><br /></td></tr>
+<tr class="separator:gac9f105ecf8f5b0b5f8e4efa0c1377aa8"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:gad9acc774806e4e71644e82b6730507c8"><td class="memItemLeft" align="right" valign="top">GC_ERROR&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__GenTL__PublicImple.html#gad9acc774806e4e71644e82b6730507c8">GenTL::TLGetInfo</a> (<a class="el" href="group__GenTL__PublicImple.html#gacf2941780f8cf5e355ebb822ff56afb0">TL_HANDLE</a> hSystem, TL_INFO_CMD iInfoCmd, INFO_DATATYPE *piType, void *pBuffer, size_t *piSize)</td></tr>
+<tr class="memdesc:gad9acc774806e4e71644e82b6730507c8"><td class="mdescLeft">&#160;</td><td class="mdescRight">Inquire information about the System module as defined in TL_INFO_CMD.  <a href="group__GenTL__PublicImple.html#gad9acc774806e4e71644e82b6730507c8">[詳解]</a><br /></td></tr>
+<tr class="separator:gad9acc774806e4e71644e82b6730507c8"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:gab95820a8e4bd88fc9c9c17327e436680"><td class="memItemLeft" align="right" valign="top">GC_ERROR&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__GenTL__PublicImple.html#gab95820a8e4bd88fc9c9c17327e436680">GenTL::TLGetNumInterfaces</a> (<a class="el" href="group__GenTL__PublicImple.html#gacf2941780f8cf5e355ebb822ff56afb0">TL_HANDLE</a> hSystem, uint32_t *piNumIfaces)</td></tr>
+<tr class="memdesc:gab95820a8e4bd88fc9c9c17327e436680"><td class="mdescLeft">&#160;</td><td class="mdescRight">Queries the number of available interfaces on this System module.  <a href="group__GenTL__PublicImple.html#gab95820a8e4bd88fc9c9c17327e436680">[詳解]</a><br /></td></tr>
+<tr class="separator:gab95820a8e4bd88fc9c9c17327e436680"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:gaa3f9e2bb8c33f719dade20439fda97b8"><td class="memItemLeft" align="right" valign="top">GC_ERROR&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__GenTL__PublicImple.html#gaa3f9e2bb8c33f719dade20439fda97b8">GenTL::TLOpen</a> (<a class="el" href="group__GenTL__PublicImple.html#gacf2941780f8cf5e355ebb822ff56afb0">TL_HANDLE</a> *phSystem)</td></tr>
+<tr class="memdesc:gaa3f9e2bb8c33f719dade20439fda97b8"><td class="mdescLeft">&#160;</td><td class="mdescRight">Opens the System module and puts the instance in the phSystem handle.  <a href="group__GenTL__PublicImple.html#gaa3f9e2bb8c33f719dade20439fda97b8">[詳解]</a><br /></td></tr>
+<tr class="separator:gaa3f9e2bb8c33f719dade20439fda97b8"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:gad9d4c0b1bcbe2544e20fafc6d7f2e119"><td class="memItemLeft" align="right" valign="top">GC_ERROR&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__GenTL__PublicImple.html#gad9d4c0b1bcbe2544e20fafc6d7f2e119">GenTL::TLOpenInterface</a> (<a class="el" href="group__GenTL__PublicImple.html#gacf2941780f8cf5e355ebb822ff56afb0">TL_HANDLE</a> hSystem, const char *sIfaceID, <a class="el" href="group__GenTL__PublicImple.html#gad5e904ecb764aeb5bd9ee554b1b3225a">IF_HANDLE</a> *phIface)</td></tr>
+<tr class="memdesc:gad9d4c0b1bcbe2544e20fafc6d7f2e119"><td class="mdescLeft">&#160;</td><td class="mdescRight">Opens the given sIfaceID on the given hSystem.  <a href="group__GenTL__PublicImple.html#gad9d4c0b1bcbe2544e20fafc6d7f2e119">[詳解]</a><br /></td></tr>
+<tr class="separator:gad9d4c0b1bcbe2544e20fafc6d7f2e119"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga646208a03aeb1f5ed3d15fbce03f0996"><td class="memItemLeft" align="right" valign="top">GC_ERROR&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__GenTL__PublicImple.html#ga646208a03aeb1f5ed3d15fbce03f0996">GenTL::TLUpdateInterfaceList</a> (<a class="el" href="group__GenTL__PublicImple.html#gacf2941780f8cf5e355ebb822ff56afb0">TL_HANDLE</a> hSystem, bool8_t *pbChanged, uint64_t iTimeout)</td></tr>
+<tr class="memdesc:ga646208a03aeb1f5ed3d15fbce03f0996"><td class="mdescLeft">&#160;</td><td class="mdescRight">Updates the internal list of available interfaces. This may change the connection between a list index and an interface ID.  <a href="group__GenTL__PublicImple.html#ga646208a03aeb1f5ed3d15fbce03f0996">[詳解]</a><br /></td></tr>
+<tr class="separator:ga646208a03aeb1f5ed3d15fbce03f0996"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga46ef317be257e9d10d7f0fefefccf658"><td class="memItemLeft" align="right" valign="top">GC_ERROR&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__GenTL__PublicImple.html#ga46ef317be257e9d10d7f0fefefccf658">GenTL::IFClose</a> (<a class="el" href="group__GenTL__PublicImple.html#gad5e904ecb764aeb5bd9ee554b1b3225a">IF_HANDLE</a> hIface)</td></tr>
+<tr class="memdesc:ga46ef317be257e9d10d7f0fefefccf658"><td class="mdescLeft">&#160;</td><td class="mdescRight">Closes the Interface module associated with the given hIface handle.  <a href="group__GenTL__PublicImple.html#ga46ef317be257e9d10d7f0fefefccf658">[詳解]</a><br /></td></tr>
+<tr class="separator:ga46ef317be257e9d10d7f0fefefccf658"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga4d6db15bcc9e06c6cd63d5e69f94ce99"><td class="memItemLeft" align="right" valign="top">GC_ERROR&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__GenTL__PublicImple.html#ga4d6db15bcc9e06c6cd63d5e69f94ce99">GenTL::IFGetNumDevices</a> (<a class="el" href="group__GenTL__PublicImple.html#gad5e904ecb764aeb5bd9ee554b1b3225a">IF_HANDLE</a> hIface, uint32_t *piNumDevices)</td></tr>
+<tr class="memdesc:ga4d6db15bcc9e06c6cd63d5e69f94ce99"><td class="mdescLeft">&#160;</td><td class="mdescRight">Queries the number of available devices on this Interface module.  <a href="group__GenTL__PublicImple.html#ga4d6db15bcc9e06c6cd63d5e69f94ce99">[詳解]</a><br /></td></tr>
+<tr class="separator:ga4d6db15bcc9e06c6cd63d5e69f94ce99"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga6728da52bd8481ef6b22daf56cc677d1"><td class="memItemLeft" align="right" valign="top">GC_ERROR&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__GenTL__PublicImple.html#ga6728da52bd8481ef6b22daf56cc677d1">GenTL::IFOpenDevice</a> (<a class="el" href="group__GenTL__PublicImple.html#gad5e904ecb764aeb5bd9ee554b1b3225a">IF_HANDLE</a> hIface, const char *sDeviceID, <a class="el" href="group__GenTL__PublicImple.html#gae7c7803162de516830a5631afa23bf91">DEVICE_ACCESS_FLAGS</a> iOpenFlags, <a class="el" href="group__GenTL__PublicImple.html#ga94004299e81a24745b8a526f16b513cc">DEV_HANDLE</a> *phDevice)</td></tr>
+<tr class="memdesc:ga6728da52bd8481ef6b22daf56cc677d1"><td class="mdescLeft">&#160;</td><td class="mdescRight">Opens the given sDeviceID with the given iOpenFlags on the given hIface.  <a href="group__GenTL__PublicImple.html#ga6728da52bd8481ef6b22daf56cc677d1">[詳解]</a><br /></td></tr>
+<tr class="separator:ga6728da52bd8481ef6b22daf56cc677d1"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga63c16c73c2ac0e4b23b71609f071594e"><td class="memItemLeft" align="right" valign="top">GC_ERROR&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__GenTL__PublicImple.html#ga63c16c73c2ac0e4b23b71609f071594e">GenTL::IFUpdateDeviceList</a> (<a class="el" href="group__GenTL__PublicImple.html#gad5e904ecb764aeb5bd9ee554b1b3225a">IF_HANDLE</a> hIface, bool8_t *pbChanged, uint64_t iTimeout)</td></tr>
+<tr class="memdesc:ga63c16c73c2ac0e4b23b71609f071594e"><td class="mdescLeft">&#160;</td><td class="mdescRight">Updates the internal list of available devices.  <a href="group__GenTL__PublicImple.html#ga63c16c73c2ac0e4b23b71609f071594e">[詳解]</a><br /></td></tr>
+<tr class="separator:ga63c16c73c2ac0e4b23b71609f071594e"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:gac8ccc2967bc7040abce77036bc183318"><td class="memItemLeft" align="right" valign="top">GC_ERROR&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__GenTL__PublicImple.html#gac8ccc2967bc7040abce77036bc183318">GenTL::IFGetParentTL</a> (<a class="el" href="group__GenTL__PublicImple.html#gad5e904ecb764aeb5bd9ee554b1b3225a">IF_HANDLE</a> hIface, <a class="el" href="group__GenTL__PublicImple.html#gacf2941780f8cf5e355ebb822ff56afb0">TL_HANDLE</a> *phSystem)</td></tr>
+<tr class="memdesc:gac8ccc2967bc7040abce77036bc183318"><td class="mdescLeft">&#160;</td><td class="mdescRight">Retrieves a handle to the parent TL module.  <a href="group__GenTL__PublicImple.html#gac8ccc2967bc7040abce77036bc183318">[詳解]</a><br /></td></tr>
+<tr class="separator:gac8ccc2967bc7040abce77036bc183318"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga55b8caa291212f724cd05cfada82296a"><td class="memItemLeft" align="right" valign="top">GC_ERROR&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__GenTL__PublicImple.html#ga55b8caa291212f724cd05cfada82296a">GenTL::DevClose</a> (<a class="el" href="group__GenTL__PublicImple.html#ga94004299e81a24745b8a526f16b513cc">DEV_HANDLE</a> hDevice)</td></tr>
+<tr class="memdesc:ga55b8caa291212f724cd05cfada82296a"><td class="mdescLeft">&#160;</td><td class="mdescRight">Closes the Device module associated with the given hDevice handle.  <a href="group__GenTL__PublicImple.html#ga55b8caa291212f724cd05cfada82296a">[詳解]</a><br /></td></tr>
+<tr class="separator:ga55b8caa291212f724cd05cfada82296a"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga78d2a2a37ff5d240eb2b3c69cd34708a"><td class="memItemLeft" align="right" valign="top">GC_ERROR&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__GenTL__PublicImple.html#ga78d2a2a37ff5d240eb2b3c69cd34708a">GenTL::DevGetNumDataStreams</a> (<a class="el" href="group__GenTL__PublicImple.html#ga94004299e81a24745b8a526f16b513cc">DEV_HANDLE</a> hDevice, uint32_t *piNumDataStreams)</td></tr>
+<tr class="memdesc:ga78d2a2a37ff5d240eb2b3c69cd34708a"><td class="mdescLeft">&#160;</td><td class="mdescRight">Queries the number of available data streams on this Device module.  <a href="group__GenTL__PublicImple.html#ga78d2a2a37ff5d240eb2b3c69cd34708a">[詳解]</a><br /></td></tr>
+<tr class="separator:ga78d2a2a37ff5d240eb2b3c69cd34708a"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga20c4d90d3b253fd66aa7beacb15a57a3"><td class="memItemLeft" align="right" valign="top">GC_ERROR&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__GenTL__PublicImple.html#ga20c4d90d3b253fd66aa7beacb15a57a3">GenTL::DevGetPort</a> (<a class="el" href="group__GenTL__PublicImple.html#ga94004299e81a24745b8a526f16b513cc">DEV_HANDLE</a> hDevice, <a class="el" href="group__GenTL__PublicImple.html#ga7e76816dc8e67b45fb42ed668ecb6abf">PORT_HANDLE</a> *phRemoteDevice)</td></tr>
+<tr class="memdesc:ga20c4d90d3b253fd66aa7beacb15a57a3"><td class="mdescLeft">&#160;</td><td class="mdescRight">Retrieves the port handle for the associated remote device.  <a href="group__GenTL__PublicImple.html#ga20c4d90d3b253fd66aa7beacb15a57a3">[詳解]</a><br /></td></tr>
+<tr class="separator:ga20c4d90d3b253fd66aa7beacb15a57a3"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:gab62bbcc648e0f8ff2b9668925f9ffffd"><td class="memItemLeft" align="right" valign="top">GC_ERROR&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__GenTL__PublicImple.html#gab62bbcc648e0f8ff2b9668925f9ffffd">GenTL::DevOpenDataStream</a> (<a class="el" href="group__GenTL__PublicImple.html#ga94004299e81a24745b8a526f16b513cc">DEV_HANDLE</a> hDevice, const char *sDataStreamID, <a class="el" href="group__GenTL__PublicImple.html#ga3f4e200ebb361b6171cd188aff4e169d">DS_HANDLE</a> *phDataStream)</td></tr>
+<tr class="memdesc:gab62bbcc648e0f8ff2b9668925f9ffffd"><td class="mdescLeft">&#160;</td><td class="mdescRight">Opens the given sDataStreamID on the given hDevice.  <a href="group__GenTL__PublicImple.html#gab62bbcc648e0f8ff2b9668925f9ffffd">[詳解]</a><br /></td></tr>
+<tr class="separator:gab62bbcc648e0f8ff2b9668925f9ffffd"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga014e81e20bca4769993f994cafb2a9a8"><td class="memItemLeft" align="right" valign="top">GC_ERROR&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__GenTL__PublicImple.html#ga014e81e20bca4769993f994cafb2a9a8">GenTL::DevGetParentIF</a> (<a class="el" href="group__GenTL__PublicImple.html#ga94004299e81a24745b8a526f16b513cc">DEV_HANDLE</a> hDevice, <a class="el" href="group__GenTL__PublicImple.html#gad5e904ecb764aeb5bd9ee554b1b3225a">IF_HANDLE</a> *phIface)</td></tr>
+<tr class="memdesc:ga014e81e20bca4769993f994cafb2a9a8"><td class="mdescLeft">&#160;</td><td class="mdescRight">Retrieves a handle to the parent Interface module.  <a href="group__GenTL__PublicImple.html#ga014e81e20bca4769993f994cafb2a9a8">[詳解]</a><br /></td></tr>
+<tr class="separator:ga014e81e20bca4769993f994cafb2a9a8"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:gab0edbedaaf339da532b5890352cf824c"><td class="memItemLeft" align="right" valign="top">GC_ERROR&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__GenTL__PublicImple.html#gab0edbedaaf339da532b5890352cf824c">GenTL::DSAllocAndAnnounceBuffer</a> (<a class="el" href="group__GenTL__PublicImple.html#ga3f4e200ebb361b6171cd188aff4e169d">DS_HANDLE</a> hDataStream, size_t iBufferSize, void *pPrivate, <a class="el" href="group__GenTL__PublicImple.html#ga8b570cca28a881f3e400c9486847af12">BUFFER_HANDLE</a> *phBuffer)</td></tr>
+<tr class="memdesc:gab0edbedaaf339da532b5890352cf824c"><td class="mdescLeft">&#160;</td><td class="mdescRight">This function allocates the memory for a single buffer and announces this buffer to the Data Stream associated with the hDataStream handle and returns a hBuffer handle which references that single buffer until the buffer is revoked.  <a href="group__GenTL__PublicImple.html#gab0edbedaaf339da532b5890352cf824c">[詳解]</a><br /></td></tr>
+<tr class="separator:gab0edbedaaf339da532b5890352cf824c"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga3772655e152c6a782b80b9ec51a757a0"><td class="memItemLeft" align="right" valign="top">GC_ERROR&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__GenTL__PublicImple.html#ga3772655e152c6a782b80b9ec51a757a0">GenTL::DSAnnounceBuffer</a> (<a class="el" href="group__GenTL__PublicImple.html#ga3f4e200ebb361b6171cd188aff4e169d">DS_HANDLE</a> hDataStream, void *pBuffer, size_t iSize, void *pPrivate, <a class="el" href="group__GenTL__PublicImple.html#ga8b570cca28a881f3e400c9486847af12">BUFFER_HANDLE</a> *phBuffer)</td></tr>
+<tr class="memdesc:ga3772655e152c6a782b80b9ec51a757a0"><td class="mdescLeft">&#160;</td><td class="mdescRight">This announces a GenTL Consumer allocated memory to the Data Stream associated with the hDataStream handle and returns a hBuffer handle which references that single buffer until the buffer is revoked.  <a href="group__GenTL__PublicImple.html#ga3772655e152c6a782b80b9ec51a757a0">[詳解]</a><br /></td></tr>
+<tr class="separator:ga3772655e152c6a782b80b9ec51a757a0"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:gac465af2ee1c6c3ccac763350401fdcf1"><td class="memItemLeft" align="right" valign="top">GC_ERROR&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__GenTL__PublicImple.html#gac465af2ee1c6c3ccac763350401fdcf1">GenTL::DSClose</a> (<a class="el" href="group__GenTL__PublicImple.html#ga3f4e200ebb361b6171cd188aff4e169d">DS_HANDLE</a> hDataStream)</td></tr>
+<tr class="memdesc:gac465af2ee1c6c3ccac763350401fdcf1"><td class="mdescLeft">&#160;</td><td class="mdescRight">Closes the Data Stream module associated with the given hDataStream handle.  <a href="group__GenTL__PublicImple.html#gac465af2ee1c6c3ccac763350401fdcf1">[詳解]</a><br /></td></tr>
+<tr class="separator:gac465af2ee1c6c3ccac763350401fdcf1"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga5776d01d32d78741663d47bfcad65213"><td class="memItemLeft" align="right" valign="top">GC_ERROR&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__GenTL__PublicImple.html#ga5776d01d32d78741663d47bfcad65213">GenTL::DSFlushQueue</a> (<a class="el" href="group__GenTL__PublicImple.html#ga3f4e200ebb361b6171cd188aff4e169d">DS_HANDLE</a> hDataStream, ACQ_QUEUE_TYPE iOperation)</td></tr>
+<tr class="memdesc:ga5776d01d32d78741663d47bfcad65213"><td class="mdescLeft">&#160;</td><td class="mdescRight">Flushes the by iOperation defined internal buffer pool or queue to another one as defined in ACQ_QUEUE_TYPE.  <a href="group__GenTL__PublicImple.html#ga5776d01d32d78741663d47bfcad65213">[詳解]</a><br /></td></tr>
+<tr class="separator:ga5776d01d32d78741663d47bfcad65213"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga4094e6481cd5d2136dcad1f670f17ace"><td class="memItemLeft" align="right" valign="top">GC_ERROR&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__GenTL__PublicImple.html#ga4094e6481cd5d2136dcad1f670f17ace">GenTL::DSGetBufferID</a> (<a class="el" href="group__GenTL__PublicImple.html#ga3f4e200ebb361b6171cd188aff4e169d">DS_HANDLE</a> hDataStream, uint32_t iIndex, <a class="el" href="group__GenTL__PublicImple.html#ga8b570cca28a881f3e400c9486847af12">BUFFER_HANDLE</a> *phBuffer)</td></tr>
+<tr class="memdesc:ga4094e6481cd5d2136dcad1f670f17ace"><td class="mdescLeft">&#160;</td><td class="mdescRight">DSGetBufferID queries the buffer handle for a given index iIndex.  <a href="group__GenTL__PublicImple.html#ga4094e6481cd5d2136dcad1f670f17ace">[詳解]</a><br /></td></tr>
+<tr class="separator:ga4094e6481cd5d2136dcad1f670f17ace"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:gaa5fdde61610d4b99abbc3dbc86697c7d"><td class="memItemLeft" align="right" valign="top">GC_ERROR&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__GenTL__PublicImple.html#gaa5fdde61610d4b99abbc3dbc86697c7d">GenTL::DSQueueBuffer</a> (<a class="el" href="group__GenTL__PublicImple.html#ga3f4e200ebb361b6171cd188aff4e169d">DS_HANDLE</a> hDataStream, <a class="el" href="group__GenTL__PublicImple.html#ga8b570cca28a881f3e400c9486847af12">BUFFER_HANDLE</a> hBuffer)</td></tr>
+<tr class="memdesc:gaa5fdde61610d4b99abbc3dbc86697c7d"><td class="mdescLeft">&#160;</td><td class="mdescRight">This function queues a particular buffer for acquisition.  <a href="group__GenTL__PublicImple.html#gaa5fdde61610d4b99abbc3dbc86697c7d">[詳解]</a><br /></td></tr>
+<tr class="separator:gaa5fdde61610d4b99abbc3dbc86697c7d"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:gaff0871db86268504f8e6627241c793d1"><td class="memItemLeft" align="right" valign="top">GC_ERROR&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__GenTL__PublicImple.html#gaff0871db86268504f8e6627241c793d1">GenTL::DSRevokeBuffer</a> (<a class="el" href="group__GenTL__PublicImple.html#ga3f4e200ebb361b6171cd188aff4e169d">DS_HANDLE</a> hDataStream, <a class="el" href="group__GenTL__PublicImple.html#ga8b570cca28a881f3e400c9486847af12">BUFFER_HANDLE</a> hBuffer, void **ppBuffer, void **ppPrivate)</td></tr>
+<tr class="memdesc:gaff0871db86268504f8e6627241c793d1"><td class="mdescLeft">&#160;</td><td class="mdescRight">Removes an announced buffer from the acquisition engine.  <a href="group__GenTL__PublicImple.html#gaff0871db86268504f8e6627241c793d1">[詳解]</a><br /></td></tr>
+<tr class="separator:gaff0871db86268504f8e6627241c793d1"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga08b618fd09d32d01849348bc63b32420"><td class="memItemLeft" align="right" valign="top">GC_ERROR&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__GenTL__PublicImple.html#ga08b618fd09d32d01849348bc63b32420">GenTL::DSStartAcquisition</a> (<a class="el" href="group__GenTL__PublicImple.html#ga3f4e200ebb361b6171cd188aff4e169d">DS_HANDLE</a> hDataStream, <a class="el" href="group__GenTL__PublicImple.html#ga08ecfa21f443960597b4c135cc089de6">ACQ_START_FLAGS</a> iStartFlags, uint64_t iNumToAcquire)</td></tr>
+<tr class="memdesc:ga08b618fd09d32d01849348bc63b32420"><td class="mdescLeft">&#160;</td><td class="mdescRight">Starts the acquisition engine on the host.  <a href="group__GenTL__PublicImple.html#ga08b618fd09d32d01849348bc63b32420">[詳解]</a><br /></td></tr>
+<tr class="separator:ga08b618fd09d32d01849348bc63b32420"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:gafc243754cee2edb4f7b0db77c0202bd1"><td class="memItemLeft" align="right" valign="top">GC_ERROR&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__GenTL__PublicImple.html#gafc243754cee2edb4f7b0db77c0202bd1">GenTL::DSStopAcquisition</a> (<a class="el" href="group__GenTL__PublicImple.html#ga3f4e200ebb361b6171cd188aff4e169d">DS_HANDLE</a> hDataStream, <a class="el" href="group__GenTL__PublicImple.html#ga60684a848637fd30b5ef9a8f5832c06e">ACQ_STOP_FLAGS</a> iStopFlags)</td></tr>
+<tr class="memdesc:gafc243754cee2edb4f7b0db77c0202bd1"><td class="mdescLeft">&#160;</td><td class="mdescRight">Stops the acquisition engine on the host.  <a href="group__GenTL__PublicImple.html#gafc243754cee2edb4f7b0db77c0202bd1">[詳解]</a><br /></td></tr>
+<tr class="separator:gafc243754cee2edb4f7b0db77c0202bd1"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga1da0ff5e12e07e5309827937e3447665"><td class="memItemLeft" align="right" valign="top">GC_ERROR&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__GenTL__PublicImple.html#ga1da0ff5e12e07e5309827937e3447665">GenTL::DSGetBufferChunkData</a> (<a class="el" href="group__GenTL__PublicImple.html#ga3f4e200ebb361b6171cd188aff4e169d">DS_HANDLE</a> hDataStream, <a class="el" href="group__GenTL__PublicImple.html#ga8b570cca28a881f3e400c9486847af12">BUFFER_HANDLE</a> hBuffer, <a class="el" href="group__GenTL__PublicImple.html#ga6ab786c6153a12f45f2756bce5adabe7">SINGLE_CHUNK_DATA</a> *pChunkData, size_t *piNumChunks)</td></tr>
+<tr class="memdesc:ga1da0ff5e12e07e5309827937e3447665"><td class="mdescLeft">&#160;</td><td class="mdescRight">DSGetBufferChunkData parses the transport layer technology dependent chunk data info in the buffer.  <a href="group__GenTL__PublicImple.html#ga1da0ff5e12e07e5309827937e3447665">[詳解]</a><br /></td></tr>
+<tr class="separator:ga1da0ff5e12e07e5309827937e3447665"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga8ad41252c6d3342efa5f3ebcb3dea100"><td class="memItemLeft" align="right" valign="top">GC_ERROR&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__GenTL__PublicImple.html#ga8ad41252c6d3342efa5f3ebcb3dea100">GenTL::DSGetParentDev</a> (<a class="el" href="group__GenTL__PublicImple.html#ga3f4e200ebb361b6171cd188aff4e169d">DS_HANDLE</a> hDataStream, <a class="el" href="group__GenTL__PublicImple.html#ga94004299e81a24745b8a526f16b513cc">DEV_HANDLE</a> *phDevice)</td></tr>
+<tr class="memdesc:ga8ad41252c6d3342efa5f3ebcb3dea100"><td class="mdescLeft">&#160;</td><td class="mdescRight">Retrieves a handle to the parent Device module.  <a href="group__GenTL__PublicImple.html#ga8ad41252c6d3342efa5f3ebcb3dea100">[詳解]</a><br /></td></tr>
+<tr class="separator:ga8ad41252c6d3342efa5f3ebcb3dea100"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:gadff18e66eac20597b88cbbb06b7d1071"><td class="memItemLeft" align="right" valign="top">GC_ERROR&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__GenTL__PublicImple.html#gadff18e66eac20597b88cbbb06b7d1071">GenTL::DSGetNumBufferParts</a> (<a class="el" href="group__GenTL__PublicImple.html#ga3f4e200ebb361b6171cd188aff4e169d">DS_HANDLE</a> hDataStream, <a class="el" href="group__GenTL__PublicImple.html#ga8b570cca28a881f3e400c9486847af12">BUFFER_HANDLE</a> hBuffer, uint32_t *piNumParts)</td></tr>
+<tr class="memdesc:gadff18e66eac20597b88cbbb06b7d1071"><td class="mdescLeft">&#160;</td><td class="mdescRight">Inquires the number of independent data parts in the buffer.  <a href="group__GenTL__PublicImple.html#gadff18e66eac20597b88cbbb06b7d1071">[詳解]</a><br /></td></tr>
+<tr class="separator:gadff18e66eac20597b88cbbb06b7d1071"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga6caff4b739615c17eac6b0ae7a894acb"><td class="memItemLeft" align="right" valign="top">GC_ERROR&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__GenTL__PublicImple.html#ga6caff4b739615c17eac6b0ae7a894acb">GenTL::DSGetBufferPartInfo</a> (<a class="el" href="group__GenTL__PublicImple.html#ga3f4e200ebb361b6171cd188aff4e169d">DS_HANDLE</a> hDataStream, <a class="el" href="group__GenTL__PublicImple.html#ga8b570cca28a881f3e400c9486847af12">BUFFER_HANDLE</a> hBuffer, uint32_t iPartIndex, BUFFER_PART_INFO_CMD iInfoCmd, INFO_DATATYPE *piType, void *pBuffer, size_t *piSize)</td></tr>
+<tr class="memdesc:ga6caff4b739615c17eac6b0ae7a894acb"><td class="mdescLeft">&#160;</td><td class="mdescRight">Inquires information about individual data parts of the buffer encapsulated in the Buffer module associated with hBuffer on the hDataStream instance as defined in BUFFER_PART_INFO_CMD.  <a href="group__GenTL__PublicImple.html#ga6caff4b739615c17eac6b0ae7a894acb">[詳解]</a><br /></td></tr>
+<tr class="separator:ga6caff4b739615c17eac6b0ae7a894acb"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:gac501f4420b6f8c6f4fa086fca7e40e1e"><td class="memItemLeft" align="right" valign="top">GC_ERROR&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__GenTL__PublicImple.html#gac501f4420b6f8c6f4fa086fca7e40e1e">GenTL::GCGetNumPortURLs</a> (<a class="el" href="group__GenTL__PublicImple.html#ga7e76816dc8e67b45fb42ed668ecb6abf">PORT_HANDLE</a> hPort, uint32_t *piNumURLs)</td></tr>
+<tr class="memdesc:gac501f4420b6f8c6f4fa086fca7e40e1e"><td class="mdescLeft">&#160;</td><td class="mdescRight">Inquires the number of available URLs for this port.  <a href="group__GenTL__PublicImple.html#gac501f4420b6f8c6f4fa086fca7e40e1e">[詳解]</a><br /></td></tr>
+<tr class="separator:gac501f4420b6f8c6f4fa086fca7e40e1e"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:gaba329a32adffa543062401b50d586914"><td class="memItemLeft" align="right" valign="top">GC_ERROR&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__GenTL__PublicImple.html#gaba329a32adffa543062401b50d586914">GenTL::GCGetPortURLInfo</a> (<a class="el" href="group__GenTL__PublicImple.html#ga7e76816dc8e67b45fb42ed668ecb6abf">PORT_HANDLE</a> hPort, uint32_t iURLIndex, URL_INFO_CMD iInfoCmd, INFO_DATATYPE *piType, void *pBuffer, size_t *piSize)</td></tr>
+<tr class="memdesc:gaba329a32adffa543062401b50d586914"><td class="mdescLeft">&#160;</td><td class="mdescRight">Queries detailed port information as defined in URL_INFO_CMD.  <a href="group__GenTL__PublicImple.html#gaba329a32adffa543062401b50d586914">[詳解]</a><br /></td></tr>
+<tr class="separator:gaba329a32adffa543062401b50d586914"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga95bf041ed5c6b03ef486e3151f420fef"><td class="memItemLeft" align="right" valign="top">GC_ERROR&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__GenTL__PublicImple.html#ga95bf041ed5c6b03ef486e3151f420fef">GenTL::GCReadPort</a> (<a class="el" href="group__GenTL__PublicImple.html#ga7e76816dc8e67b45fb42ed668ecb6abf">PORT_HANDLE</a> hPort, uint64_t iAddress, void *pBuffer, size_t *piSize)</td></tr>
+<tr class="memdesc:ga95bf041ed5c6b03ef486e3151f420fef"><td class="mdescLeft">&#160;</td><td class="mdescRight">Reads a number of bytes from a given iAddress from the specified hPort.  <a href="group__GenTL__PublicImple.html#ga95bf041ed5c6b03ef486e3151f420fef">[詳解]</a><br /></td></tr>
+<tr class="separator:ga95bf041ed5c6b03ef486e3151f420fef"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga37a96b066cae71103f0c75b0d33bc1c6"><td class="memItemLeft" align="right" valign="top">GC_ERROR&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__GenTL__PublicImple.html#ga37a96b066cae71103f0c75b0d33bc1c6">GenTL::GCWritePort</a> (<a class="el" href="group__GenTL__PublicImple.html#ga7e76816dc8e67b45fb42ed668ecb6abf">PORT_HANDLE</a> hPort, uint64_t iAddress, const void *pBuffer, size_t *piSize)</td></tr>
+<tr class="memdesc:ga37a96b066cae71103f0c75b0d33bc1c6"><td class="mdescLeft">&#160;</td><td class="mdescRight">Writes a number of bytes at the given iAddress to the specified hPort.  <a href="group__GenTL__PublicImple.html#ga37a96b066cae71103f0c75b0d33bc1c6">[詳解]</a><br /></td></tr>
+<tr class="separator:ga37a96b066cae71103f0c75b0d33bc1c6"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:gabacce04b75fc2098fc5b970c1e3eccb3"><td class="memItemLeft" align="right" valign="top">GC_ERROR&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__GenTL__PublicImple.html#gabacce04b75fc2098fc5b970c1e3eccb3">GenTL::GCWritePortStacked</a> (<a class="el" href="group__GenTL__PublicImple.html#ga7e76816dc8e67b45fb42ed668ecb6abf">PORT_HANDLE</a> hPort, <a class="el" href="group__GenTL__PublicImple.html#ga27cd99609d6ad4d2473293c11af37ce9">PORT_REGISTER_STACK_ENTRY</a> *pEntries, size_t *piNumEntries)</td></tr>
+<tr class="memdesc:gabacce04b75fc2098fc5b970c1e3eccb3"><td class="mdescLeft">&#160;</td><td class="mdescRight">Writes a number of bytes to the given address on the specified hPort for every element in the pEntries array.  <a href="group__GenTL__PublicImple.html#gabacce04b75fc2098fc5b970c1e3eccb3">[詳解]</a><br /></td></tr>
+<tr class="separator:gabacce04b75fc2098fc5b970c1e3eccb3"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga3e4e60975d151ced8dc195c55c5311d2"><td class="memItemLeft" align="right" valign="top">GC_ERROR&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__GenTL__PublicImple.html#ga3e4e60975d151ced8dc195c55c5311d2">GenTL::GCReadPortStacked</a> (<a class="el" href="group__GenTL__PublicImple.html#ga7e76816dc8e67b45fb42ed668ecb6abf">PORT_HANDLE</a> hPort, <a class="el" href="group__GenTL__PublicImple.html#ga27cd99609d6ad4d2473293c11af37ce9">PORT_REGISTER_STACK_ENTRY</a> *pEntries, size_t *piNumEntries)</td></tr>
+<tr class="memdesc:ga3e4e60975d151ced8dc195c55c5311d2"><td class="mdescLeft">&#160;</td><td class="mdescRight">Reads a number of bytes from the given address on the specified hPort for every element in the pEntries array.  <a href="group__GenTL__PublicImple.html#ga3e4e60975d151ced8dc195c55c5311d2">[詳解]</a><br /></td></tr>
+<tr class="separator:ga3e4e60975d151ced8dc195c55c5311d2"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:gab6422a6546646cf204a669343b230d18"><td class="memItemLeft" align="right" valign="top">GC_ERROR&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__GenTL__PublicImple.html#gab6422a6546646cf204a669343b230d18">GenTL::EventFlush</a> (<a class="el" href="group__GenTL__PublicImple.html#ga8fabbbd99ecba7f399b1207daba1df73">EVENT_HANDLE</a> hEvent)</td></tr>
+<tr class="memdesc:gab6422a6546646cf204a669343b230d18"><td class="mdescLeft">&#160;</td><td class="mdescRight">Flushes all events in the given hEvent object.  <a href="group__GenTL__PublicImple.html#gab6422a6546646cf204a669343b230d18">[詳解]</a><br /></td></tr>
+<tr class="separator:gab6422a6546646cf204a669343b230d18"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:gaf11dd2fb9472a56e74fbfb8ddf2f1dc7"><td class="memItemLeft" align="right" valign="top">GC_ERROR&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__GenTL__PublicImple.html#gaf11dd2fb9472a56e74fbfb8ddf2f1dc7">GenTL::EventGetData</a> (<a class="el" href="group__GenTL__PublicImple.html#ga8fabbbd99ecba7f399b1207daba1df73">EVENT_HANDLE</a> hEvent, void *pBuffer, size_t *piSize, uint64_t iTimeout)</td></tr>
+<tr class="memdesc:gaf11dd2fb9472a56e74fbfb8ddf2f1dc7"><td class="mdescLeft">&#160;</td><td class="mdescRight">Retrieves the next event data entry from the event data queue associated with the hEvent.  <a href="group__GenTL__PublicImple.html#gaf11dd2fb9472a56e74fbfb8ddf2f1dc7">[詳解]</a><br /></td></tr>
+<tr class="separator:gaf11dd2fb9472a56e74fbfb8ddf2f1dc7"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga19cae8ceff17f84744749e3089d42e82"><td class="memItemLeft" align="right" valign="top">GC_ERROR&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__GenTL__PublicImple.html#ga19cae8ceff17f84744749e3089d42e82">GenTL::EventKill</a> (<a class="el" href="group__GenTL__PublicImple.html#ga8fabbbd99ecba7f399b1207daba1df73">EVENT_HANDLE</a> hEvent)</td></tr>
+<tr class="memdesc:ga19cae8ceff17f84744749e3089d42e82"><td class="mdescLeft">&#160;</td><td class="mdescRight">Terminates a waiting operation on a previously registered event object.  <a href="group__GenTL__PublicImple.html#ga19cae8ceff17f84744749e3089d42e82">[詳解]</a><br /></td></tr>
+<tr class="separator:ga19cae8ceff17f84744749e3089d42e82"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga5656aee86c551429d4ed2c903f1a6742"><td class="memItemLeft" align="right" valign="top">GC_ERROR&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__GenTL__PublicImple.html#ga5656aee86c551429d4ed2c903f1a6742">GenTL::GCRegisterEvent</a> (<a class="el" href="group__GenTL__PublicImple.html#ga7005e933a14a6f5823de860bc1adca93">EVENTSRC_HANDLE</a> hModule, EVENT_TYPE iEventID, <a class="el" href="group__GenTL__PublicImple.html#ga8fabbbd99ecba7f399b1207daba1df73">EVENT_HANDLE</a> *phEvent)</td></tr>
+<tr class="memdesc:ga5656aee86c551429d4ed2c903f1a6742"><td class="mdescLeft">&#160;</td><td class="mdescRight">Registers an event object to a certain iEventID.  <a href="group__GenTL__PublicImple.html#ga5656aee86c551429d4ed2c903f1a6742">[詳解]</a><br /></td></tr>
+<tr class="separator:ga5656aee86c551429d4ed2c903f1a6742"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:gafae17a268f1bd445144f1d1dd84edc46"><td class="memItemLeft" align="right" valign="top">GC_ERROR&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__GenTL__PublicImple.html#gafae17a268f1bd445144f1d1dd84edc46">GenTL::GCUnregisterEvent</a> (<a class="el" href="group__GenTL__PublicImple.html#ga7005e933a14a6f5823de860bc1adca93">EVENTSRC_HANDLE</a> hModule, EVENT_TYPE iEventID)</td></tr>
+<tr class="memdesc:gafae17a268f1bd445144f1d1dd84edc46"><td class="mdescLeft">&#160;</td><td class="mdescRight">A call to this function will unregister the given iEventID from the given hModule.  <a href="group__GenTL__PublicImple.html#gafae17a268f1bd445144f1d1dd84edc46">[詳解]</a><br /></td></tr>
+<tr class="separator:gafae17a268f1bd445144f1d1dd84edc46"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table>
+<a name="details" id="details"></a><h2 class="groupheader">詳解</h2>
+<h2 class="groupheader">マクロ定義詳解</h2>
+<a id="gac3c1c0fcec93ca9493e65fa22155a09b"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#gac3c1c0fcec93ca9493e65fa22155a09b">&#9670;&nbsp;</a></span>TLTypeGEVName</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define TLTypeGEVName&#160;&#160;&#160;&quot;GEV&quot;</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>GigE Visionタイプ </p>
+
+</div>
+</div>
+<a id="ga8ac9fb07ce1d92442974484b24024965"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ga8ac9fb07ce1d92442974484b24024965">&#9670;&nbsp;</a></span>TLTypeCLName</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define TLTypeCLName&#160;&#160;&#160;&quot;CL&quot;</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>Camera Linkタイプ </p>
+
+</div>
+</div>
+<a id="gae59bcfb69235acd5a164612e6b4ca8bf"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#gae59bcfb69235acd5a164612e6b4ca8bf">&#9670;&nbsp;</a></span>TLTypeCLHSName</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define TLTypeCLHSName&#160;&#160;&#160;&quot;CLHS&quot;</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>Camera Link HSタイプ </p><dl class="section since"><dt>から</dt><dd>GenTL v1.3 </dd></dl>
+
+</div>
+</div>
+<a id="ga636ccd29124e3b1a4b1a8fc8fde82009"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ga636ccd29124e3b1a4b1a8fc8fde82009">&#9670;&nbsp;</a></span>TLTypeCXPName</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define TLTypeCXPName&#160;&#160;&#160;&quot;CXP&quot;</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>CoaXPressタイプ </p><dl class="section since"><dt>から</dt><dd>GenTL v1.3 </dd></dl>
+
+</div>
+</div>
+<a id="ga4fdea256993008bc43538a0438581696"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ga4fdea256993008bc43538a0438581696">&#9670;&nbsp;</a></span>TLTypeU3VName</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define TLTypeU3VName&#160;&#160;&#160;&quot;U3V&quot;</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>USB3 Visionタイプ </p><dl class="section since"><dt>から</dt><dd>GenTL v1.4 </dd></dl>
+
+</div>
+</div>
+<a id="gabdcd7386811fc2a1bcdac37f74826b66"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#gabdcd7386811fc2a1bcdac37f74826b66">&#9670;&nbsp;</a></span>TLTypeMixedName</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define TLTypeMixedName&#160;&#160;&#160;&quot;Mixed&quot;</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>混合タイプ </p><dl class="section since"><dt>から</dt><dd>GenTL v1.3 </dd></dl>
+
+</div>
+</div>
+<a id="ga71faf5d848df631959c88fbf7b3b2464"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ga71faf5d848df631959c88fbf7b3b2464">&#9670;&nbsp;</a></span>TLTypeCustomName</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define TLTypeCustomName&#160;&#160;&#160;&quot;Custom&quot;</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>独自タイプ </p><dl class="section since"><dt>から</dt><dd>GenTL v1.3 </dd></dl>
+
+</div>
+</div>
+<a id="ga49c31263e0b69aeb3736e21a975cb2d2"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ga49c31263e0b69aeb3736e21a975cb2d2">&#9670;&nbsp;</a></span>TLSystemModuleName</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define TLSystemModuleName&#160;&#160;&#160;&quot;TLSystem&quot;</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>システムモジュールの識別子 </p>
+
+</div>
+</div>
+<a id="gaaded2bd9418c2b9b90e4796f2ebe37e1"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#gaaded2bd9418c2b9b90e4796f2ebe37e1">&#9670;&nbsp;</a></span>TLInterfaceModuleName</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define TLInterfaceModuleName&#160;&#160;&#160;&quot;TLInterface&quot;</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>インタフェースモジュールの識別子 </p>
+
+</div>
+</div>
+<a id="ga16a2da9599e49e1ea00f1b93e353d973"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ga16a2da9599e49e1ea00f1b93e353d973">&#9670;&nbsp;</a></span>TLDeviceModuleName</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define TLDeviceModuleName&#160;&#160;&#160;&quot;TLDevice&quot;</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>(ローカル)デバイスモジュールの識別子 </p>
+
+</div>
+</div>
+<a id="ga0b18a8ef50b444a0b126461cb3ec4d6c"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ga0b18a8ef50b444a0b126461cb3ec4d6c">&#9670;&nbsp;</a></span>TLDataStreamModuleName</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define TLDataStreamModuleName&#160;&#160;&#160;&quot;TLDataStream&quot;</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>データストリームモジュールの識別子 </p>
+
+</div>
+</div>
+<a id="ga2f12d624981604d3580f9841a46e524d"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ga2f12d624981604d3580f9841a46e524d">&#9670;&nbsp;</a></span>TLBufferModuleName</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define TLBufferModuleName&#160;&#160;&#160;&quot;TLBuffer&quot;</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>バッファモジュールの識別子 </p>
+
+</div>
+</div>
+<a id="ga49f1bddeb8efdbd333a3b033aeabd812"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ga49f1bddeb8efdbd333a3b033aeabd812">&#9670;&nbsp;</a></span>TLRemoteDeviceModuleName</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define TLRemoteDeviceModuleName&#160;&#160;&#160;&quot;Device&quot;</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>リモートデバイスモジュールの識別子 </p>
+
+</div>
+</div>
+<a id="ga8cd57d18fa6a564bae8a75f0226f3d60"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ga8cd57d18fa6a564bae8a75f0226f3d60">&#9670;&nbsp;</a></span>GENTL_INVALID_HANDLE</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define GENTL_INVALID_HANDLE&#160;&#160;&#160;NULL</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>GenTLプロデューサーAPIないで不正なハンドルの値として使用されます。 </p><dl class="section since"><dt>から</dt><dd>GenTL v1.4 </dd></dl>
+
+</div>
+</div>
+<a id="gacfad5c2121d8df427d41b4011e886203"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#gacfad5c2121d8df427d41b4011e886203">&#9670;&nbsp;</a></span>GENTL_INFINITE</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define GENTL_INFINITE&#160;&#160;&#160;0xFFFFFFFFFFFFFFFFULL</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>API関数で無限を表す数値として使用されます(例えば、タイムアウト時間やバッファの数など)。 </p><dl class="section since"><dt>から</dt><dd>GenTL v1.4 </dd></dl>
+
+</div>
+</div>
+<h2 class="groupheader">型定義詳解</h2>
+<a id="gaf03ad84012d2f0aea8dedd98b9a20bde"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#gaf03ad84012d2f0aea8dedd98b9a20bde">&#9670;&nbsp;</a></span>EVENT_NEW_BUFFER_DATA</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">typedef struct <a class="el" href="structGenTL_1_1S__EVENT__NEW__BUFFER.html">GenTL::S_EVENT_NEW_BUFFER</a> <a class="el" href="group__GenTL__PublicImple.html#gaf03ad84012d2f0aea8dedd98b9a20bde">GenTL::EVENT_NEW_BUFFER_DATA</a></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>Structure of the data returned from a signaled "New Buffer" event. </p>
+
+</div>
+</div>
+<a id="ga27cd99609d6ad4d2473293c11af37ce9"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ga27cd99609d6ad4d2473293c11af37ce9">&#9670;&nbsp;</a></span>PORT_REGISTER_STACK_ENTRY</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">typedef struct <a class="el" href="structGenTL_1_1S__PORT__REGISTER__STACK__ENTRY.html">GenTL::S_PORT_REGISTER_STACK_ENTRY</a> <a class="el" href="group__GenTL__PublicImple.html#ga27cd99609d6ad4d2473293c11af37ce9">GenTL::PORT_REGISTER_STACK_ENTRY</a></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>Layout of the array elements being used in the function GCWritePortStacked and GCReadPortStacked to accomplish a stacked register read / write operations. </p>
+
+</div>
+</div>
+<a id="ga6ab786c6153a12f45f2756bce5adabe7"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ga6ab786c6153a12f45f2756bce5adabe7">&#9670;&nbsp;</a></span>SINGLE_CHUNK_DATA</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">typedef struct <a class="el" href="structGenTL_1_1S__SINGLE__CHUNK__DATA.html">GenTL::S_SINGLE_CHUNK_DATA</a> <a class="el" href="group__GenTL__PublicImple.html#ga6ab786c6153a12f45f2756bce5adabe7">GenTL::SINGLE_CHUNK_DATA</a></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>Layout of the array elements being used in the function DSGetBufferChunkData to carry information about individual chunks present in the buffer. </p>
+
+</div>
+</div>
+<a id="gacf2941780f8cf5e355ebb822ff56afb0"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#gacf2941780f8cf5e355ebb822ff56afb0">&#9670;&nbsp;</a></span>TL_HANDLE</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="group__GenTL__PublicImple.html#gacf2941780f8cf5e355ebb822ff56afb0">GenTL::TL_HANDLE</a></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p><a class="el" href="group__GenTL__PublicImple.html#gaa3f9e2bb8c33f719dade20439fda97b8" title="Opens the System module and puts the instance in the phSystem handle.">TLOpen()</a> 関数で取得されるシステムモジュールハンドル </p>
+
+</div>
+</div>
+<a id="gad5e904ecb764aeb5bd9ee554b1b3225a"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#gad5e904ecb764aeb5bd9ee554b1b3225a">&#9670;&nbsp;</a></span>IF_HANDLE</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="group__GenTL__PublicImple.html#gad5e904ecb764aeb5bd9ee554b1b3225a">GenTL::IF_HANDLE</a></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p><a class="el" href="group__GenTL__PublicImple.html#gad9d4c0b1bcbe2544e20fafc6d7f2e119" title="Opens the given sIfaceID on the given hSystem.">TLOpenInterface()</a> 関数で取得されるインターフェースモジュールハンドル </p>
+
+</div>
+</div>
+<a id="ga94004299e81a24745b8a526f16b513cc"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ga94004299e81a24745b8a526f16b513cc">&#9670;&nbsp;</a></span>DEV_HANDLE</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="group__GenTL__PublicImple.html#ga94004299e81a24745b8a526f16b513cc">GenTL::DEV_HANDLE</a></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p><a class="el" href="group__GenTL__PublicImple.html#ga6728da52bd8481ef6b22daf56cc677d1" title="Opens the given sDeviceID with the given iOpenFlags on the given hIface.">IFOpenDevice()</a> 関数で取得されるデバイスモジュールハンドル </p>
+
+</div>
+</div>
+<a id="ga3f4e200ebb361b6171cd188aff4e169d"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ga3f4e200ebb361b6171cd188aff4e169d">&#9670;&nbsp;</a></span>DS_HANDLE</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="group__GenTL__PublicImple.html#ga3f4e200ebb361b6171cd188aff4e169d">GenTL::DS_HANDLE</a></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p><a class="el" href="group__GenTL__PublicImple.html#gab62bbcc648e0f8ff2b9668925f9ffffd" title="Opens the given sDataStreamID on the given hDevice.">DevOpenDataStream()</a> 関数で取得されるデータストリームモジュールハンドル </p>
+
+</div>
+</div>
+<a id="ga7e76816dc8e67b45fb42ed668ecb6abf"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ga7e76816dc8e67b45fb42ed668ecb6abf">&#9670;&nbsp;</a></span>PORT_HANDLE</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="group__GenTL__PublicImple.html#ga7e76816dc8e67b45fb42ed668ecb6abf">GenTL::PORT_HANDLE</a></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>ポートのレジスタ空間へアクセスするために使用されるポートハンドル。 PORT_HANDLE は、 TL_HANDLE 、 IF_HANDLE 、 DEV_HANDLE、 DS_HANDLE 、 BUFFER_HANDLE のいずれかになります。 </p>
+
+</div>
+</div>
+<a id="ga8b570cca28a881f3e400c9486847af12"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ga8b570cca28a881f3e400c9486847af12">&#9670;&nbsp;</a></span>BUFFER_HANDLE</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="group__GenTL__PublicImple.html#ga8b570cca28a881f3e400c9486847af12">GenTL::BUFFER_HANDLE</a></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p><a class="el" href="group__GenTL__PublicImple.html#ga3772655e152c6a782b80b9ec51a757a0" title="This announces a GenTL Consumer allocated memory to the Data Stream associated with the hDataStream h...">DSAnnounceBuffer()</a> 関数で取得されるバッファモジュールハンドル </p>
+
+</div>
+</div>
+<a id="ga7005e933a14a6f5823de860bc1adca93"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ga7005e933a14a6f5823de860bc1adca93">&#9670;&nbsp;</a></span>EVENTSRC_HANDLE</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="group__GenTL__PublicImple.html#ga7005e933a14a6f5823de860bc1adca93">GenTL::EVENTSRC_HANDLE</a></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>イベントの登録に使用されるイベントソースハンドル。 EVENTSRC_HANDLE は、 TL_HANDLE 、 IF_HANDLE 、 DEV_HANDLE、 DS_HANDLE 、 BUFFER_HANDLE のいずれかになります。 </p>
+
+</div>
+</div>
+<a id="ga8fabbbd99ecba7f399b1207daba1df73"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ga8fabbbd99ecba7f399b1207daba1df73">&#9670;&nbsp;</a></span>EVENT_HANDLE</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="group__GenTL__PublicImple.html#ga8fabbbd99ecba7f399b1207daba1df73">GenTL::EVENT_HANDLE</a></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>イベントハンドル </p>
+
+</div>
+</div>
+<h2 class="groupheader">列挙型詳解</h2>
+<a id="gae7c7803162de516830a5631afa23bf91"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#gae7c7803162de516830a5631afa23bf91">&#9670;&nbsp;</a></span>DEVICE_ACCESS_FLAGS</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">enum <a class="el" href="group__GenTL__PublicImple.html#gae7c7803162de516830a5631afa23bf91">GenTL::DEVICE_ACCESS_FLAGS</a></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p><a class="el" href="group__GenTL__PublicImple.html#ga6728da52bd8481ef6b22daf56cc677d1" title="Opens the given sDeviceID with the given iOpenFlags on the given hIface.">IFOpenDevice()</a> 関数でデバイス(カメラ)をオープンする際に指定されるアクセスタイプ列挙子 </p>
+<table class="fieldtable">
+<tr><th colspan="2">列挙値</th></tr><tr><td class="fieldname"><a id="gae7c7803162de516830a5631afa23bf91a6aaef7ec74ec154444ae8e921b1fdbf4"></a>DEVICE_ACCESS_UNKNOWN&#160;</td><td class="fielddoc"><p>コマンドでは使用されません。情報問い合わせ時の変数の初期化に使用されます。 </p>
+</td></tr>
+<tr><td class="fieldname"><a id="gae7c7803162de516830a5631afa23bf91a564f680ca4b285e28c4ae63f5b6db86e"></a>DEVICE_ACCESS_NONE&#160;</td><td class="fielddoc"><p>まだオープンされていないか、アクセスが拒否されたことを意味します。 </p>
+</td></tr>
+<tr><td class="fieldname"><a id="gae7c7803162de516830a5631afa23bf91a3d10d80aee2ec3475101543b6145ee31"></a>DEVICE_ACCESS_READONLY&#160;</td><td class="fielddoc"><p>読み込み専用で開きます。すべてのポート関数はデバイスからの読み込みのみ可能です。 </p>
+</td></tr>
+<tr><td class="fieldname"><a id="gae7c7803162de516830a5631afa23bf91a032757c43aa43f2a374381d875c7a5c9"></a>DEVICE_ACCESS_CONTROL&#160;</td><td class="fielddoc"><p>他のホスト/プロセスが読み込みのみ可能なようにデバイスを開きます。このプロセスは読み書き可能です。 </p>
+</td></tr>
+<tr><td class="fieldname"><a id="gae7c7803162de516830a5631afa23bf91a5ffc93ebb93e58ce329674170d5fc10c"></a>DEVICE_ACCESS_EXCLUSIVE&#160;</td><td class="fielddoc"><p>このホスト/プロセスのみがデバイスにアクセスできるように開きます。このプロセスは読み書き可能です。 </p>
+</td></tr>
+<tr><td class="fieldname"><a id="gae7c7803162de516830a5631afa23bf91a13f027568ce6166ab95c801041191ef6"></a>DEVICE_ACCESS_CUSTOM_ID&#160;</td><td class="fielddoc"><p>実装依存のGenTLプロデューサー独自IDの最初の値 </p>
+</td></tr>
+</table>
+<div class="fragment"><div class="line"><a name="l00543"></a><span class="lineno">  543</span>&#160;    {</div><div class="line"><a name="l00544"></a><span class="lineno">  544</span>&#160;<span class="comment"></span></div><div class="line"><a name="l00545"></a><span class="lineno">  545</span>&#160;<span class="comment">        /*!</span></div><div class="line"><a name="l00546"></a><span class="lineno">  546</span>&#160;<span class="comment">            @~english   @details    Not used in a command. Can be used to initialize a variable to query that information.</span></div><div class="line"><a name="l00547"></a><span class="lineno">  547</span>&#160;<span class="comment">            @~japanese  @details    コマンドでは使用されません。情報問い合わせ時の変数の初期化に使用されます。</span></div><div class="line"><a name="l00548"></a><span class="lineno">  548</span>&#160;<span class="comment">        */</span></div><div class="line"><a name="l00549"></a><span class="lineno">  549</span>&#160;        <a class="code" href="StGenTL__Def_8h.html#gae7c7803162de516830a5631afa23bf91a6aaef7ec74ec154444ae8e921b1fdbf4">DEVICE_ACCESS_UNKNOWN</a>   = 0,</div><div class="line"><a name="l00550"></a><span class="lineno">  550</span>&#160;<span class="comment"></span></div><div class="line"><a name="l00551"></a><span class="lineno">  551</span>&#160;<span class="comment">        /*!</span></div><div class="line"><a name="l00552"></a><span class="lineno">  552</span>&#160;<span class="comment">            @~english   @details    This either means that the device is not open because it was not opened before or the access to it was denied.</span></div><div class="line"><a name="l00553"></a><span class="lineno">  553</span>&#160;<span class="comment">            @~japanese  @details    まだオープンされていないか、アクセスが拒否されたことを意味します。</span></div><div class="line"><a name="l00554"></a><span class="lineno">  554</span>&#160;<span class="comment">        */</span></div><div class="line"><a name="l00555"></a><span class="lineno">  555</span>&#160;        <a class="code" href="StGenTL__Def_8h.html#gae7c7803162de516830a5631afa23bf91a564f680ca4b285e28c4ae63f5b6db86e">DEVICE_ACCESS_NONE</a>      = 1,</div><div class="line"><a name="l00556"></a><span class="lineno">  556</span>&#160;<span class="comment"></span></div><div class="line"><a name="l00557"></a><span class="lineno">  557</span>&#160;<span class="comment">        /*!</span></div><div class="line"><a name="l00558"></a><span class="lineno">  558</span>&#160;<span class="comment">            @~english   @details    Open the device read only. All Port functions can only read from the device.</span></div><div class="line"><a name="l00559"></a><span class="lineno">  559</span>&#160;<span class="comment">            @~japanese  @details    読み込み専用で開きます。すべてのポート関数はデバイスからの読み込みのみ可能です。</span></div><div class="line"><a name="l00560"></a><span class="lineno">  560</span>&#160;<span class="comment">        */</span></div><div class="line"><a name="l00561"></a><span class="lineno">  561</span>&#160;        <a class="code" href="StGenTL__Def_8h.html#gae7c7803162de516830a5631afa23bf91a3d10d80aee2ec3475101543b6145ee31">DEVICE_ACCESS_READONLY</a>  = 2,</div><div class="line"><a name="l00562"></a><span class="lineno">  562</span>&#160;<span class="comment"></span></div><div class="line"><a name="l00563"></a><span class="lineno">  563</span>&#160;<span class="comment">        /*!</span></div><div class="line"><a name="l00564"></a><span class="lineno">  564</span>&#160;<span class="comment">            @~english   @details    Open the device in a way that other hosts/processes can have read only access to the device. Device access level is read/write for this process.</span></div><div class="line"><a name="l00565"></a><span class="lineno">  565</span>&#160;<span class="comment">            @~japanese  @details    他のホスト/プロセスが読み込みのみ可能なようにデバイスを開きます。このプロセスは読み書き可能です。</span></div><div class="line"><a name="l00566"></a><span class="lineno">  566</span>&#160;<span class="comment">        */</span></div><div class="line"><a name="l00567"></a><span class="lineno">  567</span>&#160;        <a class="code" href="StGenTL__Def_8h.html#gae7c7803162de516830a5631afa23bf91a032757c43aa43f2a374381d875c7a5c9">DEVICE_ACCESS_CONTROL</a>   = 3,</div><div class="line"><a name="l00568"></a><span class="lineno">  568</span>&#160;<span class="comment"></span></div><div class="line"><a name="l00569"></a><span class="lineno">  569</span>&#160;<span class="comment">        /*!</span></div><div class="line"><a name="l00570"></a><span class="lineno">  570</span>&#160;<span class="comment">            @~english   @details    Open the device in a way that only this host/process can have access to the device. Device access level is read/write for this process.</span></div><div class="line"><a name="l00571"></a><span class="lineno">  571</span>&#160;<span class="comment">            @~japanese  @details    このホスト/プロセスのみがデバイスにアクセスできるように開きます。このプロセスは読み書き可能です。</span></div><div class="line"><a name="l00572"></a><span class="lineno">  572</span>&#160;<span class="comment">        */</span></div><div class="line"><a name="l00573"></a><span class="lineno">  573</span>&#160;        <a class="code" href="StGenTL__Def_8h.html#gae7c7803162de516830a5631afa23bf91a5ffc93ebb93e58ce329674170d5fc10c">DEVICE_ACCESS_EXCLUSIVE</a> = 4,</div><div class="line"><a name="l00574"></a><span class="lineno">  574</span>&#160;<span class="comment"></span></div><div class="line"><a name="l00575"></a><span class="lineno">  575</span>&#160;<span class="comment">        /*!</span></div><div class="line"><a name="l00576"></a><span class="lineno">  576</span>&#160;<span class="comment">            @~english   @details    Starting value for GenTL Producer custom IDs which are implementation specific.</span></div><div class="line"><a name="l00577"></a><span class="lineno">  577</span>&#160;<span class="comment">            @~japanese  @details    実装依存のGenTLプロデューサー独自IDの最初の値</span></div><div class="line"><a name="l00578"></a><span class="lineno">  578</span>&#160;<span class="comment">        */</span></div><div class="line"><a name="l00579"></a><span class="lineno">  579</span>&#160;        <a class="code" href="StGenTL__Def_8h.html#gae7c7803162de516830a5631afa23bf91a13f027568ce6166ab95c801041191ef6">DEVICE_ACCESS_CUSTOM_ID</a> = 1000</div><div class="line"><a name="l00580"></a><span class="lineno">  580</span>&#160;    }<a class="code" href="group__GenTL__PublicImple.html#gae7c7803162de516830a5631afa23bf91">DEVICE_ACCESS_FLAGS</a>, *PDEVICE_ACCESS_FLAGS;</div><div class="ttc" id="StGenTL__Def_8h_html_gae7c7803162de516830a5631afa23bf91a564f680ca4b285e28c4ae63f5b6db86e"><div class="ttname"><a href="StGenTL__Def_8h.html#gae7c7803162de516830a5631afa23bf91a564f680ca4b285e28c4ae63f5b6db86e">GenTL::DEVICE_ACCESS_NONE</a></div><div class="ttdef"><b>Definition:</b> StGenTL_Def.h:555</div></div>
+<div class="ttc" id="StGenTL__Def_8h_html_gae7c7803162de516830a5631afa23bf91a13f027568ce6166ab95c801041191ef6"><div class="ttname"><a href="StGenTL__Def_8h.html#gae7c7803162de516830a5631afa23bf91a13f027568ce6166ab95c801041191ef6">GenTL::DEVICE_ACCESS_CUSTOM_ID</a></div><div class="ttdef"><b>Definition:</b> StGenTL_Def.h:579</div></div>
+<div class="ttc" id="StGenTL__Def_8h_html_gae7c7803162de516830a5631afa23bf91a3d10d80aee2ec3475101543b6145ee31"><div class="ttname"><a href="StGenTL__Def_8h.html#gae7c7803162de516830a5631afa23bf91a3d10d80aee2ec3475101543b6145ee31">GenTL::DEVICE_ACCESS_READONLY</a></div><div class="ttdef"><b>Definition:</b> StGenTL_Def.h:561</div></div>
+<div class="ttc" id="StGenTL__Def_8h_html_gae7c7803162de516830a5631afa23bf91a6aaef7ec74ec154444ae8e921b1fdbf4"><div class="ttname"><a href="StGenTL__Def_8h.html#gae7c7803162de516830a5631afa23bf91a6aaef7ec74ec154444ae8e921b1fdbf4">GenTL::DEVICE_ACCESS_UNKNOWN</a></div><div class="ttdef"><b>Definition:</b> StGenTL_Def.h:549</div></div>
+<div class="ttc" id="StGenTL__Def_8h_html_gae7c7803162de516830a5631afa23bf91a032757c43aa43f2a374381d875c7a5c9"><div class="ttname"><a href="StGenTL__Def_8h.html#gae7c7803162de516830a5631afa23bf91a032757c43aa43f2a374381d875c7a5c9">GenTL::DEVICE_ACCESS_CONTROL</a></div><div class="ttdef"><b>Definition:</b> StGenTL_Def.h:567</div></div>
+<div class="ttc" id="group__GenTL__PublicImple_html_gae7c7803162de516830a5631afa23bf91"><div class="ttname"><a href="group__GenTL__PublicImple.html#gae7c7803162de516830a5631afa23bf91">GenTL::DEVICE_ACCESS_FLAGS</a></div><div class="ttdeci">DEVICE_ACCESS_FLAGS</div><div class="ttdoc">IFOpenDevice() 関数でデバイス(カメラ)をオープンする際に指定されるアクセスタイプ列挙子</div><div class="ttdef"><b>Definition:</b> StGenTL_Def.h:542</div></div>
+<div class="ttc" id="StGenTL__Def_8h_html_gae7c7803162de516830a5631afa23bf91a5ffc93ebb93e58ce329674170d5fc10c"><div class="ttname"><a href="StGenTL__Def_8h.html#gae7c7803162de516830a5631afa23bf91a5ffc93ebb93e58ce329674170d5fc10c">GenTL::DEVICE_ACCESS_EXCLUSIVE</a></div><div class="ttdef"><b>Definition:</b> StGenTL_Def.h:573</div></div>
+</div><!-- fragment -->
+</div>
+</div>
+<a id="ga60684a848637fd30b5ef9a8f5832c06e"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ga60684a848637fd30b5ef9a8f5832c06e">&#9670;&nbsp;</a></span>ACQ_STOP_FLAGS</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">enum <a class="el" href="group__GenTL__PublicImple.html#ga60684a848637fd30b5ef9a8f5832c06e">GenTL::ACQ_STOP_FLAGS</a></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p><a class="el" href="group__GenTL__PublicImple.html#gafc243754cee2edb4f7b0db77c0202bd1" title="Stops the acquisition engine on the host.">DSStopAcquisition()</a> 関数用取り込みエンジンストップフラグ </p>
+<table class="fieldtable">
+<tr><th colspan="2">列挙値</th></tr><tr><td class="fieldname"><a id="ga60684a848637fd30b5ef9a8f5832c06eaa9e0fe54189a7fa46c9929e888e28b21"></a>ACQ_STOP_FLAGS_DEFAULT&#160;</td><td class="fielddoc"><p>1つのバッファへの受信完了のような現在行われているタスクが完了した時点で、取り込みを停止します(デフォルトのふるまい)。 </p>
+</td></tr>
+<tr><td class="fieldname"><a id="ga60684a848637fd30b5ef9a8f5832c06ea369beb4e8cf6fd9194436e1d8e501815"></a>ACQ_STOP_FLAGS_KILL&#160;</td><td class="fielddoc"><p>取り込みを直ちに停止します。 </p><dl class="section attention"><dt>注意</dt><dd>この結果として部分的に埋められたバッファがプロデューサーから通常通りユーザーへ返されます。情報取得関数によりバッファが未完了であることがわかります。 </dd></dl>
+</td></tr>
+<tr><td class="fieldname"><a id="ga60684a848637fd30b5ef9a8f5832c06ea74ca9e3e660b7f085c69108698f92707"></a>ACQ_STOP_FLAGS_CUSTOM_ID&#160;</td><td class="fielddoc"><p>実装依存の独自IDの最初の値 </p>
+</td></tr>
+</table>
+<div class="fragment"><div class="line"><a name="l00748"></a><span class="lineno">  748</span>&#160;    {</div><div class="line"><a name="l00749"></a><span class="lineno">  749</span>&#160;<span class="comment"></span></div><div class="line"><a name="l00750"></a><span class="lineno">  750</span>&#160;<span class="comment">        /*!</span></div><div class="line"><a name="l00751"></a><span class="lineno">  751</span>&#160;<span class="comment">            @~english   @details    Stops the acquisition engine when the currently running tasks like filling a buffer are completed (default behavior).</span></div><div class="line"><a name="l00752"></a><span class="lineno">  752</span>&#160;<span class="comment">            @~japanese  @details    1つのバッファへの受信完了のような現在行われているタスクが完了した時点で、取り込みを停止します(デフォルトのふるまい)。</span></div><div class="line"><a name="l00753"></a><span class="lineno">  753</span>&#160;<span class="comment">        */</span></div><div class="line"><a name="l00754"></a><span class="lineno">  754</span>&#160;        <a class="code" href="StGenTL__Def_8h.html#ga60684a848637fd30b5ef9a8f5832c06eaa9e0fe54189a7fa46c9929e888e28b21">ACQ_STOP_FLAGS_DEFAULT</a>              = 0,</div><div class="line"><a name="l00755"></a><span class="lineno">  755</span>&#160;<span class="comment"></span></div><div class="line"><a name="l00756"></a><span class="lineno">  756</span>&#160;<span class="comment">        /*!</span></div><div class="line"><a name="l00757"></a><span class="lineno">  757</span>&#160;<span class="comment">            @~english   @details    Stop the acquisition engine immediately. </span></div><div class="line"><a name="l00758"></a><span class="lineno">  758</span>&#160;<span class="comment">            @~english   @attention  In case this results in a partially filled buffer the Producer will return the buffer through the regular mechanism to the user, indicating through the info function of that buffer that this buffer is not complete.</span></div><div class="line"><a name="l00759"></a><span class="lineno">  759</span>&#160;<span class="comment">            @~japanese  @details    取り込みを直ちに停止します。</span></div><div class="line"><a name="l00760"></a><span class="lineno">  760</span>&#160;<span class="comment">            @~japanese  @attention  この結果として部分的に埋められたバッファがプロデューサーから通常通りユーザーへ返されます。情報取得関数によりバッファが未完了であることがわかります。</span></div><div class="line"><a name="l00761"></a><span class="lineno">  761</span>&#160;<span class="comment">        */</span></div><div class="line"><a name="l00762"></a><span class="lineno">  762</span>&#160;        <a class="code" href="StGenTL__Def_8h.html#ga60684a848637fd30b5ef9a8f5832c06ea369beb4e8cf6fd9194436e1d8e501815">ACQ_STOP_FLAGS_KILL</a>                 = 1,</div><div class="line"><a name="l00763"></a><span class="lineno">  763</span>&#160;<span class="comment"></span></div><div class="line"><a name="l00764"></a><span class="lineno">  764</span>&#160;<span class="comment">        /*!</span></div><div class="line"><a name="l00765"></a><span class="lineno">  765</span>&#160;<span class="comment">            @~english   @details    Starting value for GenTL Producer custom IDs which are implementation specific.</span></div><div class="line"><a name="l00766"></a><span class="lineno">  766</span>&#160;<span class="comment">            @~japanese  @details    実装依存の独自IDの最初の値</span></div><div class="line"><a name="l00767"></a><span class="lineno">  767</span>&#160;<span class="comment">        */</span></div><div class="line"><a name="l00768"></a><span class="lineno">  768</span>&#160;        <a class="code" href="StGenTL__Def_8h.html#ga60684a848637fd30b5ef9a8f5832c06ea74ca9e3e660b7f085c69108698f92707">ACQ_STOP_FLAGS_CUSTOM_ID</a>            = 1000</div><div class="line"><a name="l00769"></a><span class="lineno">  769</span>&#160;    }<a class="code" href="group__GenTL__PublicImple.html#ga60684a848637fd30b5ef9a8f5832c06e">ACQ_STOP_FLAGS</a>, *PACQ_STOP_FLAGS;</div><div class="ttc" id="StGenTL__Def_8h_html_ga60684a848637fd30b5ef9a8f5832c06eaa9e0fe54189a7fa46c9929e888e28b21"><div class="ttname"><a href="StGenTL__Def_8h.html#ga60684a848637fd30b5ef9a8f5832c06eaa9e0fe54189a7fa46c9929e888e28b21">GenTL::ACQ_STOP_FLAGS_DEFAULT</a></div><div class="ttdef"><b>Definition:</b> StGenTL_Def.h:754</div></div>
+<div class="ttc" id="group__GenTL__PublicImple_html_ga60684a848637fd30b5ef9a8f5832c06e"><div class="ttname"><a href="group__GenTL__PublicImple.html#ga60684a848637fd30b5ef9a8f5832c06e">GenTL::ACQ_STOP_FLAGS</a></div><div class="ttdeci">ACQ_STOP_FLAGS</div><div class="ttdoc">DSStopAcquisition() 関数用取り込みエンジンストップフラグ</div><div class="ttdef"><b>Definition:</b> StGenTL_Def.h:747</div></div>
+<div class="ttc" id="StGenTL__Def_8h_html_ga60684a848637fd30b5ef9a8f5832c06ea74ca9e3e660b7f085c69108698f92707"><div class="ttname"><a href="StGenTL__Def_8h.html#ga60684a848637fd30b5ef9a8f5832c06ea74ca9e3e660b7f085c69108698f92707">GenTL::ACQ_STOP_FLAGS_CUSTOM_ID</a></div><div class="ttdef"><b>Definition:</b> StGenTL_Def.h:768</div></div>
+<div class="ttc" id="StGenTL__Def_8h_html_ga60684a848637fd30b5ef9a8f5832c06ea369beb4e8cf6fd9194436e1d8e501815"><div class="ttname"><a href="StGenTL__Def_8h.html#ga60684a848637fd30b5ef9a8f5832c06ea369beb4e8cf6fd9194436e1d8e501815">GenTL::ACQ_STOP_FLAGS_KILL</a></div><div class="ttdef"><b>Definition:</b> StGenTL_Def.h:762</div></div>
+</div><!-- fragment -->
+</div>
+</div>
+<a id="ga08ecfa21f443960597b4c135cc089de6"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ga08ecfa21f443960597b4c135cc089de6">&#9670;&nbsp;</a></span>ACQ_START_FLAGS</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">enum <a class="el" href="group__GenTL__PublicImple.html#ga08ecfa21f443960597b4c135cc089de6">GenTL::ACQ_START_FLAGS</a></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p><a class="el" href="group__GenTL__PublicImple.html#ga08b618fd09d32d01849348bc63b32420" title="Starts the acquisition engine on the host.">DSStartAcquisition()</a> 関数用取り込みエンジンスタートフラグ </p>
+<table class="fieldtable">
+<tr><th colspan="2">列挙値</th></tr><tr><td class="fieldname"><a id="ga08ecfa21f443960597b4c135cc089de6a26d7faa90de0451e54132d48aac1ac3a"></a>ACQ_START_FLAGS_DEFAULT&#160;</td><td class="fielddoc"><p>デフォルトのふるまい </p>
+</td></tr>
+<tr><td class="fieldname"><a id="ga08ecfa21f443960597b4c135cc089de6acc9350efed876d0488d5bb4a9cdd4a69"></a>ACQ_START_FLAGS_CUSTOM_ID&#160;</td><td class="fielddoc"><p>実装依存の独自IDの最初の値 </p>
+</td></tr>
+</table>
+<div class="fragment"><div class="line"><a name="l00780"></a><span class="lineno">  780</span>&#160;    {</div><div class="line"><a name="l00781"></a><span class="lineno">  781</span>&#160;<span class="comment"></span></div><div class="line"><a name="l00782"></a><span class="lineno">  782</span>&#160;<span class="comment">        /*!</span></div><div class="line"><a name="l00783"></a><span class="lineno">  783</span>&#160;<span class="comment">            @~english   @details    Default behavior.</span></div><div class="line"><a name="l00784"></a><span class="lineno">  784</span>&#160;<span class="comment">            @~japanese  @details    デフォルトのふるまい</span></div><div class="line"><a name="l00785"></a><span class="lineno">  785</span>&#160;<span class="comment">        */</span></div><div class="line"><a name="l00786"></a><span class="lineno">  786</span>&#160;        <a class="code" href="StGenTL__Def_8h.html#ga08ecfa21f443960597b4c135cc089de6a26d7faa90de0451e54132d48aac1ac3a">ACQ_START_FLAGS_DEFAULT</a>         = 0,</div><div class="line"><a name="l00787"></a><span class="lineno">  787</span>&#160;<span class="comment"></span></div><div class="line"><a name="l00788"></a><span class="lineno">  788</span>&#160;<span class="comment">        /*!</span></div><div class="line"><a name="l00789"></a><span class="lineno">  789</span>&#160;<span class="comment">            @~english   @details    Starting value for GenTL Producer custom IDs.</span></div><div class="line"><a name="l00790"></a><span class="lineno">  790</span>&#160;<span class="comment">            @~japanese  @details    実装依存の独自IDの最初の値</span></div><div class="line"><a name="l00791"></a><span class="lineno">  791</span>&#160;<span class="comment">        */</span></div><div class="line"><a name="l00792"></a><span class="lineno">  792</span>&#160;        <a class="code" href="StGenTL__Def_8h.html#ga08ecfa21f443960597b4c135cc089de6acc9350efed876d0488d5bb4a9cdd4a69">ACQ_START_FLAGS_CUSTOM_ID</a>       = 1000</div><div class="line"><a name="l00793"></a><span class="lineno">  793</span>&#160;    }<a class="code" href="group__GenTL__PublicImple.html#ga08ecfa21f443960597b4c135cc089de6">ACQ_START_FLAGS</a>, *PACQ_START_FLAGS;</div><div class="ttc" id="group__GenTL__PublicImple_html_ga08ecfa21f443960597b4c135cc089de6"><div class="ttname"><a href="group__GenTL__PublicImple.html#ga08ecfa21f443960597b4c135cc089de6">GenTL::ACQ_START_FLAGS</a></div><div class="ttdeci">ACQ_START_FLAGS</div><div class="ttdoc">DSStartAcquisition() 関数用取り込みエンジンスタートフラグ</div><div class="ttdef"><b>Definition:</b> StGenTL_Def.h:779</div></div>
+<div class="ttc" id="StGenTL__Def_8h_html_ga08ecfa21f443960597b4c135cc089de6acc9350efed876d0488d5bb4a9cdd4a69"><div class="ttname"><a href="StGenTL__Def_8h.html#ga08ecfa21f443960597b4c135cc089de6acc9350efed876d0488d5bb4a9cdd4a69">GenTL::ACQ_START_FLAGS_CUSTOM_ID</a></div><div class="ttdef"><b>Definition:</b> StGenTL_Def.h:792</div></div>
+<div class="ttc" id="StGenTL__Def_8h_html_ga08ecfa21f443960597b4c135cc089de6a26d7faa90de0451e54132d48aac1ac3a"><div class="ttname"><a href="StGenTL__Def_8h.html#ga08ecfa21f443960597b4c135cc089de6a26d7faa90de0451e54132d48aac1ac3a">GenTL::ACQ_START_FLAGS_DEFAULT</a></div><div class="ttdef"><b>Definition:</b> StGenTL_Def.h:786</div></div>
+</div><!-- fragment -->
+</div>
+</div>
+<h2 class="groupheader">関数詳解</h2>
+<a id="gae42acc0a2054b763d9976cbc7e2c05b9"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#gae42acc0a2054b763d9976cbc7e2c05b9">&#9670;&nbsp;</a></span>GCCloseLib()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">GC_ERROR GenTL::GCCloseLib </td>
+          <td>(</td>
+          <td class="paramtype">void&#160;</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>This function must be called after no function of the GenTL library is needed anymore to clean up the resources from the GCInitLib function call. Each call to GCCloseLib has to be accompanied by a preceding call to GCInitLib. </p><dl class="section return"><dt>戻り値</dt><dd>GC_ERROR value. </dd></dl>
+
+</div>
+</div>
+<a id="ga005bf8d8b23e11eb76f855bfdffb6a5e"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ga005bf8d8b23e11eb76f855bfdffb6a5e">&#9670;&nbsp;</a></span>GCGetInfo()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">GC_ERROR GenTL::GCGetInfo </td>
+          <td>(</td>
+          <td class="paramtype">TL_INFO_CMD&#160;</td>
+          <td class="paramname"><em>iInfoCmd</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">INFO_DATATYPE *&#160;</td>
+          <td class="paramname"><em>piType</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">void *&#160;</td>
+          <td class="paramname"><em>pBuffer</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">size_t *&#160;</td>
+          <td class="paramname"><em>piSize</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>Inquire information about a GenTL implementation without instantiating a System module. </p><dl class="params"><dt>引数</dt><dd>
+  <table class="params">
+    <tr><td class="paramdir">[in]</td><td class="paramname">iInfoCmd</td><td>Information to be retrieved as defined in TL_INFO_CMD. </td></tr>
+    <tr><td class="paramdir">[out]</td><td class="paramname">piType</td><td>Data type of the pBuffer content as defined in the TL_INFO_CMD and INFO_DATATYPE. </td></tr>
+    <tr><td class="paramdir">[in,out]</td><td class="paramname">pBuffer</td><td>Pointer to a user allocated buffer to receive the requested information. If this parameter is NULL, piSize will contain the minimal size of pBuffer in bytes. If the iType is a string the size includes the terminating 0. </td></tr>
+    <tr><td class="paramdir">[in,out]</td><td class="paramname">piSize</td><td>pBuffer equal NULL: out: minimal size of pBuffer in bytes to hold all information pBuffer unequal NULL: in: size of the provided pBuffer in bytes out: number of bytes filled by the function </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>戻り値</dt><dd>GC_ERROR value. </dd></dl>
+
+</div>
+</div>
+<a id="ga33d09aae4d15d241c2534ee26889ed49"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ga33d09aae4d15d241c2534ee26889ed49">&#9670;&nbsp;</a></span>GCGetLastError()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">GC_ERROR GenTL::GCGetLastError </td>
+          <td>(</td>
+          <td class="paramtype">GC_ERROR *&#160;</td>
+          <td class="paramname"><em>piErrorCode</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">char *&#160;</td>
+          <td class="paramname"><em>sErrorText</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">size_t *&#160;</td>
+          <td class="paramname"><em>piSize</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>Returns a readable text description of the last error occurred in the local thread context. </p><dl class="params"><dt>引数</dt><dd>
+  <table class="params">
+    <tr><td class="paramdir">[out]</td><td class="paramname">piErrorCode</td><td>Error code of the last error. </td></tr>
+    <tr><td class="paramdir">[in,out]</td><td class="paramname">sErrorText</td><td>Pointer to a user allocated C string buffer to receive the last error text. If this parameter is NULL, piSize will contain the needed size of sErrorText in bytes. The size includes the terminating 0. </td></tr>
+    <tr><td class="paramdir">[in,out]</td><td class="paramname">piSize</td><td>sErrorText equal NULL: out: minimal size of sErrorText in bytes to hold all information. sErrorText unequal NULL: in: size of the provided sErrorText in bytes out: number of bytes filled by the function. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>戻り値</dt><dd>GC_ERROR value. </dd></dl>
+
+</div>
+</div>
+<a id="ga51462072603c03e855cdbc3eff3117e9"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ga51462072603c03e855cdbc3eff3117e9">&#9670;&nbsp;</a></span>GCInitLib()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">GC_ERROR GenTL::GCInitLib </td>
+          <td>(</td>
+          <td class="paramtype">void&#160;</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>This function must be called prior to any other function call to allow global initialization of the GenTL Producer driver. </p><dl class="section return"><dt>戻り値</dt><dd>GC_ERROR value. </dd></dl>
+
+</div>
+</div>
+<a id="gac9f105ecf8f5b0b5f8e4efa0c1377aa8"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#gac9f105ecf8f5b0b5f8e4efa0c1377aa8">&#9670;&nbsp;</a></span>TLClose()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">GC_ERROR GenTL::TLClose </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="group__GenTL__PublicImple.html#gacf2941780f8cf5e355ebb822ff56afb0">TL_HANDLE</a>&#160;</td>
+          <td class="paramname"><em>hSystem</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>Closes the System module associated with the given hSystem handle. This closes the whole GenTL Producer driver and frees all resources. </p><dl class="params"><dt>引数</dt><dd>
+  <table class="params">
+    <tr><td class="paramdir">[in]</td><td class="paramname">hSystem</td><td>System module handle to close. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>戻り値</dt><dd>GC_ERROR value. </dd></dl>
+
+</div>
+</div>
+<a id="gad9acc774806e4e71644e82b6730507c8"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#gad9acc774806e4e71644e82b6730507c8">&#9670;&nbsp;</a></span>TLGetInfo()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">GC_ERROR GenTL::TLGetInfo </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="group__GenTL__PublicImple.html#gacf2941780f8cf5e355ebb822ff56afb0">TL_HANDLE</a>&#160;</td>
+          <td class="paramname"><em>hSystem</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">TL_INFO_CMD&#160;</td>
+          <td class="paramname"><em>iInfoCmd</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">INFO_DATATYPE *&#160;</td>
+          <td class="paramname"><em>piType</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">void *&#160;</td>
+          <td class="paramname"><em>pBuffer</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">size_t *&#160;</td>
+          <td class="paramname"><em>piSize</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>Inquire information about the System module as defined in TL_INFO_CMD. </p><dl class="params"><dt>引数</dt><dd>
+  <table class="params">
+    <tr><td class="paramdir">[in]</td><td class="paramname">hSystem</td><td>System module to work on. </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">iInfoCmd</td><td>Information to be retrieved as defined in TL_INFO_CMD. </td></tr>
+    <tr><td class="paramdir">[out]</td><td class="paramname">piType</td><td>Data type of the pBuffer content as defined in the TL_INFO_CMD and INFO_DATATYPE. </td></tr>
+    <tr><td class="paramdir">[in,out]</td><td class="paramname">pBuffer</td><td>Pointer to a user allocated buffer to receive the requested information. If this parameter is NULL, piSize will contain the minimal size of pBuffer in bytes. If the piType is a string the size includes the terminating 0. </td></tr>
+    <tr><td class="paramdir">[in,out]</td><td class="paramname">piSize</td><td>pBuffer equal NULL: out: minimal size of pBuffer in bytes to hold all information pBuffer unequal NULL: in: size of the provided pBuffer in bytes out: number of bytes filled by the function. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>戻り値</dt><dd>GC_ERROR value. </dd></dl>
+
+</div>
+</div>
+<a id="gab95820a8e4bd88fc9c9c17327e436680"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#gab95820a8e4bd88fc9c9c17327e436680">&#9670;&nbsp;</a></span>TLGetNumInterfaces()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">GC_ERROR GenTL::TLGetNumInterfaces </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="group__GenTL__PublicImple.html#gacf2941780f8cf5e355ebb822ff56afb0">TL_HANDLE</a>&#160;</td>
+          <td class="paramname"><em>hSystem</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">uint32_t *&#160;</td>
+          <td class="paramname"><em>piNumIfaces</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>Queries the number of available interfaces on this System module. </p><dl class="params"><dt>引数</dt><dd>
+  <table class="params">
+    <tr><td class="paramdir">[in]</td><td class="paramname">hSystem</td><td>System module to work on. </td></tr>
+    <tr><td class="paramdir">[out]</td><td class="paramname">piNumIfaces</td><td>Number of interfaces on this System module. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>戻り値</dt><dd>GC_ERROR value. </dd></dl>
+
+</div>
+</div>
+<a id="gaa3f9e2bb8c33f719dade20439fda97b8"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#gaa3f9e2bb8c33f719dade20439fda97b8">&#9670;&nbsp;</a></span>TLOpen()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">GC_ERROR GenTL::TLOpen </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="group__GenTL__PublicImple.html#gacf2941780f8cf5e355ebb822ff56afb0">TL_HANDLE</a> *&#160;</td>
+          <td class="paramname"><em>phSystem</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>Opens the System module and puts the instance in the phSystem handle. </p><dl class="params"><dt>引数</dt><dd>
+  <table class="params">
+    <tr><td class="paramdir">[out]</td><td class="paramname">phSystem</td><td>System module handle of the newly opened system. It is recommended to initialize *phSystem to GENTL_INVALID_HANDLE before calling TLOpen to indicate an invalid handle. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>戻り値</dt><dd>GC_ERROR value. </dd></dl>
+
+</div>
+</div>
+<a id="gad9d4c0b1bcbe2544e20fafc6d7f2e119"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#gad9d4c0b1bcbe2544e20fafc6d7f2e119">&#9670;&nbsp;</a></span>TLOpenInterface()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">GC_ERROR GenTL::TLOpenInterface </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="group__GenTL__PublicImple.html#gacf2941780f8cf5e355ebb822ff56afb0">TL_HANDLE</a>&#160;</td>
+          <td class="paramname"><em>hSystem</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const char *&#160;</td>
+          <td class="paramname"><em>sIfaceID</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="group__GenTL__PublicImple.html#gad5e904ecb764aeb5bd9ee554b1b3225a">IF_HANDLE</a> *&#160;</td>
+          <td class="paramname"><em>phIface</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>Opens the given sIfaceID on the given hSystem. </p><dl class="params"><dt>引数</dt><dd>
+  <table class="params">
+    <tr><td class="paramdir">[in]</td><td class="paramname">hSystem</td><td>System module to work on. </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">sIfaceID</td><td>Unique interface ID to open as a 0-terminated C string. </td></tr>
+    <tr><td class="paramdir">[out]</td><td class="paramname">phIface</td><td>Interface handle of the newly created interface. It is recommended to initialize *phIface to GENTL_INVALID_HANDLE before calling TLOpenInterface to indicate an invalid handle. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>戻り値</dt><dd>GC_ERROR value. </dd></dl>
+
+</div>
+</div>
+<a id="ga646208a03aeb1f5ed3d15fbce03f0996"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ga646208a03aeb1f5ed3d15fbce03f0996">&#9670;&nbsp;</a></span>TLUpdateInterfaceList()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">GC_ERROR GenTL::TLUpdateInterfaceList </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="group__GenTL__PublicImple.html#gacf2941780f8cf5e355ebb822ff56afb0">TL_HANDLE</a>&#160;</td>
+          <td class="paramname"><em>hSystem</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">bool8_t *&#160;</td>
+          <td class="paramname"><em>pbChanged</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">uint64_t&#160;</td>
+          <td class="paramname"><em>iTimeout</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>Updates the internal list of available interfaces. This may change the connection between a list index and an interface ID. </p><dl class="params"><dt>引数</dt><dd>
+  <table class="params">
+    <tr><td class="paramdir">[in]</td><td class="paramname">hSystem</td><td>System module to work on. </td></tr>
+    <tr><td class="paramdir">[out]</td><td class="paramname">pbChanged</td><td>Contains true if the internal list was changed and false otherwise. If set to NULL nothing is written to this parameter. </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">iTimeout</td><td>Timeout in ms. If set to GENTL_INFINITE the timeout is infinite and the function will only return after the operation is completed. In any case the GenTL Producer must make sure that this operation is completed in a reasonable amount of time depending on the underlying technology. Please be aware that there is no defined way of terminating such an update operation. On the other hand it is the GenTL Consumer's responsibility to call this function with a reasonable timeout. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>戻り値</dt><dd>GC_ERROR value. </dd></dl>
+
+</div>
+</div>
+<a id="ga46ef317be257e9d10d7f0fefefccf658"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ga46ef317be257e9d10d7f0fefefccf658">&#9670;&nbsp;</a></span>IFClose()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">GC_ERROR GenTL::IFClose </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="group__GenTL__PublicImple.html#gad5e904ecb764aeb5bd9ee554b1b3225a">IF_HANDLE</a>&#160;</td>
+          <td class="paramname"><em>hIface</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>Closes the Interface module associated with the given hIface handle. </p><dl class="params"><dt>引数</dt><dd>
+  <table class="params">
+    <tr><td class="paramdir">[in]</td><td class="paramname">hIface</td><td>Interface module to work on. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>戻り値</dt><dd>GC_ERROR value. </dd></dl>
+
+</div>
+</div>
+<a id="ga4d6db15bcc9e06c6cd63d5e69f94ce99"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ga4d6db15bcc9e06c6cd63d5e69f94ce99">&#9670;&nbsp;</a></span>IFGetNumDevices()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">GC_ERROR GenTL::IFGetNumDevices </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="group__GenTL__PublicImple.html#gad5e904ecb764aeb5bd9ee554b1b3225a">IF_HANDLE</a>&#160;</td>
+          <td class="paramname"><em>hIface</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">uint32_t *&#160;</td>
+          <td class="paramname"><em>piNumDevices</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>Queries the number of available devices on this Interface module. </p><dl class="params"><dt>引数</dt><dd>
+  <table class="params">
+    <tr><td class="paramdir">[in]</td><td class="paramname">hIface</td><td>Interface module to work on. </td></tr>
+    <tr><td class="paramdir">[out]</td><td class="paramname">piNumDevices</td><td>Number of devices on this Interface module. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>戻り値</dt><dd>GC_ERROR value. </dd></dl>
+
+</div>
+</div>
+<a id="ga6728da52bd8481ef6b22daf56cc677d1"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ga6728da52bd8481ef6b22daf56cc677d1">&#9670;&nbsp;</a></span>IFOpenDevice()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">GC_ERROR GenTL::IFOpenDevice </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="group__GenTL__PublicImple.html#gad5e904ecb764aeb5bd9ee554b1b3225a">IF_HANDLE</a>&#160;</td>
+          <td class="paramname"><em>hIface</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const char *&#160;</td>
+          <td class="paramname"><em>sDeviceID</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="group__GenTL__PublicImple.html#gae7c7803162de516830a5631afa23bf91">DEVICE_ACCESS_FLAGS</a>&#160;</td>
+          <td class="paramname"><em>iOpenFlags</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="group__GenTL__PublicImple.html#ga94004299e81a24745b8a526f16b513cc">DEV_HANDLE</a> *&#160;</td>
+          <td class="paramname"><em>phDevice</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>Opens the given sDeviceID with the given iOpenFlags on the given hIface. </p><dl class="params"><dt>引数</dt><dd>
+  <table class="params">
+    <tr><td class="paramdir">[in]</td><td class="paramname">hIface</td><td>Interface module to work on. </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">sDeviceID</td><td>Unique device ID to open as a 0-terminated C string. </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">iOpenFlags</td><td>Configures the open process as defined in the DEVICE_ACCESS_FLAGS. </td></tr>
+    <tr><td class="paramdir">[out]</td><td class="paramname">phDevice</td><td>Device handle of the newly created Device module. It is recommended to initialize *phDevice to GENTL_INVALID_HANDLE before calling IFOpenDevice to indicate an invalid handle. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>戻り値</dt><dd>GC_ERROR value. </dd></dl>
+
+</div>
+</div>
+<a id="ga63c16c73c2ac0e4b23b71609f071594e"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ga63c16c73c2ac0e4b23b71609f071594e">&#9670;&nbsp;</a></span>IFUpdateDeviceList()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">GC_ERROR GenTL::IFUpdateDeviceList </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="group__GenTL__PublicImple.html#gad5e904ecb764aeb5bd9ee554b1b3225a">IF_HANDLE</a>&#160;</td>
+          <td class="paramname"><em>hIface</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">bool8_t *&#160;</td>
+          <td class="paramname"><em>pbChanged</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">uint64_t&#160;</td>
+          <td class="paramname"><em>iTimeout</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>Updates the internal list of available devices. </p><dl class="params"><dt>引数</dt><dd>
+  <table class="params">
+    <tr><td class="paramdir">[in]</td><td class="paramname">hIface</td><td>Interface module to work on. </td></tr>
+    <tr><td class="paramdir">[out]</td><td class="paramname">pbChanged</td><td>Contains true if the internal list was changed and false otherwise. If set to NULL nothing is written to this parameter. </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">iTimeout</td><td>Timeout in ms. If set to GENTL_INFINITE the timeout is infinite and the function will only return if the operation is completed. In any case the GenTL Producer must make sure that this operation is completed in a reasonable amount of time depending on the underlying technology. Please be aware that there is no defined way of terminating such an update operation. On the other hand it is the GenTL Consumer's responsibility to call this function with a reasonable timeout. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>戻り値</dt><dd>GC_ERROR value. </dd></dl>
+
+</div>
+</div>
+<a id="gac8ccc2967bc7040abce77036bc183318"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#gac8ccc2967bc7040abce77036bc183318">&#9670;&nbsp;</a></span>IFGetParentTL()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">GC_ERROR GenTL::IFGetParentTL </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="group__GenTL__PublicImple.html#gad5e904ecb764aeb5bd9ee554b1b3225a">IF_HANDLE</a>&#160;</td>
+          <td class="paramname"><em>hIface</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="group__GenTL__PublicImple.html#gacf2941780f8cf5e355ebb822ff56afb0">TL_HANDLE</a> *&#160;</td>
+          <td class="paramname"><em>phSystem</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>Retrieves a handle to the parent TL module. </p><dl class="params"><dt>引数</dt><dd>
+  <table class="params">
+    <tr><td class="paramdir">[in]</td><td class="paramname">hIface</td><td>Interface module to work on. </td></tr>
+    <tr><td class="paramdir">[out]</td><td class="paramname">phSystem</td><td>Handle to the parent System module. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section since"><dt>から</dt><dd>GenTL v1.4 </dd></dl>
+<dl class="section return"><dt>戻り値</dt><dd>GC_ERROR value. </dd></dl>
+
+</div>
+</div>
+<a id="ga55b8caa291212f724cd05cfada82296a"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ga55b8caa291212f724cd05cfada82296a">&#9670;&nbsp;</a></span>DevClose()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">GC_ERROR GenTL::DevClose </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="group__GenTL__PublicImple.html#ga94004299e81a24745b8a526f16b513cc">DEV_HANDLE</a>&#160;</td>
+          <td class="paramname"><em>hDevice</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>Closes the Device module associated with the given hDevice handle. </p><dl class="params"><dt>引数</dt><dd>
+  <table class="params">
+    <tr><td class="paramdir">[in]</td><td class="paramname">hDevice</td><td>Device module handle to close. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>戻り値</dt><dd>GC_ERROR value. </dd></dl>
+
+</div>
+</div>
+<a id="ga78d2a2a37ff5d240eb2b3c69cd34708a"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ga78d2a2a37ff5d240eb2b3c69cd34708a">&#9670;&nbsp;</a></span>DevGetNumDataStreams()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">GC_ERROR GenTL::DevGetNumDataStreams </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="group__GenTL__PublicImple.html#ga94004299e81a24745b8a526f16b513cc">DEV_HANDLE</a>&#160;</td>
+          <td class="paramname"><em>hDevice</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">uint32_t *&#160;</td>
+          <td class="paramname"><em>piNumDataStreams</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>Queries the number of available data streams on this Device module. </p><dl class="params"><dt>引数</dt><dd>
+  <table class="params">
+    <tr><td class="paramdir">[in]</td><td class="paramname">hDevice</td><td>Device module to work on. </td></tr>
+    <tr><td class="paramdir">[out]</td><td class="paramname">piNumDataStreams</td><td>Number of data stream on this Device module. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>戻り値</dt><dd>GC_ERROR value. </dd></dl>
+
+</div>
+</div>
+<a id="ga20c4d90d3b253fd66aa7beacb15a57a3"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ga20c4d90d3b253fd66aa7beacb15a57a3">&#9670;&nbsp;</a></span>DevGetPort()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">GC_ERROR GenTL::DevGetPort </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="group__GenTL__PublicImple.html#ga94004299e81a24745b8a526f16b513cc">DEV_HANDLE</a>&#160;</td>
+          <td class="paramname"><em>hDevice</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="group__GenTL__PublicImple.html#ga7e76816dc8e67b45fb42ed668ecb6abf">PORT_HANDLE</a> *&#160;</td>
+          <td class="paramname"><em>phRemoteDevice</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>Retrieves the port handle for the associated remote device. </p><dl class="params"><dt>引数</dt><dd>
+  <table class="params">
+    <tr><td class="paramdir">[in]</td><td class="paramname">hDevice</td><td>Device module to work on. </td></tr>
+    <tr><td class="paramdir">[out]</td><td class="paramname">phRemoteDevice</td><td>Port handle for the remote device. It is recommended to initialize *phRemoteDev to GENTL_INVALID_HANDLE before calling DevGetPort to indicate an invalid handle. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>戻り値</dt><dd>GC_ERROR value. </dd></dl>
+
+</div>
+</div>
+<a id="gab62bbcc648e0f8ff2b9668925f9ffffd"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#gab62bbcc648e0f8ff2b9668925f9ffffd">&#9670;&nbsp;</a></span>DevOpenDataStream()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">GC_ERROR GenTL::DevOpenDataStream </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="group__GenTL__PublicImple.html#ga94004299e81a24745b8a526f16b513cc">DEV_HANDLE</a>&#160;</td>
+          <td class="paramname"><em>hDevice</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const char *&#160;</td>
+          <td class="paramname"><em>sDataStreamID</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="group__GenTL__PublicImple.html#ga3f4e200ebb361b6171cd188aff4e169d">DS_HANDLE</a> *&#160;</td>
+          <td class="paramname"><em>phDataStream</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>Opens the given sDataStreamID on the given hDevice. </p><dl class="params"><dt>引数</dt><dd>
+  <table class="params">
+    <tr><td class="paramdir">[in]</td><td class="paramname">hDevice</td><td>Device module to work on. </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">sDataStreamID</td><td>Unique data stream ID to open as a 0-terminated C string. </td></tr>
+    <tr><td class="paramdir">[out]</td><td class="paramname">phDataStream</td><td>Data Stream module handle of the newly created stream. It is recommended to initialize *phDataStream to GENTL_INVALID_HANDLE before calling DevOpenDataStream to indicate an invalid handle. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>戻り値</dt><dd>GC_ERROR value. </dd></dl>
+
+</div>
+</div>
+<a id="ga014e81e20bca4769993f994cafb2a9a8"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ga014e81e20bca4769993f994cafb2a9a8">&#9670;&nbsp;</a></span>DevGetParentIF()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">GC_ERROR GenTL::DevGetParentIF </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="group__GenTL__PublicImple.html#ga94004299e81a24745b8a526f16b513cc">DEV_HANDLE</a>&#160;</td>
+          <td class="paramname"><em>hDevice</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="group__GenTL__PublicImple.html#gad5e904ecb764aeb5bd9ee554b1b3225a">IF_HANDLE</a> *&#160;</td>
+          <td class="paramname"><em>phIface</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>Retrieves a handle to the parent Interface module. </p><dl class="params"><dt>引数</dt><dd>
+  <table class="params">
+    <tr><td class="paramdir">[in]</td><td class="paramname">hDevice</td><td>Device module to work on. </td></tr>
+    <tr><td class="paramdir">[out]</td><td class="paramname">phIface</td><td>Handle to the parent Interface module. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section since"><dt>から</dt><dd>GenTL v1.4 </dd></dl>
+<dl class="section return"><dt>戻り値</dt><dd>GC_ERROR value. </dd></dl>
+
+</div>
+</div>
+<a id="gab0edbedaaf339da532b5890352cf824c"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#gab0edbedaaf339da532b5890352cf824c">&#9670;&nbsp;</a></span>DSAllocAndAnnounceBuffer()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">GC_ERROR GenTL::DSAllocAndAnnounceBuffer </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="group__GenTL__PublicImple.html#ga3f4e200ebb361b6171cd188aff4e169d">DS_HANDLE</a>&#160;</td>
+          <td class="paramname"><em>hDataStream</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">size_t&#160;</td>
+          <td class="paramname"><em>iBufferSize</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">void *&#160;</td>
+          <td class="paramname"><em>pPrivate</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="group__GenTL__PublicImple.html#ga8b570cca28a881f3e400c9486847af12">BUFFER_HANDLE</a> *&#160;</td>
+          <td class="paramname"><em>phBuffer</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>This function allocates the memory for a single buffer and announces this buffer to the Data Stream associated with the hDataStream handle and returns a hBuffer handle which references that single buffer until the buffer is revoked. </p><dl class="params"><dt>引数</dt><dd>
+  <table class="params">
+    <tr><td class="paramdir">[in]</td><td class="paramname">hDataStream</td><td>Data Stream module to work on. </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">iBufferSize</td><td>Size of the buffer in bytes. </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">pPrivate</td><td>Pointer to private data which will be passed to the GenTL Consumer on New Buffer events. This parameter may be NULL. </td></tr>
+    <tr><td class="paramdir">[out]</td><td class="paramname">phBuffer</td><td>Buffer module handle of the newly announced buffer. It is recommended to initialize *phBuffer to GENTL_INVALID_HANDLE before calling DSAllocAndAnnounceBuffer to indicate an invalid handle. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>戻り値</dt><dd>GC_ERROR value. </dd></dl>
+
+</div>
+</div>
+<a id="ga3772655e152c6a782b80b9ec51a757a0"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ga3772655e152c6a782b80b9ec51a757a0">&#9670;&nbsp;</a></span>DSAnnounceBuffer()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">GC_ERROR GenTL::DSAnnounceBuffer </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="group__GenTL__PublicImple.html#ga3f4e200ebb361b6171cd188aff4e169d">DS_HANDLE</a>&#160;</td>
+          <td class="paramname"><em>hDataStream</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">void *&#160;</td>
+          <td class="paramname"><em>pBuffer</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">size_t&#160;</td>
+          <td class="paramname"><em>iSize</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">void *&#160;</td>
+          <td class="paramname"><em>pPrivate</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="group__GenTL__PublicImple.html#ga8b570cca28a881f3e400c9486847af12">BUFFER_HANDLE</a> *&#160;</td>
+          <td class="paramname"><em>phBuffer</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>This announces a GenTL Consumer allocated memory to the Data Stream associated with the hDataStream handle and returns a hBuffer handle which references that single buffer until the buffer is revoked. </p><dl class="params"><dt>引数</dt><dd>
+  <table class="params">
+    <tr><td class="paramdir">[in]</td><td class="paramname">hDataStream</td><td>Data Stream module to work on. </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">pBuffer</td><td>Pointer to buffer memory to announce. </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">iSize</td><td>Size of the pBuffer in bytes. </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">pPrivate</td><td>Pointer to private data which will be passed to the GenTL Consumer on New Buffer events. This parameter may be NULL. </td></tr>
+    <tr><td class="paramdir">[out]</td><td class="paramname">phBuffer</td><td>Buffer module handle of the newly announced buffer. It is recommended to initialize *phBuffer to GENTL_INVALID_HANDLE before calling DSAnnounceBuffer to indicate an invalid handle. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>戻り値</dt><dd>GC_ERROR value. </dd></dl>
+
+</div>
+</div>
+<a id="gac465af2ee1c6c3ccac763350401fdcf1"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#gac465af2ee1c6c3ccac763350401fdcf1">&#9670;&nbsp;</a></span>DSClose()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">GC_ERROR GenTL::DSClose </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="group__GenTL__PublicImple.html#ga3f4e200ebb361b6171cd188aff4e169d">DS_HANDLE</a>&#160;</td>
+          <td class="paramname"><em>hDataStream</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>Closes the Data Stream module associated with the given hDataStream handle. </p><dl class="params"><dt>引数</dt><dd>
+  <table class="params">
+    <tr><td class="paramdir">[in]</td><td class="paramname">hDataStream</td><td>Data Stream module handle to close. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>戻り値</dt><dd>GC_ERROR value. </dd></dl>
+
+</div>
+</div>
+<a id="ga5776d01d32d78741663d47bfcad65213"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ga5776d01d32d78741663d47bfcad65213">&#9670;&nbsp;</a></span>DSFlushQueue()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">GC_ERROR GenTL::DSFlushQueue </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="group__GenTL__PublicImple.html#ga3f4e200ebb361b6171cd188aff4e169d">DS_HANDLE</a>&#160;</td>
+          <td class="paramname"><em>hDataStream</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">ACQ_QUEUE_TYPE&#160;</td>
+          <td class="paramname"><em>iOperation</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>Flushes the by iOperation defined internal buffer pool or queue to another one as defined in ACQ_QUEUE_TYPE. </p><dl class="params"><dt>引数</dt><dd>
+  <table class="params">
+    <tr><td class="paramdir">[in]</td><td class="paramname">hDataStream</td><td>Data Stream module to work on. </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">iOperation</td><td>Flush operation to perform as defined in ACQ_QUEUE_TYPE. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>戻り値</dt><dd>GC_ERROR value. </dd></dl>
+
+</div>
+</div>
+<a id="ga4094e6481cd5d2136dcad1f670f17ace"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ga4094e6481cd5d2136dcad1f670f17ace">&#9670;&nbsp;</a></span>DSGetBufferID()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">GC_ERROR GenTL::DSGetBufferID </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="group__GenTL__PublicImple.html#ga3f4e200ebb361b6171cd188aff4e169d">DS_HANDLE</a>&#160;</td>
+          <td class="paramname"><em>hDataStream</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">uint32_t&#160;</td>
+          <td class="paramname"><em>iIndex</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="group__GenTL__PublicImple.html#ga8b570cca28a881f3e400c9486847af12">BUFFER_HANDLE</a> *&#160;</td>
+          <td class="paramname"><em>phBuffer</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>DSGetBufferID queries the buffer handle for a given index iIndex. </p><dl class="params"><dt>引数</dt><dd>
+  <table class="params">
+    <tr><td class="paramdir">[in]</td><td class="paramname">hDataStream</td><td>Data Stream module to work on. </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">iIndex</td><td>Zero-based index of the buffer on this data stream. </td></tr>
+    <tr><td class="paramdir">[in,out]</td><td class="paramname">phBuffer</td><td>Buffer module handle of the given iIndex. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>戻り値</dt><dd>GC_ERROR value. </dd></dl>
+
+</div>
+</div>
+<a id="gaa5fdde61610d4b99abbc3dbc86697c7d"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#gaa5fdde61610d4b99abbc3dbc86697c7d">&#9670;&nbsp;</a></span>DSQueueBuffer()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">GC_ERROR GenTL::DSQueueBuffer </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="group__GenTL__PublicImple.html#ga3f4e200ebb361b6171cd188aff4e169d">DS_HANDLE</a>&#160;</td>
+          <td class="paramname"><em>hDataStream</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="group__GenTL__PublicImple.html#ga8b570cca28a881f3e400c9486847af12">BUFFER_HANDLE</a>&#160;</td>
+          <td class="paramname"><em>hBuffer</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>This function queues a particular buffer for acquisition. </p><dl class="params"><dt>引数</dt><dd>
+  <table class="params">
+    <tr><td class="paramdir">[in]</td><td class="paramname">hDataStream</td><td>Data Stream module to work on. </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">hBuffer</td><td>Buffer handle to queue. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>戻り値</dt><dd>GC_ERROR value. </dd></dl>
+
+</div>
+</div>
+<a id="gaff0871db86268504f8e6627241c793d1"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#gaff0871db86268504f8e6627241c793d1">&#9670;&nbsp;</a></span>DSRevokeBuffer()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">GC_ERROR GenTL::DSRevokeBuffer </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="group__GenTL__PublicImple.html#ga3f4e200ebb361b6171cd188aff4e169d">DS_HANDLE</a>&#160;</td>
+          <td class="paramname"><em>hDataStream</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="group__GenTL__PublicImple.html#ga8b570cca28a881f3e400c9486847af12">BUFFER_HANDLE</a>&#160;</td>
+          <td class="paramname"><em>hBuffer</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">void **&#160;</td>
+          <td class="paramname"><em>ppBuffer</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">void **&#160;</td>
+          <td class="paramname"><em>ppPrivate</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>Removes an announced buffer from the acquisition engine. </p><dl class="params"><dt>引数</dt><dd>
+  <table class="params">
+    <tr><td class="paramdir">[in]</td><td class="paramname">hDataStream</td><td>Data Stream module to work on. </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">hBuffer</td><td>Buffer handle to revoke. </td></tr>
+    <tr><td class="paramdir">[out]</td><td class="paramname">ppBuffer</td><td>Pointer to the buffer memory. This is for convenience if GenTL Consumer allocated memory is used which is to be freed. If the buffer was allocated by the GenTL Producer NULL is to be returned. If the parameter is set to NULL it is ignored. </td></tr>
+    <tr><td class="paramdir">[out]</td><td class="paramname">ppPrivate</td><td>Pointer to the user data pointer given in the announce function. If the parameter is set to NULL it is ignored. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>戻り値</dt><dd>GC_ERROR value. </dd></dl>
+
+</div>
+</div>
+<a id="ga08b618fd09d32d01849348bc63b32420"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ga08b618fd09d32d01849348bc63b32420">&#9670;&nbsp;</a></span>DSStartAcquisition()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">GC_ERROR GenTL::DSStartAcquisition </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="group__GenTL__PublicImple.html#ga3f4e200ebb361b6171cd188aff4e169d">DS_HANDLE</a>&#160;</td>
+          <td class="paramname"><em>hDataStream</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="group__GenTL__PublicImple.html#ga08ecfa21f443960597b4c135cc089de6">ACQ_START_FLAGS</a>&#160;</td>
+          <td class="paramname"><em>iStartFlags</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">uint64_t&#160;</td>
+          <td class="paramname"><em>iNumToAcquire</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>Starts the acquisition engine on the host. </p><dl class="params"><dt>引数</dt><dd>
+  <table class="params">
+    <tr><td class="paramdir">[in]</td><td class="paramname">hDataStream</td><td>Data Stream module to work on. </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">iStartFlags</td><td>As defined in ACQ_START_FLAGS. </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">iNumToAcquire</td><td>Sets the number of filled/delivered buffers after which the acquisition engine stops automatically. Buffers which are internally discarded or missed are not counted. If set to GENTL_INFINITE the acquisition continues until a call to DSStopAcquisition is issued. If set to 0 a GC_ERR_INVALID_PARAMETER is returned. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>戻り値</dt><dd>GC_ERROR value. </dd></dl>
+
+</div>
+</div>
+<a id="gafc243754cee2edb4f7b0db77c0202bd1"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#gafc243754cee2edb4f7b0db77c0202bd1">&#9670;&nbsp;</a></span>DSStopAcquisition()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">GC_ERROR GenTL::DSStopAcquisition </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="group__GenTL__PublicImple.html#ga3f4e200ebb361b6171cd188aff4e169d">DS_HANDLE</a>&#160;</td>
+          <td class="paramname"><em>hDataStream</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="group__GenTL__PublicImple.html#ga60684a848637fd30b5ef9a8f5832c06e">ACQ_STOP_FLAGS</a>&#160;</td>
+          <td class="paramname"><em>iStopFlags</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>Stops the acquisition engine on the host. </p><dl class="params"><dt>引数</dt><dd>
+  <table class="params">
+    <tr><td class="paramdir">[in]</td><td class="paramname">hDataStream</td><td>Data Stream module to work on. </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">iStopFlags</td><td>Stops the acquisition as defined in ACQ_STOP_FLAGS. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>戻り値</dt><dd>GC_ERROR value. </dd></dl>
+
+</div>
+</div>
+<a id="ga1da0ff5e12e07e5309827937e3447665"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ga1da0ff5e12e07e5309827937e3447665">&#9670;&nbsp;</a></span>DSGetBufferChunkData()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">GC_ERROR GenTL::DSGetBufferChunkData </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="group__GenTL__PublicImple.html#ga3f4e200ebb361b6171cd188aff4e169d">DS_HANDLE</a>&#160;</td>
+          <td class="paramname"><em>hDataStream</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="group__GenTL__PublicImple.html#ga8b570cca28a881f3e400c9486847af12">BUFFER_HANDLE</a>&#160;</td>
+          <td class="paramname"><em>hBuffer</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="group__GenTL__PublicImple.html#ga6ab786c6153a12f45f2756bce5adabe7">SINGLE_CHUNK_DATA</a> *&#160;</td>
+          <td class="paramname"><em>pChunkData</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">size_t *&#160;</td>
+          <td class="paramname"><em>piNumChunks</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>DSGetBufferChunkData parses the transport layer technology dependent chunk data info in the buffer. </p><dl class="params"><dt>引数</dt><dd>
+  <table class="params">
+    <tr><td class="paramdir">[in]</td><td class="paramname">hDataStream</td><td>Data Stream module to work on. </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">hBuffer</td><td>Buffer handle to parse. </td></tr>
+    <tr><td class="paramdir">[out]</td><td class="paramname">pChunkData</td><td>User allocated array of structures to receive the chunk layout information. If this parameter is NULL, piNumChunks will contain the number of chunks in the buffer, e.g., the minimal number of entries in the pChunkData array. </td></tr>
+    <tr><td class="paramdir">[in,out]</td><td class="paramname">piNumChunks</td><td>pChunkData equal NULL: out: number of chunks in the buffer (minimal number of entries in the pChunkData array to hold all information). pChunkData unequal NULL: in: number of entries in the provided pChunkData array. out: number of entries successfully written to the pChunkData array. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>戻り値</dt><dd>GC_ERROR value. </dd></dl>
+<dl class="section since"><dt>から</dt><dd>GenTL v1.3 </dd></dl>
+
+</div>
+</div>
+<a id="ga8ad41252c6d3342efa5f3ebcb3dea100"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ga8ad41252c6d3342efa5f3ebcb3dea100">&#9670;&nbsp;</a></span>DSGetParentDev()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">GC_ERROR GenTL::DSGetParentDev </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="group__GenTL__PublicImple.html#ga3f4e200ebb361b6171cd188aff4e169d">DS_HANDLE</a>&#160;</td>
+          <td class="paramname"><em>hDataStream</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="group__GenTL__PublicImple.html#ga94004299e81a24745b8a526f16b513cc">DEV_HANDLE</a> *&#160;</td>
+          <td class="paramname"><em>phDevice</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>Retrieves a handle to the parent Device module. </p><dl class="params"><dt>引数</dt><dd>
+  <table class="params">
+    <tr><td class="paramdir">[in]</td><td class="paramname">hDataStream</td><td>Data Stream module to work on. </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">phDevice</td><td>Handle to the parent Device module. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>戻り値</dt><dd>GC_ERROR value. </dd></dl>
+<dl class="section since"><dt>から</dt><dd>GenTL v1.4 </dd></dl>
+
+</div>
+</div>
+<a id="gadff18e66eac20597b88cbbb06b7d1071"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#gadff18e66eac20597b88cbbb06b7d1071">&#9670;&nbsp;</a></span>DSGetNumBufferParts()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">GC_ERROR GenTL::DSGetNumBufferParts </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="group__GenTL__PublicImple.html#ga3f4e200ebb361b6171cd188aff4e169d">DS_HANDLE</a>&#160;</td>
+          <td class="paramname"><em>hDataStream</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="group__GenTL__PublicImple.html#ga8b570cca28a881f3e400c9486847af12">BUFFER_HANDLE</a>&#160;</td>
+          <td class="paramname"><em>hBuffer</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">uint32_t *&#160;</td>
+          <td class="paramname"><em>piNumParts</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>Inquires the number of independent data parts in the buffer. </p><dl class="params"><dt>引数</dt><dd>
+  <table class="params">
+    <tr><td class="paramdir">[in]</td><td class="paramname">hDataStream</td><td>Data Stream module to work on. </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">hBuffer</td><td>Buffer handle to retrieve information about. </td></tr>
+    <tr><td class="paramdir">[out]</td><td class="paramname">piNumParts</td><td>Number of independent data parts in the buffer. The reported number may be 0 in case the referenced buffer carries a multipart buffer payload but for some reason the number of parts is buffer is 0. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>戻り値</dt><dd>GC_ERROR value. </dd></dl>
+<dl class="section since"><dt>から</dt><dd>GenTL v1.5 </dd></dl>
+
+</div>
+</div>
+<a id="ga6caff4b739615c17eac6b0ae7a894acb"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ga6caff4b739615c17eac6b0ae7a894acb">&#9670;&nbsp;</a></span>DSGetBufferPartInfo()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">GC_ERROR GenTL::DSGetBufferPartInfo </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="group__GenTL__PublicImple.html#ga3f4e200ebb361b6171cd188aff4e169d">DS_HANDLE</a>&#160;</td>
+          <td class="paramname"><em>hDataStream</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="group__GenTL__PublicImple.html#ga8b570cca28a881f3e400c9486847af12">BUFFER_HANDLE</a>&#160;</td>
+          <td class="paramname"><em>hBuffer</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">uint32_t&#160;</td>
+          <td class="paramname"><em>iPartIndex</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">BUFFER_PART_INFO_CMD&#160;</td>
+          <td class="paramname"><em>iInfoCmd</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">INFO_DATATYPE *&#160;</td>
+          <td class="paramname"><em>piType</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">void *&#160;</td>
+          <td class="paramname"><em>pBuffer</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">size_t *&#160;</td>
+          <td class="paramname"><em>piSize</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>Inquires information about individual data parts of the buffer encapsulated in the Buffer module associated with hBuffer on the hDataStream instance as defined in BUFFER_PART_INFO_CMD. </p><dl class="params"><dt>引数</dt><dd>
+  <table class="params">
+    <tr><td class="paramdir">[in]</td><td class="paramname">hDataStream</td><td>Data Stream module to work on. </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">hBuffer</td><td>Buffer handle to retrieve information about. </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">iPartIndex</td><td>Zero based index of the buffer part to query. </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">iInfoCmd</td><td>Information to be retrieved as defined in BUFFER_PART_INFO_CMD. </td></tr>
+    <tr><td class="paramdir">[out]</td><td class="paramname">piType</td><td>Data type of the pBuffer content as defined in the BUFFER_PART_INFO_CMD and INFO_DATATYPE. </td></tr>
+    <tr><td class="paramdir">[in,out]</td><td class="paramname">pBuffer</td><td>Pointer to a user allocated buffer to receive the requested information. If this parameter is NULL, piSize will contain the minimal size of pBuffer in bytes. If the piType is a string the size includes the terminating 0. </td></tr>
+    <tr><td class="paramdir">[in,out]</td><td class="paramname">piSize</td><td>pBuffer equal NULL: out: minimal size of pBuffer in bytes to hold all information. pBuffer unequal NULL: in: size of the provided pBuffer in bytes. out: number of bytes filled by the function. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>戻り値</dt><dd>GC_ERROR value. </dd></dl>
+<dl class="section since"><dt>から</dt><dd>GenTL v1.5 </dd></dl>
+
+</div>
+</div>
+<a id="gac501f4420b6f8c6f4fa086fca7e40e1e"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#gac501f4420b6f8c6f4fa086fca7e40e1e">&#9670;&nbsp;</a></span>GCGetNumPortURLs()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">GC_ERROR GenTL::GCGetNumPortURLs </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="group__GenTL__PublicImple.html#ga7e76816dc8e67b45fb42ed668ecb6abf">PORT_HANDLE</a>&#160;</td>
+          <td class="paramname"><em>hPort</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">uint32_t *&#160;</td>
+          <td class="paramname"><em>piNumURLs</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>Inquires the number of available URLs for this port. </p><dl class="params"><dt>引数</dt><dd>
+  <table class="params">
+    <tr><td class="paramdir">[in]</td><td class="paramname">hPort</td><td>Module or remote device port handle to access Port from. </td></tr>
+    <tr><td class="paramdir">[out]</td><td class="paramname">piNumURLs</td><td>Number of available URL entries. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>戻り値</dt><dd>GC_ERROR value. </dd></dl>
+<dl class="section since"><dt>から</dt><dd>GenTL v1.1 </dd></dl>
+
+</div>
+</div>
+<a id="gaba329a32adffa543062401b50d586914"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#gaba329a32adffa543062401b50d586914">&#9670;&nbsp;</a></span>GCGetPortURLInfo()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">GC_ERROR GenTL::GCGetPortURLInfo </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="group__GenTL__PublicImple.html#ga7e76816dc8e67b45fb42ed668ecb6abf">PORT_HANDLE</a>&#160;</td>
+          <td class="paramname"><em>hPort</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">uint32_t&#160;</td>
+          <td class="paramname"><em>iURLIndex</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">URL_INFO_CMD&#160;</td>
+          <td class="paramname"><em>iInfoCmd</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">INFO_DATATYPE *&#160;</td>
+          <td class="paramname"><em>piType</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">void *&#160;</td>
+          <td class="paramname"><em>pBuffer</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">size_t *&#160;</td>
+          <td class="paramname"><em>piSize</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>Queries detailed port information as defined in URL_INFO_CMD. </p><dl class="params"><dt>引数</dt><dd>
+  <table class="params">
+    <tr><td class="paramdir">[in]</td><td class="paramname">hPort</td><td>Module or remote device port handle to access Port from. </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">iURLIndex</td><td>Zero based index of the URL to query. </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">iInfoCmd</td><td>Information to be retrieved as defined in URL_INFO_CMD. </td></tr>
+    <tr><td class="paramdir">[out]</td><td class="paramname">piType</td><td>Data type of the pBuffer content as defined in the URL URL_INFO_CMD and INFO_DATATYPE. </td></tr>
+    <tr><td class="paramdir">[in,out]</td><td class="paramname">pBuffer</td><td>Pointer to a user allocated buffer to receive the requested information. If this parameter is NULL, piSize will contain the minimal size of pBuffer in bytes. If the piType is a string the size includes the terminating 0. </td></tr>
+    <tr><td class="paramdir">[in,out]</td><td class="paramname">piSize</td><td>equal NULL: out: minimal size of pBuffer in bytes to hold all information. pBuffer unequal NULL: in: size of the provided pBuffer in bytes. out: number of bytes filled by the function. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>戻り値</dt><dd>GC_ERROR value. </dd></dl>
+<dl class="section since"><dt>から</dt><dd>GenTL v1.1 </dd></dl>
+
+</div>
+</div>
+<a id="ga95bf041ed5c6b03ef486e3151f420fef"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ga95bf041ed5c6b03ef486e3151f420fef">&#9670;&nbsp;</a></span>GCReadPort()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">GC_ERROR GenTL::GCReadPort </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="group__GenTL__PublicImple.html#ga7e76816dc8e67b45fb42ed668ecb6abf">PORT_HANDLE</a>&#160;</td>
+          <td class="paramname"><em>hPort</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">uint64_t&#160;</td>
+          <td class="paramname"><em>iAddress</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">void *&#160;</td>
+          <td class="paramname"><em>pBuffer</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">size_t *&#160;</td>
+          <td class="paramname"><em>piSize</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>Reads a number of bytes from a given iAddress from the specified hPort. </p><dl class="params"><dt>引数</dt><dd>
+  <table class="params">
+    <tr><td class="paramdir">[in]</td><td class="paramname">hPort</td><td>Module or remote device port handle to access Port from. </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">iAddress</td><td>Byte address to read from. </td></tr>
+    <tr><td class="paramdir">[out]</td><td class="paramname">pBuffer</td><td>Pointer to a user allocated byte buffer to receive data. </td></tr>
+    <tr><td class="paramdir">[in,out]</td><td class="paramname">piSize</td><td>Size of the provided pBuffer and thus the amount of bytes to read from the register map; after the read operation this parameter holds the information about the bytes actually read. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>戻り値</dt><dd>GC_ERROR value. </dd></dl>
+
+</div>
+</div>
+<a id="ga37a96b066cae71103f0c75b0d33bc1c6"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ga37a96b066cae71103f0c75b0d33bc1c6">&#9670;&nbsp;</a></span>GCWritePort()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">GC_ERROR GenTL::GCWritePort </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="group__GenTL__PublicImple.html#ga7e76816dc8e67b45fb42ed668ecb6abf">PORT_HANDLE</a>&#160;</td>
+          <td class="paramname"><em>hPort</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">uint64_t&#160;</td>
+          <td class="paramname"><em>iAddress</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const void *&#160;</td>
+          <td class="paramname"><em>pBuffer</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">size_t *&#160;</td>
+          <td class="paramname"><em>piSize</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>Writes a number of bytes at the given iAddress to the specified hPort. </p><dl class="params"><dt>引数</dt><dd>
+  <table class="params">
+    <tr><td class="paramdir">[in]</td><td class="paramname">hPort</td><td>Module or remote device port handle to access Port from. </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">iAddress</td><td>Byte address to write to. </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">pBuffer</td><td>Pointer to a user allocated byte buffer containing the data to write. </td></tr>
+    <tr><td class="paramdir">[in,out]</td><td class="paramname">piSize</td><td>Size of the provided pBuffer and thus the amount of bytes to write to the register map; after the write operation this parameter holds the information about the bytes actually written. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>戻り値</dt><dd>GC_ERROR value. </dd></dl>
+
+</div>
+</div>
+<a id="gabacce04b75fc2098fc5b970c1e3eccb3"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#gabacce04b75fc2098fc5b970c1e3eccb3">&#9670;&nbsp;</a></span>GCWritePortStacked()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">GC_ERROR GenTL::GCWritePortStacked </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="group__GenTL__PublicImple.html#ga7e76816dc8e67b45fb42ed668ecb6abf">PORT_HANDLE</a>&#160;</td>
+          <td class="paramname"><em>hPort</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="group__GenTL__PublicImple.html#ga27cd99609d6ad4d2473293c11af37ce9">PORT_REGISTER_STACK_ENTRY</a> *&#160;</td>
+          <td class="paramname"><em>pEntries</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">size_t *&#160;</td>
+          <td class="paramname"><em>piNumEntries</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>Writes a number of bytes to the given address on the specified hPort for every element in the pEntries array. </p><dl class="params"><dt>引数</dt><dd>
+  <table class="params">
+    <tr><td class="paramdir">[in]</td><td class="paramname">hPort</td><td>Module or remote device port handle to access Port from. </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">pEntries</td><td>Array of structures containing write address and data to write. </td></tr>
+    <tr><td class="paramdir">[in,out]</td><td class="paramname">piNumEntries</td><td>In: Number of entries in the array, Out: Number of successful executed writes according to the entries in the pEntries array. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>戻り値</dt><dd>GC_ERROR value. </dd></dl>
+<dl class="section since"><dt>から</dt><dd>GenTL v1.1 </dd></dl>
+
+</div>
+</div>
+<a id="ga3e4e60975d151ced8dc195c55c5311d2"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ga3e4e60975d151ced8dc195c55c5311d2">&#9670;&nbsp;</a></span>GCReadPortStacked()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">GC_ERROR GenTL::GCReadPortStacked </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="group__GenTL__PublicImple.html#ga7e76816dc8e67b45fb42ed668ecb6abf">PORT_HANDLE</a>&#160;</td>
+          <td class="paramname"><em>hPort</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="group__GenTL__PublicImple.html#ga27cd99609d6ad4d2473293c11af37ce9">PORT_REGISTER_STACK_ENTRY</a> *&#160;</td>
+          <td class="paramname"><em>pEntries</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">size_t *&#160;</td>
+          <td class="paramname"><em>piNumEntries</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>Reads a number of bytes from the given address on the specified hPort for every element in the pEntries array. </p><dl class="params"><dt>引数</dt><dd>
+  <table class="params">
+    <tr><td class="paramdir">[in]</td><td class="paramname">hPort</td><td>Module or remote device port handle to access Port from. </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">pEntries</td><td>Array of structures containing read address and data to read. </td></tr>
+    <tr><td class="paramdir">[in,out]</td><td class="paramname">piNumEntries</td><td>In: Number of entries in the array, Out: Number of successful executed reads according to the entries in the pEntries array. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>戻り値</dt><dd>GC_ERROR value. </dd></dl>
+<dl class="section since"><dt>から</dt><dd>GenTL v1.1 </dd></dl>
+
+</div>
+</div>
+<a id="gab6422a6546646cf204a669343b230d18"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#gab6422a6546646cf204a669343b230d18">&#9670;&nbsp;</a></span>EventFlush()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">GC_ERROR GenTL::EventFlush </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="group__GenTL__PublicImple.html#ga8fabbbd99ecba7f399b1207daba1df73">EVENT_HANDLE</a>&#160;</td>
+          <td class="paramname"><em>hEvent</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>Flushes all events in the given hEvent object. </p><dl class="params"><dt>引数</dt><dd>
+  <table class="params">
+    <tr><td class="paramdir">[in]</td><td class="paramname">hEvent</td><td>Event handle to flush queue on. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>戻り値</dt><dd>GC_ERROR value. </dd></dl>
+
+</div>
+</div>
+<a id="gaf11dd2fb9472a56e74fbfb8ddf2f1dc7"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#gaf11dd2fb9472a56e74fbfb8ddf2f1dc7">&#9670;&nbsp;</a></span>EventGetData()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">GC_ERROR GenTL::EventGetData </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="group__GenTL__PublicImple.html#ga8fabbbd99ecba7f399b1207daba1df73">EVENT_HANDLE</a>&#160;</td>
+          <td class="paramname"><em>hEvent</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">void *&#160;</td>
+          <td class="paramname"><em>pBuffer</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">size_t *&#160;</td>
+          <td class="paramname"><em>piSize</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">uint64_t&#160;</td>
+          <td class="paramname"><em>iTimeout</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>Retrieves the next event data entry from the event data queue associated with the hEvent. </p><dl class="params"><dt>引数</dt><dd>
+  <table class="params">
+    <tr><td class="paramdir">[in]</td><td class="paramname">hEvent</td><td>Event handle to wait for. </td></tr>
+    <tr><td class="paramdir">[out]</td><td class="paramname">pBuffer</td><td>Pointer to a user allocated buffer to receive the event data. The data type of the buffer is dependent on the event ID of the hEvent. If this value is NULL the data is removed from the queue without being delivered. In case of a New Buffer Event being retrieved with pBuffer equals NULL the buffer is removed from the output queue and not requeued. </td></tr>
+    <tr><td class="paramdir">[in,out]</td><td class="paramname">piSize</td><td>Size of the provided pBuffer in bytes; after the write operation this parameter holds the information about the bytes actually written. </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">iTimeout</td><td>Timeout for the wait in ms. If set to GENTL_INFINITE the timeout is infinite and the function will only return if the operation is completed or if EventKill is called on this event object. A value of 0 checks the state of the event object and returns immediately either with a timeout or with event data. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>戻り値</dt><dd>GC_ERROR value. </dd></dl>
+
+</div>
+</div>
+<a id="ga19cae8ceff17f84744749e3089d42e82"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ga19cae8ceff17f84744749e3089d42e82">&#9670;&nbsp;</a></span>EventKill()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">GC_ERROR GenTL::EventKill </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="group__GenTL__PublicImple.html#ga8fabbbd99ecba7f399b1207daba1df73">EVENT_HANDLE</a>&#160;</td>
+          <td class="paramname"><em>hEvent</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>Terminates a waiting operation on a previously registered event object. </p><dl class="params"><dt>引数</dt><dd>
+  <table class="params">
+    <tr><td class="paramdir">[in]</td><td class="paramname">hEvent</td><td>Handle to event object. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>戻り値</dt><dd>GC_ERROR value. </dd></dl>
+
+</div>
+</div>
+<a id="ga5656aee86c551429d4ed2c903f1a6742"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ga5656aee86c551429d4ed2c903f1a6742">&#9670;&nbsp;</a></span>GCRegisterEvent()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">GC_ERROR GenTL::GCRegisterEvent </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="group__GenTL__PublicImple.html#ga7005e933a14a6f5823de860bc1adca93">EVENTSRC_HANDLE</a>&#160;</td>
+          <td class="paramname"><em>hModule</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">EVENT_TYPE&#160;</td>
+          <td class="paramname"><em>iEventID</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="group__GenTL__PublicImple.html#ga8fabbbd99ecba7f399b1207daba1df73">EVENT_HANDLE</a> *&#160;</td>
+          <td class="paramname"><em>phEvent</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>Registers an event object to a certain iEventID. </p><dl class="params"><dt>引数</dt><dd>
+  <table class="params">
+    <tr><td class="paramdir">[in]</td><td class="paramname">hModule</td><td>Module handle to access to register event to. </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">iEventID</td><td>Event type to register as defined in EVENT_TYPE. </td></tr>
+    <tr><td class="paramdir">[out]</td><td class="paramname">phEvent</td><td>New handle to an event object to work with. It is recommended to initialize *phEvent to GENTL_INVALID_HANDLE before calling GCRegisterEvent to indicate an invalid handle. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>戻り値</dt><dd>GC_ERROR value. </dd></dl>
+
+</div>
+</div>
+<a id="gafae17a268f1bd445144f1d1dd84edc46"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#gafae17a268f1bd445144f1d1dd84edc46">&#9670;&nbsp;</a></span>GCUnregisterEvent()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">GC_ERROR GenTL::GCUnregisterEvent </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="group__GenTL__PublicImple.html#ga7005e933a14a6f5823de860bc1adca93">EVENTSRC_HANDLE</a>&#160;</td>
+          <td class="paramname"><em>hModule</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">EVENT_TYPE&#160;</td>
+          <td class="paramname"><em>iEventID</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>A call to this function will unregister the given iEventID from the given hModule. </p><dl class="params"><dt>引数</dt><dd>
+  <table class="params">
+    <tr><td class="paramdir">[in]</td><td class="paramname">hModule</td><td>Module handle to unregister event with. </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">iEventID</td><td>Event type to unregister as defined in EVENT_TYPE. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>戻り値</dt><dd>GC_ERROR value. </dd></dl>
+
+</div>
+</div>
+</div><!-- contents -->
+<!-- HTML footer for doxygen 1.8.13-->
+<!-- start footer part -->
+<hr class="footer"/>
+	<address class="footer">
+		<small>
+2021年10月26日(火) 13時10分23秒作成 - Sentech SDK / 構成:  &#160;
+			<a href="http://www.sentech.co.jp/">
+				<img class="footer" src="string_omron_sentech.png" alt="OMRON SENTECH CO., LTD"/>
+			</a>
+			<!--
+				DoxyGen Version =  1.8.15
+			-->
+		</small>
+	</address>
+</body>
+</html>

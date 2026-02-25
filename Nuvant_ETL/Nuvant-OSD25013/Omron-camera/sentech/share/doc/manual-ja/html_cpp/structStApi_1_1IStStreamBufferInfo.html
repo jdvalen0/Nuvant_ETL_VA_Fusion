@@ -1,0 +1,1163 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "https://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=9"/>
+<meta name="generator" content="Doxygen 1.8.15"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>Sentech SDK: StApi::IStStreamBufferInfo インタフェース</title>
+<link href="tabs.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="jquery.js"></script>
+<script type="text/javascript" src="dynsections.js"></script>
+<link href="doxygen.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+<div id="top"><!-- do not remove this div, it is closed by doxygen! -->
+<div id="titlearea">
+<table cellspacing="0" cellpadding="0">
+ <tbody>
+ <tr style="height: 56px;">
+  <td id="projectalign" style="padding-left: 0.5em;">
+   <div id="projectname">Sentech SDK
+   </div>
+  </td>
+ </tr>
+ </tbody>
+</table>
+</div>
+<!-- end header part -->
+<!-- 構築: Doxygen 1.8.15 -->
+<script type="text/javascript" src="menudata.js"></script>
+<script type="text/javascript" src="menu.js"></script>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:cf05388f2679ee054f2beb29a391d25f4e673ac3&amp;dn=gpl-2.0.txt GPL-v2 */
+$(function() {
+  initMenu('',false,false,'search.php','検索');
+});
+/* @license-end */</script>
+<div id="main-nav"></div>
+<div id="nav-path" class="navpath">
+  <ul>
+<li class="navelem"><b>StApi</b></li><li class="navelem"><a class="el" href="structStApi_1_1IStStreamBufferInfo.html">IStStreamBufferInfo</a></li>  </ul>
+</div>
+</div><!-- top -->
+<div class="header">
+  <div class="summary">
+<a href="#pub-methods">公開メンバ関数</a> &#124;
+<a href="structStApi_1_1IStStreamBufferInfo-members.html">全メンバ一覧</a>  </div>
+  <div class="headertitle">
+<div class="title">StApi::IStStreamBufferInfo インタフェース<span class="mlabels"><span class="mlabel">abstract</span></span><div class="ingroups"><a class="el" href="group__StApiTL__PublicInterface.html">StApi トランスポート層モジュール抽象インターフェース</a></div></div>  </div>
+</div><!--header-->
+<div class="contents">
+
+<p>ストリームバッファ情報用インターフェース  
+ <a href="structStApi_1_1IStStreamBufferInfo.html#details">[詳解]</a></p>
+<table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-methods"></a>
+公開メンバ関数</h2></td></tr>
+<tr class="memitem:a924a60ee473543b2648f73e8e4817042"><td class="memItemLeft" align="right" valign="top">virtual void *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structStApi_1_1IStStreamBufferInfo.html#a924a60ee473543b2648f73e8e4817042">GetBaseAddress</a> () const =0</td></tr>
+<tr class="memdesc:a924a60ee473543b2648f73e8e4817042"><td class="mdescLeft">&#160;</td><td class="mdescRight"><a class="el" href="StGenTL__Function_8h.html#a5b61f1ef00f76d6d76c0eadf65249df0">GenTL::DSGetBufferInfo()</a> を使用して GenTL::BUFFER_INFO_BASE の情報を取得します。  <a href="#a924a60ee473543b2648f73e8e4817042">[詳解]</a><br /></td></tr>
+<tr class="separator:a924a60ee473543b2648f73e8e4817042"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a47f37932bacd2eb9919cf1fd4fcc8306"><td class="memItemLeft" align="right" valign="top">virtual size_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structStApi_1_1IStStreamBufferInfo.html#a47f37932bacd2eb9919cf1fd4fcc8306">GetBufferSize</a> () const =0</td></tr>
+<tr class="memdesc:a47f37932bacd2eb9919cf1fd4fcc8306"><td class="mdescLeft">&#160;</td><td class="mdescRight"><a class="el" href="StGenTL__Function_8h.html#a5b61f1ef00f76d6d76c0eadf65249df0">GenTL::DSGetBufferInfo()</a> を使用して GenTL::BUFFER_INFO_SIZE の情報を取得します。  <a href="#a47f37932bacd2eb9919cf1fd4fcc8306">[詳解]</a><br /></td></tr>
+<tr class="separator:a47f37932bacd2eb9919cf1fd4fcc8306"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a18ca34b67c1eef52e2f2863cbe316f31"><td class="memItemLeft" align="right" valign="top">virtual void *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structStApi_1_1IStStreamBufferInfo.html#a18ca34b67c1eef52e2f2863cbe316f31">GetUserPtr</a> () const =0</td></tr>
+<tr class="memdesc:a18ca34b67c1eef52e2f2863cbe316f31"><td class="mdescLeft">&#160;</td><td class="mdescRight"><a class="el" href="StGenTL__Function_8h.html#a5b61f1ef00f76d6d76c0eadf65249df0">GenTL::DSGetBufferInfo()</a> を使用して GenTL::BUFFER_INFO_USER_PTR の情報を取得します。  <a href="#a18ca34b67c1eef52e2f2863cbe316f31">[詳解]</a><br /></td></tr>
+<tr class="separator:a18ca34b67c1eef52e2f2863cbe316f31"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a3368b51f3b40ffcfa8ecfa2ccacc995f"><td class="memItemLeft" align="right" valign="top">virtual uint64_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structStApi_1_1IStStreamBufferInfo.html#a3368b51f3b40ffcfa8ecfa2ccacc995f">GetTimestamp</a> () const =0</td></tr>
+<tr class="memdesc:a3368b51f3b40ffcfa8ecfa2ccacc995f"><td class="mdescLeft">&#160;</td><td class="mdescRight"><a class="el" href="StGenTL__Function_8h.html#a5b61f1ef00f76d6d76c0eadf65249df0">GenTL::DSGetBufferInfo()</a> を使用して GenTL::BUFFER_INFO_TIMESTAMP の情報を取得します。  <a href="#a3368b51f3b40ffcfa8ecfa2ccacc995f">[詳解]</a><br /></td></tr>
+<tr class="separator:a3368b51f3b40ffcfa8ecfa2ccacc995f"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:af09fc2febb3215b7e099aa05dbcc8175"><td class="memItemLeft" align="right" valign="top">virtual bool8_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structStApi_1_1IStStreamBufferInfo.html#af09fc2febb3215b7e099aa05dbcc8175">IsNewData</a> () const =0</td></tr>
+<tr class="memdesc:af09fc2febb3215b7e099aa05dbcc8175"><td class="mdescLeft">&#160;</td><td class="mdescRight"><a class="el" href="StGenTL__Function_8h.html#a5b61f1ef00f76d6d76c0eadf65249df0">GenTL::DSGetBufferInfo()</a> を使用して GenTL::BUFFER_INFO_NEW_DATA の情報を取得します。  <a href="#af09fc2febb3215b7e099aa05dbcc8175">[詳解]</a><br /></td></tr>
+<tr class="separator:af09fc2febb3215b7e099aa05dbcc8175"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a22fcd68237e5046fedcf737acfa3bde7"><td class="memItemLeft" align="right" valign="top">virtual bool8_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structStApi_1_1IStStreamBufferInfo.html#a22fcd68237e5046fedcf737acfa3bde7">IsQueued</a> () const =0</td></tr>
+<tr class="memdesc:a22fcd68237e5046fedcf737acfa3bde7"><td class="mdescLeft">&#160;</td><td class="mdescRight"><a class="el" href="StGenTL__Function_8h.html#a5b61f1ef00f76d6d76c0eadf65249df0">GenTL::DSGetBufferInfo()</a> を使用して GenTL::BUFFER_INFO_IS_QUEUED の情報を取得します。  <a href="#a22fcd68237e5046fedcf737acfa3bde7">[詳解]</a><br /></td></tr>
+<tr class="separator:a22fcd68237e5046fedcf737acfa3bde7"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a4f4f560e296fcfc4af23b2e12b953f9b"><td class="memItemLeft" align="right" valign="top">virtual bool8_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structStApi_1_1IStStreamBufferInfo.html#a4f4f560e296fcfc4af23b2e12b953f9b">IsAcquiring</a> () const =0</td></tr>
+<tr class="memdesc:a4f4f560e296fcfc4af23b2e12b953f9b"><td class="mdescLeft">&#160;</td><td class="mdescRight"><a class="el" href="StGenTL__Function_8h.html#a5b61f1ef00f76d6d76c0eadf65249df0">GenTL::DSGetBufferInfo()</a> を使用して GenTL::BUFFER_INFO_IS_ACQUIRING の情報を取得します。  <a href="#a4f4f560e296fcfc4af23b2e12b953f9b">[詳解]</a><br /></td></tr>
+<tr class="separator:a4f4f560e296fcfc4af23b2e12b953f9b"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:adb90a83c30556bdc9919bc234b981e44"><td class="memItemLeft" align="right" valign="top">virtual bool8_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structStApi_1_1IStStreamBufferInfo.html#adb90a83c30556bdc9919bc234b981e44">IsIncomplete</a> () const =0</td></tr>
+<tr class="memdesc:adb90a83c30556bdc9919bc234b981e44"><td class="mdescLeft">&#160;</td><td class="mdescRight"><a class="el" href="StGenTL__Function_8h.html#a5b61f1ef00f76d6d76c0eadf65249df0">GenTL::DSGetBufferInfo()</a> を使用して GenTL::BUFFER_INFO_IS_INCOMPLETE の情報を取得します。  <a href="#adb90a83c30556bdc9919bc234b981e44">[詳解]</a><br /></td></tr>
+<tr class="separator:adb90a83c30556bdc9919bc234b981e44"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a6c43ef1b8811955f30e1eefe39d563fd"><td class="memItemLeft" align="right" valign="top">virtual <a class="el" href="classGenICam_1_1gcstring.html">GenICam::gcstring</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structStApi_1_1IStStreamBufferInfo.html#a6c43ef1b8811955f30e1eefe39d563fd">GetTLType</a> () const =0</td></tr>
+<tr class="memdesc:a6c43ef1b8811955f30e1eefe39d563fd"><td class="mdescLeft">&#160;</td><td class="mdescRight"><a class="el" href="StGenTL__Function_8h.html#a5b61f1ef00f76d6d76c0eadf65249df0">GenTL::DSGetBufferInfo()</a> を使用して GenTL::BUFFER_INFO_TLTYPE の情報を取得します。  <a href="#a6c43ef1b8811955f30e1eefe39d563fd">[詳解]</a><br /></td></tr>
+<tr class="separator:a6c43ef1b8811955f30e1eefe39d563fd"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ab0ec00d838c90227efa9048da9d07f99"><td class="memItemLeft" align="right" valign="top">virtual size_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structStApi_1_1IStStreamBufferInfo.html#ab0ec00d838c90227efa9048da9d07f99">GetSizeFilled</a> () const =0</td></tr>
+<tr class="memdesc:ab0ec00d838c90227efa9048da9d07f99"><td class="mdescLeft">&#160;</td><td class="mdescRight"><a class="el" href="StGenTL__Function_8h.html#a5b61f1ef00f76d6d76c0eadf65249df0">GenTL::DSGetBufferInfo()</a> を使用して GenTL::BUFFER_INFO_SIZE_FILLED の情報を取得します。  <a href="#ab0ec00d838c90227efa9048da9d07f99">[詳解]</a><br /></td></tr>
+<tr class="separator:ab0ec00d838c90227efa9048da9d07f99"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ac14b74f71b8cc02d7800ee9f9ee93710"><td class="memItemLeft" align="right" valign="top">virtual size_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structStApi_1_1IStStreamBufferInfo.html#ac14b74f71b8cc02d7800ee9f9ee93710">GetWidth</a> () const =0</td></tr>
+<tr class="memdesc:ac14b74f71b8cc02d7800ee9f9ee93710"><td class="mdescLeft">&#160;</td><td class="mdescRight"><a class="el" href="StGenTL__Function_8h.html#a5b61f1ef00f76d6d76c0eadf65249df0">GenTL::DSGetBufferInfo()</a> を使用して GenTL::BUFFER_INFO_WIDTH の情報を取得します。  <a href="#ac14b74f71b8cc02d7800ee9f9ee93710">[詳解]</a><br /></td></tr>
+<tr class="separator:ac14b74f71b8cc02d7800ee9f9ee93710"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aab6b82ce0ef29ed7c9f0ce5d7aa1ca9a"><td class="memItemLeft" align="right" valign="top">virtual size_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structStApi_1_1IStStreamBufferInfo.html#aab6b82ce0ef29ed7c9f0ce5d7aa1ca9a">GetHeight</a> () const =0</td></tr>
+<tr class="memdesc:aab6b82ce0ef29ed7c9f0ce5d7aa1ca9a"><td class="mdescLeft">&#160;</td><td class="mdescRight"><a class="el" href="StGenTL__Function_8h.html#a5b61f1ef00f76d6d76c0eadf65249df0">GenTL::DSGetBufferInfo()</a> を使用して GenTL::BUFFER_INFO_HEIGHT の情報を取得します。  <a href="#aab6b82ce0ef29ed7c9f0ce5d7aa1ca9a">[詳解]</a><br /></td></tr>
+<tr class="separator:aab6b82ce0ef29ed7c9f0ce5d7aa1ca9a"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a823231db57920fb6be913cf02dd55b01"><td class="memItemLeft" align="right" valign="top">virtual size_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structStApi_1_1IStStreamBufferInfo.html#a823231db57920fb6be913cf02dd55b01">GetXOffset</a> () const =0</td></tr>
+<tr class="memdesc:a823231db57920fb6be913cf02dd55b01"><td class="mdescLeft">&#160;</td><td class="mdescRight"><a class="el" href="StGenTL__Function_8h.html#a5b61f1ef00f76d6d76c0eadf65249df0">GenTL::DSGetBufferInfo()</a> を使用して GenTL::BUFFER_INFO_XOFFSET の情報を取得します。  <a href="#a823231db57920fb6be913cf02dd55b01">[詳解]</a><br /></td></tr>
+<tr class="separator:a823231db57920fb6be913cf02dd55b01"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a7cb518d62f6a5402084730b37a49e306"><td class="memItemLeft" align="right" valign="top">virtual size_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structStApi_1_1IStStreamBufferInfo.html#a7cb518d62f6a5402084730b37a49e306">GetYOffset</a> () const =0</td></tr>
+<tr class="memdesc:a7cb518d62f6a5402084730b37a49e306"><td class="mdescLeft">&#160;</td><td class="mdescRight"><a class="el" href="StGenTL__Function_8h.html#a5b61f1ef00f76d6d76c0eadf65249df0">GenTL::DSGetBufferInfo()</a> を使用して GenTL::BUFFER_INFO_YOFFSET の情報を取得します。  <a href="#a7cb518d62f6a5402084730b37a49e306">[詳解]</a><br /></td></tr>
+<tr class="separator:a7cb518d62f6a5402084730b37a49e306"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a53a84b28a24b192f8aa357a6437c2781"><td class="memItemLeft" align="right" valign="top">virtual size_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structStApi_1_1IStStreamBufferInfo.html#a53a84b28a24b192f8aa357a6437c2781">GetXPadding</a> () const =0</td></tr>
+<tr class="memdesc:a53a84b28a24b192f8aa357a6437c2781"><td class="mdescLeft">&#160;</td><td class="mdescRight"><a class="el" href="StGenTL__Function_8h.html#a5b61f1ef00f76d6d76c0eadf65249df0">GenTL::DSGetBufferInfo()</a> を使用して GenTL::BUFFER_INFO_XPADDING の情報を取得します。  <a href="#a53a84b28a24b192f8aa357a6437c2781">[詳解]</a><br /></td></tr>
+<tr class="separator:a53a84b28a24b192f8aa357a6437c2781"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a79cece0cab11ac0c89066da82c7426c2"><td class="memItemLeft" align="right" valign="top">virtual size_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structStApi_1_1IStStreamBufferInfo.html#a79cece0cab11ac0c89066da82c7426c2">GetYPadding</a> () const =0</td></tr>
+<tr class="memdesc:a79cece0cab11ac0c89066da82c7426c2"><td class="mdescLeft">&#160;</td><td class="mdescRight"><a class="el" href="StGenTL__Function_8h.html#a5b61f1ef00f76d6d76c0eadf65249df0">GenTL::DSGetBufferInfo()</a> を使用して GenTL::BUFFER_INFO_YPADDING の情報を取得します。  <a href="#a79cece0cab11ac0c89066da82c7426c2">[詳解]</a><br /></td></tr>
+<tr class="separator:a79cece0cab11ac0c89066da82c7426c2"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a87f9cb9e1bd0fa8949eac03c282efab6"><td class="memItemLeft" align="right" valign="top">virtual uint64_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structStApi_1_1IStStreamBufferInfo.html#a87f9cb9e1bd0fa8949eac03c282efab6">GetFrameID</a> () const =0</td></tr>
+<tr class="memdesc:a87f9cb9e1bd0fa8949eac03c282efab6"><td class="mdescLeft">&#160;</td><td class="mdescRight"><a class="el" href="StGenTL__Function_8h.html#a5b61f1ef00f76d6d76c0eadf65249df0">GenTL::DSGetBufferInfo()</a> を使用して GenTL::BUFFER_INFO_FRAMEID の情報を取得します。  <a href="#a87f9cb9e1bd0fa8949eac03c282efab6">[詳解]</a><br /></td></tr>
+<tr class="separator:a87f9cb9e1bd0fa8949eac03c282efab6"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ae68a37ab93ed95817c1044d46ae8e945"><td class="memItemLeft" align="right" valign="top">virtual bool8_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structStApi_1_1IStStreamBufferInfo.html#ae68a37ab93ed95817c1044d46ae8e945">IsImagePresent</a> () const =0</td></tr>
+<tr class="memdesc:ae68a37ab93ed95817c1044d46ae8e945"><td class="mdescLeft">&#160;</td><td class="mdescRight"><a class="el" href="StGenTL__Function_8h.html#a5b61f1ef00f76d6d76c0eadf65249df0">GenTL::DSGetBufferInfo()</a> を使用して GenTL::BUFFER_INFO_IMAGEPRESENT の情報を取得します。  <a href="#ae68a37ab93ed95817c1044d46ae8e945">[詳解]</a><br /></td></tr>
+<tr class="separator:ae68a37ab93ed95817c1044d46ae8e945"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ad1c5b2698581a4b0b4bf44547cf17865"><td class="memItemLeft" align="right" valign="top">virtual size_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structStApi_1_1IStStreamBufferInfo.html#ad1c5b2698581a4b0b4bf44547cf17865">GetImageOffset</a> () const =0</td></tr>
+<tr class="memdesc:ad1c5b2698581a4b0b4bf44547cf17865"><td class="mdescLeft">&#160;</td><td class="mdescRight"><a class="el" href="StGenTL__Function_8h.html#a5b61f1ef00f76d6d76c0eadf65249df0">GenTL::DSGetBufferInfo()</a> を使用して GenTL::BUFFER_INFO_IMAGEOFFSET の情報を取得します。  <a href="#ad1c5b2698581a4b0b4bf44547cf17865">[詳解]</a><br /></td></tr>
+<tr class="separator:ad1c5b2698581a4b0b4bf44547cf17865"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a14a3342b3dfbaae4616657bb4902176f"><td class="memItemLeft" align="right" valign="top">virtual size_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structStApi_1_1IStStreamBufferInfo.html#a14a3342b3dfbaae4616657bb4902176f">GetPayloadType</a> () const =0</td></tr>
+<tr class="memdesc:a14a3342b3dfbaae4616657bb4902176f"><td class="mdescLeft">&#160;</td><td class="mdescRight"><a class="el" href="StGenTL__Function_8h.html#a5b61f1ef00f76d6d76c0eadf65249df0">GenTL::DSGetBufferInfo()</a> を使用して GenTL::BUFFER_INFO_PAYLOADTYPE の情報を取得します。  <a href="#a14a3342b3dfbaae4616657bb4902176f">[詳解]</a><br /></td></tr>
+<tr class="separator:a14a3342b3dfbaae4616657bb4902176f"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ab4c3d665f022838a90e6eb793111fe2c"><td class="memItemLeft" align="right" valign="top">virtual uint64_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structStApi_1_1IStStreamBufferInfo.html#ab4c3d665f022838a90e6eb793111fe2c">GetPixelFormat</a> () const =0</td></tr>
+<tr class="memdesc:ab4c3d665f022838a90e6eb793111fe2c"><td class="mdescLeft">&#160;</td><td class="mdescRight"><a class="el" href="StGenTL__Function_8h.html#a5b61f1ef00f76d6d76c0eadf65249df0">GenTL::DSGetBufferInfo()</a> を使用して GenTL::BUFFER_INFO_PIXELFORMAT の情報を取得します。  <a href="#ab4c3d665f022838a90e6eb793111fe2c">[詳解]</a><br /></td></tr>
+<tr class="separator:ab4c3d665f022838a90e6eb793111fe2c"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a1d2254007ef00305fbf9dceb5b13663e"><td class="memItemLeft" align="right" valign="top">virtual uint64_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structStApi_1_1IStStreamBufferInfo.html#a1d2254007ef00305fbf9dceb5b13663e">GetPixelFormatNameSpace</a> () const =0</td></tr>
+<tr class="memdesc:a1d2254007ef00305fbf9dceb5b13663e"><td class="mdescLeft">&#160;</td><td class="mdescRight"><a class="el" href="StGenTL__Function_8h.html#a5b61f1ef00f76d6d76c0eadf65249df0">GenTL::DSGetBufferInfo()</a> を使用して GenTL::BUFFER_INFO_PIXELFORMAT_NAMESPACE の情報を取得します。  <a href="#a1d2254007ef00305fbf9dceb5b13663e">[詳解]</a><br /></td></tr>
+<tr class="separator:a1d2254007ef00305fbf9dceb5b13663e"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a0107f6789d3f024beb35a6cc5a4cc83e"><td class="memItemLeft" align="right" valign="top">virtual size_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structStApi_1_1IStStreamBufferInfo.html#a0107f6789d3f024beb35a6cc5a4cc83e">GetDeliverdImageHeight</a> () const =0</td></tr>
+<tr class="memdesc:a0107f6789d3f024beb35a6cc5a4cc83e"><td class="mdescLeft">&#160;</td><td class="mdescRight"><a class="el" href="StGenTL__Function_8h.html#a5b61f1ef00f76d6d76c0eadf65249df0">GenTL::DSGetBufferInfo()</a> を使用して GenTL::BUFFER_INFO_DELIVERED_IMAGEHEIGHT の情報を取得します。  <a href="#a0107f6789d3f024beb35a6cc5a4cc83e">[詳解]</a><br /></td></tr>
+<tr class="separator:a0107f6789d3f024beb35a6cc5a4cc83e"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a4af69e18df395b973535b742db1cd3f7"><td class="memItemLeft" align="right" valign="top">virtual size_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structStApi_1_1IStStreamBufferInfo.html#a4af69e18df395b973535b742db1cd3f7">GetDeliverdChunkPayloadSize</a> () const =0</td></tr>
+<tr class="memdesc:a4af69e18df395b973535b742db1cd3f7"><td class="mdescLeft">&#160;</td><td class="mdescRight"><a class="el" href="StGenTL__Function_8h.html#a5b61f1ef00f76d6d76c0eadf65249df0">GenTL::DSGetBufferInfo()</a> を使用して GenTL::BUFFER_INFO_DELIVERED_CHUNKPAYLOADSIZE の情報を取得します。  <a href="#a4af69e18df395b973535b742db1cd3f7">[詳解]</a><br /></td></tr>
+<tr class="separator:a4af69e18df395b973535b742db1cd3f7"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ae1d8e82732ef690415c689f630bf3f1b"><td class="memItemLeft" align="right" valign="top">virtual uint64_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structStApi_1_1IStStreamBufferInfo.html#ae1d8e82732ef690415c689f630bf3f1b">GetChunkLayoutID</a> () const =0</td></tr>
+<tr class="memdesc:ae1d8e82732ef690415c689f630bf3f1b"><td class="mdescLeft">&#160;</td><td class="mdescRight"><a class="el" href="StGenTL__Function_8h.html#a5b61f1ef00f76d6d76c0eadf65249df0">GenTL::DSGetBufferInfo()</a> を使用して GenTL::BUFFER_INFO_CHUNKLAYOUTID の情報を取得します。  <a href="#ae1d8e82732ef690415c689f630bf3f1b">[詳解]</a><br /></td></tr>
+<tr class="separator:ae1d8e82732ef690415c689f630bf3f1b"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aee3c57096136da18e1fc2ac33113e70b"><td class="memItemLeft" align="right" valign="top">virtual <a class="el" href="classGenICam_1_1gcstring.html">GenICam::gcstring</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structStApi_1_1IStStreamBufferInfo.html#aee3c57096136da18e1fc2ac33113e70b">GetFileName</a> () const =0</td></tr>
+<tr class="memdesc:aee3c57096136da18e1fc2ac33113e70b"><td class="mdescLeft">&#160;</td><td class="mdescRight"><a class="el" href="StGenTL__Function_8h.html#a5b61f1ef00f76d6d76c0eadf65249df0">GenTL::DSGetBufferInfo()</a> を使用して GenTL::BUFFER_INFO_FILENAME の情報を取得します。  <a href="#aee3c57096136da18e1fc2ac33113e70b">[詳解]</a><br /></td></tr>
+<tr class="separator:aee3c57096136da18e1fc2ac33113e70b"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a9d22ecf5f7eb789ff333829f4019b6ab"><td class="memItemLeft" align="right" valign="top">virtual int32_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structStApi_1_1IStStreamBufferInfo.html#a9d22ecf5f7eb789ff333829f4019b6ab">GetPixelEndianness</a> () const =0</td></tr>
+<tr class="memdesc:a9d22ecf5f7eb789ff333829f4019b6ab"><td class="mdescLeft">&#160;</td><td class="mdescRight"><a class="el" href="StGenTL__Function_8h.html#a5b61f1ef00f76d6d76c0eadf65249df0">GenTL::DSGetBufferInfo()</a> を使用して GenTL::BUFFER_INFO_PIXEL_ENDIANNESS の情報を取得します。  <a href="#a9d22ecf5f7eb789ff333829f4019b6ab">[詳解]</a><br /></td></tr>
+<tr class="separator:a9d22ecf5f7eb789ff333829f4019b6ab"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aed8fd6b332d105d27ea62fb7fdc945ec"><td class="memItemLeft" align="right" valign="top">virtual size_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structStApi_1_1IStStreamBufferInfo.html#aed8fd6b332d105d27ea62fb7fdc945ec">GetDataSize</a> () const =0</td></tr>
+<tr class="memdesc:aed8fd6b332d105d27ea62fb7fdc945ec"><td class="mdescLeft">&#160;</td><td class="mdescRight"><a class="el" href="StGenTL__Function_8h.html#a5b61f1ef00f76d6d76c0eadf65249df0">GenTL::DSGetBufferInfo()</a> を使用して GenTL::BUFFER_INFO_DATA_SIZE の情報を取得します。  <a href="#aed8fd6b332d105d27ea62fb7fdc945ec">[詳解]</a><br /></td></tr>
+<tr class="separator:aed8fd6b332d105d27ea62fb7fdc945ec"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a85e68a1c4a41139f896145cfced0246f"><td class="memItemLeft" align="right" valign="top">virtual uint64_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structStApi_1_1IStStreamBufferInfo.html#a85e68a1c4a41139f896145cfced0246f">GetTimestampNS</a> () const =0</td></tr>
+<tr class="memdesc:a85e68a1c4a41139f896145cfced0246f"><td class="mdescLeft">&#160;</td><td class="mdescRight"><a class="el" href="StGenTL__Function_8h.html#a5b61f1ef00f76d6d76c0eadf65249df0">GenTL::DSGetBufferInfo()</a> を使用して GenTL::BUFFER_INFO_TIMESTAMP_NS の情報を取得します。  <a href="#a85e68a1c4a41139f896145cfced0246f">[詳解]</a><br /></td></tr>
+<tr class="separator:a85e68a1c4a41139f896145cfced0246f"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ae168df15ce322d73569131f7da57e79b"><td class="memItemLeft" align="right" valign="top">virtual bool8_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structStApi_1_1IStStreamBufferInfo.html#ae168df15ce322d73569131f7da57e79b">IsDataLargerThanBuffer</a> () const =0</td></tr>
+<tr class="memdesc:ae168df15ce322d73569131f7da57e79b"><td class="mdescLeft">&#160;</td><td class="mdescRight"><a class="el" href="StGenTL__Function_8h.html#a5b61f1ef00f76d6d76c0eadf65249df0">GenTL::DSGetBufferInfo()</a> を使用して GenTL::BUFFER_INFO_DATA_LARGER_THAN_BUFFER の情報を取得します。  <a href="#ae168df15ce322d73569131f7da57e79b">[詳解]</a><br /></td></tr>
+<tr class="separator:ae168df15ce322d73569131f7da57e79b"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ab2824b73006f1e4d600e6e1227ca75e2"><td class="memItemLeft" align="right" valign="top">virtual bool8_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structStApi_1_1IStStreamBufferInfo.html#ab2824b73006f1e4d600e6e1227ca75e2">HasChunkData</a> () const =0</td></tr>
+<tr class="memdesc:ab2824b73006f1e4d600e6e1227ca75e2"><td class="mdescLeft">&#160;</td><td class="mdescRight"><a class="el" href="StGenTL__Function_8h.html#a5b61f1ef00f76d6d76c0eadf65249df0">GenTL::DSGetBufferInfo()</a> を使用して GenTL::BUFFER_INFO_CONTAINS_CHUNKDATA の情報を取得します。  <a href="#ab2824b73006f1e4d600e6e1227ca75e2">[詳解]</a><br /></td></tr>
+<tr class="separator:ab2824b73006f1e4d600e6e1227ca75e2"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table>
+<a name="details" id="details"></a><h2 class="groupheader">詳解</h2>
+<div class="textblock"><p>ストリームバッファ情報用インターフェース </p>
+</div><h2 class="groupheader">関数詳解</h2>
+<a id="a924a60ee473543b2648f73e8e4817042"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a924a60ee473543b2648f73e8e4817042">&#9670;&nbsp;</a></span>GetBaseAddress()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">virtual void* StApi::IStStreamBufferInfo::GetBaseAddress </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">pure virtual</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+<p><a class="el" href="StGenTL__Function_8h.html#a5b61f1ef00f76d6d76c0eadf65249df0">GenTL::DSGetBufferInfo()</a> を使用して GenTL::BUFFER_INFO_BASE の情報を取得します。 </p><dl class="section return"><dt>戻り値</dt><dd>BUFFER_INFO_BASE データ </dd></dl>
+<dl class="exception"><dt>例外</dt><dd>
+  <table class="exception">
+    <tr><td class="paramname"><a class="el" href="StGenTL__Function_8h.html#a5b61f1ef00f76d6d76c0eadf65249df0">GenTL::DSGetBufferInfo()</a></td><td>がエラーを返した場合は、例外 <a class="el" href="classGenICam_1_1GenericException.html" title="GenICam&#39;s exception class">GenICam::GenericException</a> が発生します。 </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a id="a47f37932bacd2eb9919cf1fd4fcc8306"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a47f37932bacd2eb9919cf1fd4fcc8306">&#9670;&nbsp;</a></span>GetBufferSize()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">virtual size_t StApi::IStStreamBufferInfo::GetBufferSize </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">pure virtual</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+<p><a class="el" href="StGenTL__Function_8h.html#a5b61f1ef00f76d6d76c0eadf65249df0">GenTL::DSGetBufferInfo()</a> を使用して GenTL::BUFFER_INFO_SIZE の情報を取得します。 </p><dl class="section return"><dt>戻り値</dt><dd>BUFFER_INFO_SIZE データ </dd></dl>
+<dl class="exception"><dt>例外</dt><dd>
+  <table class="exception">
+    <tr><td class="paramname"><a class="el" href="StGenTL__Function_8h.html#a5b61f1ef00f76d6d76c0eadf65249df0">GenTL::DSGetBufferInfo()</a></td><td>がエラーを返した場合は、例外 <a class="el" href="classGenICam_1_1GenericException.html" title="GenICam&#39;s exception class">GenICam::GenericException</a> が発生します。 </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a id="a18ca34b67c1eef52e2f2863cbe316f31"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a18ca34b67c1eef52e2f2863cbe316f31">&#9670;&nbsp;</a></span>GetUserPtr()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">virtual void* StApi::IStStreamBufferInfo::GetUserPtr </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">pure virtual</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+<p><a class="el" href="StGenTL__Function_8h.html#a5b61f1ef00f76d6d76c0eadf65249df0">GenTL::DSGetBufferInfo()</a> を使用して GenTL::BUFFER_INFO_USER_PTR の情報を取得します。 </p><dl class="section return"><dt>戻り値</dt><dd>BUFFER_INFO_USER_PTR データ </dd></dl>
+<dl class="exception"><dt>例外</dt><dd>
+  <table class="exception">
+    <tr><td class="paramname"><a class="el" href="StGenTL__Function_8h.html#a5b61f1ef00f76d6d76c0eadf65249df0">GenTL::DSGetBufferInfo()</a></td><td>がエラーを返した場合は、例外 <a class="el" href="classGenICam_1_1GenericException.html" title="GenICam&#39;s exception class">GenICam::GenericException</a> が発生します。 </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a id="a3368b51f3b40ffcfa8ecfa2ccacc995f"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a3368b51f3b40ffcfa8ecfa2ccacc995f">&#9670;&nbsp;</a></span>GetTimestamp()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">virtual uint64_t StApi::IStStreamBufferInfo::GetTimestamp </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">pure virtual</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+<p><a class="el" href="StGenTL__Function_8h.html#a5b61f1ef00f76d6d76c0eadf65249df0">GenTL::DSGetBufferInfo()</a> を使用して GenTL::BUFFER_INFO_TIMESTAMP の情報を取得します。 </p><dl class="section return"><dt>戻り値</dt><dd>BUFFER_INFO_TIMESTAMP データ </dd></dl>
+<dl class="exception"><dt>例外</dt><dd>
+  <table class="exception">
+    <tr><td class="paramname"><a class="el" href="StGenTL__Function_8h.html#a5b61f1ef00f76d6d76c0eadf65249df0">GenTL::DSGetBufferInfo()</a></td><td>がエラーを返した場合は、例外 <a class="el" href="classGenICam_1_1GenericException.html" title="GenICam&#39;s exception class">GenICam::GenericException</a> が発生します。 </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a id="af09fc2febb3215b7e099aa05dbcc8175"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#af09fc2febb3215b7e099aa05dbcc8175">&#9670;&nbsp;</a></span>IsNewData()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">virtual bool8_t StApi::IStStreamBufferInfo::IsNewData </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">pure virtual</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+<p><a class="el" href="StGenTL__Function_8h.html#a5b61f1ef00f76d6d76c0eadf65249df0">GenTL::DSGetBufferInfo()</a> を使用して GenTL::BUFFER_INFO_NEW_DATA の情報を取得します。 </p><dl class="section return"><dt>戻り値</dt><dd>BUFFER_INFO_NEW_DATA データ </dd></dl>
+<dl class="exception"><dt>例外</dt><dd>
+  <table class="exception">
+    <tr><td class="paramname"><a class="el" href="StGenTL__Function_8h.html#a5b61f1ef00f76d6d76c0eadf65249df0">GenTL::DSGetBufferInfo()</a></td><td>がエラーを返した場合は、例外 <a class="el" href="classGenICam_1_1GenericException.html" title="GenICam&#39;s exception class">GenICam::GenericException</a> が発生します。 </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a id="a22fcd68237e5046fedcf737acfa3bde7"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a22fcd68237e5046fedcf737acfa3bde7">&#9670;&nbsp;</a></span>IsQueued()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">virtual bool8_t StApi::IStStreamBufferInfo::IsQueued </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">pure virtual</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+<p><a class="el" href="StGenTL__Function_8h.html#a5b61f1ef00f76d6d76c0eadf65249df0">GenTL::DSGetBufferInfo()</a> を使用して GenTL::BUFFER_INFO_IS_QUEUED の情報を取得します。 </p><dl class="section return"><dt>戻り値</dt><dd>BUFFER_INFO_IS_QUEUED データ </dd></dl>
+<dl class="exception"><dt>例外</dt><dd>
+  <table class="exception">
+    <tr><td class="paramname"><a class="el" href="StGenTL__Function_8h.html#a5b61f1ef00f76d6d76c0eadf65249df0">GenTL::DSGetBufferInfo()</a></td><td>がエラーを返した場合は、例外 <a class="el" href="classGenICam_1_1GenericException.html" title="GenICam&#39;s exception class">GenICam::GenericException</a> が発生します。 </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a id="a4f4f560e296fcfc4af23b2e12b953f9b"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a4f4f560e296fcfc4af23b2e12b953f9b">&#9670;&nbsp;</a></span>IsAcquiring()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">virtual bool8_t StApi::IStStreamBufferInfo::IsAcquiring </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">pure virtual</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+<p><a class="el" href="StGenTL__Function_8h.html#a5b61f1ef00f76d6d76c0eadf65249df0">GenTL::DSGetBufferInfo()</a> を使用して GenTL::BUFFER_INFO_IS_ACQUIRING の情報を取得します。 </p><dl class="section return"><dt>戻り値</dt><dd>BUFFER_INFO_IS_ACQUIRING データ </dd></dl>
+<dl class="exception"><dt>例外</dt><dd>
+  <table class="exception">
+    <tr><td class="paramname"><a class="el" href="StGenTL__Function_8h.html#a5b61f1ef00f76d6d76c0eadf65249df0">GenTL::DSGetBufferInfo()</a></td><td>がエラーを返した場合は、例外 <a class="el" href="classGenICam_1_1GenericException.html" title="GenICam&#39;s exception class">GenICam::GenericException</a> が発生します。 </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a id="adb90a83c30556bdc9919bc234b981e44"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#adb90a83c30556bdc9919bc234b981e44">&#9670;&nbsp;</a></span>IsIncomplete()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">virtual bool8_t StApi::IStStreamBufferInfo::IsIncomplete </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">pure virtual</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+<p><a class="el" href="StGenTL__Function_8h.html#a5b61f1ef00f76d6d76c0eadf65249df0">GenTL::DSGetBufferInfo()</a> を使用して GenTL::BUFFER_INFO_IS_INCOMPLETE の情報を取得します。 </p><dl class="section return"><dt>戻り値</dt><dd>BUFFER_INFO_IS_INCOMPLETE データ </dd></dl>
+<dl class="exception"><dt>例外</dt><dd>
+  <table class="exception">
+    <tr><td class="paramname"><a class="el" href="StGenTL__Function_8h.html#a5b61f1ef00f76d6d76c0eadf65249df0">GenTL::DSGetBufferInfo()</a></td><td>がエラーを返した場合は、例外 <a class="el" href="classGenICam_1_1GenericException.html" title="GenICam&#39;s exception class">GenICam::GenericException</a> が発生します。 </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a id="a6c43ef1b8811955f30e1eefe39d563fd"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a6c43ef1b8811955f30e1eefe39d563fd">&#9670;&nbsp;</a></span>GetTLType()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">virtual <a class="el" href="classGenICam_1_1gcstring.html">GenICam::gcstring</a> StApi::IStStreamBufferInfo::GetTLType </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">pure virtual</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+<p><a class="el" href="StGenTL__Function_8h.html#a5b61f1ef00f76d6d76c0eadf65249df0">GenTL::DSGetBufferInfo()</a> を使用して GenTL::BUFFER_INFO_TLTYPE の情報を取得します。 </p><dl class="section return"><dt>戻り値</dt><dd>BUFFER_INFO_TLTYPE データ </dd></dl>
+<dl class="exception"><dt>例外</dt><dd>
+  <table class="exception">
+    <tr><td class="paramname">メモリー確保に失敗した場合や</td><td><a class="el" href="StGenTL__Function_8h.html#a5b61f1ef00f76d6d76c0eadf65249df0">GenTL::DSGetBufferInfo()</a> がエラーを返した場合は、例外 <a class="el" href="classGenICam_1_1GenericException.html" title="GenICam&#39;s exception class">GenICam::GenericException</a> が発生します。 </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a id="ab0ec00d838c90227efa9048da9d07f99"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ab0ec00d838c90227efa9048da9d07f99">&#9670;&nbsp;</a></span>GetSizeFilled()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">virtual size_t StApi::IStStreamBufferInfo::GetSizeFilled </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">pure virtual</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+<p><a class="el" href="StGenTL__Function_8h.html#a5b61f1ef00f76d6d76c0eadf65249df0">GenTL::DSGetBufferInfo()</a> を使用して GenTL::BUFFER_INFO_SIZE_FILLED の情報を取得します。 </p><dl class="section return"><dt>戻り値</dt><dd>BUFFER_INFO_SIZE_FILLED データ </dd></dl>
+<dl class="exception"><dt>例外</dt><dd>
+  <table class="exception">
+    <tr><td class="paramname"><a class="el" href="StGenTL__Function_8h.html#a5b61f1ef00f76d6d76c0eadf65249df0">GenTL::DSGetBufferInfo()</a></td><td>がエラーを返した場合は、例外 <a class="el" href="classGenICam_1_1GenericException.html" title="GenICam&#39;s exception class">GenICam::GenericException</a> が発生します。 </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a id="ac14b74f71b8cc02d7800ee9f9ee93710"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ac14b74f71b8cc02d7800ee9f9ee93710">&#9670;&nbsp;</a></span>GetWidth()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">virtual size_t StApi::IStStreamBufferInfo::GetWidth </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">pure virtual</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+<p><a class="el" href="StGenTL__Function_8h.html#a5b61f1ef00f76d6d76c0eadf65249df0">GenTL::DSGetBufferInfo()</a> を使用して GenTL::BUFFER_INFO_WIDTH の情報を取得します。 </p><dl class="section return"><dt>戻り値</dt><dd>BUFFER_INFO_WIDTH データ </dd></dl>
+<dl class="exception"><dt>例外</dt><dd>
+  <table class="exception">
+    <tr><td class="paramname"><a class="el" href="StGenTL__Function_8h.html#a5b61f1ef00f76d6d76c0eadf65249df0">GenTL::DSGetBufferInfo()</a></td><td>がエラーを返した場合は、例外 <a class="el" href="classGenICam_1_1GenericException.html" title="GenICam&#39;s exception class">GenICam::GenericException</a> が発生します。 </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a id="aab6b82ce0ef29ed7c9f0ce5d7aa1ca9a"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aab6b82ce0ef29ed7c9f0ce5d7aa1ca9a">&#9670;&nbsp;</a></span>GetHeight()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">virtual size_t StApi::IStStreamBufferInfo::GetHeight </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">pure virtual</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+<p><a class="el" href="StGenTL__Function_8h.html#a5b61f1ef00f76d6d76c0eadf65249df0">GenTL::DSGetBufferInfo()</a> を使用して GenTL::BUFFER_INFO_HEIGHT の情報を取得します。 </p><dl class="section return"><dt>戻り値</dt><dd>BUFFER_INFO_HEIGHT データ </dd></dl>
+<dl class="exception"><dt>例外</dt><dd>
+  <table class="exception">
+    <tr><td class="paramname"><a class="el" href="StGenTL__Function_8h.html#a5b61f1ef00f76d6d76c0eadf65249df0">GenTL::DSGetBufferInfo()</a></td><td>がエラーを返した場合は、例外 <a class="el" href="classGenICam_1_1GenericException.html" title="GenICam&#39;s exception class">GenICam::GenericException</a> が発生します。 </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a id="a823231db57920fb6be913cf02dd55b01"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a823231db57920fb6be913cf02dd55b01">&#9670;&nbsp;</a></span>GetXOffset()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">virtual size_t StApi::IStStreamBufferInfo::GetXOffset </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">pure virtual</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+<p><a class="el" href="StGenTL__Function_8h.html#a5b61f1ef00f76d6d76c0eadf65249df0">GenTL::DSGetBufferInfo()</a> を使用して GenTL::BUFFER_INFO_XOFFSET の情報を取得します。 </p><dl class="section return"><dt>戻り値</dt><dd>BUFFER_INFO_XOFFSET データ </dd></dl>
+<dl class="exception"><dt>例外</dt><dd>
+  <table class="exception">
+    <tr><td class="paramname"><a class="el" href="StGenTL__Function_8h.html#a5b61f1ef00f76d6d76c0eadf65249df0">GenTL::DSGetBufferInfo()</a></td><td>がエラーを返した場合は、例外 <a class="el" href="classGenICam_1_1GenericException.html" title="GenICam&#39;s exception class">GenICam::GenericException</a> が発生します。 </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a id="a7cb518d62f6a5402084730b37a49e306"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a7cb518d62f6a5402084730b37a49e306">&#9670;&nbsp;</a></span>GetYOffset()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">virtual size_t StApi::IStStreamBufferInfo::GetYOffset </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">pure virtual</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+<p><a class="el" href="StGenTL__Function_8h.html#a5b61f1ef00f76d6d76c0eadf65249df0">GenTL::DSGetBufferInfo()</a> を使用して GenTL::BUFFER_INFO_YOFFSET の情報を取得します。 </p><dl class="section return"><dt>戻り値</dt><dd>BUFFER_INFO_YOFFSET データ </dd></dl>
+<dl class="exception"><dt>例外</dt><dd>
+  <table class="exception">
+    <tr><td class="paramname"><a class="el" href="StGenTL__Function_8h.html#a5b61f1ef00f76d6d76c0eadf65249df0">GenTL::DSGetBufferInfo()</a></td><td>がエラーを返した場合は、例外 <a class="el" href="classGenICam_1_1GenericException.html" title="GenICam&#39;s exception class">GenICam::GenericException</a> が発生します。 </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a id="a53a84b28a24b192f8aa357a6437c2781"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a53a84b28a24b192f8aa357a6437c2781">&#9670;&nbsp;</a></span>GetXPadding()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">virtual size_t StApi::IStStreamBufferInfo::GetXPadding </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">pure virtual</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+<p><a class="el" href="StGenTL__Function_8h.html#a5b61f1ef00f76d6d76c0eadf65249df0">GenTL::DSGetBufferInfo()</a> を使用して GenTL::BUFFER_INFO_XPADDING の情報を取得します。 </p><dl class="section return"><dt>戻り値</dt><dd>BUFFER_INFO_XPADDING データ </dd></dl>
+<dl class="exception"><dt>例外</dt><dd>
+  <table class="exception">
+    <tr><td class="paramname"><a class="el" href="StGenTL__Function_8h.html#a5b61f1ef00f76d6d76c0eadf65249df0">GenTL::DSGetBufferInfo()</a></td><td>がエラーを返した場合は、例外 <a class="el" href="classGenICam_1_1GenericException.html" title="GenICam&#39;s exception class">GenICam::GenericException</a> が発生します。 </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a id="a79cece0cab11ac0c89066da82c7426c2"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a79cece0cab11ac0c89066da82c7426c2">&#9670;&nbsp;</a></span>GetYPadding()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">virtual size_t StApi::IStStreamBufferInfo::GetYPadding </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">pure virtual</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+<p><a class="el" href="StGenTL__Function_8h.html#a5b61f1ef00f76d6d76c0eadf65249df0">GenTL::DSGetBufferInfo()</a> を使用して GenTL::BUFFER_INFO_YPADDING の情報を取得します。 </p><dl class="section return"><dt>戻り値</dt><dd>BUFFER_INFO_YPADDING データ </dd></dl>
+<dl class="exception"><dt>例外</dt><dd>
+  <table class="exception">
+    <tr><td class="paramname"><a class="el" href="StGenTL__Function_8h.html#a5b61f1ef00f76d6d76c0eadf65249df0">GenTL::DSGetBufferInfo()</a></td><td>がエラーを返した場合は、例外 <a class="el" href="classGenICam_1_1GenericException.html" title="GenICam&#39;s exception class">GenICam::GenericException</a> が発生します。 </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a id="a87f9cb9e1bd0fa8949eac03c282efab6"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a87f9cb9e1bd0fa8949eac03c282efab6">&#9670;&nbsp;</a></span>GetFrameID()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">virtual uint64_t StApi::IStStreamBufferInfo::GetFrameID </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">pure virtual</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+<p><a class="el" href="StGenTL__Function_8h.html#a5b61f1ef00f76d6d76c0eadf65249df0">GenTL::DSGetBufferInfo()</a> を使用して GenTL::BUFFER_INFO_FRAMEID の情報を取得します。 </p><dl class="section return"><dt>戻り値</dt><dd>BUFFER_INFO_FRAMEID データ </dd></dl>
+<dl class="exception"><dt>例外</dt><dd>
+  <table class="exception">
+    <tr><td class="paramname"><a class="el" href="StGenTL__Function_8h.html#a5b61f1ef00f76d6d76c0eadf65249df0">GenTL::DSGetBufferInfo()</a></td><td>がエラーを返した場合は、例外 <a class="el" href="classGenICam_1_1GenericException.html" title="GenICam&#39;s exception class">GenICam::GenericException</a> が発生します。 </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a id="ae68a37ab93ed95817c1044d46ae8e945"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ae68a37ab93ed95817c1044d46ae8e945">&#9670;&nbsp;</a></span>IsImagePresent()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">virtual bool8_t StApi::IStStreamBufferInfo::IsImagePresent </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">pure virtual</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+<p><a class="el" href="StGenTL__Function_8h.html#a5b61f1ef00f76d6d76c0eadf65249df0">GenTL::DSGetBufferInfo()</a> を使用して GenTL::BUFFER_INFO_IMAGEPRESENT の情報を取得します。 </p><dl class="section return"><dt>戻り値</dt><dd>BUFFER_INFO_IMAGEPRESENT データ </dd></dl>
+<dl class="exception"><dt>例外</dt><dd>
+  <table class="exception">
+    <tr><td class="paramname"><a class="el" href="StGenTL__Function_8h.html#a5b61f1ef00f76d6d76c0eadf65249df0">GenTL::DSGetBufferInfo()</a></td><td>がエラーを返した場合は、例外 <a class="el" href="classGenICam_1_1GenericException.html" title="GenICam&#39;s exception class">GenICam::GenericException</a> が発生します。 </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a id="ad1c5b2698581a4b0b4bf44547cf17865"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ad1c5b2698581a4b0b4bf44547cf17865">&#9670;&nbsp;</a></span>GetImageOffset()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">virtual size_t StApi::IStStreamBufferInfo::GetImageOffset </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">pure virtual</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+<p><a class="el" href="StGenTL__Function_8h.html#a5b61f1ef00f76d6d76c0eadf65249df0">GenTL::DSGetBufferInfo()</a> を使用して GenTL::BUFFER_INFO_IMAGEOFFSET の情報を取得します。 </p><dl class="section return"><dt>戻り値</dt><dd>BUFFER_INFO_IMAGEOFFSET データ </dd></dl>
+<dl class="exception"><dt>例外</dt><dd>
+  <table class="exception">
+    <tr><td class="paramname"><a class="el" href="StGenTL__Function_8h.html#a5b61f1ef00f76d6d76c0eadf65249df0">GenTL::DSGetBufferInfo()</a></td><td>がエラーを返した場合は、例外 <a class="el" href="classGenICam_1_1GenericException.html" title="GenICam&#39;s exception class">GenICam::GenericException</a> が発生します。 </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a id="a14a3342b3dfbaae4616657bb4902176f"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a14a3342b3dfbaae4616657bb4902176f">&#9670;&nbsp;</a></span>GetPayloadType()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">virtual size_t StApi::IStStreamBufferInfo::GetPayloadType </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">pure virtual</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+<p><a class="el" href="StGenTL__Function_8h.html#a5b61f1ef00f76d6d76c0eadf65249df0">GenTL::DSGetBufferInfo()</a> を使用して GenTL::BUFFER_INFO_PAYLOADTYPE の情報を取得します。 </p><dl class="section return"><dt>戻り値</dt><dd>BUFFER_INFO_PAYLOADTYPE データ </dd></dl>
+<dl class="exception"><dt>例外</dt><dd>
+  <table class="exception">
+    <tr><td class="paramname"><a class="el" href="StGenTL__Function_8h.html#a5b61f1ef00f76d6d76c0eadf65249df0">GenTL::DSGetBufferInfo()</a></td><td>がエラーを返した場合は、例外 <a class="el" href="classGenICam_1_1GenericException.html" title="GenICam&#39;s exception class">GenICam::GenericException</a> が発生します。 </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a id="ab4c3d665f022838a90e6eb793111fe2c"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ab4c3d665f022838a90e6eb793111fe2c">&#9670;&nbsp;</a></span>GetPixelFormat()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">virtual uint64_t StApi::IStStreamBufferInfo::GetPixelFormat </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">pure virtual</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+<p><a class="el" href="StGenTL__Function_8h.html#a5b61f1ef00f76d6d76c0eadf65249df0">GenTL::DSGetBufferInfo()</a> を使用して GenTL::BUFFER_INFO_PIXELFORMAT の情報を取得します。 </p><dl class="section return"><dt>戻り値</dt><dd>BUFFER_INFO_PIXELFORMAT データ </dd></dl>
+<dl class="exception"><dt>例外</dt><dd>
+  <table class="exception">
+    <tr><td class="paramname"><a class="el" href="StGenTL__Function_8h.html#a5b61f1ef00f76d6d76c0eadf65249df0">GenTL::DSGetBufferInfo()</a></td><td>がエラーを返した場合は、例外 <a class="el" href="classGenICam_1_1GenericException.html" title="GenICam&#39;s exception class">GenICam::GenericException</a> が発生します。 </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a id="a1d2254007ef00305fbf9dceb5b13663e"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a1d2254007ef00305fbf9dceb5b13663e">&#9670;&nbsp;</a></span>GetPixelFormatNameSpace()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">virtual uint64_t StApi::IStStreamBufferInfo::GetPixelFormatNameSpace </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">pure virtual</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+<p><a class="el" href="StGenTL__Function_8h.html#a5b61f1ef00f76d6d76c0eadf65249df0">GenTL::DSGetBufferInfo()</a> を使用して GenTL::BUFFER_INFO_PIXELFORMAT_NAMESPACE の情報を取得します。 </p><dl class="section return"><dt>戻り値</dt><dd>BUFFER_INFO_PIXELFORMAT_NAMESPACE データ </dd></dl>
+<dl class="exception"><dt>例外</dt><dd>
+  <table class="exception">
+    <tr><td class="paramname"><a class="el" href="StGenTL__Function_8h.html#a5b61f1ef00f76d6d76c0eadf65249df0">GenTL::DSGetBufferInfo()</a></td><td>がエラーを返した場合は、例外 <a class="el" href="classGenICam_1_1GenericException.html" title="GenICam&#39;s exception class">GenICam::GenericException</a> が発生します。 </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a id="a0107f6789d3f024beb35a6cc5a4cc83e"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a0107f6789d3f024beb35a6cc5a4cc83e">&#9670;&nbsp;</a></span>GetDeliverdImageHeight()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">virtual size_t StApi::IStStreamBufferInfo::GetDeliverdImageHeight </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">pure virtual</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+<p><a class="el" href="StGenTL__Function_8h.html#a5b61f1ef00f76d6d76c0eadf65249df0">GenTL::DSGetBufferInfo()</a> を使用して GenTL::BUFFER_INFO_DELIVERED_IMAGEHEIGHT の情報を取得します。 </p><dl class="section return"><dt>戻り値</dt><dd>BUFFER_INFO_DELIVERED_IMAGEHEIGHT データ </dd></dl>
+<dl class="exception"><dt>例外</dt><dd>
+  <table class="exception">
+    <tr><td class="paramname"><a class="el" href="StGenTL__Function_8h.html#a5b61f1ef00f76d6d76c0eadf65249df0">GenTL::DSGetBufferInfo()</a></td><td>がエラーを返した場合は、例外 <a class="el" href="classGenICam_1_1GenericException.html" title="GenICam&#39;s exception class">GenICam::GenericException</a> が発生します。 </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a id="a4af69e18df395b973535b742db1cd3f7"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a4af69e18df395b973535b742db1cd3f7">&#9670;&nbsp;</a></span>GetDeliverdChunkPayloadSize()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">virtual size_t StApi::IStStreamBufferInfo::GetDeliverdChunkPayloadSize </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">pure virtual</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+<p><a class="el" href="StGenTL__Function_8h.html#a5b61f1ef00f76d6d76c0eadf65249df0">GenTL::DSGetBufferInfo()</a> を使用して GenTL::BUFFER_INFO_DELIVERED_CHUNKPAYLOADSIZE の情報を取得します。 </p><dl class="section return"><dt>戻り値</dt><dd>BUFFER_INFO_DELIVERED_CHUNKPAYLOADSIZE データ </dd></dl>
+<dl class="exception"><dt>例外</dt><dd>
+  <table class="exception">
+    <tr><td class="paramname"><a class="el" href="StGenTL__Function_8h.html#a5b61f1ef00f76d6d76c0eadf65249df0">GenTL::DSGetBufferInfo()</a></td><td>がエラーを返した場合は、例外 <a class="el" href="classGenICam_1_1GenericException.html" title="GenICam&#39;s exception class">GenICam::GenericException</a> が発生します。 </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a id="ae1d8e82732ef690415c689f630bf3f1b"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ae1d8e82732ef690415c689f630bf3f1b">&#9670;&nbsp;</a></span>GetChunkLayoutID()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">virtual uint64_t StApi::IStStreamBufferInfo::GetChunkLayoutID </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">pure virtual</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+<p><a class="el" href="StGenTL__Function_8h.html#a5b61f1ef00f76d6d76c0eadf65249df0">GenTL::DSGetBufferInfo()</a> を使用して GenTL::BUFFER_INFO_CHUNKLAYOUTID の情報を取得します。 </p><dl class="section return"><dt>戻り値</dt><dd>BUFFER_INFO_CHUNKLAYOUTID データ </dd></dl>
+<dl class="exception"><dt>例外</dt><dd>
+  <table class="exception">
+    <tr><td class="paramname"><a class="el" href="StGenTL__Function_8h.html#a5b61f1ef00f76d6d76c0eadf65249df0">GenTL::DSGetBufferInfo()</a></td><td>がエラーを返した場合は、例外 <a class="el" href="classGenICam_1_1GenericException.html" title="GenICam&#39;s exception class">GenICam::GenericException</a> が発生します。 </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a id="aee3c57096136da18e1fc2ac33113e70b"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aee3c57096136da18e1fc2ac33113e70b">&#9670;&nbsp;</a></span>GetFileName()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">virtual <a class="el" href="classGenICam_1_1gcstring.html">GenICam::gcstring</a> StApi::IStStreamBufferInfo::GetFileName </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">pure virtual</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+<p><a class="el" href="StGenTL__Function_8h.html#a5b61f1ef00f76d6d76c0eadf65249df0">GenTL::DSGetBufferInfo()</a> を使用して GenTL::BUFFER_INFO_FILENAME の情報を取得します。 </p><dl class="section return"><dt>戻り値</dt><dd>BUFFER_INFO_FILENAME データ </dd></dl>
+<dl class="exception"><dt>例外</dt><dd>
+  <table class="exception">
+    <tr><td class="paramname">メモリー確保に失敗した場合や</td><td><a class="el" href="StGenTL__Function_8h.html#a5b61f1ef00f76d6d76c0eadf65249df0">GenTL::DSGetBufferInfo()</a> がエラーを返した場合は、例外 <a class="el" href="classGenICam_1_1GenericException.html" title="GenICam&#39;s exception class">GenICam::GenericException</a> が発生します。 </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a id="a9d22ecf5f7eb789ff333829f4019b6ab"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a9d22ecf5f7eb789ff333829f4019b6ab">&#9670;&nbsp;</a></span>GetPixelEndianness()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">virtual int32_t StApi::IStStreamBufferInfo::GetPixelEndianness </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">pure virtual</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+<p><a class="el" href="StGenTL__Function_8h.html#a5b61f1ef00f76d6d76c0eadf65249df0">GenTL::DSGetBufferInfo()</a> を使用して GenTL::BUFFER_INFO_PIXEL_ENDIANNESS の情報を取得します。 </p><dl class="section return"><dt>戻り値</dt><dd>BUFFER_INFO_PIXEL_ENDIANNESS データ </dd></dl>
+<dl class="exception"><dt>例外</dt><dd>
+  <table class="exception">
+    <tr><td class="paramname"><a class="el" href="StGenTL__Function_8h.html#a5b61f1ef00f76d6d76c0eadf65249df0">GenTL::DSGetBufferInfo()</a></td><td>がエラーを返した場合は、例外 <a class="el" href="classGenICam_1_1GenericException.html" title="GenICam&#39;s exception class">GenICam::GenericException</a> が発生します。 </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a id="aed8fd6b332d105d27ea62fb7fdc945ec"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aed8fd6b332d105d27ea62fb7fdc945ec">&#9670;&nbsp;</a></span>GetDataSize()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">virtual size_t StApi::IStStreamBufferInfo::GetDataSize </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">pure virtual</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+<p><a class="el" href="StGenTL__Function_8h.html#a5b61f1ef00f76d6d76c0eadf65249df0">GenTL::DSGetBufferInfo()</a> を使用して GenTL::BUFFER_INFO_DATA_SIZE の情報を取得します。 </p><dl class="section return"><dt>戻り値</dt><dd>BUFFER_INFO_DATA_SIZE データ </dd></dl>
+<dl class="exception"><dt>例外</dt><dd>
+  <table class="exception">
+    <tr><td class="paramname"><a class="el" href="StGenTL__Function_8h.html#a5b61f1ef00f76d6d76c0eadf65249df0">GenTL::DSGetBufferInfo()</a></td><td>がエラーを返した場合は、例外 <a class="el" href="classGenICam_1_1GenericException.html" title="GenICam&#39;s exception class">GenICam::GenericException</a> が発生します。 </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a id="a85e68a1c4a41139f896145cfced0246f"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a85e68a1c4a41139f896145cfced0246f">&#9670;&nbsp;</a></span>GetTimestampNS()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">virtual uint64_t StApi::IStStreamBufferInfo::GetTimestampNS </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">pure virtual</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+<p><a class="el" href="StGenTL__Function_8h.html#a5b61f1ef00f76d6d76c0eadf65249df0">GenTL::DSGetBufferInfo()</a> を使用して GenTL::BUFFER_INFO_TIMESTAMP_NS の情報を取得します。 </p><dl class="section return"><dt>戻り値</dt><dd>BUFFER_INFO_TIMESTAMP_NS データ </dd></dl>
+<dl class="exception"><dt>例外</dt><dd>
+  <table class="exception">
+    <tr><td class="paramname"><a class="el" href="StGenTL__Function_8h.html#a5b61f1ef00f76d6d76c0eadf65249df0">GenTL::DSGetBufferInfo()</a></td><td>がエラーを返した場合は、例外 <a class="el" href="classGenICam_1_1GenericException.html" title="GenICam&#39;s exception class">GenICam::GenericException</a> が発生します。 </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a id="ae168df15ce322d73569131f7da57e79b"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ae168df15ce322d73569131f7da57e79b">&#9670;&nbsp;</a></span>IsDataLargerThanBuffer()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">virtual bool8_t StApi::IStStreamBufferInfo::IsDataLargerThanBuffer </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">pure virtual</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+<p><a class="el" href="StGenTL__Function_8h.html#a5b61f1ef00f76d6d76c0eadf65249df0">GenTL::DSGetBufferInfo()</a> を使用して GenTL::BUFFER_INFO_DATA_LARGER_THAN_BUFFER の情報を取得します。 </p><dl class="section return"><dt>戻り値</dt><dd>BUFFER_INFO_DATA_LARGER_THAN_BUFFER データ </dd></dl>
+<dl class="exception"><dt>例外</dt><dd>
+  <table class="exception">
+    <tr><td class="paramname"><a class="el" href="StGenTL__Function_8h.html#a5b61f1ef00f76d6d76c0eadf65249df0">GenTL::DSGetBufferInfo()</a></td><td>がエラーを返した場合は、例外 <a class="el" href="classGenICam_1_1GenericException.html" title="GenICam&#39;s exception class">GenICam::GenericException</a> が発生します。 </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a id="ab2824b73006f1e4d600e6e1227ca75e2"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ab2824b73006f1e4d600e6e1227ca75e2">&#9670;&nbsp;</a></span>HasChunkData()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">virtual bool8_t StApi::IStStreamBufferInfo::HasChunkData </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">pure virtual</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+<p><a class="el" href="StGenTL__Function_8h.html#a5b61f1ef00f76d6d76c0eadf65249df0">GenTL::DSGetBufferInfo()</a> を使用して GenTL::BUFFER_INFO_CONTAINS_CHUNKDATA の情報を取得します。 </p><dl class="section return"><dt>戻り値</dt><dd>BUFFER_INFO_CONTAINS_CHUNKDATA データ </dd></dl>
+<dl class="exception"><dt>例外</dt><dd>
+  <table class="exception">
+    <tr><td class="paramname"><a class="el" href="StGenTL__Function_8h.html#a5b61f1ef00f76d6d76c0eadf65249df0">GenTL::DSGetBufferInfo()</a></td><td>がエラーを返した場合は、例外 <a class="el" href="classGenICam_1_1GenericException.html" title="GenICam&#39;s exception class">GenICam::GenericException</a> が発生します。 </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+</div><!-- contents -->
+<!-- HTML footer for doxygen 1.8.13-->
+<!-- start footer part -->
+<hr class="footer"/>
+	<address class="footer">
+		<small>
+2021年10月26日(火) 13時10分26秒作成 - Sentech SDK / 構成:  &#160;
+			<a href="http://www.sentech.co.jp/">
+				<img class="footer" src="string_omron_sentech.png" alt="OMRON SENTECH CO., LTD"/>
+			</a>
+			<!--
+				DoxyGen Version =  1.8.15
+			-->
+		</small>
+	</address>
+</body>
+</html>

@@ -1,0 +1,366 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "https://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=9"/>
+<meta name="generator" content="Doxygen 1.8.15"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>Sentech SDK: StApi::IStFeatureBag インタフェース</title>
+<link href="tabs.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="jquery.js"></script>
+<script type="text/javascript" src="dynsections.js"></script>
+<link href="doxygen.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+<div id="top"><!-- do not remove this div, it is closed by doxygen! -->
+<div id="titlearea">
+<table cellspacing="0" cellpadding="0">
+ <tbody>
+ <tr style="height: 56px;">
+  <td id="projectalign" style="padding-left: 0.5em;">
+   <div id="projectname">Sentech SDK
+   </div>
+  </td>
+ </tr>
+ </tbody>
+</table>
+</div>
+<!-- end header part -->
+<!-- 構築: Doxygen 1.8.15 -->
+<script type="text/javascript" src="menudata.js"></script>
+<script type="text/javascript" src="menu.js"></script>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:cf05388f2679ee054f2beb29a391d25f4e673ac3&amp;dn=gpl-2.0.txt GPL-v2 */
+$(function() {
+  initMenu('',false,false,'search.php','検索');
+});
+/* @license-end */</script>
+<div id="main-nav"></div>
+<div id="nav-path" class="navpath">
+  <ul>
+<li class="navelem"><b>StApi</b></li><li class="navelem"><a class="el" href="structStApi_1_1IStFeatureBag.html">IStFeatureBag</a></li>  </ul>
+</div>
+</div><!-- top -->
+<div class="header">
+  <div class="summary">
+<a href="#pub-methods">公開メンバ関数</a> &#124;
+<a href="structStApi_1_1IStFeatureBag-members.html">全メンバ一覧</a>  </div>
+  <div class="headertitle">
+<div class="title">StApi::IStFeatureBag インタフェース<span class="mlabels"><span class="mlabel">abstract</span></span><div class="ingroups"><a class="el" href="group__StApiTL__PublicInterface.html">StApi トランスポート層モジュール抽象インターフェース</a></div></div>  </div>
+</div><!--header-->
+<div class="contents">
+
+<p>設定情報保持モジュール用インターフェース  
+ <a href="structStApi_1_1IStFeatureBag.html#details">[詳解]</a></p>
+<div id="dynsection-0" onclick="return toggleVisibility(this)" class="dynheader closed" style="cursor:pointer;">
+  <img id="dynsection-0-trigger" src="closed.png" alt="+"/> StApi::IStFeatureBag の継承関係図</div>
+<div id="dynsection-0-summary" class="dynsummary" style="display:block;">
+</div>
+<div id="dynsection-0-content" class="dyncontent" style="display:none;">
+<div class="center"><img src="structStApi_1_1IStFeatureBag__inherit__graph.png" border="0" usemap="#StApi_1_1IStFeatureBag_inherit__map" alt="Inheritance graph"/></div>
+<map name="StApi_1_1IStFeatureBag_inherit__map" id="StApi_1_1IStFeatureBag_inherit__map">
+<area shape="rect"  title="è¨­å®æå ±ä¿æã¢ã¸ã¥ã¼ã«ç¨ã¤ã³ã¿ã¼ãã§ã¼ã¹" alt="" coords="41,5,195,32"/>
+<area shape="rect"  href="structStApi_1_1IStFeatureBagReleasable.html" title="è§£æ¾å¯è½ãªè¨­å®æå ±ä¿æã¢ã¸ã¥ã¼ã«ç¨ã¤ã³ã¿ã¼ãã§ã¼ã¹" alt="" coords="5,80,231,107"/>
+</map>
+<center><span class="legend">[<a href="graph_legend.html">凡例</a>]</span></center></div>
+<table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-methods"></a>
+公開メンバ関数</h2></td></tr>
+<tr class="memitem:a1169ff3fe785edc916badcd4b01e9e00"><td class="memItemLeft" align="right" valign="top">virtual int64_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structStApi_1_1IStFeatureBag.html#a1169ff3fe785edc916badcd4b01e9e00">StoreNodeMapToBag</a> (<a class="el" href="structGenApi_1_1INodeMap.html">GenApi::INodeMap</a> *pINodeMap, const int32_t MaxNumPersistScriptEntries=-1)=0</td></tr>
+<tr class="memdesc:a1169ff3fe785edc916badcd4b01e9e00"><td class="mdescLeft">&#160;</td><td class="mdescRight">指定したノードマップの設定情報をメモリーへ退避します。  <a href="#a1169ff3fe785edc916badcd4b01e9e00">[詳解]</a><br /></td></tr>
+<tr class="separator:a1169ff3fe785edc916badcd4b01e9e00"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a53c6c9d663c149690778f2dc7ff12014"><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structStApi_1_1IStFeatureBag.html#a53c6c9d663c149690778f2dc7ff12014">StoreStringToBag</a> (const <a class="el" href="classGenICam_1_1gcstring.html">GenICam::gcstring</a> &amp;strFeatures)=0</td></tr>
+<tr class="memdesc:a53c6c9d663c149690778f2dc7ff12014"><td class="mdescLeft">&#160;</td><td class="mdescRight">文字列で指定された設定情報をメモリーへ登録します。  <a href="#a53c6c9d663c149690778f2dc7ff12014">[詳解]</a><br /></td></tr>
+<tr class="separator:a53c6c9d663c149690778f2dc7ff12014"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a568c248143de09eefafd8e87f6479660"><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structStApi_1_1IStFeatureBag.html#a568c248143de09eefafd8e87f6479660">StoreFileToBag</a> (const <a class="el" href="classGenICam_1_1gcstring.html">GenICam::gcstring</a> &amp;strFileName)=0</td></tr>
+<tr class="memdesc:a568c248143de09eefafd8e87f6479660"><td class="mdescLeft">&#160;</td><td class="mdescRight">ファイルへ保存された設定情報をメモリーへ登録します。  <a href="#a568c248143de09eefafd8e87f6479660">[詳解]</a><br /></td></tr>
+<tr class="separator:a568c248143de09eefafd8e87f6479660"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a1443a3e0e395abef59452c2a8374dc4e"><td class="memItemLeft" align="right" valign="top">virtual bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structStApi_1_1IStFeatureBag.html#a1443a3e0e395abef59452c2a8374dc4e">Load</a> (<a class="el" href="structGenApi_1_1INodeMap.html">GenApi::INodeMap</a> *pNodeMap, bool verify=true, GenICam::gcstring_vector *pstrErrorList=NULL)=0</td></tr>
+<tr class="memdesc:a1443a3e0e395abef59452c2a8374dc4e"><td class="mdescLeft">&#160;</td><td class="mdescRight">メモリーへ保存された設定情報をノードマップへ反映します。  <a href="#a1443a3e0e395abef59452c2a8374dc4e">[詳解]</a><br /></td></tr>
+<tr class="separator:a1443a3e0e395abef59452c2a8374dc4e"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a45d4fb5f5b96b4c11938fd0501e98a63"><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structStApi_1_1IStFeatureBag.html#a45d4fb5f5b96b4c11938fd0501e98a63">SaveToString</a> (<a class="el" href="classGenICam_1_1gcstring.html">GenICam::gcstring</a> &amp;strFeatures)=0</td></tr>
+<tr class="memdesc:a45d4fb5f5b96b4c11938fd0501e98a63"><td class="mdescLeft">&#160;</td><td class="mdescRight">メモリーへ保存された設定情報を文字列として取得します。  <a href="#a45d4fb5f5b96b4c11938fd0501e98a63">[詳解]</a><br /></td></tr>
+<tr class="separator:a45d4fb5f5b96b4c11938fd0501e98a63"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a1768f1e68aad35cdc9c168d36015e502"><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structStApi_1_1IStFeatureBag.html#a1768f1e68aad35cdc9c168d36015e502">SaveToFile</a> (const <a class="el" href="classGenICam_1_1gcstring.html">GenICam::gcstring</a> &amp;strFileName)=0</td></tr>
+<tr class="memdesc:a1768f1e68aad35cdc9c168d36015e502"><td class="mdescLeft">&#160;</td><td class="mdescRight">メモリーへ保存された設定情報をファイルへ保存します。  <a href="#a1768f1e68aad35cdc9c168d36015e502">[詳解]</a><br /></td></tr>
+<tr class="separator:a1768f1e68aad35cdc9c168d36015e502"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table>
+<a name="details" id="details"></a><h2 class="groupheader">詳解</h2>
+<div class="textblock"><p>設定情報保持モジュール用インターフェース </p><dl class="section see"><dt>参照</dt><dd><a class="el" href="group__StApiTL__PublicImpl.html#ga4ff27cab99dda636329443f58b655697" title="IStFeatureBagReleasable インターフェースを取得します。">CreateIStFeatureBag()</a> </dd></dl>
+</div><h2 class="groupheader">関数詳解</h2>
+<a id="a1169ff3fe785edc916badcd4b01e9e00"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a1169ff3fe785edc916badcd4b01e9e00">&#9670;&nbsp;</a></span>StoreNodeMapToBag()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">virtual int64_t StApi::IStFeatureBag::StoreNodeMapToBag </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="structGenApi_1_1INodeMap.html">GenApi::INodeMap</a> *&#160;</td>
+          <td class="paramname"><em>pINodeMap</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const int32_t&#160;</td>
+          <td class="paramname"><em>MaxNumPersistScriptEntries</em> = <code>-1</code>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">pure virtual</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+<p>指定したノードマップの設定情報をメモリーへ退避します。 </p><dl class="params"><dt>引数</dt><dd>
+  <table class="params">
+    <tr><td class="paramdir">[in]</td><td class="paramname">pINodeMap</td><td>ノードマップ </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">MaxNumPersistScriptEntries</td><td>メモリーへ退避する項目数の最大値を指定します。-1を指定すると無制限になります。 </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>戻り値</dt><dd>退避された項目数 </dd></dl>
+<dl class="exception"><dt>例外</dt><dd>
+  <table class="exception">
+    <tr><td class="paramname">メモリー確保に失敗した場合や不正な引数が指定された場合は、例外</td><td><a class="el" href="classGenICam_1_1GenericException.html" title="GenICam&#39;s exception class">GenICam::GenericException</a> が発生します。 </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a id="a53c6c9d663c149690778f2dc7ff12014"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a53c6c9d663c149690778f2dc7ff12014">&#9670;&nbsp;</a></span>StoreStringToBag()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">virtual void StApi::IStFeatureBag::StoreStringToBag </td>
+          <td>(</td>
+          <td class="paramtype">const <a class="el" href="classGenICam_1_1gcstring.html">GenICam::gcstring</a> &amp;&#160;</td>
+          <td class="paramname"><em>strFeatures</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">pure virtual</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+<p>文字列で指定された設定情報をメモリーへ登録します。 </p><dl class="params"><dt>引数</dt><dd>
+  <table class="params">
+    <tr><td class="paramdir">[in]</td><td class="paramname">strFeatures</td><td>設定名と設定値を含んだ文字列 </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="exception"><dt>例外</dt><dd>
+  <table class="exception">
+    <tr><td class="paramname">メモリー確保に失敗した場合や不正な引数が指定された場合は、例外</td><td><a class="el" href="classGenICam_1_1GenericException.html" title="GenICam&#39;s exception class">GenICam::GenericException</a> が発生します。 </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a id="a568c248143de09eefafd8e87f6479660"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a568c248143de09eefafd8e87f6479660">&#9670;&nbsp;</a></span>StoreFileToBag()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">virtual void StApi::IStFeatureBag::StoreFileToBag </td>
+          <td>(</td>
+          <td class="paramtype">const <a class="el" href="classGenICam_1_1gcstring.html">GenICam::gcstring</a> &amp;&#160;</td>
+          <td class="paramname"><em>strFileName</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">pure virtual</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+<p>ファイルへ保存された設定情報をメモリーへ登録します。 </p><dl class="params"><dt>引数</dt><dd>
+  <table class="params">
+    <tr><td class="paramdir">[in]</td><td class="paramname">strFileName</td><td>設定ファイル名 </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="exception"><dt>例外</dt><dd>
+  <table class="exception">
+    <tr><td class="paramname">メモリー確保に失敗した場合や不正な引数が指定された場合は、例外</td><td><a class="el" href="classGenICam_1_1GenericException.html" title="GenICam&#39;s exception class">GenICam::GenericException</a> が発生します。 </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a id="a1443a3e0e395abef59452c2a8374dc4e"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a1443a3e0e395abef59452c2a8374dc4e">&#9670;&nbsp;</a></span>Load()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">virtual bool StApi::IStFeatureBag::Load </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="structGenApi_1_1INodeMap.html">GenApi::INodeMap</a> *&#160;</td>
+          <td class="paramname"><em>pNodeMap</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">bool&#160;</td>
+          <td class="paramname"><em>verify</em> = <code>true</code>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">GenICam::gcstring_vector *&#160;</td>
+          <td class="paramname"><em>pstrErrorList</em> = <code>NULL</code>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">pure virtual</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+<p>メモリーへ保存された設定情報をノードマップへ反映します。 </p><dl class="params"><dt>引数</dt><dd>
+  <table class="params">
+    <tr><td class="paramdir">[in]</td><td class="paramname">pNodeMap</td><td>反映先のノードマップ </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">verify</td><td>設定反映後に読み込み確認(ベリファイ)を行う場合は true を指定します。 </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">pstrErrorList</td><td>設定反映時のエラーリスト </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>戻り値</dt><dd>エラーが発生した場合、 false が返されます。 </dd></dl>
+<dl class="exception"><dt>例外</dt><dd>
+  <table class="exception">
+    <tr><td class="paramname">メモリー確保に失敗した場合や不正な引数が指定された場合は、例外</td><td><a class="el" href="classGenICam_1_1GenericException.html" title="GenICam&#39;s exception class">GenICam::GenericException</a> が発生します。 </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a id="a45d4fb5f5b96b4c11938fd0501e98a63"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a45d4fb5f5b96b4c11938fd0501e98a63">&#9670;&nbsp;</a></span>SaveToString()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">virtual void StApi::IStFeatureBag::SaveToString </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="classGenICam_1_1gcstring.html">GenICam::gcstring</a> &amp;&#160;</td>
+          <td class="paramname"><em>strFeatures</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">pure virtual</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+<p>メモリーへ保存された設定情報を文字列として取得します。 </p><dl class="params"><dt>引数</dt><dd>
+  <table class="params">
+    <tr><td class="paramdir">[out]</td><td class="paramname">strFeatures</td><td>設定名と設定値を含んだ文字列 </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="exception"><dt>例外</dt><dd>
+  <table class="exception">
+    <tr><td class="paramname">メモリー確保に失敗した場合は、例外</td><td><a class="el" href="classGenICam_1_1GenericException.html" title="GenICam&#39;s exception class">GenICam::GenericException</a> が発生します。 </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a id="a1768f1e68aad35cdc9c168d36015e502"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a1768f1e68aad35cdc9c168d36015e502">&#9670;&nbsp;</a></span>SaveToFile()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">virtual void StApi::IStFeatureBag::SaveToFile </td>
+          <td>(</td>
+          <td class="paramtype">const <a class="el" href="classGenICam_1_1gcstring.html">GenICam::gcstring</a> &amp;&#160;</td>
+          <td class="paramname"><em>strFileName</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">pure virtual</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+<p>メモリーへ保存された設定情報をファイルへ保存します。 </p><dl class="params"><dt>引数</dt><dd>
+  <table class="params">
+    <tr><td class="paramdir">[in]</td><td class="paramname">strFileName</td><td>ファイル名。 </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="exception"><dt>例外</dt><dd>
+  <table class="exception">
+    <tr><td class="paramname">ファイル作成に失敗した場合は、例外</td><td><a class="el" href="classGenICam_1_1GenericException.html" title="GenICam&#39;s exception class">GenICam::GenericException</a> が発生します。 </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+</div><!-- contents -->
+<!-- HTML footer for doxygen 1.8.13-->
+<!-- start footer part -->
+<hr class="footer"/>
+	<address class="footer">
+		<small>
+2021年10月26日(火) 13時10分25秒作成 - Sentech SDK / 構成:  &#160;
+			<a href="http://www.sentech.co.jp/">
+				<img class="footer" src="string_omron_sentech.png" alt="OMRON SENTECH CO., LTD"/>
+			</a>
+			<!--
+				DoxyGen Version =  1.8.15
+			-->
+		</small>
+	</address>
+</body>
+</html>

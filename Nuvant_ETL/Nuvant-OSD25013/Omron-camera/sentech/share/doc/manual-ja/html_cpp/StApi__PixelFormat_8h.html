@@ -1,0 +1,538 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "https://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=9"/>
+<meta name="generator" content="Doxygen 1.8.15"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>Sentech SDK: StApi/StApi_PixelFormat.h ファイル</title>
+<link href="tabs.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="jquery.js"></script>
+<script type="text/javascript" src="dynsections.js"></script>
+<link href="doxygen.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+<div id="top"><!-- do not remove this div, it is closed by doxygen! -->
+<div id="titlearea">
+<table cellspacing="0" cellpadding="0">
+ <tbody>
+ <tr style="height: 56px;">
+  <td id="projectalign" style="padding-left: 0.5em;">
+   <div id="projectname">Sentech SDK
+   </div>
+  </td>
+ </tr>
+ </tbody>
+</table>
+</div>
+<!-- end header part -->
+<!-- 構築: Doxygen 1.8.15 -->
+<script type="text/javascript" src="menudata.js"></script>
+<script type="text/javascript" src="menu.js"></script>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:cf05388f2679ee054f2beb29a391d25f4e673ac3&amp;dn=gpl-2.0.txt GPL-v2 */
+$(function() {
+  initMenu('',false,false,'search.php','検索');
+});
+/* @license-end */</script>
+<div id="main-nav"></div>
+<div id="nav-path" class="navpath">
+  <ul>
+<li class="navelem"><a class="el" href="dir_cf9127b48355ba9299d18cb79b42237d.html">StApi</a></li>  </ul>
+</div>
+</div><!-- top -->
+<div class="header">
+  <div class="summary">
+<a href="#define-members">マクロ定義</a> &#124;
+<a href="#enum-members">列挙型</a>  </div>
+  <div class="headertitle">
+<div class="title">StApi_PixelFormat.h ファイル<div class="ingroups"><a class="el" href="group__StApiTL__PublicImpl.html">StApi トランスポート層モジュール実装部</a></div></div>  </div>
+</div><!--header-->
+<div class="contents">
+<div class="textblock"><div id="dynsection-0" onclick="return toggleVisibility(this)" class="dynheader closed" style="cursor:pointer;">
+  <img id="dynsection-0-trigger" src="closed.png" alt="+"/> 被依存関係図:</div>
+<div id="dynsection-0-summary" class="dynsummary" style="display:block;">
+</div>
+<div id="dynsection-0-content" class="dyncontent" style="display:none;">
+<div class="center"><img src="StApi__PixelFormat_8h__dep__incl.png" border="0" usemap="#StApi_2StApi__PixelFormat_8hdep" alt=""/></div>
+<map name="StApi_2StApi__PixelFormat_8hdep" id="StApi_2StApi__PixelFormat_8hdep">
+<area shape="rect"  title=" " alt="" coords="2787,5,2978,32"/>
+<area shape="rect"  href="StApi__TLFunctions_8h.html" title=" " alt="" coords="2843,603,3032,629"/>
+<area shape="rect"  href="IStPixelFormatInfo_8h.html" title=" " alt="" coords="2853,80,3045,107"/>
+<area shape="rect"  href="StApi__TL_8h.html" title=" " alt="" coords="2873,677,3001,704"/>
+<area shape="rect"  href="IStFilter_8h.html" title=" " alt="" coords="1356,834,1476,861"/>
+<area shape="rect"  href="IStConverter_8h.html" title=" " alt="" coords="2737,834,2889,861"/>
+<area shape="rect"  href="IStGraphDataBuffer_8h.html" title=" " alt="" coords="2908,752,3105,779"/>
+<area shape="rect"  href="IStFiler_8h.html" title=" " alt="" coords="3208,834,3323,861"/>
+<area shape="rect"  href="IStBalanceRatioFilter_8h.html" title=" " alt="" coords="726,923,933,950"/>
+<area shape="rect"  href="IStChromaSuppressionFilter_8h.html" title=" " alt="" coords="957,916,1163,957"/>
+<area shape="rect"  href="IStColorTransformationFilter_8h.html" title=" " alt="" coords="1187,916,1397,957"/>
+<area shape="rect"  href="IStDefectivePixelDetectionFilter_8h.html" title=" " alt="" coords="1421,916,1656,957"/>
+<area shape="rect"  href="IStGammaCorrectionFilter_8h.html" title=" " alt="" coords="1681,916,1877,957"/>
+<area shape="rect"  href="IStEdgeEnhancementFilter_8h.html" title=" " alt="" coords="1901,916,2099,957"/>
+<area shape="rect"  href="IStSNMeasurementFilter_8h.html" title=" " alt="" coords="2124,923,2351,950"/>
+<area shape="rect"  href="IStNoiseReductionFilter_8h.html" title=" " alt="" coords="5,923,227,950"/>
+<area shape="rect"  href="IStFlatFieldCorrectionFilter_8h.html" title=" " alt="" coords="251,916,450,957"/>
+<area shape="rect"  href="IStGraphDataFilter_8h.html" title=" " alt="" coords="2603,923,2794,950"/>
+<area shape="rect"  href="IStImageAveragingFilter_8h.html" title=" " alt="" coords="475,923,701,950"/>
+<area shape="rect"  href="StApi__IP_8h.html" title=" " alt="" coords="2057,1005,2180,1032"/>
+<area shape="rect"  href="IStWnd_8h.html" title=" " alt="" coords="2487,1080,2606,1107"/>
+<area shape="rect"  href="IStDeviceSelectionWnd_8h.html" title=" " alt="" coords="2745,1229,2927,1271"/>
+<area shape="rect"  href="IStDrawingTool_8h.html" title=" " alt="" coords="2401,1155,2570,1181"/>
+<area shape="rect"  href="IStImageDisplayWnd_8h.html" title=" " alt="" coords="2260,1237,2468,1263"/>
+<area shape="rect"  href="IStGraphDisplayWnd_8h.html" title=" " alt="" coords="2862,1155,3069,1181"/>
+<area shape="rect"  href="IStNodeMapDisplayWnd_8h.html" title=" " alt="" coords="2493,1237,2721,1263"/>
+<area shape="rect"  href="StApi__GUI_8h.html" title=" " alt="" coords="2653,1319,2790,1345"/>
+<area shape="rect"  href="IStPixelFormatConverter_8h.html" title=" " alt="" coords="2818,923,3049,950"/>
+<area shape="rect"  href="IStReverseConverter_8h.html" title=" " alt="" coords="2375,923,2579,950"/>
+<area shape="rect"  href="IStGraphDataBufferList_8h.html" title=" " alt="" coords="2913,827,3100,868"/>
+<area shape="rect"  href="IStStillImageFiler_8h.html" title=" " alt="" coords="3175,923,3356,950"/>
+<area shape="rect"  href="IStVideoFiler_8h.html" title=" " alt="" coords="3431,923,3583,950"/>
+<area shape="rect"  href="IStImage_8h.html" title=" " alt="" coords="2884,155,3015,181"/>
+<area shape="rect"  href="IStStreamBuffer_8h.html" title=" " alt="" coords="3014,229,3189,256"/>
+<area shape="rect"  href="IStImageBuffer_8h.html" title=" " alt="" coords="2853,304,3021,331"/>
+<area shape="rect"  href="IStDataStream_8h.html" title=" " alt="" coords="3046,304,3213,331"/>
+<area shape="rect"  href="IStDevice_8h.html" title=" " alt="" coords="3041,379,3175,405"/>
+<area shape="rect"  href="IStInterface_8h.html" title=" " alt="" coords="3015,453,3161,480"/>
+<area shape="rect"  href="IStSystem_8h.html" title=" " alt="" coords="2996,528,3135,555"/>
+</map>
+</div>
+</div><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="define-members"></a>
+マクロ定義</h2></td></tr>
+<tr class="memitem:gacea265f017e88d2735894ad7b661a413"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__StApiTL__PublicImpl.html#gacea265f017e88d2735894ad7b661a413">EStPixelFormatNamingConverntion_t</a>&#160;&#160;&#160;EStPixelFormatNamingConvention_t</td></tr>
+<tr class="separator:gacea265f017e88d2735894ad7b661a413"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga83e086b88a70a71a40d09f8a43b337dc"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__StApiTL__PublicImpl.html#ga83e086b88a70a71a40d09f8a43b337dc">PEStPixelFormatNamingConverntion_t</a>&#160;&#160;&#160;PEStPixelFormatNamingConvention_t</td></tr>
+<tr class="separator:ga83e086b88a70a71a40d09f8a43b337dc"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="enum-members"></a>
+列挙型</h2></td></tr>
+<tr class="memitem:ga2dde686b2ed8dcb5d27fdbf892ceb9fd"><td class="memItemLeft" align="right" valign="top">enum &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__StApiTL__PublicImpl.html#ga2dde686b2ed8dcb5d27fdbf892ceb9fd">StApi::EStPixelFormatNamingConvention_t</a> { <br />
+&#160;&#160;<a class="el" href="group__StApiTL__PublicImpl.html#ga2dde686b2ed8dcb5d27fdbf892ceb9fdaeea9d8140b9aea011822a2649e5a3659">StApi::StPFNC_Unknown</a> = (int)0xFFFFFFFFL, 
+<a class="el" href="group__StApiTL__PublicImpl.html#ga2dde686b2ed8dcb5d27fdbf892ceb9fdaad642850c6f22d3df0925078be1407cf">StApi::StPFNC_Mono1p</a> = (int)0x01010037L, 
+<a class="el" href="group__StApiTL__PublicImpl.html#ga2dde686b2ed8dcb5d27fdbf892ceb9fdaa8f200263f05bf04c9d362b825641852">StApi::StPFNC_Mono2p</a> = (int)0x01020038L, 
+<a class="el" href="group__StApiTL__PublicImpl.html#ga2dde686b2ed8dcb5d27fdbf892ceb9fda4b6d51ea9c9ca81b019fcd23de1781f0">StApi::StPFNC_Mono4p</a> = (int)0x01040039L, 
+<br />
+&#160;&#160;<a class="el" href="group__StApiTL__PublicImpl.html#ga2dde686b2ed8dcb5d27fdbf892ceb9fda905ec52c0a0659732c54761e02131c2a">StApi::StPFNC_Mono8</a> = (int)0x01080001L, 
+<a class="el" href="group__StApiTL__PublicImpl.html#ga2dde686b2ed8dcb5d27fdbf892ceb9fda52b1f328511d917eacce3a22e2c6de02">StApi::StPFNC_Mono10</a> = (int)0x01100003L, 
+<a class="el" href="group__StApiTL__PublicImpl.html#ga2dde686b2ed8dcb5d27fdbf892ceb9fda69b5add3c4ebcd015004d6dd616ff913">StApi::StPFNC_Mono10p</a> = (int)0x010A0046L, 
+<a class="el" href="group__StApiTL__PublicImpl.html#ga2dde686b2ed8dcb5d27fdbf892ceb9fda45397ad712bb212b29b514296722a2c1">StApi::StPFNC_Mono12</a> = (int)0x01100005L, 
+<br />
+&#160;&#160;<a class="el" href="group__StApiTL__PublicImpl.html#ga2dde686b2ed8dcb5d27fdbf892ceb9fda6a4c71053ff78130722a0d401c044ef1">StApi::StPFNC_Mono12p</a> = (int)0x010C0047L, 
+<a class="el" href="group__StApiTL__PublicImpl.html#ga2dde686b2ed8dcb5d27fdbf892ceb9fdabce56be045bd4a9cbf7f2db6f521e5f3">StApi::StPFNC_Mono14</a> = (int)0x01100025L, 
+<a class="el" href="group__StApiTL__PublicImpl.html#ga2dde686b2ed8dcb5d27fdbf892ceb9fda2a35f9d2087605e73fb7df1b2963ad41">StApi::StPFNC_Mono14p</a> = (int)0x010E0104L, 
+<a class="el" href="group__StApiTL__PublicImpl.html#ga2dde686b2ed8dcb5d27fdbf892ceb9fdadece9eb289f442edda417533b6f2147e">StApi::StPFNC_Mono16</a> = (int)0x01100007L, 
+<br />
+&#160;&#160;<a class="el" href="group__StApiTL__PublicImpl.html#ga2dde686b2ed8dcb5d27fdbf892ceb9fda70f723127b83880442c9f044a71cdc61">StApi::StPFNC_Mono32</a> = (int)0x01200111L, 
+<a class="el" href="group__StApiTL__PublicImpl.html#ga2dde686b2ed8dcb5d27fdbf892ceb9fda03b83621b6504714f2955261f7b84b79">StApi::StPFNC_BayerBG4p</a> = (int)0x01040110L, 
+<a class="el" href="group__StApiTL__PublicImpl.html#ga2dde686b2ed8dcb5d27fdbf892ceb9fdad79abd0ca3b67ca7f83367425c0c333f">StApi::StPFNC_BayerBG8</a> = (int)0x0108000BL, 
+<a class="el" href="group__StApiTL__PublicImpl.html#ga2dde686b2ed8dcb5d27fdbf892ceb9fdabe575133990f9595a37b56f512d38252">StApi::StPFNC_BayerBG10</a> = (int)0x0110000FL, 
+<br />
+&#160;&#160;<a class="el" href="group__StApiTL__PublicImpl.html#ga2dde686b2ed8dcb5d27fdbf892ceb9fdafdb1ac357f1f0f3397cc7a00a19c7958">StApi::StPFNC_BayerBG10p</a> = (int)0x010A0052L, 
+<a class="el" href="group__StApiTL__PublicImpl.html#ga2dde686b2ed8dcb5d27fdbf892ceb9fdad0a0064294805cca7077b885dff8169a">StApi::StPFNC_BayerBG12</a> = (int)0x01100013L, 
+<a class="el" href="group__StApiTL__PublicImpl.html#ga2dde686b2ed8dcb5d27fdbf892ceb9fdadbdbe60126255c8ffb01bcde6de687e0">StApi::StPFNC_BayerBG12p</a> = (int)0x010C0053L, 
+<a class="el" href="group__StApiTL__PublicImpl.html#ga2dde686b2ed8dcb5d27fdbf892ceb9fdab2fce81ba372dd692352f4b658b397eb">StApi::StPFNC_BayerBG14</a> = (int)0x0110010CL, 
+<br />
+&#160;&#160;<a class="el" href="group__StApiTL__PublicImpl.html#ga2dde686b2ed8dcb5d27fdbf892ceb9fda8a84089dfd35f805543178928e5ed134">StApi::StPFNC_BayerBG14p</a> = (int)0x010E0108L, 
+<a class="el" href="group__StApiTL__PublicImpl.html#ga2dde686b2ed8dcb5d27fdbf892ceb9fda7b6b3953724f78c9312514cff0317c5c">StApi::StPFNC_BayerBG16</a> = (int)0x01100031L, 
+<a class="el" href="group__StApiTL__PublicImpl.html#ga2dde686b2ed8dcb5d27fdbf892ceb9fda5bfd6f147f993b6b215a468322fc3433">StApi::StPFNC_BayerGB4p</a> = (int)0x0104010FL, 
+<a class="el" href="group__StApiTL__PublicImpl.html#ga2dde686b2ed8dcb5d27fdbf892ceb9fdaa784408aecd02a30ba7f8315ff34a9c5">StApi::StPFNC_BayerGB8</a> = (int)0x0108000AL, 
+<br />
+&#160;&#160;<a class="el" href="group__StApiTL__PublicImpl.html#ga2dde686b2ed8dcb5d27fdbf892ceb9fdadafb33eedf47f731fdfe3f0f8d345592">StApi::StPFNC_BayerGB10</a> = (int)0x0110000EL, 
+<a class="el" href="group__StApiTL__PublicImpl.html#ga2dde686b2ed8dcb5d27fdbf892ceb9fda7833d84fda4a7ab4bd70f29c5c7b54f4">StApi::StPFNC_BayerGB10p</a> = (int)0x010A0054L, 
+<a class="el" href="group__StApiTL__PublicImpl.html#ga2dde686b2ed8dcb5d27fdbf892ceb9fda95d39653d18583b447ae55e77c00b7ce">StApi::StPFNC_BayerGB12</a> = (int)0x01100012L, 
+<a class="el" href="group__StApiTL__PublicImpl.html#ga2dde686b2ed8dcb5d27fdbf892ceb9fdaefcf4e09d17b5b0132e329cc10ac69a1">StApi::StPFNC_BayerGB12p</a> = (int)0x010C0055L, 
+<br />
+&#160;&#160;<a class="el" href="group__StApiTL__PublicImpl.html#ga2dde686b2ed8dcb5d27fdbf892ceb9fdaf99ed0c91d149fc24e9885564fae9212">StApi::StPFNC_BayerGB14</a> = (int)0x0110010BL, 
+<a class="el" href="group__StApiTL__PublicImpl.html#ga2dde686b2ed8dcb5d27fdbf892ceb9fda679b29d4262ec08e969d549593e7128d">StApi::StPFNC_BayerGB14p</a> = (int)0x010E0107L, 
+<a class="el" href="group__StApiTL__PublicImpl.html#ga2dde686b2ed8dcb5d27fdbf892ceb9fdaf4a33a93260368a65c3cde91a49c7107">StApi::StPFNC_BayerGB16</a> = (int)0x01100030L, 
+<a class="el" href="group__StApiTL__PublicImpl.html#ga2dde686b2ed8dcb5d27fdbf892ceb9fda85a939c205a43767ef4a98dcfca5cbbb">StApi::StPFNC_BayerGR4p</a> = (int)0x0104010DL, 
+<br />
+&#160;&#160;<a class="el" href="group__StApiTL__PublicImpl.html#ga2dde686b2ed8dcb5d27fdbf892ceb9fda6a90bcc995929b9600db39c6ef56dea9">StApi::StPFNC_BayerGR8</a> = (int)0x01080008L, 
+<a class="el" href="group__StApiTL__PublicImpl.html#ga2dde686b2ed8dcb5d27fdbf892ceb9fdaad4eaae4f63bddff72240f990b421753">StApi::StPFNC_BayerGR10</a> = (int)0x0110000CL, 
+<a class="el" href="group__StApiTL__PublicImpl.html#ga2dde686b2ed8dcb5d27fdbf892ceb9fdaec055a94e5a699ee4042687dac9510b4">StApi::StPFNC_BayerGR10p</a> = (int)0x010A0056L, 
+<a class="el" href="group__StApiTL__PublicImpl.html#ga2dde686b2ed8dcb5d27fdbf892ceb9fda7a1fd0301263b9eea050e1fffffaacf6">StApi::StPFNC_BayerGR12</a> = (int)0x01100010L, 
+<br />
+&#160;&#160;<a class="el" href="group__StApiTL__PublicImpl.html#ga2dde686b2ed8dcb5d27fdbf892ceb9fdab2d0a6085f8a759153936d9a96ca5adf">StApi::StPFNC_BayerGR12p</a> = (int)0x010C0057L, 
+<a class="el" href="group__StApiTL__PublicImpl.html#ga2dde686b2ed8dcb5d27fdbf892ceb9fdab418f9b111b2ffa4c36dca54a891145a">StApi::StPFNC_BayerGR14</a> = (int)0x01100109L, 
+<a class="el" href="group__StApiTL__PublicImpl.html#ga2dde686b2ed8dcb5d27fdbf892ceb9fda875bd847963cd8f7d83a023dcface00f">StApi::StPFNC_BayerGR14p</a> = (int)0x010E0105L, 
+<a class="el" href="group__StApiTL__PublicImpl.html#ga2dde686b2ed8dcb5d27fdbf892ceb9fda003c6c0ec7c3d4086596f448592d0306">StApi::StPFNC_BayerGR16</a> = (int)0x0110002EL, 
+<br />
+&#160;&#160;<a class="el" href="group__StApiTL__PublicImpl.html#ga2dde686b2ed8dcb5d27fdbf892ceb9fda796c466e62deefdbf64f5c9a1717b0ae">StApi::StPFNC_BayerRG4p</a> = (int)0x0104010EL, 
+<a class="el" href="group__StApiTL__PublicImpl.html#ga2dde686b2ed8dcb5d27fdbf892ceb9fdac97b1c7ce7fd87a9ec309e41ca481ce8">StApi::StPFNC_BayerRG8</a> = (int)0x01080009L, 
+<a class="el" href="group__StApiTL__PublicImpl.html#ga2dde686b2ed8dcb5d27fdbf892ceb9fda6733afc4255175d774d957b3e4eb877d">StApi::StPFNC_BayerRG10</a> = (int)0x0110000DL, 
+<a class="el" href="group__StApiTL__PublicImpl.html#ga2dde686b2ed8dcb5d27fdbf892ceb9fda9472db208c34d6c7c396db18fa0f9fd4">StApi::StPFNC_BayerRG10p</a> = (int)0x010A0058L, 
+<br />
+&#160;&#160;<a class="el" href="group__StApiTL__PublicImpl.html#ga2dde686b2ed8dcb5d27fdbf892ceb9fda33d8775fd4cc67c02217b931b24d6b2e">StApi::StPFNC_BayerRG12</a> = (int)0x01100011L, 
+<a class="el" href="group__StApiTL__PublicImpl.html#ga2dde686b2ed8dcb5d27fdbf892ceb9fda5b4aaa8de2671d2774673a12ed2b298d">StApi::StPFNC_BayerRG12p</a> = (int)0x010C0059L, 
+<a class="el" href="group__StApiTL__PublicImpl.html#ga2dde686b2ed8dcb5d27fdbf892ceb9fda6a3661487e4cdcf05088f188b40f1875">StApi::StPFNC_BayerRG14</a> = (int)0x0110010AL, 
+<a class="el" href="group__StApiTL__PublicImpl.html#ga2dde686b2ed8dcb5d27fdbf892ceb9fdadebc06053711aa2a6e67f8be65497bb9">StApi::StPFNC_BayerRG14p</a> = (int)0x010E0106L, 
+<br />
+&#160;&#160;<a class="el" href="group__StApiTL__PublicImpl.html#ga2dde686b2ed8dcb5d27fdbf892ceb9fda4e8b987e122e24d3a048b95dbbcd091e">StApi::StPFNC_BayerRG16</a> = (int)0x0110002FL, 
+<a class="el" href="group__StApiTL__PublicImpl.html#ga2dde686b2ed8dcb5d27fdbf892ceb9fdac8f31eef08a7e518d6d2ace3d1ea1c8c">StApi::StPFNC_RGBa8</a> = (int)0x02200016L, 
+<a class="el" href="group__StApiTL__PublicImpl.html#ga2dde686b2ed8dcb5d27fdbf892ceb9fda9b1cba45f9dff66357ceba988422f628">StApi::StPFNC_RGB8</a> = (int)0x02180014L, 
+<a class="el" href="group__StApiTL__PublicImpl.html#ga2dde686b2ed8dcb5d27fdbf892ceb9fdaf1a272e26b1f0a1a262846f76513575a">StApi::StPFNC_RGB10p32</a> = (int)0x0220001DL, 
+<br />
+&#160;&#160;<a class="el" href="group__StApiTL__PublicImpl.html#ga2dde686b2ed8dcb5d27fdbf892ceb9fda8eebe33dad087d95ab521717638de5be">StApi::StPFNC_BGRa8</a> = (int)0x02200017L, 
+<a class="el" href="group__StApiTL__PublicImpl.html#ga2dde686b2ed8dcb5d27fdbf892ceb9fdaef42e5afb4eaac70f84d4a921c3288e9">StApi::StPFNC_BGRa10</a> = (int)0x0240004CL, 
+<a class="el" href="group__StApiTL__PublicImpl.html#ga2dde686b2ed8dcb5d27fdbf892ceb9fda7c238c1a42793e979441bef273804af3">StApi::StPFNC_BGRa12</a> = (int)0x0240004EL, 
+<a class="el" href="group__StApiTL__PublicImpl.html#ga2dde686b2ed8dcb5d27fdbf892ceb9fda7270289472ae6015d99fe0a1024686c1">StApi::StPFNC_BGRa14</a> = (int)0x02400050L, 
+<br />
+&#160;&#160;<a class="el" href="group__StApiTL__PublicImpl.html#ga2dde686b2ed8dcb5d27fdbf892ceb9fda89c1ce3ea3be8ef42d0c0ca2021b0843">StApi::StPFNC_BGRa16</a> = (int)0x02400051L, 
+<a class="el" href="group__StApiTL__PublicImpl.html#ga2dde686b2ed8dcb5d27fdbf892ceb9fda19783a61d9724687c6a4799fef468637">StApi::StPFNC_BGR8</a> = (int)0x02180015L, 
+<a class="el" href="group__StApiTL__PublicImpl.html#ga2dde686b2ed8dcb5d27fdbf892ceb9fdaef4387541f2fee840328a91f5149e704">StApi::StPFNC_BGR10</a> = (int)0x02300019L, 
+<a class="el" href="group__StApiTL__PublicImpl.html#ga2dde686b2ed8dcb5d27fdbf892ceb9fdaa0536b82c598d8455b4117ab7353b596">StApi::StPFNC_BGR12</a> = (int)0x0230001BL, 
+<br />
+&#160;&#160;<a class="el" href="group__StApiTL__PublicImpl.html#ga2dde686b2ed8dcb5d27fdbf892ceb9fdaf23d23c55634c0985658099cfd470596">StApi::StPFNC_BGR14</a> = (int)0x0230004AL, 
+<a class="el" href="group__StApiTL__PublicImpl.html#ga2dde686b2ed8dcb5d27fdbf892ceb9fdab3efcb790b2abe66cda4ffcc19a53497">StApi::StPFNC_BGR16</a> = (int)0x0230004BL, 
+<a class="el" href="group__StApiTL__PublicImpl.html#ga2dde686b2ed8dcb5d27fdbf892ceb9fda711cc580800582c7a0da9803ceab37b5">StApi::StPFNC_RGB8_Planar</a> = (int)0x02180021L, 
+<a class="el" href="group__StApiTL__PublicImpl.html#ga2dde686b2ed8dcb5d27fdbf892ceb9fdaafd2eaa47b61dd251181ba563f2aed8f">StApi::StPFNC_RGB10_Planar</a> = (int)0x02300022L, 
+<br />
+&#160;&#160;<a class="el" href="group__StApiTL__PublicImpl.html#ga2dde686b2ed8dcb5d27fdbf892ceb9fda35ebc873f71810add55debd3ff04e59d">StApi::StPFNC_RGB12_Planar</a> = (int)0x02300023L, 
+<a class="el" href="group__StApiTL__PublicImpl.html#ga2dde686b2ed8dcb5d27fdbf892ceb9fdae26483e15e40b9615b1fccf825163f41">StApi::StPFNC_RGB16_Planar</a> = (int)0x02300024L, 
+<a class="el" href="group__StApiTL__PublicImpl.html#ga2dde686b2ed8dcb5d27fdbf892ceb9fda0156e796217a8f82918569d95c13935d">StApi::StPFNC_BGR10p</a> = (int)0x021E0048L, 
+<a class="el" href="group__StApiTL__PublicImpl.html#ga2dde686b2ed8dcb5d27fdbf892ceb9fdae81557e3b778b27a96d9c1db2561b1ed">StApi::StPFNC_BGR12p</a> = (int)0x02240049L, 
+<br />
+&#160;&#160;<a class="el" href="group__StApiTL__PublicImpl.html#ga2dde686b2ed8dcb5d27fdbf892ceb9fda674dd050e6b9f150d7c8abccc6a4067c">StApi::StPFNC_RGB10p</a> = (int)0x021E005CL, 
+<a class="el" href="group__StApiTL__PublicImpl.html#ga2dde686b2ed8dcb5d27fdbf892ceb9fdae546f59ffff0f76c3462d63dc8f399ed">StApi::StPFNC_RGB12p</a> = (int)0x0224005DL, 
+<a class="el" href="group__StApiTL__PublicImpl.html#ga2dde686b2ed8dcb5d27fdbf892ceb9fda568bd0f01a74596089188572321b6725">StApi::StPFNC_RGB16</a> = (int)0x02300033L, 
+<a class="el" href="group__StApiTL__PublicImpl.html#ga2dde686b2ed8dcb5d27fdbf892ceb9fdaf3a86d206ca3f4e63a8dc286e6e9f4b4">StApi::StPFNC_CBGR10p32</a> = (int)0x82200001L, 
+<br />
+&#160;&#160;<a class="el" href="group__StApiTL__PublicImpl.html#ga2dde686b2ed8dcb5d27fdbf892ceb9fda95af1c7699c919740b54e05874f9f789">StApi::StPFNC_YCbCr8</a> = (int)0x0218005BL, 
+<a class="el" href="group__StApiTL__PublicImpl.html#ga2dde686b2ed8dcb5d27fdbf892ceb9fda1997283361ae6e6fee0850bd9f10f3de">StApi::StPFNC_YCbCr411_8</a> = (int)0x020C005AL, 
+<a class="el" href="group__StApiTL__PublicImpl.html#ga2dde686b2ed8dcb5d27fdbf892ceb9fda3bd0be3910e45701c1b94e80cd1838c7">StApi::StPFNC_YCbCr422_8</a> = (int)0x0210003BL, 
+<a class="el" href="group__StApiTL__PublicImpl.html#ga2dde686b2ed8dcb5d27fdbf892ceb9fdaf1f041fc66b60d805d271de01ab423b8">StApi::StPFNC_YCbCr709_422_8</a> = (int)0x02100041L, 
+<br />
+&#160;&#160;<a class="el" href="group__StApiTL__PublicImpl.html#ga2dde686b2ed8dcb5d27fdbf892ceb9fdac6bd408245b8e700f10e664ff9190dee">StApi::StPFNC_YCbCr601_422_8</a> = (int)0x0210003EL, 
+<a class="el" href="group__StApiTL__PublicImpl.html#ga2dde686b2ed8dcb5d27fdbf892ceb9fda1875432658a5b00eef069bd55db08233">StApi::StPFNC_YCbCr411_8_CbYYCrYY</a> = (int)0x020C003CL, 
+<a class="el" href="group__StApiTL__PublicImpl.html#ga2dde686b2ed8dcb5d27fdbf892ceb9fda5ba35a5c69c3db9c7bdf180ea31a5cf4">StApi::StPFNC_YCbCr601_411_8_CbYYCrYY</a> = (int)0x020C003FL, 
+<a class="el" href="group__StApiTL__PublicImpl.html#ga2dde686b2ed8dcb5d27fdbf892ceb9fda374338e16c0585f9f9676a9ae5784681">StApi::StPFNC_YCbCr709_411_8_CbYYCrYY</a> = (int)0x020C0042L, 
+<br />
+&#160;&#160;<a class="el" href="group__StApiTL__PublicImpl.html#ga2dde686b2ed8dcb5d27fdbf892ceb9fdabc1bd2fd5ac31d50d500005346647173">StApi::StPFNC_YCbCr422_8_CbYCrY</a> = (int)0x02100043L, 
+<a class="el" href="group__StApiTL__PublicImpl.html#ga2dde686b2ed8dcb5d27fdbf892ceb9fdac8db53b981fc211e0e4188e0bf86f8ab">StApi::StPFNC_YCbCr601_422_8_CbYCrY</a> = (int)0x02100044L, 
+<a class="el" href="group__StApiTL__PublicImpl.html#ga2dde686b2ed8dcb5d27fdbf892ceb9fdaa3c0058b6532319b744830664e132c09">StApi::StPFNC_YCbCr709_422_8_CbYCrY</a> = (int)0x02100045L, 
+<a class="el" href="group__StApiTL__PublicImpl.html#ga2dde686b2ed8dcb5d27fdbf892ceb9fdab48987f0df24d7bccba55b7ed9d6388e">StApi::StPFNC_YCbCr8_CbYCr</a> = (int)0x0218003AL, 
+<br />
+&#160;&#160;<a class="el" href="group__StApiTL__PublicImpl.html#ga2dde686b2ed8dcb5d27fdbf892ceb9fda3925824fbc3d8eb1ea11e993af331567">StApi::StPFNC_YCbCr601_8_CbYCr</a> = (int)0x0218003DL, 
+<a class="el" href="group__StApiTL__PublicImpl.html#ga2dde686b2ed8dcb5d27fdbf892ceb9fdaa5f1fd899c53762dd8553cb613e8b014">StApi::StPFNC_YCbCr709_8_CbYCr</a> = (int)0x02180040L, 
+<a class="el" href="group__StApiTL__PublicImpl.html#ga2dde686b2ed8dcb5d27fdbf892ceb9fda424439bb42b41e210dcf6d4a989ea7a5">StApi::StPFNC_YUV411_8_UYYVYY</a> = (int)0x020C001EL, 
+<a class="el" href="group__StApiTL__PublicImpl.html#ga2dde686b2ed8dcb5d27fdbf892ceb9fdab56c19ff3349d650e2aa0f11cb88d177">StApi::StPFNC_YUV422_8_UYVY</a> = (int)0x0210001FL, 
+<br />
+&#160;&#160;<a class="el" href="group__StApiTL__PublicImpl.html#ga2dde686b2ed8dcb5d27fdbf892ceb9fda9f5d836c4f3e4ed701fa639a12a307f3">StApi::StPFNC_YUV8_UYV</a> = (int)0x02180020L, 
+<a class="el" href="group__StApiTL__PublicImpl.html#ga2dde686b2ed8dcb5d27fdbf892ceb9fdad52626f6ef64c911498d122b5f212828">StApi::StPFNC_YUV422_8</a> = (int)0x02100032L, 
+<a class="el" href="group__StApiTL__PublicImpl.html#ga2dde686b2ed8dcb5d27fdbf892ceb9fda22311295a40dc69e81de408cc1802ab7">StApi::StPFNC_Mono10Packed</a> = (int)0x010C0004L
+, <a class="el" href="group__StApiTL__PublicImpl.html#ga2dde686b2ed8dcb5d27fdbf892ceb9fda2fdabed9297ad458014cd0b81d0cc336">StApi::StPFNC_Mono12Packed</a> = (int)0x010C0006L
+, <br />
+&#160;&#160;<a class="el" href="group__StApiTL__PublicImpl.html#ga2dde686b2ed8dcb5d27fdbf892ceb9fda9e6c88dc0a3fba991ab896bd16dee9ed">StApi::StPFNC_BayerBG10Packed</a> = (int)0x010C0029L
+, <a class="el" href="group__StApiTL__PublicImpl.html#ga2dde686b2ed8dcb5d27fdbf892ceb9fda3d873a1e6cbb1c7eaeb3c67d167da123">StApi::StPFNC_BayerBG12Packed</a> = (int)0x010C002DL
+, <a class="el" href="group__StApiTL__PublicImpl.html#ga2dde686b2ed8dcb5d27fdbf892ceb9fda597b6081509f0e351bd52c66b50312c1">StApi::StPFNC_BayerGB10Packed</a> = (int)0x010C0028L
+, <a class="el" href="group__StApiTL__PublicImpl.html#ga2dde686b2ed8dcb5d27fdbf892ceb9fda13d8de6e5d69a4842ca8ed4f055e97d4">StApi::StPFNC_BayerGB12Packed</a> = (int)0x010C002CL
+, <br />
+&#160;&#160;<a class="el" href="group__StApiTL__PublicImpl.html#ga2dde686b2ed8dcb5d27fdbf892ceb9fda02fac11c0c33e3f8f11d7b64bb840e80">StApi::StPFNC_BayerGR10Packed</a> = (int)0x010C0026L
+, <a class="el" href="group__StApiTL__PublicImpl.html#ga2dde686b2ed8dcb5d27fdbf892ceb9fda0e4f26cacd2e28833a4bd399a46dbc2e">StApi::StPFNC_BayerGR12Packed</a> = (int)0x010C002AL
+, <a class="el" href="group__StApiTL__PublicImpl.html#ga2dde686b2ed8dcb5d27fdbf892ceb9fdaa081073ab112591b6ced6de9ae781642">StApi::StPFNC_BayerRG10Packed</a> = (int)0x010C0027L
+, <a class="el" href="group__StApiTL__PublicImpl.html#ga2dde686b2ed8dcb5d27fdbf892ceb9fdaebf242020f1a047bfa20ea7c6e44e4a1">StApi::StPFNC_BayerRG12Packed</a> = (int)0x010C002BL
+, <br />
+&#160;&#160;<a class="el" href="group__StApiTL__PublicImpl.html#ga2dde686b2ed8dcb5d27fdbf892ceb9fda5e53ae20ed408d36ae8f554a9b263c73">StApi::StPFNC_Pol1Mono8</a> = (int)0x81080002L, 
+<a class="el" href="group__StApiTL__PublicImpl.html#ga2dde686b2ed8dcb5d27fdbf892ceb9fda94890303e00bcf6b6989882ffd3d0f75">StApi::StPFNC_Pol1MonoX8</a> = (int)0x81080003L, 
+<a class="el" href="group__StApiTL__PublicImpl.html#ga2dde686b2ed8dcb5d27fdbf892ceb9fda067062ef8ee83391dde099242ea4360f">StApi::StPFNC_Pol1MonoY8</a> = (int)0x81080004L, 
+<a class="el" href="group__StApiTL__PublicImpl.html#ga2dde686b2ed8dcb5d27fdbf892ceb9fda0bb8609f357317d629d05bedc006c7f4">StApi::StPFNC_Pol1MonoXY8</a> = (int)0x81080005L, 
+<br />
+&#160;&#160;<a class="el" href="group__StApiTL__PublicImpl.html#ga2dde686b2ed8dcb5d27fdbf892ceb9fdac83dd16e9fd2a86988f5b69ad579c65d">StApi::StPFNC_Pol1Mono10</a> = (int)0x81100006L, 
+<a class="el" href="group__StApiTL__PublicImpl.html#ga2dde686b2ed8dcb5d27fdbf892ceb9fda620b0d823feb9624abff73f12813146e">StApi::StPFNC_Pol1MonoX10</a> = (int)0x81100007L, 
+<a class="el" href="group__StApiTL__PublicImpl.html#ga2dde686b2ed8dcb5d27fdbf892ceb9fda087793897b923e71b90cdc0a664e66ce">StApi::StPFNC_Pol1MonoY10</a> = (int)0x81100008L, 
+<a class="el" href="group__StApiTL__PublicImpl.html#ga2dde686b2ed8dcb5d27fdbf892ceb9fda0e14353fd9e487a1818ff55c6e1d38bf">StApi::StPFNC_Pol1MonoXY10</a> = (int)0x81100009L, 
+<br />
+&#160;&#160;<a class="el" href="group__StApiTL__PublicImpl.html#ga2dde686b2ed8dcb5d27fdbf892ceb9fda3db73ab254fd6bea0005d41c8a0466e4">StApi::StPFNC_Pol1Mono12</a> = (int)0x8110000AL, 
+<a class="el" href="group__StApiTL__PublicImpl.html#ga2dde686b2ed8dcb5d27fdbf892ceb9fda64c38c5323f0dfe63e4b43398a39917e">StApi::StPFNC_Pol1MonoX12</a> = (int)0x8110000BL, 
+<a class="el" href="group__StApiTL__PublicImpl.html#ga2dde686b2ed8dcb5d27fdbf892ceb9fdabb5f5f7487336edc3d1c3cb7dbd64b69">StApi::StPFNC_Pol1MonoY12</a> = (int)0x8110000CL, 
+<a class="el" href="group__StApiTL__PublicImpl.html#ga2dde686b2ed8dcb5d27fdbf892ceb9fda291823cac695032781f39189e6bdce79">StApi::StPFNC_Pol1MonoXY12</a> = (int)0x8110000DL, 
+<br />
+&#160;&#160;<a class="el" href="group__StApiTL__PublicImpl.html#ga2dde686b2ed8dcb5d27fdbf892ceb9fda11c3d85e223806fc718b2c4e8e5f2da4">StApi::StPFNC_Pol1BayerRG8</a> = (int)0x8108000EL, 
+<a class="el" href="group__StApiTL__PublicImpl.html#ga2dde686b2ed8dcb5d27fdbf892ceb9fdaf8aa8b17d3b9ccd4ad1c87b20f94b6f0">StApi::StPFNC_Pol1BayerRGX8</a> = (int)0x8108000FL, 
+<a class="el" href="group__StApiTL__PublicImpl.html#ga2dde686b2ed8dcb5d27fdbf892ceb9fda11290f8253b3c2adb62580f5753454da">StApi::StPFNC_Pol1BayerRGY8</a> = (int)0x81080010L, 
+<a class="el" href="group__StApiTL__PublicImpl.html#ga2dde686b2ed8dcb5d27fdbf892ceb9fda3bb07e73030e904bdad841703f2f2ee0">StApi::StPFNC_Pol1BayerRGXY8</a> = (int)0x81080011L, 
+<br />
+&#160;&#160;<a class="el" href="group__StApiTL__PublicImpl.html#ga2dde686b2ed8dcb5d27fdbf892ceb9fda312b53d07870012977130a74736b5300">StApi::StPFNC_Pol1BayerRG10</a> = (int)0x81100012L, 
+<a class="el" href="group__StApiTL__PublicImpl.html#ga2dde686b2ed8dcb5d27fdbf892ceb9fdae2a04c0efd5bd5fe2e7feb5d868bc1b3">StApi::StPFNC_Pol1BayerRGX10</a> = (int)0x81100013L, 
+<a class="el" href="group__StApiTL__PublicImpl.html#ga2dde686b2ed8dcb5d27fdbf892ceb9fda4e9b5b93b77394f12bd49c7e125afcd9">StApi::StPFNC_Pol1BayerRGY10</a> = (int)0x81100014L, 
+<a class="el" href="group__StApiTL__PublicImpl.html#ga2dde686b2ed8dcb5d27fdbf892ceb9fdabe161379e7154df9a46d1160f9ac8061">StApi::StPFNC_Pol1BayerRGXY10</a> = (int)0x81100015L, 
+<br />
+&#160;&#160;<a class="el" href="group__StApiTL__PublicImpl.html#ga2dde686b2ed8dcb5d27fdbf892ceb9fda3f4c337fe975c669ed579d5b416686ae">StApi::StPFNC_Pol1BayerRG12</a> = (int)0x81100016L, 
+<a class="el" href="group__StApiTL__PublicImpl.html#ga2dde686b2ed8dcb5d27fdbf892ceb9fda17b26520b6947cc45587b9a6769c6375">StApi::StPFNC_Pol1BayerRGX12</a> = (int)0x81100017L, 
+<a class="el" href="group__StApiTL__PublicImpl.html#ga2dde686b2ed8dcb5d27fdbf892ceb9fda74bab64b0a0b739dba30d6b5a2ab6249">StApi::StPFNC_Pol1BayerRGY12</a> = (int)0x81100018L, 
+<a class="el" href="group__StApiTL__PublicImpl.html#ga2dde686b2ed8dcb5d27fdbf892ceb9fdabaf8106a8b13d7a061a3ad8e6d1c608f">StApi::StPFNC_Pol1BayerRGXY12</a> = (int)0x81100019L, 
+<br />
+&#160;&#160;<a class="el" href="group__StApiTL__PublicImpl.html#ga2dde686b2ed8dcb5d27fdbf892ceb9fda355dbb6a3a023f6a3bc9a7a61fe6c528">StApi::StPFNC_Pol1Mono10p</a> = (int)0x810A001AL, 
+<a class="el" href="group__StApiTL__PublicImpl.html#ga2dde686b2ed8dcb5d27fdbf892ceb9fda9630b3b222251f54889d36b4dfb1c0dd">StApi::StPFNC_Pol1MonoX10p</a> = (int)0x810A001BL, 
+<a class="el" href="group__StApiTL__PublicImpl.html#ga2dde686b2ed8dcb5d27fdbf892ceb9fda0824784ac07ce5edcd8fa12f0634507d">StApi::StPFNC_Pol1MonoY10p</a> = (int)0x810A001CL, 
+<a class="el" href="group__StApiTL__PublicImpl.html#ga2dde686b2ed8dcb5d27fdbf892ceb9fdaf01399b40e3116e1660eba4fa7e43ff5">StApi::StPFNC_Pol1MonoXY10p</a> = (int)0x810A001DL, 
+<br />
+&#160;&#160;<a class="el" href="group__StApiTL__PublicImpl.html#ga2dde686b2ed8dcb5d27fdbf892ceb9fdaa2710aed46874dc3c04802da5f29387c">StApi::StPFNC_Pol1Mono12p</a> = (int)0x810C001EL, 
+<a class="el" href="group__StApiTL__PublicImpl.html#ga2dde686b2ed8dcb5d27fdbf892ceb9fdaf799031d6228991387b5d923af944d5e">StApi::StPFNC_Pol1MonoX12p</a> = (int)0x810C001FL, 
+<a class="el" href="group__StApiTL__PublicImpl.html#ga2dde686b2ed8dcb5d27fdbf892ceb9fda00f218bdb17325d7f8a9043f2368e5ab">StApi::StPFNC_Pol1MonoY12p</a> = (int)0x810C0020L, 
+<a class="el" href="group__StApiTL__PublicImpl.html#ga2dde686b2ed8dcb5d27fdbf892ceb9fdafdade2f6ee5e3f3af64bcb6adfa24d67">StApi::StPFNC_Pol1MonoXY12p</a> = (int)0x810C0021L, 
+<br />
+&#160;&#160;<a class="el" href="group__StApiTL__PublicImpl.html#ga2dde686b2ed8dcb5d27fdbf892ceb9fda25a6071863aa545e799c528860d8841b">StApi::StPFNC_Pol1BayerRG10p</a> = (int)0x810A0022L, 
+<a class="el" href="group__StApiTL__PublicImpl.html#ga2dde686b2ed8dcb5d27fdbf892ceb9fda2cecb9e29f5f417fc379a5fe6765a0c8">StApi::StPFNC_Pol1BayerRGX10p</a> = (int)0x810A0023L, 
+<a class="el" href="group__StApiTL__PublicImpl.html#ga2dde686b2ed8dcb5d27fdbf892ceb9fda66d7efb902e97e6519cd213daca6162c">StApi::StPFNC_Pol1BayerRGY10p</a> = (int)0x810A0024L, 
+<a class="el" href="group__StApiTL__PublicImpl.html#ga2dde686b2ed8dcb5d27fdbf892ceb9fda5227be28e95d230469b4db72f96e473b">StApi::StPFNC_Pol1BayerRGXY10p</a> = (int)0x810A0025L, 
+<br />
+&#160;&#160;<a class="el" href="group__StApiTL__PublicImpl.html#ga2dde686b2ed8dcb5d27fdbf892ceb9fdac9fe7663f24bb68b3b4c91ef3570026d">StApi::StPFNC_Pol1BayerRG12p</a> = (int)0x810C0026L, 
+<a class="el" href="group__StApiTL__PublicImpl.html#ga2dde686b2ed8dcb5d27fdbf892ceb9fdaeb0d131bee29ccd9f5deef8aec55b2fe">StApi::StPFNC_Pol1BayerRGX12p</a> = (int)0x810C0027L, 
+<a class="el" href="group__StApiTL__PublicImpl.html#ga2dde686b2ed8dcb5d27fdbf892ceb9fda3939f78107d2a1805ac2a09266048118">StApi::StPFNC_Pol1BayerRGY12p</a> = (int)0x810C0028L, 
+<a class="el" href="group__StApiTL__PublicImpl.html#ga2dde686b2ed8dcb5d27fdbf892ceb9fdacd6453ade8980fdd8c7f775012a7176f">StApi::StPFNC_Pol1BayerRGXY12p</a> = (int)0x810C0029L, 
+<br />
+&#160;&#160;<a class="el" href="group__StApiTL__PublicImpl.html#ga2dde686b2ed8dcb5d27fdbf892ceb9fdaee1e987ee6bfc9838b316d0cc13a7419">StApi::StPFNC_Pol1MonoC8</a> = (int)0x8108002AL, 
+<a class="el" href="group__StApiTL__PublicImpl.html#ga2dde686b2ed8dcb5d27fdbf892ceb9fda68947c1cdc519f51f49feed09d509b45">StApi::StPFNC_Pol1MonoXC8</a> = (int)0x8108002BL, 
+<a class="el" href="group__StApiTL__PublicImpl.html#ga2dde686b2ed8dcb5d27fdbf892ceb9fdac6e3cedf6382bcb0569c31aff67b4c28">StApi::StPFNC_Pol1MonoYC8</a> = (int)0x8108002CL, 
+<a class="el" href="group__StApiTL__PublicImpl.html#ga2dde686b2ed8dcb5d27fdbf892ceb9fdaccc99fce47c487fffa6609c60161d984">StApi::StPFNC_Pol1MonoXYC8</a> = (int)0x8108002DL, 
+<br />
+&#160;&#160;<a class="el" href="group__StApiTL__PublicImpl.html#ga2dde686b2ed8dcb5d27fdbf892ceb9fda151735d10dce873bc5e48cd8c2447669">StApi::StPFNC_Pol1MonoC10</a> = (int)0x8110002EL, 
+<a class="el" href="group__StApiTL__PublicImpl.html#ga2dde686b2ed8dcb5d27fdbf892ceb9fdab7d30be31cf7a0309e66d53899cce9be">StApi::StPFNC_Pol1MonoXC10</a> = (int)0x8110002FL, 
+<a class="el" href="group__StApiTL__PublicImpl.html#ga2dde686b2ed8dcb5d27fdbf892ceb9fda8e160069eeb7d6d09fa2278c4c70920e">StApi::StPFNC_Pol1MonoYC10</a> = (int)0x81100030L, 
+<a class="el" href="group__StApiTL__PublicImpl.html#ga2dde686b2ed8dcb5d27fdbf892ceb9fda6ae620078b84da3cd147332cabba0ce2">StApi::StPFNC_Pol1MonoXYC10</a> = (int)0x81100031L, 
+<br />
+&#160;&#160;<a class="el" href="group__StApiTL__PublicImpl.html#ga2dde686b2ed8dcb5d27fdbf892ceb9fdaff149945f4ca7d8e91e95de8ef6f0eef">StApi::StPFNC_Pol1MonoC12</a> = (int)0x81100032L, 
+<a class="el" href="group__StApiTL__PublicImpl.html#ga2dde686b2ed8dcb5d27fdbf892ceb9fdad5303b1d28fecfbe2744602ee0f4a4e8">StApi::StPFNC_Pol1MonoXC12</a> = (int)0x81100033L, 
+<a class="el" href="group__StApiTL__PublicImpl.html#ga2dde686b2ed8dcb5d27fdbf892ceb9fdaa7c0c9e4c47ec92473fcb10771a449a4">StApi::StPFNC_Pol1MonoYC12</a> = (int)0x81100034L, 
+<a class="el" href="group__StApiTL__PublicImpl.html#ga2dde686b2ed8dcb5d27fdbf892ceb9fdac78c942e19976839f066fc90d525a2d7">StApi::StPFNC_Pol1MonoXYC12</a> = (int)0x81100035L, 
+<br />
+&#160;&#160;<a class="el" href="group__StApiTL__PublicImpl.html#ga2dde686b2ed8dcb5d27fdbf892ceb9fda6d827dfa1ff312e29dc68095a50e8baa">StApi::StPFNC_Pol1BayerRGC8</a> = (int)0x81080036L, 
+<a class="el" href="group__StApiTL__PublicImpl.html#ga2dde686b2ed8dcb5d27fdbf892ceb9fda4009b433f03870d7a5e5b1517df0a443">StApi::StPFNC_Pol1BayerRGXC8</a> = (int)0x81080037L, 
+<a class="el" href="group__StApiTL__PublicImpl.html#ga2dde686b2ed8dcb5d27fdbf892ceb9fda3e7227baff934dd539dbd1b322d4ff54">StApi::StPFNC_Pol1BayerRGYC8</a> = (int)0x81080038L, 
+<a class="el" href="group__StApiTL__PublicImpl.html#ga2dde686b2ed8dcb5d27fdbf892ceb9fdaedc72e9374ef8f947745927a86075b29">StApi::StPFNC_Pol1BayerRGXYC8</a> = (int)0x81080039L, 
+<br />
+&#160;&#160;<a class="el" href="group__StApiTL__PublicImpl.html#ga2dde686b2ed8dcb5d27fdbf892ceb9fda6d1fdeab09d11b5dad89dc766095df8d">StApi::StPFNC_Pol1BayerRGC10</a> = (int)0x8110003AL, 
+<a class="el" href="group__StApiTL__PublicImpl.html#ga2dde686b2ed8dcb5d27fdbf892ceb9fda660384ca8b4c6a13854155998f469005">StApi::StPFNC_Pol1BayerRGXC10</a> = (int)0x8110003BL, 
+<a class="el" href="group__StApiTL__PublicImpl.html#ga2dde686b2ed8dcb5d27fdbf892ceb9fda7dc9c9a22a8b6d36beccdf49f67f6d28">StApi::StPFNC_Pol1BayerRGYC10</a> = (int)0x8110003CL, 
+<a class="el" href="group__StApiTL__PublicImpl.html#ga2dde686b2ed8dcb5d27fdbf892ceb9fda4e9782d45dfb6ed1f3034b0a71a66ee3">StApi::StPFNC_Pol1BayerRGXYC10</a> = (int)0x8110003DL, 
+<br />
+&#160;&#160;<a class="el" href="group__StApiTL__PublicImpl.html#ga2dde686b2ed8dcb5d27fdbf892ceb9fdaca16f017fc41434ace97cf3558f884ed">StApi::StPFNC_Pol1BayerRGC12</a> = (int)0x8110003EL, 
+<a class="el" href="group__StApiTL__PublicImpl.html#ga2dde686b2ed8dcb5d27fdbf892ceb9fda1f7254f3b6c78110eb77dbbc04d43a5c">StApi::StPFNC_Pol1BayerRGXC12</a> = (int)0x8110003FL, 
+<a class="el" href="group__StApiTL__PublicImpl.html#ga2dde686b2ed8dcb5d27fdbf892ceb9fdadb3300dfa9eabac9423a456d5e7020cb">StApi::StPFNC_Pol1BayerRGYC12</a> = (int)0x81100040L, 
+<a class="el" href="group__StApiTL__PublicImpl.html#ga2dde686b2ed8dcb5d27fdbf892ceb9fda55ac32e8dadd5bd97fc0a8da983dd3b1">StApi::StPFNC_Pol1BayerRGXYC12</a> = (int)0x81100041L, 
+<br />
+&#160;&#160;<a class="el" href="group__StApiTL__PublicImpl.html#ga2dde686b2ed8dcb5d27fdbf892ceb9fdaab7903df7f6a4e54ce5fc1e2a0b9d1ee">StApi::StPFNC_Pol1MonoC10p</a> = (int)0x810A0042L, 
+<a class="el" href="group__StApiTL__PublicImpl.html#ga2dde686b2ed8dcb5d27fdbf892ceb9fdadbc842bbfdf5635faf0d6e29e95a8cd8">StApi::StPFNC_Pol1MonoXC10p</a> = (int)0x810A0043L, 
+<a class="el" href="group__StApiTL__PublicImpl.html#ga2dde686b2ed8dcb5d27fdbf892ceb9fda5ab0bd8918302682827991d19e564e5d">StApi::StPFNC_Pol1MonoYC10p</a> = (int)0x810A0044L, 
+<a class="el" href="group__StApiTL__PublicImpl.html#ga2dde686b2ed8dcb5d27fdbf892ceb9fdafc4d349250ca663a9e8549c356e3945b">StApi::StPFNC_Pol1MonoXYC10p</a> = (int)0x810A0045L, 
+<br />
+&#160;&#160;<a class="el" href="group__StApiTL__PublicImpl.html#ga2dde686b2ed8dcb5d27fdbf892ceb9fda97043dba6075806fb50f5616be31fbaf">StApi::StPFNC_Pol1MonoC12p</a> = (int)0x810C0046L, 
+<a class="el" href="group__StApiTL__PublicImpl.html#ga2dde686b2ed8dcb5d27fdbf892ceb9fda9efa347686ea2e6a60569703aad69d44">StApi::StPFNC_Pol1MonoXC12p</a> = (int)0x810C0047L, 
+<a class="el" href="group__StApiTL__PublicImpl.html#ga2dde686b2ed8dcb5d27fdbf892ceb9fdae86f6764f0d542a9f4ff9f008bf4472b">StApi::StPFNC_Pol1MonoYC12p</a> = (int)0x810C0048L, 
+<a class="el" href="group__StApiTL__PublicImpl.html#ga2dde686b2ed8dcb5d27fdbf892ceb9fdab35771144689544c7d2b1d74f0675620">StApi::StPFNC_Pol1MonoXYC12p</a> = (int)0x810C0049L, 
+<br />
+&#160;&#160;<a class="el" href="group__StApiTL__PublicImpl.html#ga2dde686b2ed8dcb5d27fdbf892ceb9fdaa694dfd7ef2c6f6fbb5ba251af3cb7c9">StApi::StPFNC_Pol1BayerRGC10p</a> = (int)0x810A004AL, 
+<a class="el" href="group__StApiTL__PublicImpl.html#ga2dde686b2ed8dcb5d27fdbf892ceb9fda380016c8251980338bfb658c1edd2151">StApi::StPFNC_Pol1BayerRGXC10p</a> = (int)0x810A004BL, 
+<a class="el" href="group__StApiTL__PublicImpl.html#ga2dde686b2ed8dcb5d27fdbf892ceb9fdad7d309c1dec6478d61d18fcd80dbbedf">StApi::StPFNC_Pol1BayerRGYC10p</a> = (int)0x810A004CL, 
+<a class="el" href="group__StApiTL__PublicImpl.html#ga2dde686b2ed8dcb5d27fdbf892ceb9fda0de6ba3a9b8d05b742bbfe7593b162ac">StApi::StPFNC_Pol1BayerRGXYC10p</a> = (int)0x810A004DL, 
+<br />
+&#160;&#160;<a class="el" href="group__StApiTL__PublicImpl.html#ga2dde686b2ed8dcb5d27fdbf892ceb9fdaa7ea0140fb45e5f57ddd90cc142556e5">StApi::StPFNC_Pol1BayerRGC12p</a> = (int)0x810C004EL, 
+<a class="el" href="group__StApiTL__PublicImpl.html#ga2dde686b2ed8dcb5d27fdbf892ceb9fdab368614c3dfc7907bb3386bcdd0fac0f">StApi::StPFNC_Pol1BayerRGXC12p</a> = (int)0x810C004FL, 
+<a class="el" href="group__StApiTL__PublicImpl.html#ga2dde686b2ed8dcb5d27fdbf892ceb9fdaacbde9bbf0007665739e4f82cba9fd7a">StApi::StPFNC_Pol1BayerRGYC12p</a> = (int)0x810C0050L, 
+<a class="el" href="group__StApiTL__PublicImpl.html#ga2dde686b2ed8dcb5d27fdbf892ceb9fda1a972bda0da3cd0e2fd5aace4aa5a519">StApi::StPFNC_Pol1BayerRGXYC12p</a> = (int)0x810C0051L, 
+<br />
+&#160;&#160;<a class="el" href="group__StApiTL__PublicImpl.html#ga2dde686b2ed8dcb5d27fdbf892ceb9fda3877d99dca290dc12cf3b0a8f634b79a">StApi::StPFNC_CYCbCr420_8_YY_Cb_Cr_Planar</a> = (int)0x820C0152L
+<br />
+ }</td></tr>
+<tr class="memdesc:ga2dde686b2ed8dcb5d27fdbf892ceb9fd"><td class="mdescLeft">&#160;</td><td class="mdescRight">ピクセルフォーマット列挙子  <a href="group__StApiTL__PublicImpl.html#ga2dde686b2ed8dcb5d27fdbf892ceb9fd">[詳解]</a><br /></td></tr>
+<tr class="separator:ga2dde686b2ed8dcb5d27fdbf892ceb9fd"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga722b6a45a0e1728f5e882853d0a51703"><td class="memItemLeft" align="right" valign="top">enum &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__StApiTL__PublicImpl.html#ga722b6a45a0e1728f5e882853d0a51703">StApi::EStPixelComponent_t</a> { <br />
+&#160;&#160;<a class="el" href="group__StApiTL__PublicImpl.html#ga722b6a45a0e1728f5e882853d0a51703a8be0957fc35a2f240640b0d860d8e32e">StApi::StPixelComponent_Unknown</a> = 0x00000000, 
+<a class="el" href="group__StApiTL__PublicImpl.html#ga722b6a45a0e1728f5e882853d0a51703a7829d7749f731e07df273a712ff6111a">StApi::StPixelComponent_Mono1</a> = 0x01010000, 
+<a class="el" href="group__StApiTL__PublicImpl.html#ga722b6a45a0e1728f5e882853d0a51703ae8c9493fb5ff6e4ea1481b393fb4a91a">StApi::StPixelComponent_Mono2</a> = 0x01020000, 
+<a class="el" href="group__StApiTL__PublicImpl.html#ga722b6a45a0e1728f5e882853d0a51703ac13506540c8965baede9e32230837e5a">StApi::StPixelComponent_Mono4</a> = 0x01040000, 
+<br />
+&#160;&#160;<a class="el" href="group__StApiTL__PublicImpl.html#ga722b6a45a0e1728f5e882853d0a51703a65a029f5f19cfb08e003a361d14aa7f0">StApi::StPixelComponent_Mono8</a> = 0x01080000, 
+<a class="el" href="group__StApiTL__PublicImpl.html#ga722b6a45a0e1728f5e882853d0a51703ad9830775586970ae7be58f79d0625c22">StApi::StPixelComponent_Mono8_POL_000</a> = 0x01080001, 
+<a class="el" href="group__StApiTL__PublicImpl.html#ga722b6a45a0e1728f5e882853d0a51703ae0f6ae99af6b188caf6f2227f2553a62">StApi::StPixelComponent_Mono8_POL_045</a> = 0x01080002, 
+<a class="el" href="group__StApiTL__PublicImpl.html#ga722b6a45a0e1728f5e882853d0a51703a128d6910bab1f61d202d1420bc6da2b2">StApi::StPixelComponent_Mono8_POL_090</a> = 0x01080003, 
+<br />
+&#160;&#160;<a class="el" href="group__StApiTL__PublicImpl.html#ga722b6a45a0e1728f5e882853d0a51703aac47e01f65b243daf3e5548f4147a643">StApi::StPixelComponent_Mono8_POL_135</a> = 0x01080004, 
+<a class="el" href="group__StApiTL__PublicImpl.html#ga722b6a45a0e1728f5e882853d0a51703acdf6a0f0ad360228f4b6a08e3da6ad71">StApi::StPixelComponent_Mono10</a> = 0x010A0000, 
+<a class="el" href="group__StApiTL__PublicImpl.html#ga722b6a45a0e1728f5e882853d0a51703a1a696e72fdf90a854e163239b0d77623">StApi::StPixelComponent_Mono10_POL_000</a> = 0x010A0001, 
+<a class="el" href="group__StApiTL__PublicImpl.html#ga722b6a45a0e1728f5e882853d0a51703ac062d4775fbc5847b9427ed2c9218247">StApi::StPixelComponent_Mono10_POL_045</a> = 0x010A0002, 
+<br />
+&#160;&#160;<a class="el" href="group__StApiTL__PublicImpl.html#ga722b6a45a0e1728f5e882853d0a51703a1a59e41f7a3177376515de2552dd8548">StApi::StPixelComponent_Mono10_POL_090</a> = 0x010A0003, 
+<a class="el" href="group__StApiTL__PublicImpl.html#ga722b6a45a0e1728f5e882853d0a51703a4f0277a6a3552a720ec0723bb0ecd32d">StApi::StPixelComponent_Mono10_POL_135</a> = 0x010A0004, 
+<a class="el" href="group__StApiTL__PublicImpl.html#ga722b6a45a0e1728f5e882853d0a51703aaf228fc34adb1cf1c30527c0a7258cc6">StApi::StPixelComponent_Mono12</a> = 0x010C0000, 
+<a class="el" href="group__StApiTL__PublicImpl.html#ga722b6a45a0e1728f5e882853d0a51703a66fc652d197772aa3855010f7cb25e56">StApi::StPixelComponent_Mono12_POL_000</a> = 0x010C0001, 
+<br />
+&#160;&#160;<a class="el" href="group__StApiTL__PublicImpl.html#ga722b6a45a0e1728f5e882853d0a51703a41c525f13536a31c938e9eaf609dd1ae">StApi::StPixelComponent_Mono12_POL_045</a> = 0x010C0002, 
+<a class="el" href="group__StApiTL__PublicImpl.html#ga722b6a45a0e1728f5e882853d0a51703ac6e6cd2531544e39633629fd3de9a08d">StApi::StPixelComponent_Mono12_POL_090</a> = 0x010C0003, 
+<a class="el" href="group__StApiTL__PublicImpl.html#ga722b6a45a0e1728f5e882853d0a51703ab5cfec74838219bb341ada0cb83fc278">StApi::StPixelComponent_Mono12_POL_135</a> = 0x010C0004, 
+<a class="el" href="group__StApiTL__PublicImpl.html#ga722b6a45a0e1728f5e882853d0a51703a4a8f04f22c3325d3fb50724b6e53f15e">StApi::StPixelComponent_Mono14</a> = 0x010E0000, 
+<br />
+&#160;&#160;<a class="el" href="group__StApiTL__PublicImpl.html#ga722b6a45a0e1728f5e882853d0a51703a6d955b198cb4e6fa6973c281079b2d99">StApi::StPixelComponent_Mono16</a> = 0x01100000, 
+<a class="el" href="group__StApiTL__PublicImpl.html#ga722b6a45a0e1728f5e882853d0a51703a8bee531f6fe091d63d79f677b811eaf1">StApi::StPixelComponent_Mono32</a> = 0x01200000, 
+<a class="el" href="group__StApiTL__PublicImpl.html#ga722b6a45a0e1728f5e882853d0a51703a0eebe3ac8973d922a465a2726ceb605e">StApi::StPixelComponent_R4</a> = 0x02040000, 
+<a class="el" href="group__StApiTL__PublicImpl.html#ga722b6a45a0e1728f5e882853d0a51703a7310cdfe913b0e39860ec507517efcde">StApi::StPixelComponent_R8</a> = 0x02080000, 
+<br />
+&#160;&#160;<a class="el" href="group__StApiTL__PublicImpl.html#ga722b6a45a0e1728f5e882853d0a51703a09f5913a3c88a9a329960cb72215ff92">StApi::StPixelComponent_R8_POL_000</a> = 0x02080001, 
+<a class="el" href="group__StApiTL__PublicImpl.html#ga722b6a45a0e1728f5e882853d0a51703ac2e2d21bac3eeaaaab1ef900b4b2b58b">StApi::StPixelComponent_R8_POL_045</a> = 0x02080002, 
+<a class="el" href="group__StApiTL__PublicImpl.html#ga722b6a45a0e1728f5e882853d0a51703a2d8120c77438255318cb4ce94a3ba06a">StApi::StPixelComponent_R8_POL_090</a> = 0x02080003, 
+<a class="el" href="group__StApiTL__PublicImpl.html#ga722b6a45a0e1728f5e882853d0a51703a895c46c40bd9fe45fc2d50a4151e89d9">StApi::StPixelComponent_R8_POL_135</a> = 0x02080004, 
+<br />
+&#160;&#160;<a class="el" href="group__StApiTL__PublicImpl.html#ga722b6a45a0e1728f5e882853d0a51703acb3a141c6fa4b0f6147a7d609d2ccd7d">StApi::StPixelComponent_R10</a> = 0x020A0000, 
+<a class="el" href="group__StApiTL__PublicImpl.html#ga722b6a45a0e1728f5e882853d0a51703a7f9678b17ca911776fa2e98c8d4e53a9">StApi::StPixelComponent_R10_POL_000</a> = 0x020A0001, 
+<a class="el" href="group__StApiTL__PublicImpl.html#ga722b6a45a0e1728f5e882853d0a51703a2208a5357d539ea8635ce61ea8fc7630">StApi::StPixelComponent_R10_POL_045</a> = 0x020A0002, 
+<a class="el" href="group__StApiTL__PublicImpl.html#ga722b6a45a0e1728f5e882853d0a51703a104c51a3008b3d2ca595050e66db0e4b">StApi::StPixelComponent_R10_POL_090</a> = 0x020A0003, 
+<br />
+&#160;&#160;<a class="el" href="group__StApiTL__PublicImpl.html#ga722b6a45a0e1728f5e882853d0a51703ad0355974b67920feb9dcc1b08ae0837f">StApi::StPixelComponent_R10_POL_135</a> = 0x020A0004, 
+<a class="el" href="group__StApiTL__PublicImpl.html#ga722b6a45a0e1728f5e882853d0a51703abec6c617358aa1cb235aa3f9bb44af66">StApi::StPixelComponent_R12</a> = 0x020C0000, 
+<a class="el" href="group__StApiTL__PublicImpl.html#ga722b6a45a0e1728f5e882853d0a51703a11c3d890653ad5cd0f55e7fe396b2729">StApi::StPixelComponent_R12_POL_000</a> = 0x020C0001, 
+<a class="el" href="group__StApiTL__PublicImpl.html#ga722b6a45a0e1728f5e882853d0a51703af6a290907458b39380dd854c8a4012a5">StApi::StPixelComponent_R12_POL_045</a> = 0x020C0002, 
+<br />
+&#160;&#160;<a class="el" href="group__StApiTL__PublicImpl.html#ga722b6a45a0e1728f5e882853d0a51703a64d64838ce290febffe903f25e20ed2f">StApi::StPixelComponent_R12_POL_090</a> = 0x020C0003, 
+<a class="el" href="group__StApiTL__PublicImpl.html#ga722b6a45a0e1728f5e882853d0a51703ad217a7c9dedd631a695da228a08623b0">StApi::StPixelComponent_R12_POL_135</a> = 0x020C0004, 
+<a class="el" href="group__StApiTL__PublicImpl.html#ga722b6a45a0e1728f5e882853d0a51703ab8bf976c390b2f092ae36da443fb8f55">StApi::StPixelComponent_R14</a> = 0x020E0000, 
+<a class="el" href="group__StApiTL__PublicImpl.html#ga722b6a45a0e1728f5e882853d0a51703a15bae5d36e0089825676e33994955f23">StApi::StPixelComponent_R16</a> = 0x02100000, 
+<br />
+&#160;&#160;<a class="el" href="group__StApiTL__PublicImpl.html#ga722b6a45a0e1728f5e882853d0a51703ac8a39079d5e9427be1c6fb2231872203">StApi::StPixelComponent_G4</a> = 0x03040000, 
+<a class="el" href="group__StApiTL__PublicImpl.html#ga722b6a45a0e1728f5e882853d0a51703aa62bc37c41177f709ef0823ae60f9564">StApi::StPixelComponent_G8</a> = 0x03080000, 
+<a class="el" href="group__StApiTL__PublicImpl.html#ga722b6a45a0e1728f5e882853d0a51703ab0895c517af949a6bd5d0fb07a56b50d">StApi::StPixelComponent_G10</a> = 0x030A0000, 
+<a class="el" href="group__StApiTL__PublicImpl.html#ga722b6a45a0e1728f5e882853d0a51703ae0cb938c58bbbf09aef270c17ff428e9">StApi::StPixelComponent_G12</a> = 0x030C0000, 
+<br />
+&#160;&#160;<a class="el" href="group__StApiTL__PublicImpl.html#ga722b6a45a0e1728f5e882853d0a51703adb1fec4e04dede081fda2c68973271f7">StApi::StPixelComponent_G14</a> = 0x030E0000, 
+<a class="el" href="group__StApiTL__PublicImpl.html#ga722b6a45a0e1728f5e882853d0a51703a6d67176ef21692ef1650e3582f5efca7">StApi::StPixelComponent_G16</a> = 0x03100000, 
+<a class="el" href="group__StApiTL__PublicImpl.html#ga722b6a45a0e1728f5e882853d0a51703afbc390c92978ac2434359021ede49826">StApi::StPixelComponent_B4</a> = 0x04040000, 
+<a class="el" href="group__StApiTL__PublicImpl.html#ga722b6a45a0e1728f5e882853d0a51703a93b5a4abfad36ca3f50c4531f1596423">StApi::StPixelComponent_B8</a> = 0x04080000, 
+<br />
+&#160;&#160;<a class="el" href="group__StApiTL__PublicImpl.html#ga722b6a45a0e1728f5e882853d0a51703a5076fd3d008dec8245674ab5b6e195a5">StApi::StPixelComponent_B8_POL_000</a> = 0x04080001, 
+<a class="el" href="group__StApiTL__PublicImpl.html#ga722b6a45a0e1728f5e882853d0a51703a83048098319eda9eb02604fdb73d08df">StApi::StPixelComponent_B8_POL_045</a> = 0x04080002, 
+<a class="el" href="group__StApiTL__PublicImpl.html#ga722b6a45a0e1728f5e882853d0a51703a9433f8649028ad7da0908a3705d431f7">StApi::StPixelComponent_B8_POL_090</a> = 0x04080003, 
+<a class="el" href="group__StApiTL__PublicImpl.html#ga722b6a45a0e1728f5e882853d0a51703a37c3f3b22c7863b753f283c62b96619e">StApi::StPixelComponent_B8_POL_135</a> = 0x04080004, 
+<br />
+&#160;&#160;<a class="el" href="group__StApiTL__PublicImpl.html#ga722b6a45a0e1728f5e882853d0a51703ad82bb85b72f96fcbf9cc5a2f18c14971">StApi::StPixelComponent_B10</a> = 0x040A0000, 
+<a class="el" href="group__StApiTL__PublicImpl.html#ga722b6a45a0e1728f5e882853d0a51703a29ead0270cb8b070f4b6b3cad1a582ac">StApi::StPixelComponent_B10_POL_000</a> = 0x040A0001, 
+<a class="el" href="group__StApiTL__PublicImpl.html#ga722b6a45a0e1728f5e882853d0a51703a1550cdac38fb0dbfdd7a2a6eb02bae25">StApi::StPixelComponent_B10_POL_045</a> = 0x040A0002, 
+<a class="el" href="group__StApiTL__PublicImpl.html#ga722b6a45a0e1728f5e882853d0a51703addf8fde76aa5bf1d04e8b2bdd5bfa82f">StApi::StPixelComponent_B10_POL_090</a> = 0x040A0003, 
+<br />
+&#160;&#160;<a class="el" href="group__StApiTL__PublicImpl.html#ga722b6a45a0e1728f5e882853d0a51703aa403388999f0d378254a71c18b37f850">StApi::StPixelComponent_B10_POL_135</a> = 0x040A0004, 
+<a class="el" href="group__StApiTL__PublicImpl.html#ga722b6a45a0e1728f5e882853d0a51703a3b007d9a8cfeef9eb8aec40b65c370d1">StApi::StPixelComponent_B12</a> = 0x040C0000, 
+<a class="el" href="group__StApiTL__PublicImpl.html#ga722b6a45a0e1728f5e882853d0a51703a29bb8e5fbc761880bbb38969d7b71006">StApi::StPixelComponent_B12_POL_000</a> = 0x040C0001, 
+<a class="el" href="group__StApiTL__PublicImpl.html#ga722b6a45a0e1728f5e882853d0a51703a7328f12ac8f4b1544bcf80649f270c3d">StApi::StPixelComponent_B12_POL_045</a> = 0x040C0002, 
+<br />
+&#160;&#160;<a class="el" href="group__StApiTL__PublicImpl.html#ga722b6a45a0e1728f5e882853d0a51703afbff306675eaf78ad63bd3de1f9b8127">StApi::StPixelComponent_B12_POL_090</a> = 0x040C0003, 
+<a class="el" href="group__StApiTL__PublicImpl.html#ga722b6a45a0e1728f5e882853d0a51703a1c7764a6f85e7e01d7d9d52d347cec4f">StApi::StPixelComponent_B12_POL_135</a> = 0x040C0004, 
+<a class="el" href="group__StApiTL__PublicImpl.html#ga722b6a45a0e1728f5e882853d0a51703af1e934bca8093330752a292e67f6a863">StApi::StPixelComponent_B14</a> = 0x040E0000, 
+<a class="el" href="group__StApiTL__PublicImpl.html#ga722b6a45a0e1728f5e882853d0a51703aa5b9e65f1ed23ed9d581f0f754113f64">StApi::StPixelComponent_B16</a> = 0x04100000, 
+<br />
+&#160;&#160;<a class="el" href="group__StApiTL__PublicImpl.html#ga722b6a45a0e1728f5e882853d0a51703ac6fa88d70b0560e5aef17db4ce87188e">StApi::StPixelComponent_Gr4</a> = 0x05040000, 
+<a class="el" href="group__StApiTL__PublicImpl.html#ga722b6a45a0e1728f5e882853d0a51703a1fa67df46a2f6c6365a399adb73ab3de">StApi::StPixelComponent_Gr8</a> = 0x05080000, 
+<a class="el" href="group__StApiTL__PublicImpl.html#ga722b6a45a0e1728f5e882853d0a51703a87d7fd5715f6b738c7e3ecf6f5f5d4e6">StApi::StPixelComponent_Gr8_POL_000</a> = 0x05080001, 
+<a class="el" href="group__StApiTL__PublicImpl.html#ga722b6a45a0e1728f5e882853d0a51703ab6898f4c140a11f45900e08c42f1430c">StApi::StPixelComponent_Gr8_POL_045</a> = 0x05080002, 
+<br />
+&#160;&#160;<a class="el" href="group__StApiTL__PublicImpl.html#ga722b6a45a0e1728f5e882853d0a51703ad853fc5a4478329fa7c67aca1eb44c91">StApi::StPixelComponent_Gr8_POL_090</a> = 0x05080003, 
+<a class="el" href="group__StApiTL__PublicImpl.html#ga722b6a45a0e1728f5e882853d0a51703a1c707d54db85fce2ec8aa0b4a1d6b7d5">StApi::StPixelComponent_Gr8_POL_135</a> = 0x05080004, 
+<a class="el" href="group__StApiTL__PublicImpl.html#ga722b6a45a0e1728f5e882853d0a51703a6aae95b77f6dc4ee7a576e883a8c3080">StApi::StPixelComponent_Gr10</a> = 0x050A0000, 
+<a class="el" href="group__StApiTL__PublicImpl.html#ga722b6a45a0e1728f5e882853d0a51703a973b7b248a0f1a9ed6022066f7f73ca8">StApi::StPixelComponent_Gr10_POL_000</a> = 0x050A0001, 
+<br />
+&#160;&#160;<a class="el" href="group__StApiTL__PublicImpl.html#ga722b6a45a0e1728f5e882853d0a51703a47d42fc06d6a4b9c18137d79c8607ed2">StApi::StPixelComponent_Gr10_POL_045</a> = 0x050A0002, 
+<a class="el" href="group__StApiTL__PublicImpl.html#ga722b6a45a0e1728f5e882853d0a51703a04e44d2ce89edbe2edbcfe68d2d3c65e">StApi::StPixelComponent_Gr10_POL_090</a> = 0x050A0003, 
+<a class="el" href="group__StApiTL__PublicImpl.html#ga722b6a45a0e1728f5e882853d0a51703a17df31c6d5f1592fb722f47be4f4783c">StApi::StPixelComponent_Gr10_POL_135</a> = 0x050A0004, 
+<a class="el" href="group__StApiTL__PublicImpl.html#ga722b6a45a0e1728f5e882853d0a51703ac4e44feff7e2817c2e34c187fb067e6d">StApi::StPixelComponent_Gr12</a> = 0x050C0000, 
+<br />
+&#160;&#160;<a class="el" href="group__StApiTL__PublicImpl.html#ga722b6a45a0e1728f5e882853d0a51703a44d6233c8f2e32509b8b4be86259ef88">StApi::StPixelComponent_Gr12_POL_000</a> = 0x050C0001, 
+<a class="el" href="group__StApiTL__PublicImpl.html#ga722b6a45a0e1728f5e882853d0a51703a013e667ef1900ce7b0a6c0a05150b671">StApi::StPixelComponent_Gr12_POL_045</a> = 0x050C0002, 
+<a class="el" href="group__StApiTL__PublicImpl.html#ga722b6a45a0e1728f5e882853d0a51703a6a7e402494de0b849a120a5c2ca349b7">StApi::StPixelComponent_Gr12_POL_090</a> = 0x050C0003, 
+<a class="el" href="group__StApiTL__PublicImpl.html#ga722b6a45a0e1728f5e882853d0a51703ade37d501661338340d49b8e034caccfb">StApi::StPixelComponent_Gr12_POL_135</a> = 0x050C0004, 
+<br />
+&#160;&#160;<a class="el" href="group__StApiTL__PublicImpl.html#ga722b6a45a0e1728f5e882853d0a51703adf8fb463cf3963dcc8bab1315409fdc2">StApi::StPixelComponent_Gr14</a> = 0x050E0000, 
+<a class="el" href="group__StApiTL__PublicImpl.html#ga722b6a45a0e1728f5e882853d0a51703a92c9e5fcb3fad8617935dcd411c6c131">StApi::StPixelComponent_Gr16</a> = 0x05100000, 
+<a class="el" href="group__StApiTL__PublicImpl.html#ga722b6a45a0e1728f5e882853d0a51703a3482dca650d1e77f88693383e9cb3f3d">StApi::StPixelComponent_Gb4</a> = 0x06040000, 
+<a class="el" href="group__StApiTL__PublicImpl.html#ga722b6a45a0e1728f5e882853d0a51703aead9a5b5ef5e7ce4993dd72cac3e132a">StApi::StPixelComponent_Gb8</a> = 0x06080000, 
+<br />
+&#160;&#160;<a class="el" href="group__StApiTL__PublicImpl.html#ga722b6a45a0e1728f5e882853d0a51703a1304fa8b3d517cbb585e0f973c756658">StApi::StPixelComponent_Gb8_POL_000</a> = 0x06080001, 
+<a class="el" href="group__StApiTL__PublicImpl.html#ga722b6a45a0e1728f5e882853d0a51703ac532728b7b0dbb5ab79593b3b7bf6293">StApi::StPixelComponent_Gb8_POL_045</a> = 0x06080002, 
+<a class="el" href="group__StApiTL__PublicImpl.html#ga722b6a45a0e1728f5e882853d0a51703a0b1aad7a4248f350ddee5f441a492763">StApi::StPixelComponent_Gb8_POL_090</a> = 0x06080003, 
+<a class="el" href="group__StApiTL__PublicImpl.html#ga722b6a45a0e1728f5e882853d0a51703af4754663f78070f35bb69e7d9ed1c50e">StApi::StPixelComponent_Gb8_POL_135</a> = 0x06080004, 
+<br />
+&#160;&#160;<a class="el" href="group__StApiTL__PublicImpl.html#ga722b6a45a0e1728f5e882853d0a51703a844887464f7609b07d236e8a158a1950">StApi::StPixelComponent_Gb10</a> = 0x060A0000, 
+<a class="el" href="group__StApiTL__PublicImpl.html#ga722b6a45a0e1728f5e882853d0a51703ab01b1caf7dcc2e69948d5b4b530c5ea6">StApi::StPixelComponent_Gb10_POL_000</a> = 0x060A0001, 
+<a class="el" href="group__StApiTL__PublicImpl.html#ga722b6a45a0e1728f5e882853d0a51703aa7889635cc7ed42c606b224263b375a4">StApi::StPixelComponent_Gb10_POL_045</a> = 0x060A0002, 
+<a class="el" href="group__StApiTL__PublicImpl.html#ga722b6a45a0e1728f5e882853d0a51703a4e0531effc20313dbc400d28cb0619d3">StApi::StPixelComponent_Gb10_POL_090</a> = 0x060A0003, 
+<br />
+&#160;&#160;<a class="el" href="group__StApiTL__PublicImpl.html#ga722b6a45a0e1728f5e882853d0a51703ad43c7b7ee5e4cbfe73e8b1a58f31234d">StApi::StPixelComponent_Gb10_POL_135</a> = 0x060A0004, 
+<a class="el" href="group__StApiTL__PublicImpl.html#ga722b6a45a0e1728f5e882853d0a51703a8a7f380c2ce506ef25ac053c91cadc1f">StApi::StPixelComponent_Gb12</a> = 0x060C0000, 
+<a class="el" href="group__StApiTL__PublicImpl.html#ga722b6a45a0e1728f5e882853d0a51703a27abdcb58fe92fd00a6f868c8306ba8c">StApi::StPixelComponent_Gb12_POL_000</a> = 0x060C0001, 
+<a class="el" href="group__StApiTL__PublicImpl.html#ga722b6a45a0e1728f5e882853d0a51703a03546610470e4dc74a1e8e3ecc7e4115">StApi::StPixelComponent_Gb12_POL_045</a> = 0x060C0002, 
+<br />
+&#160;&#160;<a class="el" href="group__StApiTL__PublicImpl.html#ga722b6a45a0e1728f5e882853d0a51703a53f2e6fa92ffe613d50d0ded5854dd0b">StApi::StPixelComponent_Gb12_POL_090</a> = 0x060C0003, 
+<a class="el" href="group__StApiTL__PublicImpl.html#ga722b6a45a0e1728f5e882853d0a51703a8bd1b4dc92e0f3aa41e9e58cc2ee6369">StApi::StPixelComponent_Gb12_POL_135</a> = 0x060C0004, 
+<a class="el" href="group__StApiTL__PublicImpl.html#ga722b6a45a0e1728f5e882853d0a51703af020db9b4f6f10af9e04a26b2b63e6bd">StApi::StPixelComponent_Gb14</a> = 0x060E0000, 
+<a class="el" href="group__StApiTL__PublicImpl.html#ga722b6a45a0e1728f5e882853d0a51703a441ee048564f9800c7f9ded12afb10a5">StApi::StPixelComponent_Gb16</a> = 0x06100000, 
+<br />
+&#160;&#160;<a class="el" href="group__StApiTL__PublicImpl.html#ga722b6a45a0e1728f5e882853d0a51703ae741820201b8d5b023142404584123e9">StApi::StPixelComponent_Y8</a> = 0x07080000, 
+<a class="el" href="group__StApiTL__PublicImpl.html#ga722b6a45a0e1728f5e882853d0a51703a992aa8253cd82bdc6d87bc357da3b089">StApi::StPixelComponent_Cb8</a> = 0x08080000, 
+<a class="el" href="group__StApiTL__PublicImpl.html#ga722b6a45a0e1728f5e882853d0a51703a7b47f72b3240bf53e451989b2545d9f1">StApi::StPixelComponent_Cr8</a> = 0x09080000, 
+<a class="el" href="group__StApiTL__PublicImpl.html#ga722b6a45a0e1728f5e882853d0a51703a6230f98f8e0d42c168c35fac069d0a4b">StApi::StPixelComponent_U8</a> = 0x0A080000, 
+<br />
+&#160;&#160;<a class="el" href="group__StApiTL__PublicImpl.html#ga722b6a45a0e1728f5e882853d0a51703ae00987b74e5e79dc5d6fa1ef1905b795">StApi::StPixelComponent_V8</a> = 0x0B080000, 
+<a class="el" href="group__StApiTL__PublicImpl.html#ga722b6a45a0e1728f5e882853d0a51703aa3d22782a22514e9785c0ee3ab5e1f43">StApi::StPixelComponent_Data8</a> = 0x0C080000, 
+<a class="el" href="group__StApiTL__PublicImpl.html#ga722b6a45a0e1728f5e882853d0a51703ab65b05a04ffce2fae7b25fc1805e1ecd">StApi::StPixelComponent_Data8s</a> = 0x0C080001, 
+<a class="el" href="group__StApiTL__PublicImpl.html#ga722b6a45a0e1728f5e882853d0a51703ac46ba88baed67af7730040fdd7a502e1">StApi::StPixelComponent_Data16</a> = 0x0C100000, 
+<br />
+&#160;&#160;<a class="el" href="group__StApiTL__PublicImpl.html#ga722b6a45a0e1728f5e882853d0a51703ae14787b8065cbccfc7a714457c751cbd">StApi::StPixelComponent_Data16s</a> = 0x0C100001, 
+<a class="el" href="group__StApiTL__PublicImpl.html#ga722b6a45a0e1728f5e882853d0a51703ac13cd5b8629660e5daca3e81d7d9b9ce">StApi::StPixelComponent_Data32</a> = 0x0C200000, 
+<a class="el" href="group__StApiTL__PublicImpl.html#ga722b6a45a0e1728f5e882853d0a51703a1ff5598ae9157e9ca964a9441440d8c4">StApi::StPixelComponent_Data32f</a> = 0x0C200002, 
+<a class="el" href="group__StApiTL__PublicImpl.html#ga722b6a45a0e1728f5e882853d0a51703a5843bec20c942c1097837cc4acffe2b0">StApi::StPixelComponent_Data32s</a> = 0x0C200001, 
+<br />
+&#160;&#160;<a class="el" href="group__StApiTL__PublicImpl.html#ga722b6a45a0e1728f5e882853d0a51703aaa6183fdb2397681172828c9f7875365">StApi::StPixelComponent_Data64</a> = 0x0C400000, 
+<a class="el" href="group__StApiTL__PublicImpl.html#ga722b6a45a0e1728f5e882853d0a51703a238f41b47857300bbc1e4f719fa11e6c">StApi::StPixelComponent_Data64f</a> = 0x0C400002, 
+<a class="el" href="group__StApiTL__PublicImpl.html#ga722b6a45a0e1728f5e882853d0a51703ab7296baa79e39d3dd4cec1cb62924ecc">StApi::StPixelComponent_Data64s</a> = 0x0C400001
+<br />
+ }</td></tr>
+<tr class="memdesc:ga722b6a45a0e1728f5e882853d0a51703"><td class="mdescLeft">&#160;</td><td class="mdescRight">ピクセル構成要素列挙子  <a href="group__StApiTL__PublicImpl.html#ga722b6a45a0e1728f5e882853d0a51703">[詳解]</a><br /></td></tr>
+<tr class="separator:ga722b6a45a0e1728f5e882853d0a51703"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:gadd1d257b6e4994261185de81c6807333"><td class="memItemLeft" align="right" valign="top">enum &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__StApiTL__PublicImpl.html#gadd1d257b6e4994261185de81c6807333">StApi::EStPixelColorFilter_t</a> { <br />
+&#160;&#160;<a class="el" href="group__StApiTL__PublicImpl.html#gadd1d257b6e4994261185de81c6807333a1ef5756e77adb118926213bc3c5e6470">StApi::StPixelColorFilter_Unknown</a>, 
+<a class="el" href="group__StApiTL__PublicImpl.html#gadd1d257b6e4994261185de81c6807333aabe3c7cd46568122d49f489e5b91a19a">StApi::StPixelColorFilter_None</a>, 
+<a class="el" href="group__StApiTL__PublicImpl.html#gadd1d257b6e4994261185de81c6807333ab45f6106c8f9bee3565b7f13a13a3439">StApi::StPixelColorFilter_BayerRG</a>, 
+<a class="el" href="group__StApiTL__PublicImpl.html#gadd1d257b6e4994261185de81c6807333afda20b40d2b5e8d8c25556af3ca34e5a">StApi::StPixelColorFilter_BayerGR</a>, 
+<br />
+&#160;&#160;<a class="el" href="group__StApiTL__PublicImpl.html#gadd1d257b6e4994261185de81c6807333ad2915a7935a79b8b977b80e78d676eac">StApi::StPixelColorFilter_BayerGB</a>, 
+<a class="el" href="group__StApiTL__PublicImpl.html#gadd1d257b6e4994261185de81c6807333ad6c0b478fd71c26ac77ad5fa9db85ff0">StApi::StPixelColorFilter_BayerBG</a>, 
+<a class="el" href="group__StApiTL__PublicImpl.html#gadd1d257b6e4994261185de81c6807333a609822f1d3c7a62d80e270458d1a9134">StApi::StPixelColorFilter_Pol1Mono</a>, 
+<a class="el" href="group__StApiTL__PublicImpl.html#gadd1d257b6e4994261185de81c6807333a924a43e9f0eb2bbd5797461e6f56ce67">StApi::StPixelColorFilter_Pol1MonoX</a>, 
+<br />
+&#160;&#160;<a class="el" href="group__StApiTL__PublicImpl.html#gadd1d257b6e4994261185de81c6807333af76f56e991c8f9ccef5cedefa010cbd5">StApi::StPixelColorFilter_Pol1MonoY</a>, 
+<a class="el" href="group__StApiTL__PublicImpl.html#gadd1d257b6e4994261185de81c6807333affab8db735400fbc46ff29571c294c4d">StApi::StPixelColorFilter_Pol1MonoXY</a>, 
+<a class="el" href="group__StApiTL__PublicImpl.html#gadd1d257b6e4994261185de81c6807333a1dfc4b81c8d5695c477457464f5c1abb">StApi::StPixelColorFilter_Pol1BayerRG</a>, 
+<a class="el" href="group__StApiTL__PublicImpl.html#gadd1d257b6e4994261185de81c6807333a3157961a754fe078159c530ddadbcb35">StApi::StPixelColorFilter_Pol1BayerRGX</a>, 
+<br />
+&#160;&#160;<a class="el" href="group__StApiTL__PublicImpl.html#gadd1d257b6e4994261185de81c6807333a640f3fd158b85bd0f85f7f5604f6eff1">StApi::StPixelColorFilter_Pol1BayerRGY</a>, 
+<a class="el" href="group__StApiTL__PublicImpl.html#gadd1d257b6e4994261185de81c6807333a8727084d4b619dd43c11e5b4b2e13de1">StApi::StPixelColorFilter_Pol1BayerRGXY</a>, 
+<a class="el" href="group__StApiTL__PublicImpl.html#gadd1d257b6e4994261185de81c6807333ad16058734d3c6fe0b477957a6a3b3fc1">StApi::StPixelColorFilter_Pol1MonoC</a>, 
+<a class="el" href="group__StApiTL__PublicImpl.html#gadd1d257b6e4994261185de81c6807333a49a52c37df66a2d83e639415ae67ab08">StApi::StPixelColorFilter_Pol1MonoXC</a>, 
+<br />
+&#160;&#160;<a class="el" href="group__StApiTL__PublicImpl.html#gadd1d257b6e4994261185de81c6807333aed6f0621bf55be4ca1abe5714b13873d">StApi::StPixelColorFilter_Pol1MonoYC</a>, 
+<a class="el" href="group__StApiTL__PublicImpl.html#gadd1d257b6e4994261185de81c6807333ab1b58a2a26fda10ab2aab434ab3145c1">StApi::StPixelColorFilter_Pol1MonoXYC</a>, 
+<a class="el" href="group__StApiTL__PublicImpl.html#gadd1d257b6e4994261185de81c6807333a7c326bac4f810be0db97369548667be3">StApi::StPixelColorFilter_Pol1BayerRGC</a>, 
+<a class="el" href="group__StApiTL__PublicImpl.html#gadd1d257b6e4994261185de81c6807333ac55b74344917404df1d62c03e79217fb">StApi::StPixelColorFilter_Pol1BayerRGXC</a>, 
+<br />
+&#160;&#160;<a class="el" href="group__StApiTL__PublicImpl.html#gadd1d257b6e4994261185de81c6807333a2a2cdff256d4a363b687287982bded86">StApi::StPixelColorFilter_Pol1BayerRGYC</a>, 
+<a class="el" href="group__StApiTL__PublicImpl.html#gadd1d257b6e4994261185de81c6807333a7c6a72da0504eb546f5c714a90cdeeab">StApi::StPixelColorFilter_Pol1BayerRGXYC</a>
+<br />
+ }</td></tr>
+<tr class="memdesc:gadd1d257b6e4994261185de81c6807333"><td class="mdescLeft">&#160;</td><td class="mdescRight">カラーフィルター列挙子  <a href="group__StApiTL__PublicImpl.html#gadd1d257b6e4994261185de81c6807333">[詳解]</a><br /></td></tr>
+<tr class="separator:gadd1d257b6e4994261185de81c6807333"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table>
+</div><!-- contents -->
+<!-- HTML footer for doxygen 1.8.13-->
+<!-- start footer part -->
+<hr class="footer"/>
+	<address class="footer">
+		<small>
+2021年10月26日(火) 13時10分21秒作成 - Sentech SDK / 構成:  &#160;
+			<a href="http://www.sentech.co.jp/">
+				<img class="footer" src="string_omron_sentech.png" alt="OMRON SENTECH CO., LTD"/>
+			</a>
+			<!--
+				DoxyGen Version =  1.8.15
+			-->
+		</small>
+	</address>
+</body>
+</html>

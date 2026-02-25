@@ -1,0 +1,29 @@
+<RCC>
+    <qresource prefix="/icon">
+        <file>res/camera.png</file>
+        <file>res/cascade.png</file>
+        <file>res/DefectivePixelDetection256.png</file>
+        <file>res/description_file.png</file>
+        <file>res/draw_angle.png</file>
+        <file>res/draw_arc.png</file>
+        <file>res/draw_bezier.png</file>
+        <file>res/draw_cross.png</file>
+        <file>res/draw_disable.png</file>
+        <file>res/draw_ellipse.png</file>
+        <file>res/draw_freehand.png</file>
+        <file>res/draw_line.png</file>
+        <file>res/draw_perpendicular.png</file>
+        <file>res/draw_polygon.png</file>
+        <file>res/draw_rectangle.png</file>
+        <file>res/draw_select.png</file>
+        <file>res/draw_text.png</file>
+        <file>res/fullscrean.png</file>
+        <file>res/start_recording.png</file>
+        <file>res/start_streaming.png</file>
+        <file>res/stop_recording.png</file>
+        <file>res/stop_streaming.png</file>
+        <file>res/straw.png</file>
+        <file>res/stviewer.png</file>
+        <file>res/tile.png</file>
+    </qresource>
+</RCC>

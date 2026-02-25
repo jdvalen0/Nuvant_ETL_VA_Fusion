@@ -1,0 +1,5 @@
+# Camera Bridge requirements — Python 3.7
+# stapipy se instala desde .whl local en el Dockerfile (no está en PyPI)
+opencv-python-headless==4.7.0.72
+numpy==1.21.6
+websockets==10.4

@@ -1,0 +1,30 @@
+cmake_minimum_required (VERSION 3.2)
+
+if (APPLE)
+    set (FRAMEWORKPATH /Library/Frameworks/SentechSDK.framework)
+    set (CMAKE_MACOSX_RPATH 1)
+    set (CMAKE_INSTALL_RPATH "${FRAMEWORKPATH}/Libraries")
+endif()
+
+###############################################################################
+# Compile parameters
+###############################################################################
+set (CMAKE_VERBOSE_MAKEFILE ON)
+
+add_compile_options(-std=c99 -Wall -Wextra --pedantic -Wno-unknown-pragmas -Wno-switch
+    -Wno-unused-but-set-variable -Wno-pointer-arith -Wno-unused-parameter)
+
+include_directories($ENV{STAPI_ROOT_PATH}/include/GenICam)
+include_directories($ENV{STAPI_ROOT_PATH}/include/StApi)
+link_directories($ENV{STAPI_ROOT_PATH}/lib)
+
+set (StApi_C_Library libStApi_C.so)
+
+function(doCompile target sources)
+   set (TARGET ${target})
+   set (SOURCES ${sources})
+   set (LIBS ${LIBS} ${StApi_C_Library} -lpthread)
+
+   add_executable(${TARGET} ${SOURCES}) 
+   target_link_libraries(${TARGET} ${LIBS})
+endfunction(doCompile)

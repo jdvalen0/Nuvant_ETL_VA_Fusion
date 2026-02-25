@@ -1,0 +1,314 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "https://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=9"/>
+<meta name="generator" content="Doxygen 1.8.15"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>Sentech SDK: StApi::IStGraphDisplayWnd インタフェース</title>
+<link href="tabs.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="jquery.js"></script>
+<script type="text/javascript" src="dynsections.js"></script>
+<link href="doxygen.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+<div id="top"><!-- do not remove this div, it is closed by doxygen! -->
+<div id="titlearea">
+<table cellspacing="0" cellpadding="0">
+ <tbody>
+ <tr style="height: 56px;">
+  <td id="projectalign" style="padding-left: 0.5em;">
+   <div id="projectname">Sentech SDK
+   </div>
+  </td>
+ </tr>
+ </tbody>
+</table>
+</div>
+<!-- end header part -->
+<!-- 構築: Doxygen 1.8.15 -->
+<script type="text/javascript" src="menudata.js"></script>
+<script type="text/javascript" src="menu.js"></script>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:cf05388f2679ee054f2beb29a391d25f4e673ac3&amp;dn=gpl-2.0.txt GPL-v2 */
+$(function() {
+  initMenu('',false,false,'search.php','検索');
+});
+/* @license-end */</script>
+<div id="main-nav"></div>
+<div id="nav-path" class="navpath">
+  <ul>
+<li class="navelem"><b>StApi</b></li><li class="navelem"><a class="el" href="structStApi_1_1IStGraphDisplayWnd.html">IStGraphDisplayWnd</a></li>  </ul>
+</div>
+</div><!-- top -->
+<div class="header">
+  <div class="summary">
+<a href="#pub-methods">公開メンバ関数</a> &#124;
+<a href="structStApi_1_1IStGraphDisplayWnd-members.html">全メンバ一覧</a>  </div>
+  <div class="headertitle">
+<div class="title">StApi::IStGraphDisplayWnd インタフェース<span class="mlabels"><span class="mlabel">abstract</span></span><div class="ingroups"><a class="el" href="group__StApiGUI__PublicInterface.html">StApi GUIモジュール抽象インターフェース</a></div></div>  </div>
+</div><!--header-->
+<div class="contents">
+
+<p>グラフ表示ウィンドウ用インターフェース  
+ <a href="structStApi_1_1IStGraphDisplayWnd.html#details">[詳解]</a></p>
+<div id="dynsection-0" onclick="return toggleVisibility(this)" class="dynheader closed" style="cursor:pointer;">
+  <img id="dynsection-0-trigger" src="closed.png" alt="+"/> StApi::IStGraphDisplayWnd の継承関係図</div>
+<div id="dynsection-0-summary" class="dynsummary" style="display:block;">
+</div>
+<div id="dynsection-0-content" class="dyncontent" style="display:none;">
+<div class="center"><img src="structStApi_1_1IStGraphDisplayWnd__inherit__graph.png" border="0" usemap="#StApi_1_1IStGraphDisplayWnd_inherit__map" alt="Inheritance graph"/></div>
+<map name="StApi_1_1IStGraphDisplayWnd_inherit__map" id="StApi_1_1IStGraphDisplayWnd_inherit__map">
+<area shape="rect"  title="ã°ã©ãè¡¨ç¤ºã¦ã£ã³ãã¦ç¨ã¤ã³ã¿ã¼ãã§ã¼ã¹" alt="" coords="5,155,204,181"/>
+<area shape="rect"  href="structStApi_1_1IStWnd.html" title="ã¦ã£ã³ãã¦ç¨ã¤ã³ã¿ã¼ãã§ã¼ã¹" alt="" coords="49,80,160,107"/>
+<area shape="rect"  href="structStApi_1_1IStRegisterCallback.html" title="StApiã³ã¼ã«ããã¯é¢æ°ã®ç»é²ããã³ç»é²è§£é¤ã«ä½¿ç¨ãããã¤ã³ã¿ã¼ãã§ã¼ã¹" alt="" coords="9,5,200,32"/>
+</map>
+<center><span class="legend">[<a href="graph_legend.html">凡例</a>]</span></center></div>
+<div id="dynsection-1" onclick="return toggleVisibility(this)" class="dynheader closed" style="cursor:pointer;">
+  <img id="dynsection-1-trigger" src="closed.png" alt="+"/> StApi::IStGraphDisplayWnd 連携図</div>
+<div id="dynsection-1-summary" class="dynsummary" style="display:block;">
+</div>
+<div id="dynsection-1-content" class="dyncontent" style="display:none;">
+<div class="center"><img src="structStApi_1_1IStGraphDisplayWnd__coll__graph.png" border="0" usemap="#StApi_1_1IStGraphDisplayWnd_coll__map" alt="Collaboration graph"/></div>
+<map name="StApi_1_1IStGraphDisplayWnd_coll__map" id="StApi_1_1IStGraphDisplayWnd_coll__map">
+<area shape="rect"  title="ã°ã©ãè¡¨ç¤ºã¦ã£ã³ãã¦ç¨ã¤ã³ã¿ã¼ãã§ã¼ã¹" alt="" coords="5,155,204,181"/>
+<area shape="rect"  href="structStApi_1_1IStWnd.html" title="ã¦ã£ã³ãã¦ç¨ã¤ã³ã¿ã¼ãã§ã¼ã¹" alt="" coords="49,80,160,107"/>
+<area shape="rect"  href="structStApi_1_1IStRegisterCallback.html" title="StApiã³ã¼ã«ããã¯é¢æ°ã®ç»é²ããã³ç»é²è§£é¤ã«ä½¿ç¨ãããã¤ã³ã¿ã¼ãã§ã¼ã¹" alt="" coords="9,5,200,32"/>
+</map>
+<center><span class="legend">[<a href="graph_legend.html">凡例</a>]</span></center></div>
+<table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-methods"></a>
+公開メンバ関数</h2></td></tr>
+<tr class="memitem:a6150d39918b7888d298d403dfb613c36"><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structStApi_1_1IStGraphDisplayWnd.html#a6150d39918b7888d298d403dfb613c36">RegisterIStGraphDataBufferList</a> (const <a class="el" href="structStApi_1_1IStGraphDataBufferList.html">IStGraphDataBufferList</a> *pIStGraphDataBufferList)=0</td></tr>
+<tr class="memdesc:a6150d39918b7888d298d403dfb613c36"><td class="mdescLeft">&#160;</td><td class="mdescRight">表示するグラフデータを登録します。  <a href="#a6150d39918b7888d298d403dfb613c36">[詳解]</a><br /></td></tr>
+<tr class="separator:a6150d39918b7888d298d403dfb613c36"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a097fc381330ffaad5a3fefa0d5c97ef4"><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structStApi_1_1IStGraphDisplayWnd.html#a097fc381330ffaad5a3fefa0d5c97ef4">Draw</a> (HDC hDC, uint32_t nWidth, uint32_t nHeight)=0</td></tr>
+<tr class="memdesc:a097fc381330ffaad5a3fefa0d5c97ef4"><td class="mdescLeft">&#160;</td><td class="mdescRight">グラフを描画します。  <a href="#a097fc381330ffaad5a3fefa0d5c97ef4">[詳解]</a><br /></td></tr>
+<tr class="separator:a097fc381330ffaad5a3fefa0d5c97ef4"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ac225b2c191f0957f40f84b6de4ade14c"><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structStApi_1_1IStGraphDisplayWnd.html#ac225b2c191f0957f40f84b6de4ade14c">GetIStImage</a> (<a class="el" href="structStApi_1_1IStImageBuffer.html">IStImageBuffer</a> *pIStImageBuffer, size_t nImageWidth=0, size_t nImageHeight=0)=0</td></tr>
+<tr class="memdesc:ac225b2c191f0957f40f84b6de4ade14c"><td class="mdescLeft">&#160;</td><td class="mdescRight">グラフの画像データを取得します。  <a href="#ac225b2c191f0957f40f84b6de4ade14c">[詳解]</a><br /></td></tr>
+<tr class="separator:ac225b2c191f0957f40f84b6de4ade14c"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="inherit_header pub_methods_structStApi_1_1IStWnd"><td colspan="2" onclick="javascript:toggleInherit('pub_methods_structStApi_1_1IStWnd')"><img src="closed.png" alt="-"/>&#160;基底クラス <a class="el" href="structStApi_1_1IStWnd.html">StApi::IStWnd</a> に属する継承公開メンバ関数</td></tr>
+<tr class="memitem:a615e52b13c8e587278f297fdfe1007cb inherit pub_methods_structStApi_1_1IStWnd"><td class="memItemLeft" align="right" valign="top">virtual <a class="el" href="structStApi_1_1IStWndInfo.html">IStWndInfo</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structStApi_1_1IStWnd.html#a615e52b13c8e587278f297fdfe1007cb">GetIStWndInfo</a> () const =0</td></tr>
+<tr class="memdesc:a615e52b13c8e587278f297fdfe1007cb inherit pub_methods_structStApi_1_1IStWnd"><td class="mdescLeft">&#160;</td><td class="mdescRight"><a class="el" href="structStApi_1_1IStWndInfo.html" title="ウィンドウ情報用インターフェース">IStWndInfo</a> インターフェースポインターを取得します。  <a href="structStApi_1_1IStWnd.html#a615e52b13c8e587278f297fdfe1007cb">[詳解]</a><br /></td></tr>
+<tr class="separator:a615e52b13c8e587278f297fdfe1007cb inherit pub_methods_structStApi_1_1IStWnd"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a0c583c2afdae07f1aa669d7938223502 inherit pub_methods_structStApi_1_1IStWnd"><td class="memItemLeft" align="right" valign="top">virtual <a class="el" href="structGenApi_1_1INodeMap.html">GenApi::INodeMap</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structStApi_1_1IStWnd.html#a0c583c2afdae07f1aa669d7938223502">GetINodeMap</a> ()=0</td></tr>
+<tr class="memdesc:a0c583c2afdae07f1aa669d7938223502 inherit pub_methods_structStApi_1_1IStWnd"><td class="mdescLeft">&#160;</td><td class="mdescRight">INodeMap インターフェースポインターを取得します。  <a href="structStApi_1_1IStWnd.html#a0c583c2afdae07f1aa669d7938223502">[詳解]</a><br /></td></tr>
+<tr class="separator:a0c583c2afdae07f1aa669d7938223502 inherit pub_methods_structStApi_1_1IStWnd"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a8aae7b3cf948322552519452c853dc91 inherit pub_methods_structStApi_1_1IStWnd"><td class="memItemLeft" align="right" valign="top">virtual HWND&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structStApi_1_1IStWnd.html#a8aae7b3cf948322552519452c853dc91">GetWindowHandle</a> ()=0</td></tr>
+<tr class="memdesc:a8aae7b3cf948322552519452c853dc91 inherit pub_methods_structStApi_1_1IStWnd"><td class="mdescLeft">&#160;</td><td class="mdescRight">ウィンドウハンドルを取得します。  <a href="structStApi_1_1IStWnd.html#a8aae7b3cf948322552519452c853dc91">[詳解]</a><br /></td></tr>
+<tr class="separator:a8aae7b3cf948322552519452c853dc91 inherit pub_methods_structStApi_1_1IStWnd"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a0d13b6e3ef8d215bc73de1efd728924c inherit pub_methods_structStApi_1_1IStWnd"><td class="memItemLeft" align="right" valign="top">virtual <a class="el" href="classGenICam_1_1gcstring.html">GenICam::gcstring</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structStApi_1_1IStWnd.html#a0d13b6e3ef8d215bc73de1efd728924c">GetTitle</a> ()=0</td></tr>
+<tr class="memdesc:a0d13b6e3ef8d215bc73de1efd728924c inherit pub_methods_structStApi_1_1IStWnd"><td class="mdescLeft">&#160;</td><td class="mdescRight">ウィンドウタイトルを取得します。  <a href="structStApi_1_1IStWnd.html#a0d13b6e3ef8d215bc73de1efd728924c">[詳解]</a><br /></td></tr>
+<tr class="separator:a0d13b6e3ef8d215bc73de1efd728924c inherit pub_methods_structStApi_1_1IStWnd"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a0581cfcd5aa445c99396f46261ab34d2 inherit pub_methods_structStApi_1_1IStWnd"><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structStApi_1_1IStWnd.html#a0581cfcd5aa445c99396f46261ab34d2">SetTitle</a> (const <a class="el" href="classGenICam_1_1gcstring.html">GenICam::gcstring</a> &amp;strTitle)=0</td></tr>
+<tr class="memdesc:a0581cfcd5aa445c99396f46261ab34d2 inherit pub_methods_structStApi_1_1IStWnd"><td class="mdescLeft">&#160;</td><td class="mdescRight">ウィンドウタイトルを設定します。  <a href="structStApi_1_1IStWnd.html#a0581cfcd5aa445c99396f46261ab34d2">[詳解]</a><br /></td></tr>
+<tr class="separator:a0581cfcd5aa445c99396f46261ab34d2 inherit pub_methods_structStApi_1_1IStWnd"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a5e652d8c086116396a5de67d1e783e5b inherit pub_methods_structStApi_1_1IStWnd"><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structStApi_1_1IStWnd.html#a5e652d8c086116396a5de67d1e783e5b">GetPosition</a> (int32_t *pnX, int32_t *pnY, int32_t *pnWidth, int32_t *pnHeight)=0</td></tr>
+<tr class="memdesc:a5e652d8c086116396a5de67d1e783e5b inherit pub_methods_structStApi_1_1IStWnd"><td class="mdescLeft">&#160;</td><td class="mdescRight">ウィンドウの位置とサイズを取得します。  <a href="structStApi_1_1IStWnd.html#a5e652d8c086116396a5de67d1e783e5b">[詳解]</a><br /></td></tr>
+<tr class="separator:a5e652d8c086116396a5de67d1e783e5b inherit pub_methods_structStApi_1_1IStWnd"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aa782facd0b5b2b96b4212b419d9fef00 inherit pub_methods_structStApi_1_1IStWnd"><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structStApi_1_1IStWnd.html#aa782facd0b5b2b96b4212b419d9fef00">SetPosition</a> (int32_t nX, int32_t nY, int32_t nWidth, int32_t nHeight)=0</td></tr>
+<tr class="memdesc:aa782facd0b5b2b96b4212b419d9fef00 inherit pub_methods_structStApi_1_1IStWnd"><td class="mdescLeft">&#160;</td><td class="mdescRight">ウィンドウの位置とサイズを設定します。  <a href="structStApi_1_1IStWnd.html#aa782facd0b5b2b96b4212b419d9fef00">[詳解]</a><br /></td></tr>
+<tr class="separator:aa782facd0b5b2b96b4212b419d9fef00 inherit pub_methods_structStApi_1_1IStWnd"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aad3596457712619c9d3e74e14f72f092 inherit pub_methods_structStApi_1_1IStWnd"><td class="memItemLeft" align="right" valign="top">virtual bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structStApi_1_1IStWnd.html#aad3596457712619c9d3e74e14f72f092">IsVisible</a> ()=0</td></tr>
+<tr class="memdesc:aad3596457712619c9d3e74e14f72f092 inherit pub_methods_structStApi_1_1IStWnd"><td class="mdescLeft">&#160;</td><td class="mdescRight">ウィンドウが表示されているか確認します。  <a href="structStApi_1_1IStWnd.html#aad3596457712619c9d3e74e14f72f092">[詳解]</a><br /></td></tr>
+<tr class="separator:aad3596457712619c9d3e74e14f72f092 inherit pub_methods_structStApi_1_1IStWnd"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a7c88a6a913bc0137da913a26e7d500ac inherit pub_methods_structStApi_1_1IStWnd"><td class="memItemLeft" align="right" valign="top">virtual bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structStApi_1_1IStWnd.html#a7c88a6a913bc0137da913a26e7d500ac">GetVisibleMenu</a> () const =0</td></tr>
+<tr class="memdesc:a7c88a6a913bc0137da913a26e7d500ac inherit pub_methods_structStApi_1_1IStWnd"><td class="mdescLeft">&#160;</td><td class="mdescRight">ウィンドウメニューの表示/非表示設定を確認します。  <a href="structStApi_1_1IStWnd.html#a7c88a6a913bc0137da913a26e7d500ac">[詳解]</a><br /></td></tr>
+<tr class="separator:a7c88a6a913bc0137da913a26e7d500ac inherit pub_methods_structStApi_1_1IStWnd"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a7c8eeaaca1ad445d2c6afc2d78d39f72 inherit pub_methods_structStApi_1_1IStWnd"><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structStApi_1_1IStWnd.html#a7c8eeaaca1ad445d2c6afc2d78d39f72">SetVisibleMenu</a> (bool value)=0</td></tr>
+<tr class="memdesc:a7c8eeaaca1ad445d2c6afc2d78d39f72 inherit pub_methods_structStApi_1_1IStWnd"><td class="mdescLeft">&#160;</td><td class="mdescRight">ウィンドウメニューの表示/非表示を設定します。  <a href="structStApi_1_1IStWnd.html#a7c8eeaaca1ad445d2c6afc2d78d39f72">[詳解]</a><br /></td></tr>
+<tr class="separator:a7c8eeaaca1ad445d2c6afc2d78d39f72 inherit pub_methods_structStApi_1_1IStWnd"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a00f765b43a67c02953015e684a4dfcfc inherit pub_methods_structStApi_1_1IStWnd"><td class="memItemLeft" align="right" valign="top">virtual bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structStApi_1_1IStWnd.html#a00f765b43a67c02953015e684a4dfcfc">GetVisibleStatusBar</a> () const =0</td></tr>
+<tr class="memdesc:a00f765b43a67c02953015e684a4dfcfc inherit pub_methods_structStApi_1_1IStWnd"><td class="mdescLeft">&#160;</td><td class="mdescRight">ステータスバーの表示/非表示設定を確認します。  <a href="structStApi_1_1IStWnd.html#a00f765b43a67c02953015e684a4dfcfc">[詳解]</a><br /></td></tr>
+<tr class="separator:a00f765b43a67c02953015e684a4dfcfc inherit pub_methods_structStApi_1_1IStWnd"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:af8eaf605727b624c11e192e6e66c5536 inherit pub_methods_structStApi_1_1IStWnd"><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structStApi_1_1IStWnd.html#af8eaf605727b624c11e192e6e66c5536">SetVisibleStatusBar</a> (bool value)=0</td></tr>
+<tr class="memdesc:af8eaf605727b624c11e192e6e66c5536 inherit pub_methods_structStApi_1_1IStWnd"><td class="mdescLeft">&#160;</td><td class="mdescRight">ステータスバーの表示/非表示を設定します。  <a href="structStApi_1_1IStWnd.html#af8eaf605727b624c11e192e6e66c5536">[詳解]</a><br /></td></tr>
+<tr class="separator:af8eaf605727b624c11e192e6e66c5536 inherit pub_methods_structStApi_1_1IStWnd"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a83bb3489c370da1daea2212a8068bb8a inherit pub_methods_structStApi_1_1IStWnd"><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structStApi_1_1IStWnd.html#a83bb3489c370da1daea2212a8068bb8a">SetUserStatusBarText</a> (const <a class="el" href="classGenICam_1_1gcstring.html">GenICam::gcstring</a> &amp;strText)=0</td></tr>
+<tr class="memdesc:a83bb3489c370da1daea2212a8068bb8a inherit pub_methods_structStApi_1_1IStWnd"><td class="mdescLeft">&#160;</td><td class="mdescRight">ステータスバーに表示するユーザー文字列を設定します。  <a href="structStApi_1_1IStWnd.html#a83bb3489c370da1daea2212a8068bb8a">[詳解]</a><br /></td></tr>
+<tr class="separator:a83bb3489c370da1daea2212a8068bb8a inherit pub_methods_structStApi_1_1IStWnd"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:abbab35ddf00d4e22c38a8f0db496c214 inherit pub_methods_structStApi_1_1IStWnd"><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structStApi_1_1IStWnd.html#abbab35ddf00d4e22c38a8f0db496c214">Show</a> (HWND hParentWnd, EStWindowMode_t eWM)=0</td></tr>
+<tr class="memdesc:abbab35ddf00d4e22c38a8f0db496c214 inherit pub_methods_structStApi_1_1IStWnd"><td class="mdescLeft">&#160;</td><td class="mdescRight">ウィンドウを表示します。  <a href="structStApi_1_1IStWnd.html#abbab35ddf00d4e22c38a8f0db496c214">[詳解]</a><br /></td></tr>
+<tr class="separator:abbab35ddf00d4e22c38a8f0db496c214 inherit pub_methods_structStApi_1_1IStWnd"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a3a49b890570187161f27db6e9c34e78f inherit pub_methods_structStApi_1_1IStWnd"><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structStApi_1_1IStWnd.html#a3a49b890570187161f27db6e9c34e78f">Close</a> ()=0</td></tr>
+<tr class="memdesc:a3a49b890570187161f27db6e9c34e78f inherit pub_methods_structStApi_1_1IStWnd"><td class="mdescLeft">&#160;</td><td class="mdescRight">ウィンドウを閉じます。  <a href="structStApi_1_1IStWnd.html#a3a49b890570187161f27db6e9c34e78f">[詳解]</a><br /></td></tr>
+<tr class="separator:a3a49b890570187161f27db6e9c34e78f inherit pub_methods_structStApi_1_1IStWnd"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="inherit_header pub_methods_structStApi_1_1IStRegisterCallback"><td colspan="2" onclick="javascript:toggleInherit('pub_methods_structStApi_1_1IStRegisterCallback')"><img src="closed.png" alt="-"/>&#160;基底クラス <a class="el" href="structStApi_1_1IStRegisterCallback.html">StApi::IStRegisterCallback</a> に属する継承公開メンバ関数</td></tr>
+<tr class="memitem:a3e9da3d4173d22f96664cd8be00c9c70 inherit pub_methods_structStApi_1_1IStRegisterCallback"><td class="memItemLeft" align="right" valign="top">virtual <a class="el" href="group__StApiTL__PublicImpl.html#ga50382bf603d23086b9a3887988985273">StApiCallbackHandle_t</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structStApi_1_1IStRegisterCallback.html#a3e9da3d4173d22f96664cd8be00c9c70">RegisterCallback</a> (<a class="el" href="structStApi_1_1IStCallback.html">IStCallback</a> *pIStCallback)=0</td></tr>
+<tr class="memdesc:a3e9da3d4173d22f96664cd8be00c9c70 inherit pub_methods_structStApi_1_1IStRegisterCallback"><td class="mdescLeft">&#160;</td><td class="mdescRight">コールバック関数を登録します。  <a href="structStApi_1_1IStRegisterCallback.html#a3e9da3d4173d22f96664cd8be00c9c70">[詳解]</a><br /></td></tr>
+<tr class="separator:a3e9da3d4173d22f96664cd8be00c9c70 inherit pub_methods_structStApi_1_1IStRegisterCallback"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a642e9d0ae0e64dafa24fd5db03c20fea inherit pub_methods_structStApi_1_1IStRegisterCallback"><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structStApi_1_1IStRegisterCallback.html#a642e9d0ae0e64dafa24fd5db03c20fea">DeregisterCallback</a> (<a class="el" href="group__StApiTL__PublicImpl.html#ga50382bf603d23086b9a3887988985273">StApiCallbackHandle_t</a> hCallback)=0</td></tr>
+<tr class="memdesc:a642e9d0ae0e64dafa24fd5db03c20fea inherit pub_methods_structStApi_1_1IStRegisterCallback"><td class="mdescLeft">&#160;</td><td class="mdescRight">コールバック関数の登録を解除します。  <a href="structStApi_1_1IStRegisterCallback.html#a642e9d0ae0e64dafa24fd5db03c20fea">[詳解]</a><br /></td></tr>
+<tr class="separator:a642e9d0ae0e64dafa24fd5db03c20fea inherit pub_methods_structStApi_1_1IStRegisterCallback"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table>
+<a name="details" id="details"></a><h2 class="groupheader">詳解</h2>
+<div class="textblock"><p>グラフ表示ウィンドウ用インターフェース </p><dl class="section since"><dt>から</dt><dd>StApi v1.1.1 </dd></dl>
+</div><h2 class="groupheader">関数詳解</h2>
+<a id="a6150d39918b7888d298d403dfb613c36"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a6150d39918b7888d298d403dfb613c36">&#9670;&nbsp;</a></span>RegisterIStGraphDataBufferList()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">virtual void StApi::IStGraphDisplayWnd::RegisterIStGraphDataBufferList </td>
+          <td>(</td>
+          <td class="paramtype">const <a class="el" href="structStApi_1_1IStGraphDataBufferList.html">IStGraphDataBufferList</a> *&#160;</td>
+          <td class="paramname"><em>pIStGraphDataBufferList</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">pure virtual</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+<p>表示するグラフデータをを登録します。グラフデータをはSDK内部のバッファへコピーされます。 </p><dl class="params"><dt>引数</dt><dd>
+  <table class="params">
+    <tr><td class="paramdir">[in]</td><td class="paramname">pIStGraphDataBufferList</td><td>表示するグラフデータの <a class="el" href="structStApi_1_1IStGraphDataBufferList.html" title="グラフデータリスト用インターフェース">IStGraphDataBufferList</a> インターフェースポインター </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="exception"><dt>例外</dt><dd>
+  <table class="exception">
+    <tr><td class="paramname">メモリー確保に失敗した場合は、例外</td><td><a class="el" href="classGenICam_1_1GenericException.html" title="GenICam&#39;s exception class">GenICam::GenericException</a> が発生します。 </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a id="a097fc381330ffaad5a3fefa0d5c97ef4"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a097fc381330ffaad5a3fefa0d5c97ef4">&#9670;&nbsp;</a></span>Draw()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">virtual void StApi::IStGraphDisplayWnd::Draw </td>
+          <td>(</td>
+          <td class="paramtype">HDC&#160;</td>
+          <td class="paramname"><em>hDC</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">uint32_t&#160;</td>
+          <td class="paramname"><em>nWidth</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">uint32_t&#160;</td>
+          <td class="paramname"><em>nHeight</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">pure virtual</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+<p>グラフを描画します。 </p><dl class="params"><dt>引数</dt><dd>
+  <table class="params">
+    <tr><td class="paramdir">[in]</td><td class="paramname">hDC</td><td>デバイスコンテキスト。Mac/Linux Qtの場合はHDC (void*)はQPainter*です。 </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">nWidth</td><td>グラフの横サイズ </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">nHeight</td><td>グラフの縦サイズ </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="exception"><dt>例外</dt><dd>
+  <table class="exception">
+    <tr><td class="paramname">なし</td><td></td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a id="ac225b2c191f0957f40f84b6de4ade14c"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ac225b2c191f0957f40f84b6de4ade14c">&#9670;&nbsp;</a></span>GetIStImage()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">virtual void StApi::IStGraphDisplayWnd::GetIStImage </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="structStApi_1_1IStImageBuffer.html">IStImageBuffer</a> *&#160;</td>
+          <td class="paramname"><em>pIStImageBuffer</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">size_t&#160;</td>
+          <td class="paramname"><em>nImageWidth</em> = <code>0</code>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">size_t&#160;</td>
+          <td class="paramname"><em>nImageHeight</em> = <code>0</code>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">pure virtual</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+<p>グラフの画像データを取得します。 </p><dl class="params"><dt>引数</dt><dd>
+  <table class="params">
+    <tr><td class="paramdir">[in,out]</td><td class="paramname">pIStImageBuffer</td><td>strFileName グラフの画像データを取得するバッファを指定します。 </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">nImageWidth</td><td>画像の横サイズ(0指定時は表示サイズ) </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">nImageHeight</td><td>画像の縦サイズ(0指定時は表示サイズ) </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="exception"><dt>例外</dt><dd>
+  <table class="exception">
+    <tr><td class="paramname">不正な引数が指定された場合は、例外</td><td><a class="el" href="classGenICam_1_1GenericException.html" title="GenICam&#39;s exception class">GenICam::GenericException</a> が発生します。 </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+</div><!-- contents -->
+<!-- HTML footer for doxygen 1.8.13-->
+<!-- start footer part -->
+<hr class="footer"/>
+	<address class="footer">
+		<small>
+2021年10月26日(火) 13時10分26秒作成 - Sentech SDK / 構成:  &#160;
+			<a href="http://www.sentech.co.jp/">
+				<img class="footer" src="string_omron_sentech.png" alt="OMRON SENTECH CO., LTD"/>
+			</a>
+			<!--
+				DoxyGen Version =  1.8.15
+			-->
+		</small>
+	</address>
+</body>
+</html>

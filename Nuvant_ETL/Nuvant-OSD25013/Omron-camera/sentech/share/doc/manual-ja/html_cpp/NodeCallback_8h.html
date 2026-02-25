@@ -1,0 +1,197 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "https://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=9"/>
+<meta name="generator" content="Doxygen 1.8.15"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>Sentech SDK: GenICam/GenApi/NodeCallback.h ファイル</title>
+<link href="tabs.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="jquery.js"></script>
+<script type="text/javascript" src="dynsections.js"></script>
+<link href="doxygen.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+<div id="top"><!-- do not remove this div, it is closed by doxygen! -->
+<div id="titlearea">
+<table cellspacing="0" cellpadding="0">
+ <tbody>
+ <tr style="height: 56px;">
+  <td id="projectalign" style="padding-left: 0.5em;">
+   <div id="projectname">Sentech SDK
+   </div>
+  </td>
+ </tr>
+ </tbody>
+</table>
+</div>
+<!-- end header part -->
+<!-- 構築: Doxygen 1.8.15 -->
+<script type="text/javascript" src="menudata.js"></script>
+<script type="text/javascript" src="menu.js"></script>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:cf05388f2679ee054f2beb29a391d25f4e673ac3&amp;dn=gpl-2.0.txt GPL-v2 */
+$(function() {
+  initMenu('',false,false,'search.php','検索');
+});
+/* @license-end */</script>
+<div id="main-nav"></div>
+<div id="nav-path" class="navpath">
+  <ul>
+<li class="navelem"><a class="el" href="dir_5937b93fed46cf14aa0eb261ba6ee69d.html">GenICam</a></li><li class="navelem"><a class="el" href="dir_21522b52a69ae44a404941b51b5ce6c9.html">GenApi</a></li>  </ul>
+</div>
+</div><!-- top -->
+<div class="header">
+  <div class="summary">
+<a href="#nested-classes">クラス</a> &#124;
+<a href="#typedef-members">型定義</a> &#124;
+<a href="#enum-members">列挙型</a> &#124;
+<a href="#func-members">関数</a>  </div>
+  <div class="headertitle">
+<div class="title">NodeCallback.h ファイル<div class="ingroups"><a class="el" href="group__GenApi__PublicImpl.html">GenApiモジュールPublic実装部</a></div></div>  </div>
+</div><!--header-->
+<div class="contents">
+
+<p>Implementation helpers for CNodeCallbackDefines a bunch of templates for creating callback-functors taking a INode pointer and returning void.  
+<a href="#details">[詳解]</a></p>
+<div class="textblock"><div id="dynsection-0" onclick="return toggleVisibility(this)" class="dynheader closed" style="cursor:pointer;">
+  <img id="dynsection-0-trigger" src="closed.png" alt="+"/> NodeCallback.h の依存先関係図:</div>
+<div id="dynsection-0-summary" class="dynsummary" style="display:block;">
+</div>
+<div id="dynsection-0-content" class="dyncontent" style="display:none;">
+<div class="center"><img src="NodeCallback_8h__incl.png" border="0" usemap="#GenICam_2GenApi_2NodeCallback_8h" alt=""/></div>
+<map name="GenICam_2GenApi_2NodeCallback_8h" id="GenICam_2GenApi_2NodeCallback_8h">
+<area shape="rect"  title="Implementation helpers for CNodeCallbackDefines a bunch of templates for creating callback&#45;functors t..." alt="" coords="712,5,951,32"/>
+<area shape="rect"  href="INode_8h.html" title="Definition of interface INode and types NodeList_t and CallbackHandleType:" alt="" coords="770,80,893,107"/>
+<area shape="rect"  href="GCString_8h.html" title="Portable string implementation" alt="" coords="57,453,184,480"/>
+<area shape="rect"  href="GenApiDll_8h.html" title="declspec&#39;s to be used for GenApi Windows dll" alt="" coords="685,453,836,480"/>
+<area shape="rect"  href="Types_8h.html" title="Common types used in the public GenApi interface." alt="" coords="458,304,581,331"/>
+<area shape="rect"  href="IBase_8h.html" title="Definition of interface IBase" alt="" coords="689,155,811,181"/>
+<area shape="rect"  href="Container_8h.html" title="Portable container classes for INode &amp; IValue pointers." alt="" coords="546,379,693,405"/>
+<area shape="rect"  title=" " alt="" coords="970,155,1045,181"/>
+<area shape="rect"  title=" " alt="" coords="5,528,55,555"/>
+<area shape="rect"  title=" " alt="" coords="79,528,138,555"/>
+<area shape="rect"  title=" " alt="" coords="162,528,242,555"/>
+<area shape="rect"  href="GCTypes_8h.html" title="Platform&#45;dependent type definitions" alt="" coords="267,528,393,555"/>
+<area shape="rect"  href="GCNamespace_8h.html" title="GenICam versioned namespace." alt="" coords="392,603,559,629"/>
+<area shape="rect"  title=" " alt="" coords="293,603,367,629"/>
+<area shape="rect"  title=" " alt="" coords="181,603,268,629"/>
+<area shape="rect"  title=" " alt="" coords="583,603,653,629"/>
+<area shape="rect"  href="GenICamVersion_8h.html" title="central versioning counters" alt="" coords="512,677,655,704"/>
+<area shape="rect"  title=" " alt="" coords="509,752,658,779"/>
+<area shape="rect"  href="GenApiNamespace_8h.html" title="GenICam versioned namespace." alt="" coords="656,528,865,555"/>
+<area shape="rect"  href="GCStringVector_8h.html" title="Portable string vector implementation" alt="" coords="75,379,241,405"/>
+<area shape="rect"  href="Autovector_8h.html" title="This file contains the public definition of the autovector classes." alt="" coords="317,379,471,405"/>
+<area shape="rect"  href="GenICamFwd_8h.html" title="Forward declarations for GenICam types." alt="" coords="461,453,581,480"/>
+<area shape="rect"  title=" " alt="" coords="372,453,435,480"/>
+<area shape="rect"  href="Reference_8h.html" title="Definition of template CReference" alt="" coords="643,229,793,256"/>
+</map>
+</div>
+</div><div class="textblock"><div id="dynsection-1" onclick="return toggleVisibility(this)" class="dynheader closed" style="cursor:pointer;">
+  <img id="dynsection-1-trigger" src="closed.png" alt="+"/> 被依存関係図:</div>
+<div id="dynsection-1-summary" class="dynsummary" style="display:block;">
+</div>
+<div id="dynsection-1-content" class="dyncontent" style="display:none;">
+<div class="center"><img src="NodeCallback_8h__dep__incl.png" border="0" usemap="#GenICam_2GenApi_2NodeCallback_8hdep" alt=""/></div>
+<map name="GenICam_2GenApi_2NodeCallback_8hdep" id="GenICam_2GenApi_2NodeCallback_8hdep">
+<area shape="rect"  title="Implementation helpers for CNodeCallbackDefines a bunch of templates for creating callback&#45;functors t..." alt="" coords="85,5,324,32"/>
+<area shape="rect"  href="GenApi_8h.html" title="Main include file for using GenApi with smart pointers" alt="" coords="5,80,201,107"/>
+<area shape="rect"  href="StGenApi__Def_8h.html" title=" " alt="" coords="225,80,387,107"/>
+</map>
+</div>
+</div><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="nested-classes"></a>
+クラス</h2></td></tr>
+<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classGenApi_1_1CNodeCallback.html">GenApi::CNodeCallback</a></td></tr>
+<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">callback body instance for <a class="el" href="structGenApi_1_1INode.html" title="Interface common to all nodes">INode</a> pointers  <a href="classGenApi_1_1CNodeCallback.html#details">[詳解]</a><br /></td></tr>
+<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classGenApi_1_1Function__NodeCallback.html">GenApi::Function_NodeCallback&lt; Function &gt;</a></td></tr>
+<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">Container for a function pointer  <a href="classGenApi_1_1Function__NodeCallback.html#details">[詳解]</a><br /></td></tr>
+<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classGenApi_1_1Member__NodeCallback.html">GenApi::Member_NodeCallback&lt; Client, Member &gt;</a></td></tr>
+<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">Container for a member function pointer  <a href="classGenApi_1_1Member__NodeCallback.html#details">[詳解]</a><br /></td></tr>
+<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="typedef-members"></a>
+型定義</h2></td></tr>
+<tr class="memitem:a08daf7a3b61b5214c19945d2051e94d0"><td class="memItemLeft" align="right" valign="top"><a id="a08daf7a3b61b5214c19945d2051e94d0"></a>
+typedef enum <a class="el" href="NodeCallback_8h.html#ab8291ab3eeed9476859368ad59b330a4">GenApi::_ECallbackType</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="NodeCallback_8h.html#a08daf7a3b61b5214c19945d2051e94d0">GenApi::ECallbackType</a></td></tr>
+<tr class="memdesc:a08daf7a3b61b5214c19945d2051e94d0"><td class="mdescLeft">&#160;</td><td class="mdescRight">the type of callback <br /></td></tr>
+<tr class="separator:a08daf7a3b61b5214c19945d2051e94d0"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="enum-members"></a>
+列挙型</h2></td></tr>
+<tr class="memitem:ab8291ab3eeed9476859368ad59b330a4"><td class="memItemLeft" align="right" valign="top">enum &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="NodeCallback_8h.html#ab8291ab3eeed9476859368ad59b330a4">GenApi::_ECallbackType</a> { , <a class="el" href="NodeCallback_8h.html#ab8291ab3eeed9476859368ad59b330a4add27204f9b85a3501b34702aa70a5487">GenApi::cbPostOutsideLock</a> = 2
+ }</td></tr>
+<tr class="memdesc:ab8291ab3eeed9476859368ad59b330a4"><td class="mdescLeft">&#160;</td><td class="mdescRight">the type of callback  <a href="NodeCallback_8h.html#ab8291ab3eeed9476859368ad59b330a4">[詳解]</a><br /></td></tr>
+<tr class="separator:ab8291ab3eeed9476859368ad59b330a4"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="func-members"></a>
+関数</h2></td></tr>
+<tr class="memitem:ga865a19b6df9b265139e405112af9f500"><td class="memTemplParams" colspan="2">
+template&lt;class Function &gt; </td></tr>
+<tr class="memitem:ga865a19b6df9b265139e405112af9f500"><td class="memTemplItemLeft" align="right" valign="top">CNodeCallback *&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="group__GenApi__PublicImpl.html#ga865a19b6df9b265139e405112af9f500">GenApi::make_NodeCallback</a> (INode *pNode, Function function, ECallbackType CallbackType)</td></tr>
+<tr class="memdesc:ga865a19b6df9b265139e405112af9f500"><td class="mdescLeft">&#160;</td><td class="mdescRight">make a new callback object for C functions <br /></td></tr>
+<tr class="separator:ga865a19b6df9b265139e405112af9f500"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga9a5c3e2bce3cdc6db812068660832f1f"><td class="memTemplParams" colspan="2">
+template&lt;class Function &gt; </td></tr>
+<tr class="memitem:ga9a5c3e2bce3cdc6db812068660832f1f"><td class="memTemplItemLeft" align="right" valign="top">intptr_t&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="group__GenApi__PublicUtilities.html#ga9a5c3e2bce3cdc6db812068660832f1f">GenApi::Register</a> (INode *pNode, Function f, ECallbackType CallbackType=cbPostInsideLock)</td></tr>
+<tr class="memdesc:ga9a5c3e2bce3cdc6db812068660832f1f"><td class="mdescLeft">&#160;</td><td class="mdescRight">Register a C-function as a callback <br /></td></tr>
+<tr class="separator:ga9a5c3e2bce3cdc6db812068660832f1f"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga80500b90a7d49cac0119ab857d11c926"><td class="memTemplParams" colspan="2">
+template&lt;class Client , class Member &gt; </td></tr>
+<tr class="memitem:ga80500b90a7d49cac0119ab857d11c926"><td class="memTemplItemLeft" align="right" valign="top">CNodeCallback *&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="group__GenApi__PublicImpl.html#ga80500b90a7d49cac0119ab857d11c926">GenApi::make_NodeCallback</a> (INode *pNode, Client &amp;client, Member member, ECallbackType CallbackType)</td></tr>
+<tr class="memdesc:ga80500b90a7d49cac0119ab857d11c926"><td class="mdescLeft">&#160;</td><td class="mdescRight">make a new callback object for member functions <br /></td></tr>
+<tr class="separator:ga80500b90a7d49cac0119ab857d11c926"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga1808d7ed37a336082bd358bb4a98fa4c"><td class="memTemplParams" colspan="2">
+template&lt;class Client , class Member &gt; </td></tr>
+<tr class="memitem:ga1808d7ed37a336082bd358bb4a98fa4c"><td class="memTemplItemLeft" align="right" valign="top">intptr_t&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="group__GenApi__PublicUtilities.html#ga1808d7ed37a336082bd358bb4a98fa4c">GenApi::Register</a> (INode *pNode, Client &amp;c, Member m, ECallbackType CallbackType=cbPostInsideLock)</td></tr>
+<tr class="memdesc:ga1808d7ed37a336082bd358bb4a98fa4c"><td class="mdescLeft">&#160;</td><td class="mdescRight">Register a C++-member function a callback <br /></td></tr>
+<tr class="separator:ga1808d7ed37a336082bd358bb4a98fa4c"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a7e372549107953b0df61df0d76bb07aa"><td class="memItemLeft" align="right" valign="top"><a id="a7e372549107953b0df61df0d76bb07aa"></a>
+GENAPI_DECL void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="NodeCallback_8h.html#a7e372549107953b0df61df0d76bb07aa">GenApi::Deregister</a> (<a class="el" href="INode_8h.html#aa699284b069f02e89d85a0f7525a8777">GenApi::CallbackHandleType</a> pCallbackInfo)</td></tr>
+<tr class="memdesc:a7e372549107953b0df61df0d76bb07aa"><td class="mdescLeft">&#160;</td><td class="mdescRight">Unregistering callback by handle <br /></td></tr>
+<tr class="separator:a7e372549107953b0df61df0d76bb07aa"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table>
+<a name="details" id="details"></a><h2 class="groupheader">詳解</h2>
+<div class="textblock"><dl class="section note"><dt>覚え書き</dt><dd>does not work with all stl containers, i.e. std::map </dd></dl>
+</div><h2 class="groupheader">列挙型詳解</h2>
+<a id="file_ab8291ab3eeed9476859368ad59b330a4"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#file_ab8291ab3eeed9476859368ad59b330a4">&#9670;&nbsp;</a></span>_ECallbackType</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">enum <a class="el" href="NodeCallback_8h.html#ab8291ab3eeed9476859368ad59b330a4">GenApi::_ECallbackType</a></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<table class="fieldtable">
+<tr><th colspan="2">列挙値</th></tr><tr><td class="fieldname"><a id="ab8291ab3eeed9476859368ad59b330a4add27204f9b85a3501b34702aa70a5487"></a>cbPostOutsideLock&#160;</td><td class="fielddoc"><blockquote class="doxtable">
+<p>callback is fired on leaving the tree inside the lock-guarded area</p>
+</blockquote>
+</td></tr>
+</table>
+<div class="fragment"><div class="line"><a name="l00046"></a><span class="lineno">   46</span>&#160;    {</div><div class="line"><a name="l00047"></a><span class="lineno">   47</span>&#160;        cbPostInsideLock = 1,   <span class="comment">//!&gt; callback is fired on leaving the tree inside the lock-guarded area</span></div><div class="line"><a name="l00048"></a><span class="lineno">   48</span>&#160;<span class="comment"></span>        <a class="code" href="NodeCallback_8h.html#ab8291ab3eeed9476859368ad59b330a4add27204f9b85a3501b34702aa70a5487">cbPostOutsideLock</a> = 2   <span class="comment">//!&gt; callback is fired on leaving the tree outside the lock-guarded area</span></div><div class="line"><a name="l00049"></a><span class="lineno">   49</span>&#160;<span class="comment"></span>    } <a class="code" href="NodeCallback_8h.html#a08daf7a3b61b5214c19945d2051e94d0">ECallbackType</a>;</div><div class="ttc" id="NodeCallback_8h_html_ab8291ab3eeed9476859368ad59b330a4add27204f9b85a3501b34702aa70a5487"><div class="ttname"><a href="NodeCallback_8h.html#ab8291ab3eeed9476859368ad59b330a4add27204f9b85a3501b34702aa70a5487">GenApi::cbPostOutsideLock</a></div><div class="ttdoc">callback is fired on leaving the tree inside the lock-guarded area</div><div class="ttdef"><b>Definition:</b> NodeCallback.h:48</div></div>
+<div class="ttc" id="NodeCallback_8h_html_a08daf7a3b61b5214c19945d2051e94d0"><div class="ttname"><a href="NodeCallback_8h.html#a08daf7a3b61b5214c19945d2051e94d0">GenApi::ECallbackType</a></div><div class="ttdeci">enum GenApi::_ECallbackType ECallbackType</div><div class="ttdoc">the type of callback</div></div>
+</div><!-- fragment -->
+</div>
+</div>
+</div><!-- contents -->
+<!-- HTML footer for doxygen 1.8.13-->
+<!-- start footer part -->
+<hr class="footer"/>
+	<address class="footer">
+		<small>
+2021年10月26日(火) 13時10分20秒作成 - Sentech SDK / 構成:  &#160;
+			<a href="http://www.sentech.co.jp/">
+				<img class="footer" src="string_omron_sentech.png" alt="OMRON SENTECH CO., LTD"/>
+			</a>
+			<!--
+				DoxyGen Version =  1.8.15
+			-->
+		</small>
+	</address>
+</body>
+</html>

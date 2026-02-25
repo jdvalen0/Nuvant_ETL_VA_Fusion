@@ -1,0 +1,248 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "https://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=9"/>
+<meta name="generator" content="Doxygen 1.8.15"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>Sentech SDK: StApi::IStAllocator インタフェース</title>
+<link href="tabs.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="jquery.js"></script>
+<script type="text/javascript" src="dynsections.js"></script>
+<link href="doxygen.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+<div id="top"><!-- do not remove this div, it is closed by doxygen! -->
+<div id="titlearea">
+<table cellspacing="0" cellpadding="0">
+ <tbody>
+ <tr style="height: 56px;">
+  <td id="projectalign" style="padding-left: 0.5em;">
+   <div id="projectname">Sentech SDK
+   </div>
+  </td>
+ </tr>
+ </tbody>
+</table>
+</div>
+<!-- end header part -->
+<!-- 構築: Doxygen 1.8.15 -->
+<script type="text/javascript" src="menudata.js"></script>
+<script type="text/javascript" src="menu.js"></script>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:cf05388f2679ee054f2beb29a391d25f4e673ac3&amp;dn=gpl-2.0.txt GPL-v2 */
+$(function() {
+  initMenu('',false,false,'search.php','検索');
+});
+/* @license-end */</script>
+<div id="main-nav"></div>
+<div id="nav-path" class="navpath">
+  <ul>
+<li class="navelem"><b>StApi</b></li><li class="navelem"><a class="el" href="structStApi_1_1IStAllocator.html">IStAllocator</a></li>  </ul>
+</div>
+</div><!-- top -->
+<div class="header">
+  <div class="summary">
+<a href="#pub-methods">公開メンバ関数</a> &#124;
+<a href="structStApi_1_1IStAllocator-members.html">全メンバ一覧</a>  </div>
+  <div class="headertitle">
+<div class="title">StApi::IStAllocator インタフェース<span class="mlabels"><span class="mlabel">abstract</span></span><div class="ingroups"><a class="el" href="group__StApiTL__PublicInterface.html">StApi トランスポート層モジュール抽象インターフェース</a></div></div>  </div>
+</div><!--header-->
+<div class="contents">
+
+<p>メモリーの割り当て用インターフェース  
+ <a href="structStApi_1_1IStAllocator.html#details">[詳解]</a></p>
+<table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-methods"></a>
+公開メンバ関数</h2></td></tr>
+<tr class="memitem:afc26961d1256fdbe4c550d6faf4ba298"><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structStApi_1_1IStAllocator.html#afc26961d1256fdbe4c550d6faf4ba298">Allocate</a> (void **ppBuffer, size_t nSize, void **ppContext)=0  throw ()</td></tr>
+<tr class="memdesc:afc26961d1256fdbe4c550d6faf4ba298"><td class="mdescLeft">&#160;</td><td class="mdescRight">指定されたサイズのメモリーを割り当てます。  <a href="#afc26961d1256fdbe4c550d6faf4ba298">[詳解]</a><br /></td></tr>
+<tr class="separator:afc26961d1256fdbe4c550d6faf4ba298"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a20350bfb42b88d45f08a7f12ae7bde50"><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structStApi_1_1IStAllocator.html#a20350bfb42b88d45f08a7f12ae7bde50">Deallocate</a> (void *pBuffer, size_t nSize, void *pContext)=0  throw ()</td></tr>
+<tr class="memdesc:a20350bfb42b88d45f08a7f12ae7bde50"><td class="mdescLeft">&#160;</td><td class="mdescRight">メモリーを解放します。  <a href="#a20350bfb42b88d45f08a7f12ae7bde50">[詳解]</a><br /></td></tr>
+<tr class="separator:a20350bfb42b88d45f08a7f12ae7bde50"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ac4cff59961629e5c871469b824c431ea"><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structStApi_1_1IStAllocator.html#ac4cff59961629e5c871469b824c431ea">OnDeregister</a> ()=0  throw ()</td></tr>
+<tr class="memdesc:ac4cff59961629e5c871469b824c431ea"><td class="mdescLeft">&#160;</td><td class="mdescRight">割り当てられたメモリーが不要になった際に呼び出されます。  <a href="#ac4cff59961629e5c871469b824c431ea">[詳解]</a><br /></td></tr>
+<tr class="separator:ac4cff59961629e5c871469b824c431ea"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table>
+<a name="details" id="details"></a><h2 class="groupheader">詳解</h2>
+<div class="textblock"><p>メモリーの割り当て用インターフェース </p>
+</div><h2 class="groupheader">関数詳解</h2>
+<a id="afc26961d1256fdbe4c550d6faf4ba298"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#afc26961d1256fdbe4c550d6faf4ba298">&#9670;&nbsp;</a></span>Allocate()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">virtual void StApi::IStAllocator::Allocate </td>
+          <td>(</td>
+          <td class="paramtype">void **&#160;</td>
+          <td class="paramname"><em>ppBuffer</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">size_t&#160;</td>
+          <td class="paramname"><em>nSize</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">void **&#160;</td>
+          <td class="paramname"><em>ppContext</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+        <tr>
+          <td align="right">throw </td><td>(</td><td colspan="2"></td>
+        </tr>
+        <tr>
+          <td align="right"></td><td>)</td><td></td><td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">pure virtual</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+<p>指定されたサイズのメモリーを割り当てます。 </p><dl class="params"><dt>引数</dt><dd>
+  <table class="params">
+    <tr><td class="paramdir">[out]</td><td class="paramname">ppBuffer</td><td>割り当てられたメモリーへのポインター </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">nSize</td><td>割り当てるメモリーのサイズ[Bytes]。 </td></tr>
+    <tr><td class="paramdir">[out]</td><td class="paramname">ppContext</td><td>メモリーと関連付けするユーザー用ポインター </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="exception"><dt>例外</dt><dd>
+  <table class="exception">
+    <tr><td class="paramname">なし</td><td></td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a id="a20350bfb42b88d45f08a7f12ae7bde50"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a20350bfb42b88d45f08a7f12ae7bde50">&#9670;&nbsp;</a></span>Deallocate()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">virtual void StApi::IStAllocator::Deallocate </td>
+          <td>(</td>
+          <td class="paramtype">void *&#160;</td>
+          <td class="paramname"><em>pBuffer</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">size_t&#160;</td>
+          <td class="paramname"><em>nSize</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">void *&#160;</td>
+          <td class="paramname"><em>pContext</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+        <tr>
+          <td align="right">throw </td><td>(</td><td colspan="2"></td>
+        </tr>
+        <tr>
+          <td align="right"></td><td>)</td><td></td><td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">pure virtual</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+<p>メモリーを解放します。 </p><dl class="params"><dt>引数</dt><dd>
+  <table class="params">
+    <tr><td class="paramdir">[in]</td><td class="paramname">pBuffer</td><td>解放するメモリーへのポインター </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">nSize</td><td>割り当てられたメモリーのサイズ[Bytes]。 </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">pContext</td><td>メモリーと関連付けされているユーザー用ポインター </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="exception"><dt>例外</dt><dd>
+  <table class="exception">
+    <tr><td class="paramname">なし</td><td></td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a id="ac4cff59961629e5c871469b824c431ea"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ac4cff59961629e5c871469b824c431ea">&#9670;&nbsp;</a></span>OnDeregister()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">virtual void StApi::IStAllocator::OnDeregister </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+        <tr>
+          <td align="right">throw </td><td>(</td><td colspan="2"></td>
+        </tr>
+        <tr>
+          <td align="right"></td><td>)</td><td></td><td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">pure virtual</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+<p>割り当てられたメモリーが不要になった際に呼び出されます。 </p><dl class="exception"><dt>例外</dt><dd>
+  <table class="exception">
+    <tr><td class="paramname">なし</td><td></td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+</div><!-- contents -->
+<!-- HTML footer for doxygen 1.8.13-->
+<!-- start footer part -->
+<hr class="footer"/>
+	<address class="footer">
+		<small>
+2021年10月26日(火) 13時10分25秒作成 - Sentech SDK / 構成:  &#160;
+			<a href="http://www.sentech.co.jp/">
+				<img class="footer" src="string_omron_sentech.png" alt="OMRON SENTECH CO., LTD"/>
+			</a>
+			<!--
+				DoxyGen Version =  1.8.15
+			-->
+		</small>
+	</address>
+</body>
+</html>

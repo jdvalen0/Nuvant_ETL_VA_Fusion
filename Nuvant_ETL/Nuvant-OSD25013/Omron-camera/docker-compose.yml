@@ -1,0 +1,19 @@
+services:
+  omron:
+    build: .
+    container_name: omron-camera
+    volumes:
+      - type: bind
+        source: ./scripts
+        target: /scripts
+      - type: bind
+        source: ./sentech-lib
+        target: /opt/sentech-host
+        read_only: true
+    network_mode: host
+    restart: always
+    working_dir: /scripts
+    environment:
+      - LD_LIBRARY_PATH=/opt/sentech-host:/opt/sentech-host/lib:/opt/sentech-host/GenICam:/opt/sentech-host/GenICam/bin/Linux64_x64:${LD_LIBRARY_PATH}
+      - GENICAM_GENTL64_PATH=/opt/sentech-host
+    command: ["python3", "script-camera1.py"]

@@ -1,0 +1,1498 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "https://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=9"/>
+<meta name="generator" content="Doxygen 1.8.15"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>Sentech SDK: StApi::IStNodeMapDisplayWnd インタフェース</title>
+<link href="tabs.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="jquery.js"></script>
+<script type="text/javascript" src="dynsections.js"></script>
+<link href="doxygen.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+<div id="top"><!-- do not remove this div, it is closed by doxygen! -->
+<div id="titlearea">
+<table cellspacing="0" cellpadding="0">
+ <tbody>
+ <tr style="height: 56px;">
+  <td id="projectalign" style="padding-left: 0.5em;">
+   <div id="projectname">Sentech SDK
+   </div>
+  </td>
+ </tr>
+ </tbody>
+</table>
+</div>
+<!-- end header part -->
+<!-- 構築: Doxygen 1.8.15 -->
+<script type="text/javascript" src="menudata.js"></script>
+<script type="text/javascript" src="menu.js"></script>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:cf05388f2679ee054f2beb29a391d25f4e673ac3&amp;dn=gpl-2.0.txt GPL-v2 */
+$(function() {
+  initMenu('',false,false,'search.php','検索');
+});
+/* @license-end */</script>
+<div id="main-nav"></div>
+<div id="nav-path" class="navpath">
+  <ul>
+<li class="navelem"><b>StApi</b></li><li class="navelem"><a class="el" href="structStApi_1_1IStNodeMapDisplayWnd.html">IStNodeMapDisplayWnd</a></li>  </ul>
+</div>
+</div><!-- top -->
+<div class="header">
+  <div class="summary">
+<a href="#pub-methods">公開メンバ関数</a> &#124;
+<a href="structStApi_1_1IStNodeMapDisplayWnd-members.html">全メンバ一覧</a>  </div>
+  <div class="headertitle">
+<div class="title">StApi::IStNodeMapDisplayWnd インタフェース<span class="mlabels"><span class="mlabel">abstract</span></span><div class="ingroups"><a class="el" href="group__StApiGUI__PublicInterface.html">StApi GUIモジュール抽象インターフェース</a></div></div>  </div>
+</div><!--header-->
+<div class="contents">
+
+<p>ノードマップ表示ウィンドウ用インターフェース  
+ <a href="structStApi_1_1IStNodeMapDisplayWnd.html#details">[詳解]</a></p>
+<div id="dynsection-0" onclick="return toggleVisibility(this)" class="dynheader closed" style="cursor:pointer;">
+  <img id="dynsection-0-trigger" src="closed.png" alt="+"/> StApi::IStNodeMapDisplayWnd の継承関係図</div>
+<div id="dynsection-0-summary" class="dynsummary" style="display:block;">
+</div>
+<div id="dynsection-0-content" class="dyncontent" style="display:none;">
+<div class="center"><img src="structStApi_1_1IStNodeMapDisplayWnd__inherit__graph.png" border="0" usemap="#StApi_1_1IStNodeMapDisplayWnd_inherit__map" alt="Inheritance graph"/></div>
+<map name="StApi_1_1IStNodeMapDisplayWnd_inherit__map" id="StApi_1_1IStNodeMapDisplayWnd_inherit__map">
+<area shape="rect"  title="ãã¼ããããè¡¨ç¤ºã¦ã£ã³ãã¦ç¨ã¤ã³ã¿ã¼ãã§ã¼ã¹" alt="" coords="5,155,225,181"/>
+<area shape="rect"  href="structStApi_1_1IStWnd.html" title="ã¦ã£ã³ãã¦ç¨ã¤ã³ã¿ã¼ãã§ã¼ã¹" alt="" coords="60,80,171,107"/>
+<area shape="rect"  href="structStApi_1_1IStRegisterCallback.html" title="StApiã³ã¼ã«ããã¯é¢æ°ã®ç»é²ããã³ç»é²è§£é¤ã«ä½¿ç¨ãããã¤ã³ã¿ã¼ãã§ã¼ã¹" alt="" coords="20,5,211,32"/>
+</map>
+<center><span class="legend">[<a href="graph_legend.html">凡例</a>]</span></center></div>
+<div id="dynsection-1" onclick="return toggleVisibility(this)" class="dynheader closed" style="cursor:pointer;">
+  <img id="dynsection-1-trigger" src="closed.png" alt="+"/> StApi::IStNodeMapDisplayWnd 連携図</div>
+<div id="dynsection-1-summary" class="dynsummary" style="display:block;">
+</div>
+<div id="dynsection-1-content" class="dyncontent" style="display:none;">
+<div class="center"><img src="structStApi_1_1IStNodeMapDisplayWnd__coll__graph.png" border="0" usemap="#StApi_1_1IStNodeMapDisplayWnd_coll__map" alt="Collaboration graph"/></div>
+<map name="StApi_1_1IStNodeMapDisplayWnd_coll__map" id="StApi_1_1IStNodeMapDisplayWnd_coll__map">
+<area shape="rect"  title="ãã¼ããããè¡¨ç¤ºã¦ã£ã³ãã¦ç¨ã¤ã³ã¿ã¼ãã§ã¼ã¹" alt="" coords="5,155,225,181"/>
+<area shape="rect"  href="structStApi_1_1IStWnd.html" title="ã¦ã£ã³ãã¦ç¨ã¤ã³ã¿ã¼ãã§ã¼ã¹" alt="" coords="60,80,171,107"/>
+<area shape="rect"  href="structStApi_1_1IStRegisterCallback.html" title="StApiã³ã¼ã«ããã¯é¢æ°ã®ç»é²ããã³ç»é²è§£é¤ã«ä½¿ç¨ãããã¤ã³ã¿ã¼ãã§ã¼ã¹" alt="" coords="20,5,211,32"/>
+</map>
+<center><span class="legend">[<a href="graph_legend.html">凡例</a>]</span></center></div>
+<table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-methods"></a>
+公開メンバ関数</h2></td></tr>
+<tr class="memitem:a469ce9ebcb42d50e210c85bfbb2a07b1"><td class="memItemLeft" align="right" valign="top">virtual <a class="el" href="group__StApiGUI__PublicImpl.html#gaa31482c64f0db1540cfc174437f57430">RegisteredINodeHandle_t</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structStApi_1_1IStNodeMapDisplayWnd.html#a469ce9ebcb42d50e210c85bfbb2a07b1">RegisterINode</a> (<a class="el" href="structGenApi_1_1INode.html">GenApi::INode</a> *pIRootNode, const <a class="el" href="classGenICam_1_1gcstring.html">GenICam::gcstring</a> &amp;strCaption)=0</td></tr>
+<tr class="memdesc:a469ce9ebcb42d50e210c85bfbb2a07b1"><td class="mdescLeft">&#160;</td><td class="mdescRight">ノードマップ設定画面に表示するノードを登録します。  <a href="#a469ce9ebcb42d50e210c85bfbb2a07b1">[詳解]</a><br /></td></tr>
+<tr class="separator:a469ce9ebcb42d50e210c85bfbb2a07b1"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a0ae819337bce64be7cf61a615fbd331a"><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structStApi_1_1IStNodeMapDisplayWnd.html#a0ae819337bce64be7cf61a615fbd331a">DeregisterINode</a> (<a class="el" href="group__StApiGUI__PublicImpl.html#gaa31482c64f0db1540cfc174437f57430">RegisteredINodeHandle_t</a> hRegistered)=0</td></tr>
+<tr class="memdesc:a0ae819337bce64be7cf61a615fbd331a"><td class="mdescLeft">&#160;</td><td class="mdescRight">ノードの登録を解除します。  <a href="#a0ae819337bce64be7cf61a615fbd331a">[詳解]</a><br /></td></tr>
+<tr class="separator:a0ae819337bce64be7cf61a615fbd331a"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:abc18daa76626277f103014a234fb121a"><td class="memItemLeft" align="right" valign="top">virtual bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structStApi_1_1IStNodeMapDisplayWnd.html#abc18daa76626277f103014a234fb121a">GetAlphabeticMode</a> () const =0</td></tr>
+<tr class="memdesc:abc18daa76626277f103014a234fb121a"><td class="mdescLeft">&#160;</td><td class="mdescRight">アルファベットモードかどうかを確認します。  <a href="#abc18daa76626277f103014a234fb121a">[詳解]</a><br /></td></tr>
+<tr class="separator:abc18daa76626277f103014a234fb121a"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:af2e00b640fd97cd31e26707a14427d53"><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structStApi_1_1IStNodeMapDisplayWnd.html#af2e00b640fd97cd31e26707a14427d53">SetAlphabeticMode</a> (bool value)=0</td></tr>
+<tr class="memdesc:af2e00b640fd97cd31e26707a14427d53"><td class="mdescLeft">&#160;</td><td class="mdescRight">アルファベットモードを設定します。  <a href="#af2e00b640fd97cd31e26707a14427d53">[詳解]</a><br /></td></tr>
+<tr class="separator:af2e00b640fd97cd31e26707a14427d53"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a5851e91e51e8861f8b17d946e367f023"><td class="memItemLeft" align="right" valign="top">virtual <a class="el" href="group__GenApi__PublicUtilities.html#ga3ef2bd36995495dd5e1f2f4de0334cea">GenApi::EVisibility</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structStApi_1_1IStNodeMapDisplayWnd.html#a5851e91e51e8861f8b17d946e367f023">GetVisibility</a> () const =0</td></tr>
+<tr class="memdesc:a5851e91e51e8861f8b17d946e367f023"><td class="mdescLeft">&#160;</td><td class="mdescRight">表示対象項目の Visibility を取得します。  <a href="#a5851e91e51e8861f8b17d946e367f023">[詳解]</a><br /></td></tr>
+<tr class="separator:a5851e91e51e8861f8b17d946e367f023"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a4460155f1f4dd1765344a1fc30ca0dae"><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structStApi_1_1IStNodeMapDisplayWnd.html#a4460155f1f4dd1765344a1fc30ca0dae">SetVisibility</a> (<a class="el" href="group__GenApi__PublicUtilities.html#ga3ef2bd36995495dd5e1f2f4de0334cea">GenApi::EVisibility</a> eVisibility)=0</td></tr>
+<tr class="memdesc:a4460155f1f4dd1765344a1fc30ca0dae"><td class="mdescLeft">&#160;</td><td class="mdescRight">表示対象項目の Visibility を設定します。  <a href="#a4460155f1f4dd1765344a1fc30ca0dae">[詳解]</a><br /></td></tr>
+<tr class="separator:a4460155f1f4dd1765344a1fc30ca0dae"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a0044ec79d3dcbf541668cff09240dc68"><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structStApi_1_1IStNodeMapDisplayWnd.html#a0044ec79d3dcbf541668cff09240dc68">Expand</a> ()=0</td></tr>
+<tr class="memdesc:a0044ec79d3dcbf541668cff09240dc68"><td class="mdescLeft">&#160;</td><td class="mdescRight">リストを展開します。  <a href="#a0044ec79d3dcbf541668cff09240dc68">[詳解]</a><br /></td></tr>
+<tr class="separator:a0044ec79d3dcbf541668cff09240dc68"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a1d36ede043cd8f0668eafccf8e136481"><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structStApi_1_1IStNodeMapDisplayWnd.html#a1d36ede043cd8f0668eafccf8e136481">Collapse</a> ()=0</td></tr>
+<tr class="memdesc:a1d36ede043cd8f0668eafccf8e136481"><td class="mdescLeft">&#160;</td><td class="mdescRight">リストを折りたたみます。  <a href="#a1d36ede043cd8f0668eafccf8e136481">[詳解]</a><br /></td></tr>
+<tr class="separator:a1d36ede043cd8f0668eafccf8e136481"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ac47a1e0484ee9d9819ac72afa41b131f"><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structStApi_1_1IStNodeMapDisplayWnd.html#ac47a1e0484ee9d9819ac72afa41b131f">Refresh</a> ()=0</td></tr>
+<tr class="memdesc:ac47a1e0484ee9d9819ac72afa41b131f"><td class="mdescLeft">&#160;</td><td class="mdescRight">リストを再描画します。  <a href="#ac47a1e0484ee9d9819ac72afa41b131f">[詳解]</a><br /></td></tr>
+<tr class="separator:ac47a1e0484ee9d9819ac72afa41b131f"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a19c05fb7e6060a1d6291a22ae96e0861"><td class="memItemLeft" align="right" valign="top">virtual bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structStApi_1_1IStNodeMapDisplayWnd.html#a19c05fb7e6060a1d6291a22ae96e0861">GetEnablePolling</a> () const =0</td></tr>
+<tr class="memdesc:a19c05fb7e6060a1d6291a22ae96e0861"><td class="mdescLeft">&#160;</td><td class="mdescRight">ポーリングの有効/無効を確認します。  <a href="#a19c05fb7e6060a1d6291a22ae96e0861">[詳解]</a><br /></td></tr>
+<tr class="separator:a19c05fb7e6060a1d6291a22ae96e0861"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a9bb5a8a90e15e98f9eab038f07f78c82"><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structStApi_1_1IStNodeMapDisplayWnd.html#a9bb5a8a90e15e98f9eab038f07f78c82">SetEnablePolling</a> (bool value)=0</td></tr>
+<tr class="memdesc:a9bb5a8a90e15e98f9eab038f07f78c82"><td class="mdescLeft">&#160;</td><td class="mdescRight">ポーリングの有効/無効を設定します。  <a href="#a9bb5a8a90e15e98f9eab038f07f78c82">[詳解]</a><br /></td></tr>
+<tr class="separator:a9bb5a8a90e15e98f9eab038f07f78c82"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a94ecc1cbcee6089b15d5f4c1756375e4"><td class="memItemLeft" align="right" valign="top">virtual bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structStApi_1_1IStNodeMapDisplayWnd.html#a94ecc1cbcee6089b15d5f4c1756375e4">GetVisibleAlphabeticMode</a> () const =0</td></tr>
+<tr class="memdesc:a94ecc1cbcee6089b15d5f4c1756375e4"><td class="mdescLeft">&#160;</td><td class="mdescRight">アルファベットモード設定ボタンの表示/非表示を確認します。  <a href="#a94ecc1cbcee6089b15d5f4c1756375e4">[詳解]</a><br /></td></tr>
+<tr class="separator:a94ecc1cbcee6089b15d5f4c1756375e4"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a088459820c8850e71438d6662185652d"><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structStApi_1_1IStNodeMapDisplayWnd.html#a088459820c8850e71438d6662185652d">SetVisibleAlphabeticMode</a> (bool value)=0</td></tr>
+<tr class="memdesc:a088459820c8850e71438d6662185652d"><td class="mdescLeft">&#160;</td><td class="mdescRight">アルファベットモード設定ボタンの表示/非表示を設定します。  <a href="#a088459820c8850e71438d6662185652d">[詳解]</a><br /></td></tr>
+<tr class="separator:a088459820c8850e71438d6662185652d"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:acc6d56ea367cd9c883e8dcf69e2417dc"><td class="memItemLeft" align="right" valign="top">virtual bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structStApi_1_1IStNodeMapDisplayWnd.html#acc6d56ea367cd9c883e8dcf69e2417dc">GetVisibleExpand</a> () const =0</td></tr>
+<tr class="memdesc:acc6d56ea367cd9c883e8dcf69e2417dc"><td class="mdescLeft">&#160;</td><td class="mdescRight">展開ボタンの表示/非表示を確認します。  <a href="#acc6d56ea367cd9c883e8dcf69e2417dc">[詳解]</a><br /></td></tr>
+<tr class="separator:acc6d56ea367cd9c883e8dcf69e2417dc"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a3ca045b847a587dc0bba880fc1497362"><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structStApi_1_1IStNodeMapDisplayWnd.html#a3ca045b847a587dc0bba880fc1497362">SetVisibleExpand</a> (bool value)=0</td></tr>
+<tr class="memdesc:a3ca045b847a587dc0bba880fc1497362"><td class="mdescLeft">&#160;</td><td class="mdescRight">展開ボタンの表示/非表示を設定します。  <a href="#a3ca045b847a587dc0bba880fc1497362">[詳解]</a><br /></td></tr>
+<tr class="separator:a3ca045b847a587dc0bba880fc1497362"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a95704fdc7b8303bbab3c3ae926db7375"><td class="memItemLeft" align="right" valign="top">virtual bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structStApi_1_1IStNodeMapDisplayWnd.html#a95704fdc7b8303bbab3c3ae926db7375">GetVisibleCollapse</a> () const =0</td></tr>
+<tr class="memdesc:a95704fdc7b8303bbab3c3ae926db7375"><td class="mdescLeft">&#160;</td><td class="mdescRight">折りたたみボタンの表示/非表示を確認します。  <a href="#a95704fdc7b8303bbab3c3ae926db7375">[詳解]</a><br /></td></tr>
+<tr class="separator:a95704fdc7b8303bbab3c3ae926db7375"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a14e7ed98f0a1d47f10fdc332a8bdf8fb"><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structStApi_1_1IStNodeMapDisplayWnd.html#a14e7ed98f0a1d47f10fdc332a8bdf8fb">SetVisibleCollapse</a> (bool value)=0</td></tr>
+<tr class="memdesc:a14e7ed98f0a1d47f10fdc332a8bdf8fb"><td class="mdescLeft">&#160;</td><td class="mdescRight">折りたたみボタンの表示/非表示を設定します。  <a href="#a14e7ed98f0a1d47f10fdc332a8bdf8fb">[詳解]</a><br /></td></tr>
+<tr class="separator:a14e7ed98f0a1d47f10fdc332a8bdf8fb"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a8e32e0b465308a3b8b901c22863057f6"><td class="memItemLeft" align="right" valign="top">virtual bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structStApi_1_1IStNodeMapDisplayWnd.html#a8e32e0b465308a3b8b901c22863057f6">GetVisibleRefresh</a> () const =0</td></tr>
+<tr class="memdesc:a8e32e0b465308a3b8b901c22863057f6"><td class="mdescLeft">&#160;</td><td class="mdescRight">リフレッシュボタンの表示/非表示を確認します。  <a href="#a8e32e0b465308a3b8b901c22863057f6">[詳解]</a><br /></td></tr>
+<tr class="separator:a8e32e0b465308a3b8b901c22863057f6"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a4b539b8d821892583c2dd85ce3bd8229"><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structStApi_1_1IStNodeMapDisplayWnd.html#a4b539b8d821892583c2dd85ce3bd8229">SetVisibleRefresh</a> (bool value)=0</td></tr>
+<tr class="memdesc:a4b539b8d821892583c2dd85ce3bd8229"><td class="mdescLeft">&#160;</td><td class="mdescRight">リフレッシュボタンの表示/非表示を設定します。  <a href="#a4b539b8d821892583c2dd85ce3bd8229">[詳解]</a><br /></td></tr>
+<tr class="separator:a4b539b8d821892583c2dd85ce3bd8229"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ad98e52f1c6e175899fdde1c4b98cd5a3"><td class="memItemLeft" align="right" valign="top">virtual bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structStApi_1_1IStNodeMapDisplayWnd.html#ad98e52f1c6e175899fdde1c4b98cd5a3">GetVisiblePolling</a> () const =0</td></tr>
+<tr class="memdesc:ad98e52f1c6e175899fdde1c4b98cd5a3"><td class="mdescLeft">&#160;</td><td class="mdescRight">ポーリングチェックボックスの表示/非表示を確認します。  <a href="#ad98e52f1c6e175899fdde1c4b98cd5a3">[詳解]</a><br /></td></tr>
+<tr class="separator:ad98e52f1c6e175899fdde1c4b98cd5a3"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:af1a31e9e313a0dbabe35b9e3a887572f"><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structStApi_1_1IStNodeMapDisplayWnd.html#af1a31e9e313a0dbabe35b9e3a887572f">SetVisiblePolling</a> (bool value)=0</td></tr>
+<tr class="memdesc:af1a31e9e313a0dbabe35b9e3a887572f"><td class="mdescLeft">&#160;</td><td class="mdescRight">ポーリングチェックボックスの表示/非表示を設定します。  <a href="#af1a31e9e313a0dbabe35b9e3a887572f">[詳解]</a><br /></td></tr>
+<tr class="separator:af1a31e9e313a0dbabe35b9e3a887572f"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a1bd26aebd315038c1741cd190a99a8ea"><td class="memItemLeft" align="right" valign="top">virtual bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structStApi_1_1IStNodeMapDisplayWnd.html#a1bd26aebd315038c1741cd190a99a8ea">GetVisibleVisibility</a> () const =0</td></tr>
+<tr class="memdesc:a1bd26aebd315038c1741cd190a99a8ea"><td class="mdescLeft">&#160;</td><td class="mdescRight">Visibilityコンボボックスの表示/非表示を確認します。  <a href="#a1bd26aebd315038c1741cd190a99a8ea">[詳解]</a><br /></td></tr>
+<tr class="separator:a1bd26aebd315038c1741cd190a99a8ea"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:adef796ac3745d1ace6de355496f65b57"><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structStApi_1_1IStNodeMapDisplayWnd.html#adef796ac3745d1ace6de355496f65b57">SetVisibleVisibility</a> (bool value)=0</td></tr>
+<tr class="memdesc:adef796ac3745d1ace6de355496f65b57"><td class="mdescLeft">&#160;</td><td class="mdescRight">Visibilityコンボボックスの表示/非表示を設定します。  <a href="#adef796ac3745d1ace6de355496f65b57">[詳解]</a><br /></td></tr>
+<tr class="separator:adef796ac3745d1ace6de355496f65b57"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:af5900c7af84bee1dda48b9b25bfb1951"><td class="memItemLeft" align="right" valign="top">virtual bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structStApi_1_1IStNodeMapDisplayWnd.html#af5900c7af84bee1dda48b9b25bfb1951">GetVisibleDescription</a> () const =0</td></tr>
+<tr class="memdesc:af5900c7af84bee1dda48b9b25bfb1951"><td class="mdescLeft">&#160;</td><td class="mdescRight">説明文の表示/非表示を確認します。  <a href="#af5900c7af84bee1dda48b9b25bfb1951">[詳解]</a><br /></td></tr>
+<tr class="separator:af5900c7af84bee1dda48b9b25bfb1951"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ae6e47e3973a6339e16432d286172e4d2"><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structStApi_1_1IStNodeMapDisplayWnd.html#ae6e47e3973a6339e16432d286172e4d2">SetVisibleDescription</a> (bool value)=0</td></tr>
+<tr class="memdesc:ae6e47e3973a6339e16432d286172e4d2"><td class="mdescLeft">&#160;</td><td class="mdescRight">説明文の表示/非表示を設定します。  <a href="#ae6e47e3973a6339e16432d286172e4d2">[詳解]</a><br /></td></tr>
+<tr class="separator:ae6e47e3973a6339e16432d286172e4d2"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:abf28cd979cb05ba55c5f75dade782160"><td class="memItemLeft" align="right" valign="top">virtual bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structStApi_1_1IStNodeMapDisplayWnd.html#abf28cd979cb05ba55c5f75dade782160">GetVisibleDescriptionSampleCode</a> () const =0</td></tr>
+<tr class="memdesc:abf28cd979cb05ba55c5f75dade782160"><td class="mdescLeft">&#160;</td><td class="mdescRight">説明文内のサンプルプログラムの表示/非表示を確認します。  <a href="#abf28cd979cb05ba55c5f75dade782160">[詳解]</a><br /></td></tr>
+<tr class="separator:abf28cd979cb05ba55c5f75dade782160"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a9a18fefb7c56f47896091178c6fbbc86"><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structStApi_1_1IStNodeMapDisplayWnd.html#a9a18fefb7c56f47896091178c6fbbc86">SetVisibleDescriptionSampleCode</a> (bool value)=0</td></tr>
+<tr class="memdesc:a9a18fefb7c56f47896091178c6fbbc86"><td class="mdescLeft">&#160;</td><td class="mdescRight">説明文内のサンプルプログラムの表示/非表示を設定します。  <a href="#a9a18fefb7c56f47896091178c6fbbc86">[詳解]</a><br /></td></tr>
+<tr class="separator:a9a18fefb7c56f47896091178c6fbbc86"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a5d64b8e9f5a75e935bcb4de6c6db55f3"><td class="memItemLeft" align="right" valign="top">virtual bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structStApi_1_1IStNodeMapDisplayWnd.html#a5d64b8e9f5a75e935bcb4de6c6db55f3">GetVisibleFilter</a> () const =0</td></tr>
+<tr class="memdesc:a5d64b8e9f5a75e935bcb4de6c6db55f3"><td class="mdescLeft">&#160;</td><td class="mdescRight">Filterチェックボックスおよびテキストボックスの表示/非表示を確認します。  <a href="#a5d64b8e9f5a75e935bcb4de6c6db55f3">[詳解]</a><br /></td></tr>
+<tr class="separator:a5d64b8e9f5a75e935bcb4de6c6db55f3"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ad0f2ae737392f8a9b0068f94fd91bb0f"><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structStApi_1_1IStNodeMapDisplayWnd.html#ad0f2ae737392f8a9b0068f94fd91bb0f">SetVisibleFilter</a> (bool value)=0</td></tr>
+<tr class="memdesc:ad0f2ae737392f8a9b0068f94fd91bb0f"><td class="mdescLeft">&#160;</td><td class="mdescRight">Filterチェックボックスおよびテキストボックスの表示/非表示を設定します。  <a href="#ad0f2ae737392f8a9b0068f94fd91bb0f">[詳解]</a><br /></td></tr>
+<tr class="separator:ad0f2ae737392f8a9b0068f94fd91bb0f"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a6c9a58176f499a137ed6eca2c2245db0"><td class="memItemLeft" align="right" valign="top">virtual <a class="el" href="classGenICam_1_1gcstring.html">GenICam::gcstring</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structStApi_1_1IStNodeMapDisplayWnd.html#a6c9a58176f499a137ed6eca2c2245db0">GetFilterText</a> () const =0</td></tr>
+<tr class="memdesc:a6c9a58176f499a137ed6eca2c2245db0"><td class="mdescLeft">&#160;</td><td class="mdescRight">フィルター文字列を取得します。  <a href="#a6c9a58176f499a137ed6eca2c2245db0">[詳解]</a><br /></td></tr>
+<tr class="separator:a6c9a58176f499a137ed6eca2c2245db0"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a6e362f3a2289b7abbaa832ed7a732fc1"><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structStApi_1_1IStNodeMapDisplayWnd.html#a6e362f3a2289b7abbaa832ed7a732fc1">SetFilterText</a> (const <a class="el" href="classGenICam_1_1gcstring.html">GenICam::gcstring</a> &amp;strFilter)=0</td></tr>
+<tr class="memdesc:a6e362f3a2289b7abbaa832ed7a732fc1"><td class="mdescLeft">&#160;</td><td class="mdescRight">フィルター文字列を設定します。  <a href="#a6e362f3a2289b7abbaa832ed7a732fc1">[詳解]</a><br /></td></tr>
+<tr class="separator:a6e362f3a2289b7abbaa832ed7a732fc1"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:abbe7ae20d8b8caeccd8f17df0414f7bb"><td class="memItemLeft" align="right" valign="top">virtual bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structStApi_1_1IStNodeMapDisplayWnd.html#abbe7ae20d8b8caeccd8f17df0414f7bb">GetEnableFilter</a> () const =0</td></tr>
+<tr class="memdesc:abbe7ae20d8b8caeccd8f17df0414f7bb"><td class="mdescLeft">&#160;</td><td class="mdescRight">Filterが有効化否かを確認します。  <a href="#abbe7ae20d8b8caeccd8f17df0414f7bb">[詳解]</a><br /></td></tr>
+<tr class="separator:abbe7ae20d8b8caeccd8f17df0414f7bb"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a1895cc716f9d8e1ee57602719e758c8f"><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structStApi_1_1IStNodeMapDisplayWnd.html#a1895cc716f9d8e1ee57602719e758c8f">SetEnableFilter</a> (bool value)=0</td></tr>
+<tr class="memdesc:a1895cc716f9d8e1ee57602719e758c8f"><td class="mdescLeft">&#160;</td><td class="mdescRight">Filterを有効化または無効化します。  <a href="#a1895cc716f9d8e1ee57602719e758c8f">[詳解]</a><br /></td></tr>
+<tr class="separator:a1895cc716f9d8e1ee57602719e758c8f"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ad20ef7d5c151d81aee609f40b8de4269"><td class="memItemLeft" align="right" valign="top">virtual bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structStApi_1_1IStNodeMapDisplayWnd.html#ad20ef7d5c151d81aee609f40b8de4269">GetEnableRegularExpression</a> () const =0</td></tr>
+<tr class="memdesc:ad20ef7d5c151d81aee609f40b8de4269"><td class="mdescLeft">&#160;</td><td class="mdescRight">正規表現フィルターが有効化否かを確認します。  <a href="#ad20ef7d5c151d81aee609f40b8de4269">[詳解]</a><br /></td></tr>
+<tr class="separator:ad20ef7d5c151d81aee609f40b8de4269"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a4594dfec7c2e8b08038e489c6281a38c"><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structStApi_1_1IStNodeMapDisplayWnd.html#a4594dfec7c2e8b08038e489c6281a38c">SetEnableRegularExpression</a> (bool value)=0</td></tr>
+<tr class="memdesc:a4594dfec7c2e8b08038e489c6281a38c"><td class="mdescLeft">&#160;</td><td class="mdescRight">正規表現フィルターを有効化または無効化します。  <a href="#a4594dfec7c2e8b08038e489c6281a38c">[詳解]</a><br /></td></tr>
+<tr class="separator:a4594dfec7c2e8b08038e489c6281a38c"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="inherit_header pub_methods_structStApi_1_1IStWnd"><td colspan="2" onclick="javascript:toggleInherit('pub_methods_structStApi_1_1IStWnd')"><img src="closed.png" alt="-"/>&#160;基底クラス <a class="el" href="structStApi_1_1IStWnd.html">StApi::IStWnd</a> に属する継承公開メンバ関数</td></tr>
+<tr class="memitem:a615e52b13c8e587278f297fdfe1007cb inherit pub_methods_structStApi_1_1IStWnd"><td class="memItemLeft" align="right" valign="top">virtual <a class="el" href="structStApi_1_1IStWndInfo.html">IStWndInfo</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structStApi_1_1IStWnd.html#a615e52b13c8e587278f297fdfe1007cb">GetIStWndInfo</a> () const =0</td></tr>
+<tr class="memdesc:a615e52b13c8e587278f297fdfe1007cb inherit pub_methods_structStApi_1_1IStWnd"><td class="mdescLeft">&#160;</td><td class="mdescRight"><a class="el" href="structStApi_1_1IStWndInfo.html" title="ウィンドウ情報用インターフェース">IStWndInfo</a> インターフェースポインターを取得します。  <a href="structStApi_1_1IStWnd.html#a615e52b13c8e587278f297fdfe1007cb">[詳解]</a><br /></td></tr>
+<tr class="separator:a615e52b13c8e587278f297fdfe1007cb inherit pub_methods_structStApi_1_1IStWnd"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a0c583c2afdae07f1aa669d7938223502 inherit pub_methods_structStApi_1_1IStWnd"><td class="memItemLeft" align="right" valign="top">virtual <a class="el" href="structGenApi_1_1INodeMap.html">GenApi::INodeMap</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structStApi_1_1IStWnd.html#a0c583c2afdae07f1aa669d7938223502">GetINodeMap</a> ()=0</td></tr>
+<tr class="memdesc:a0c583c2afdae07f1aa669d7938223502 inherit pub_methods_structStApi_1_1IStWnd"><td class="mdescLeft">&#160;</td><td class="mdescRight">INodeMap インターフェースポインターを取得します。  <a href="structStApi_1_1IStWnd.html#a0c583c2afdae07f1aa669d7938223502">[詳解]</a><br /></td></tr>
+<tr class="separator:a0c583c2afdae07f1aa669d7938223502 inherit pub_methods_structStApi_1_1IStWnd"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a8aae7b3cf948322552519452c853dc91 inherit pub_methods_structStApi_1_1IStWnd"><td class="memItemLeft" align="right" valign="top">virtual HWND&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structStApi_1_1IStWnd.html#a8aae7b3cf948322552519452c853dc91">GetWindowHandle</a> ()=0</td></tr>
+<tr class="memdesc:a8aae7b3cf948322552519452c853dc91 inherit pub_methods_structStApi_1_1IStWnd"><td class="mdescLeft">&#160;</td><td class="mdescRight">ウィンドウハンドルを取得します。  <a href="structStApi_1_1IStWnd.html#a8aae7b3cf948322552519452c853dc91">[詳解]</a><br /></td></tr>
+<tr class="separator:a8aae7b3cf948322552519452c853dc91 inherit pub_methods_structStApi_1_1IStWnd"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a0d13b6e3ef8d215bc73de1efd728924c inherit pub_methods_structStApi_1_1IStWnd"><td class="memItemLeft" align="right" valign="top">virtual <a class="el" href="classGenICam_1_1gcstring.html">GenICam::gcstring</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structStApi_1_1IStWnd.html#a0d13b6e3ef8d215bc73de1efd728924c">GetTitle</a> ()=0</td></tr>
+<tr class="memdesc:a0d13b6e3ef8d215bc73de1efd728924c inherit pub_methods_structStApi_1_1IStWnd"><td class="mdescLeft">&#160;</td><td class="mdescRight">ウィンドウタイトルを取得します。  <a href="structStApi_1_1IStWnd.html#a0d13b6e3ef8d215bc73de1efd728924c">[詳解]</a><br /></td></tr>
+<tr class="separator:a0d13b6e3ef8d215bc73de1efd728924c inherit pub_methods_structStApi_1_1IStWnd"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a0581cfcd5aa445c99396f46261ab34d2 inherit pub_methods_structStApi_1_1IStWnd"><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structStApi_1_1IStWnd.html#a0581cfcd5aa445c99396f46261ab34d2">SetTitle</a> (const <a class="el" href="classGenICam_1_1gcstring.html">GenICam::gcstring</a> &amp;strTitle)=0</td></tr>
+<tr class="memdesc:a0581cfcd5aa445c99396f46261ab34d2 inherit pub_methods_structStApi_1_1IStWnd"><td class="mdescLeft">&#160;</td><td class="mdescRight">ウィンドウタイトルを設定します。  <a href="structStApi_1_1IStWnd.html#a0581cfcd5aa445c99396f46261ab34d2">[詳解]</a><br /></td></tr>
+<tr class="separator:a0581cfcd5aa445c99396f46261ab34d2 inherit pub_methods_structStApi_1_1IStWnd"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a5e652d8c086116396a5de67d1e783e5b inherit pub_methods_structStApi_1_1IStWnd"><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structStApi_1_1IStWnd.html#a5e652d8c086116396a5de67d1e783e5b">GetPosition</a> (int32_t *pnX, int32_t *pnY, int32_t *pnWidth, int32_t *pnHeight)=0</td></tr>
+<tr class="memdesc:a5e652d8c086116396a5de67d1e783e5b inherit pub_methods_structStApi_1_1IStWnd"><td class="mdescLeft">&#160;</td><td class="mdescRight">ウィンドウの位置とサイズを取得します。  <a href="structStApi_1_1IStWnd.html#a5e652d8c086116396a5de67d1e783e5b">[詳解]</a><br /></td></tr>
+<tr class="separator:a5e652d8c086116396a5de67d1e783e5b inherit pub_methods_structStApi_1_1IStWnd"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aa782facd0b5b2b96b4212b419d9fef00 inherit pub_methods_structStApi_1_1IStWnd"><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structStApi_1_1IStWnd.html#aa782facd0b5b2b96b4212b419d9fef00">SetPosition</a> (int32_t nX, int32_t nY, int32_t nWidth, int32_t nHeight)=0</td></tr>
+<tr class="memdesc:aa782facd0b5b2b96b4212b419d9fef00 inherit pub_methods_structStApi_1_1IStWnd"><td class="mdescLeft">&#160;</td><td class="mdescRight">ウィンドウの位置とサイズを設定します。  <a href="structStApi_1_1IStWnd.html#aa782facd0b5b2b96b4212b419d9fef00">[詳解]</a><br /></td></tr>
+<tr class="separator:aa782facd0b5b2b96b4212b419d9fef00 inherit pub_methods_structStApi_1_1IStWnd"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aad3596457712619c9d3e74e14f72f092 inherit pub_methods_structStApi_1_1IStWnd"><td class="memItemLeft" align="right" valign="top">virtual bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structStApi_1_1IStWnd.html#aad3596457712619c9d3e74e14f72f092">IsVisible</a> ()=0</td></tr>
+<tr class="memdesc:aad3596457712619c9d3e74e14f72f092 inherit pub_methods_structStApi_1_1IStWnd"><td class="mdescLeft">&#160;</td><td class="mdescRight">ウィンドウが表示されているか確認します。  <a href="structStApi_1_1IStWnd.html#aad3596457712619c9d3e74e14f72f092">[詳解]</a><br /></td></tr>
+<tr class="separator:aad3596457712619c9d3e74e14f72f092 inherit pub_methods_structStApi_1_1IStWnd"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a7c88a6a913bc0137da913a26e7d500ac inherit pub_methods_structStApi_1_1IStWnd"><td class="memItemLeft" align="right" valign="top">virtual bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structStApi_1_1IStWnd.html#a7c88a6a913bc0137da913a26e7d500ac">GetVisibleMenu</a> () const =0</td></tr>
+<tr class="memdesc:a7c88a6a913bc0137da913a26e7d500ac inherit pub_methods_structStApi_1_1IStWnd"><td class="mdescLeft">&#160;</td><td class="mdescRight">ウィンドウメニューの表示/非表示設定を確認します。  <a href="structStApi_1_1IStWnd.html#a7c88a6a913bc0137da913a26e7d500ac">[詳解]</a><br /></td></tr>
+<tr class="separator:a7c88a6a913bc0137da913a26e7d500ac inherit pub_methods_structStApi_1_1IStWnd"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a7c8eeaaca1ad445d2c6afc2d78d39f72 inherit pub_methods_structStApi_1_1IStWnd"><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structStApi_1_1IStWnd.html#a7c8eeaaca1ad445d2c6afc2d78d39f72">SetVisibleMenu</a> (bool value)=0</td></tr>
+<tr class="memdesc:a7c8eeaaca1ad445d2c6afc2d78d39f72 inherit pub_methods_structStApi_1_1IStWnd"><td class="mdescLeft">&#160;</td><td class="mdescRight">ウィンドウメニューの表示/非表示を設定します。  <a href="structStApi_1_1IStWnd.html#a7c8eeaaca1ad445d2c6afc2d78d39f72">[詳解]</a><br /></td></tr>
+<tr class="separator:a7c8eeaaca1ad445d2c6afc2d78d39f72 inherit pub_methods_structStApi_1_1IStWnd"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a00f765b43a67c02953015e684a4dfcfc inherit pub_methods_structStApi_1_1IStWnd"><td class="memItemLeft" align="right" valign="top">virtual bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structStApi_1_1IStWnd.html#a00f765b43a67c02953015e684a4dfcfc">GetVisibleStatusBar</a> () const =0</td></tr>
+<tr class="memdesc:a00f765b43a67c02953015e684a4dfcfc inherit pub_methods_structStApi_1_1IStWnd"><td class="mdescLeft">&#160;</td><td class="mdescRight">ステータスバーの表示/非表示設定を確認します。  <a href="structStApi_1_1IStWnd.html#a00f765b43a67c02953015e684a4dfcfc">[詳解]</a><br /></td></tr>
+<tr class="separator:a00f765b43a67c02953015e684a4dfcfc inherit pub_methods_structStApi_1_1IStWnd"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:af8eaf605727b624c11e192e6e66c5536 inherit pub_methods_structStApi_1_1IStWnd"><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structStApi_1_1IStWnd.html#af8eaf605727b624c11e192e6e66c5536">SetVisibleStatusBar</a> (bool value)=0</td></tr>
+<tr class="memdesc:af8eaf605727b624c11e192e6e66c5536 inherit pub_methods_structStApi_1_1IStWnd"><td class="mdescLeft">&#160;</td><td class="mdescRight">ステータスバーの表示/非表示を設定します。  <a href="structStApi_1_1IStWnd.html#af8eaf605727b624c11e192e6e66c5536">[詳解]</a><br /></td></tr>
+<tr class="separator:af8eaf605727b624c11e192e6e66c5536 inherit pub_methods_structStApi_1_1IStWnd"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a83bb3489c370da1daea2212a8068bb8a inherit pub_methods_structStApi_1_1IStWnd"><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structStApi_1_1IStWnd.html#a83bb3489c370da1daea2212a8068bb8a">SetUserStatusBarText</a> (const <a class="el" href="classGenICam_1_1gcstring.html">GenICam::gcstring</a> &amp;strText)=0</td></tr>
+<tr class="memdesc:a83bb3489c370da1daea2212a8068bb8a inherit pub_methods_structStApi_1_1IStWnd"><td class="mdescLeft">&#160;</td><td class="mdescRight">ステータスバーに表示するユーザー文字列を設定します。  <a href="structStApi_1_1IStWnd.html#a83bb3489c370da1daea2212a8068bb8a">[詳解]</a><br /></td></tr>
+<tr class="separator:a83bb3489c370da1daea2212a8068bb8a inherit pub_methods_structStApi_1_1IStWnd"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:abbab35ddf00d4e22c38a8f0db496c214 inherit pub_methods_structStApi_1_1IStWnd"><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structStApi_1_1IStWnd.html#abbab35ddf00d4e22c38a8f0db496c214">Show</a> (HWND hParentWnd, EStWindowMode_t eWM)=0</td></tr>
+<tr class="memdesc:abbab35ddf00d4e22c38a8f0db496c214 inherit pub_methods_structStApi_1_1IStWnd"><td class="mdescLeft">&#160;</td><td class="mdescRight">ウィンドウを表示します。  <a href="structStApi_1_1IStWnd.html#abbab35ddf00d4e22c38a8f0db496c214">[詳解]</a><br /></td></tr>
+<tr class="separator:abbab35ddf00d4e22c38a8f0db496c214 inherit pub_methods_structStApi_1_1IStWnd"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a3a49b890570187161f27db6e9c34e78f inherit pub_methods_structStApi_1_1IStWnd"><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structStApi_1_1IStWnd.html#a3a49b890570187161f27db6e9c34e78f">Close</a> ()=0</td></tr>
+<tr class="memdesc:a3a49b890570187161f27db6e9c34e78f inherit pub_methods_structStApi_1_1IStWnd"><td class="mdescLeft">&#160;</td><td class="mdescRight">ウィンドウを閉じます。  <a href="structStApi_1_1IStWnd.html#a3a49b890570187161f27db6e9c34e78f">[詳解]</a><br /></td></tr>
+<tr class="separator:a3a49b890570187161f27db6e9c34e78f inherit pub_methods_structStApi_1_1IStWnd"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="inherit_header pub_methods_structStApi_1_1IStRegisterCallback"><td colspan="2" onclick="javascript:toggleInherit('pub_methods_structStApi_1_1IStRegisterCallback')"><img src="closed.png" alt="-"/>&#160;基底クラス <a class="el" href="structStApi_1_1IStRegisterCallback.html">StApi::IStRegisterCallback</a> に属する継承公開メンバ関数</td></tr>
+<tr class="memitem:a3e9da3d4173d22f96664cd8be00c9c70 inherit pub_methods_structStApi_1_1IStRegisterCallback"><td class="memItemLeft" align="right" valign="top">virtual <a class="el" href="group__StApiTL__PublicImpl.html#ga50382bf603d23086b9a3887988985273">StApiCallbackHandle_t</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structStApi_1_1IStRegisterCallback.html#a3e9da3d4173d22f96664cd8be00c9c70">RegisterCallback</a> (<a class="el" href="structStApi_1_1IStCallback.html">IStCallback</a> *pIStCallback)=0</td></tr>
+<tr class="memdesc:a3e9da3d4173d22f96664cd8be00c9c70 inherit pub_methods_structStApi_1_1IStRegisterCallback"><td class="mdescLeft">&#160;</td><td class="mdescRight">コールバック関数を登録します。  <a href="structStApi_1_1IStRegisterCallback.html#a3e9da3d4173d22f96664cd8be00c9c70">[詳解]</a><br /></td></tr>
+<tr class="separator:a3e9da3d4173d22f96664cd8be00c9c70 inherit pub_methods_structStApi_1_1IStRegisterCallback"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a642e9d0ae0e64dafa24fd5db03c20fea inherit pub_methods_structStApi_1_1IStRegisterCallback"><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structStApi_1_1IStRegisterCallback.html#a642e9d0ae0e64dafa24fd5db03c20fea">DeregisterCallback</a> (<a class="el" href="group__StApiTL__PublicImpl.html#ga50382bf603d23086b9a3887988985273">StApiCallbackHandle_t</a> hCallback)=0</td></tr>
+<tr class="memdesc:a642e9d0ae0e64dafa24fd5db03c20fea inherit pub_methods_structStApi_1_1IStRegisterCallback"><td class="mdescLeft">&#160;</td><td class="mdescRight">コールバック関数の登録を解除します。  <a href="structStApi_1_1IStRegisterCallback.html#a642e9d0ae0e64dafa24fd5db03c20fea">[詳解]</a><br /></td></tr>
+<tr class="separator:a642e9d0ae0e64dafa24fd5db03c20fea inherit pub_methods_structStApi_1_1IStRegisterCallback"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table>
+<a name="details" id="details"></a><h2 class="groupheader">詳解</h2>
+<div class="textblock"><p>ノードマップ表示ウィンドウ用インターフェース </p>
+</div><h2 class="groupheader">関数詳解</h2>
+<a id="a469ce9ebcb42d50e210c85bfbb2a07b1"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a469ce9ebcb42d50e210c85bfbb2a07b1">&#9670;&nbsp;</a></span>RegisterINode()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">virtual <a class="el" href="group__StApiGUI__PublicImpl.html#gaa31482c64f0db1540cfc174437f57430">RegisteredINodeHandle_t</a> StApi::IStNodeMapDisplayWnd::RegisterINode </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="structGenApi_1_1INode.html">GenApi::INode</a> *&#160;</td>
+          <td class="paramname"><em>pIRootNode</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const <a class="el" href="classGenICam_1_1gcstring.html">GenICam::gcstring</a> &amp;&#160;</td>
+          <td class="paramname"><em>strCaption</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">pure virtual</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+<p>ノードマップ設定画面に表示するノードを登録します。 </p><dl class="params"><dt>引数</dt><dd>
+  <table class="params">
+    <tr><td class="paramdir">[in]</td><td class="paramname">pIRootNode</td><td>ノード </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">strCaption</td><td>ノードに対するタイトル </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>戻り値</dt><dd>登録ノード識別子 </dd></dl>
+<dl class="exception"><dt>例外</dt><dd>
+  <table class="exception">
+    <tr><td class="paramname">メモリー確保に失敗した場合は、例外</td><td><a class="el" href="classGenICam_1_1GenericException.html" title="GenICam&#39;s exception class">GenICam::GenericException</a> が発生します。 </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a id="a0ae819337bce64be7cf61a615fbd331a"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a0ae819337bce64be7cf61a615fbd331a">&#9670;&nbsp;</a></span>DeregisterINode()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">virtual void StApi::IStNodeMapDisplayWnd::DeregisterINode </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="group__StApiGUI__PublicImpl.html#gaa31482c64f0db1540cfc174437f57430">RegisteredINodeHandle_t</a>&#160;</td>
+          <td class="paramname"><em>hRegistered</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">pure virtual</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+<p>ノードの登録を解除します。 </p><dl class="params"><dt>引数</dt><dd>
+  <table class="params">
+    <tr><td class="paramdir">[in]</td><td class="paramname">hRegistered</td><td>登録ノード識別子 </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="exception"><dt>例外</dt><dd>
+  <table class="exception">
+    <tr><td class="paramname">不正な引数が指定された場合は、例外</td><td><a class="el" href="classGenICam_1_1GenericException.html" title="GenICam&#39;s exception class">GenICam::GenericException</a> が発生します。 </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a id="abc18daa76626277f103014a234fb121a"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#abc18daa76626277f103014a234fb121a">&#9670;&nbsp;</a></span>GetAlphabeticMode()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">virtual bool StApi::IStNodeMapDisplayWnd::GetAlphabeticMode </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">pure virtual</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+<p>アルファベットモードかどうかを確認します。 </p><dl class="section return"><dt>戻り値</dt><dd>アルファベットモードになっている場合、 true が返されます。 </dd></dl>
+<dl class="exception"><dt>例外</dt><dd>
+  <table class="exception">
+    <tr><td class="paramname">なし</td><td></td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a id="af2e00b640fd97cd31e26707a14427d53"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#af2e00b640fd97cd31e26707a14427d53">&#9670;&nbsp;</a></span>SetAlphabeticMode()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">virtual void StApi::IStNodeMapDisplayWnd::SetAlphabeticMode </td>
+          <td>(</td>
+          <td class="paramtype">bool&#160;</td>
+          <td class="paramname"><em>value</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">pure virtual</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+<p>アルファベットモードを設定します。 </p><dl class="params"><dt>引数</dt><dd>
+  <table class="params">
+    <tr><td class="paramdir">[in]</td><td class="paramname">value</td><td>アルファベットモードにする場合は、 true を指定します。 </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="exception"><dt>例外</dt><dd>
+  <table class="exception">
+    <tr><td class="paramname">なし</td><td></td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a id="a5851e91e51e8861f8b17d946e367f023"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a5851e91e51e8861f8b17d946e367f023">&#9670;&nbsp;</a></span>GetVisibility()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">virtual <a class="el" href="group__GenApi__PublicUtilities.html#ga3ef2bd36995495dd5e1f2f4de0334cea">GenApi::EVisibility</a> StApi::IStNodeMapDisplayWnd::GetVisibility </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">pure virtual</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+<p>表示対象項目の Visibility を取得します。 </p><dl class="section return"><dt>戻り値</dt><dd>Visibility </dd></dl>
+<dl class="exception"><dt>例外</dt><dd>
+  <table class="exception">
+    <tr><td class="paramname">なし</td><td></td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a id="a4460155f1f4dd1765344a1fc30ca0dae"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a4460155f1f4dd1765344a1fc30ca0dae">&#9670;&nbsp;</a></span>SetVisibility()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">virtual void StApi::IStNodeMapDisplayWnd::SetVisibility </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="group__GenApi__PublicUtilities.html#ga3ef2bd36995495dd5e1f2f4de0334cea">GenApi::EVisibility</a>&#160;</td>
+          <td class="paramname"><em>eVisibility</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">pure virtual</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+<p>表示対象項目の Visibility を設定します。 Beginner へ設定すると Beginner 項目のみが表示されます。 Expert へ設定すると Beginner および Expert 項目が表示されます。 Guru へ設定すると Guru, Expert および Beginner 項目が表示されます。 </p><dl class="params"><dt>引数</dt><dd>
+  <table class="params">
+    <tr><td class="paramdir">[in]</td><td class="paramname">eVisibility</td><td>Visibility </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="exception"><dt>例外</dt><dd>
+  <table class="exception">
+    <tr><td class="paramname">不正な引数が指定された場合は、例外</td><td><a class="el" href="classGenICam_1_1GenericException.html" title="GenICam&#39;s exception class">GenICam::GenericException</a> が発生します。 </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a id="a0044ec79d3dcbf541668cff09240dc68"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a0044ec79d3dcbf541668cff09240dc68">&#9670;&nbsp;</a></span>Expand()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">virtual void StApi::IStNodeMapDisplayWnd::Expand </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">pure virtual</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+<p>リストを展開します。 </p><dl class="exception"><dt>例外</dt><dd>
+  <table class="exception">
+    <tr><td class="paramname">なし</td><td></td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a id="a1d36ede043cd8f0668eafccf8e136481"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a1d36ede043cd8f0668eafccf8e136481">&#9670;&nbsp;</a></span>Collapse()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">virtual void StApi::IStNodeMapDisplayWnd::Collapse </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">pure virtual</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+<p>リストを折りたたみます。 </p><dl class="exception"><dt>例外</dt><dd>
+  <table class="exception">
+    <tr><td class="paramname">なし</td><td></td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a id="ac47a1e0484ee9d9819ac72afa41b131f"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ac47a1e0484ee9d9819ac72afa41b131f">&#9670;&nbsp;</a></span>Refresh()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">virtual void StApi::IStNodeMapDisplayWnd::Refresh </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">pure virtual</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+<p>リストを再描画します。 </p><dl class="exception"><dt>例外</dt><dd>
+  <table class="exception">
+    <tr><td class="paramname">なし</td><td></td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a id="a19c05fb7e6060a1d6291a22ae96e0861"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a19c05fb7e6060a1d6291a22ae96e0861">&#9670;&nbsp;</a></span>GetEnablePolling()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">virtual bool StApi::IStNodeMapDisplayWnd::GetEnablePolling </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">pure virtual</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+<p>ポーリングの有効/無効を確認します。 </p><dl class="section return"><dt>戻り値</dt><dd>ポーリングが有効な場合、 true が返されます。 </dd></dl>
+<dl class="exception"><dt>例外</dt><dd>
+  <table class="exception">
+    <tr><td class="paramname">なし</td><td></td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a id="a9bb5a8a90e15e98f9eab038f07f78c82"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a9bb5a8a90e15e98f9eab038f07f78c82">&#9670;&nbsp;</a></span>SetEnablePolling()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">virtual void StApi::IStNodeMapDisplayWnd::SetEnablePolling </td>
+          <td>(</td>
+          <td class="paramtype">bool&#160;</td>
+          <td class="paramname"><em>value</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">pure virtual</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+<p>ポーリングの有効/無効を設定します。ポーリングを有効にすると定期的にポーリング対象の値が確認されるようになります。 </p><dl class="params"><dt>引数</dt><dd>
+  <table class="params">
+    <tr><td class="paramdir">[in]</td><td class="paramname">value</td><td>ポーリングを有効にする場合、 true を指定します。 </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="exception"><dt>例外</dt><dd>
+  <table class="exception">
+    <tr><td class="paramname">なし</td><td></td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a id="a94ecc1cbcee6089b15d5f4c1756375e4"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a94ecc1cbcee6089b15d5f4c1756375e4">&#9670;&nbsp;</a></span>GetVisibleAlphabeticMode()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">virtual bool StApi::IStNodeMapDisplayWnd::GetVisibleAlphabeticMode </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">pure virtual</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+<p>アルファベットモード設定ボタンの表示/非表示を確認します。 </p><dl class="section return"><dt>戻り値</dt><dd>アルファベットモード設定ボタンが表示されている場合、 true が返されます。 </dd></dl>
+<dl class="exception"><dt>例外</dt><dd>
+  <table class="exception">
+    <tr><td class="paramname">なし</td><td></td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a id="a088459820c8850e71438d6662185652d"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a088459820c8850e71438d6662185652d">&#9670;&nbsp;</a></span>SetVisibleAlphabeticMode()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">virtual void StApi::IStNodeMapDisplayWnd::SetVisibleAlphabeticMode </td>
+          <td>(</td>
+          <td class="paramtype">bool&#160;</td>
+          <td class="paramname"><em>value</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">pure virtual</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+<p>アルファベットモード設定ボタンの表示/非表示を設定します。 </p><dl class="params"><dt>引数</dt><dd>
+  <table class="params">
+    <tr><td class="paramdir">[in]</td><td class="paramname">value</td><td>アルファベットモード設定ボタンを表示する場合、 true を指定します。 </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="exception"><dt>例外</dt><dd>
+  <table class="exception">
+    <tr><td class="paramname">なし</td><td></td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a id="acc6d56ea367cd9c883e8dcf69e2417dc"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#acc6d56ea367cd9c883e8dcf69e2417dc">&#9670;&nbsp;</a></span>GetVisibleExpand()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">virtual bool StApi::IStNodeMapDisplayWnd::GetVisibleExpand </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">pure virtual</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+<p>展開ボタンの表示/非表示を確認します。 </p><dl class="section return"><dt>戻り値</dt><dd>展開ボタンが表示されている場合、 true が返されます。 </dd></dl>
+<dl class="exception"><dt>例外</dt><dd>
+  <table class="exception">
+    <tr><td class="paramname">なし</td><td></td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a id="a3ca045b847a587dc0bba880fc1497362"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a3ca045b847a587dc0bba880fc1497362">&#9670;&nbsp;</a></span>SetVisibleExpand()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">virtual void StApi::IStNodeMapDisplayWnd::SetVisibleExpand </td>
+          <td>(</td>
+          <td class="paramtype">bool&#160;</td>
+          <td class="paramname"><em>value</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">pure virtual</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+<p>展開ボタンの表示/非表示を設定します。 </p><dl class="params"><dt>引数</dt><dd>
+  <table class="params">
+    <tr><td class="paramdir">[in]</td><td class="paramname">value</td><td>展開ボタンを表示する場合、 true を指定します。 </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="exception"><dt>例外</dt><dd>
+  <table class="exception">
+    <tr><td class="paramname">なし</td><td></td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a id="a95704fdc7b8303bbab3c3ae926db7375"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a95704fdc7b8303bbab3c3ae926db7375">&#9670;&nbsp;</a></span>GetVisibleCollapse()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">virtual bool StApi::IStNodeMapDisplayWnd::GetVisibleCollapse </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">pure virtual</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+<p>折りたたみボタンの表示/非表示を確認します。 </p><dl class="section return"><dt>戻り値</dt><dd>折りたたみボタンが表示されている場合、 true が返されます。 </dd></dl>
+<dl class="exception"><dt>例外</dt><dd>
+  <table class="exception">
+    <tr><td class="paramname">なし</td><td></td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a id="a14e7ed98f0a1d47f10fdc332a8bdf8fb"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a14e7ed98f0a1d47f10fdc332a8bdf8fb">&#9670;&nbsp;</a></span>SetVisibleCollapse()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">virtual void StApi::IStNodeMapDisplayWnd::SetVisibleCollapse </td>
+          <td>(</td>
+          <td class="paramtype">bool&#160;</td>
+          <td class="paramname"><em>value</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">pure virtual</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+<p>折りたたみボタンの表示/非表示を設定します。 </p><dl class="params"><dt>引数</dt><dd>
+  <table class="params">
+    <tr><td class="paramdir">[in]</td><td class="paramname">value</td><td>折りたたみボタンを表示する場合、 true を指定します。 </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="exception"><dt>例外</dt><dd>
+  <table class="exception">
+    <tr><td class="paramname">なし</td><td></td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a id="a8e32e0b465308a3b8b901c22863057f6"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a8e32e0b465308a3b8b901c22863057f6">&#9670;&nbsp;</a></span>GetVisibleRefresh()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">virtual bool StApi::IStNodeMapDisplayWnd::GetVisibleRefresh </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">pure virtual</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+<p>リフレッシュボタンの表示/非表示を確認します。 </p><dl class="section return"><dt>戻り値</dt><dd>リフレッシュボタンが表示されている場合、 true が返されます。 </dd></dl>
+<dl class="exception"><dt>例外</dt><dd>
+  <table class="exception">
+    <tr><td class="paramname">なし</td><td></td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a id="a4b539b8d821892583c2dd85ce3bd8229"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a4b539b8d821892583c2dd85ce3bd8229">&#9670;&nbsp;</a></span>SetVisibleRefresh()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">virtual void StApi::IStNodeMapDisplayWnd::SetVisibleRefresh </td>
+          <td>(</td>
+          <td class="paramtype">bool&#160;</td>
+          <td class="paramname"><em>value</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">pure virtual</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+<p>リフレッシュボタンの表示/非表示を設定します。 </p><dl class="params"><dt>引数</dt><dd>
+  <table class="params">
+    <tr><td class="paramdir">[in]</td><td class="paramname">value</td><td>リフレッシュボタンを表示する場合、 true を指定します。 </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="exception"><dt>例外</dt><dd>
+  <table class="exception">
+    <tr><td class="paramname">なし</td><td></td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a id="ad98e52f1c6e175899fdde1c4b98cd5a3"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ad98e52f1c6e175899fdde1c4b98cd5a3">&#9670;&nbsp;</a></span>GetVisiblePolling()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">virtual bool StApi::IStNodeMapDisplayWnd::GetVisiblePolling </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">pure virtual</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+<p>ポーリングチェックボックスの表示/非表示を確認します。 </p><dl class="section return"><dt>戻り値</dt><dd>ポーリングチェックボックスが表示されている場合、 true が返されます。 </dd></dl>
+<dl class="exception"><dt>例外</dt><dd>
+  <table class="exception">
+    <tr><td class="paramname">なし</td><td></td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a id="af1a31e9e313a0dbabe35b9e3a887572f"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#af1a31e9e313a0dbabe35b9e3a887572f">&#9670;&nbsp;</a></span>SetVisiblePolling()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">virtual void StApi::IStNodeMapDisplayWnd::SetVisiblePolling </td>
+          <td>(</td>
+          <td class="paramtype">bool&#160;</td>
+          <td class="paramname"><em>value</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">pure virtual</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+<p>ポーリングチェックボックスの表示/非表示を設定します。 </p><dl class="params"><dt>引数</dt><dd>
+  <table class="params">
+    <tr><td class="paramdir">[in]</td><td class="paramname">value</td><td>ポーリングチェックボックスを表示する場合、 true を指定します。 </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="exception"><dt>例外</dt><dd>
+  <table class="exception">
+    <tr><td class="paramname">なし</td><td></td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a id="a1bd26aebd315038c1741cd190a99a8ea"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a1bd26aebd315038c1741cd190a99a8ea">&#9670;&nbsp;</a></span>GetVisibleVisibility()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">virtual bool StApi::IStNodeMapDisplayWnd::GetVisibleVisibility </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">pure virtual</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+<p>Visibilityコンボボックスの表示/非表示を確認します。 </p><dl class="section return"><dt>戻り値</dt><dd>Visibilityコンボボックスが表示されている場合、 true が返されます。 </dd></dl>
+<dl class="exception"><dt>例外</dt><dd>
+  <table class="exception">
+    <tr><td class="paramname">なし</td><td></td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a id="adef796ac3745d1ace6de355496f65b57"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#adef796ac3745d1ace6de355496f65b57">&#9670;&nbsp;</a></span>SetVisibleVisibility()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">virtual void StApi::IStNodeMapDisplayWnd::SetVisibleVisibility </td>
+          <td>(</td>
+          <td class="paramtype">bool&#160;</td>
+          <td class="paramname"><em>value</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">pure virtual</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+<p>Visibilityコンボボックスの表示/非表示を設定します。 </p><dl class="params"><dt>引数</dt><dd>
+  <table class="params">
+    <tr><td class="paramdir">[in]</td><td class="paramname">value</td><td>Visibilityコンボボックスを表示する場合、 true を指定します。 </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="exception"><dt>例外</dt><dd>
+  <table class="exception">
+    <tr><td class="paramname">なし</td><td></td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a id="af5900c7af84bee1dda48b9b25bfb1951"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#af5900c7af84bee1dda48b9b25bfb1951">&#9670;&nbsp;</a></span>GetVisibleDescription()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">virtual bool StApi::IStNodeMapDisplayWnd::GetVisibleDescription </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">pure virtual</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+<p>説明文の表示/非表示を確認します。 </p><dl class="section return"><dt>戻り値</dt><dd>説明文が表示されている場合、 true が返されます。 </dd></dl>
+<dl class="exception"><dt>例外</dt><dd>
+  <table class="exception">
+    <tr><td class="paramname">なし</td><td></td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a id="ae6e47e3973a6339e16432d286172e4d2"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ae6e47e3973a6339e16432d286172e4d2">&#9670;&nbsp;</a></span>SetVisibleDescription()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">virtual void StApi::IStNodeMapDisplayWnd::SetVisibleDescription </td>
+          <td>(</td>
+          <td class="paramtype">bool&#160;</td>
+          <td class="paramname"><em>value</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">pure virtual</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+<p>説明文の表示/非表示を設定します。 </p><dl class="params"><dt>引数</dt><dd>
+  <table class="params">
+    <tr><td class="paramdir">[in]</td><td class="paramname">value</td><td>説明文を表示する場合、 true を指定します。 </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="exception"><dt>例外</dt><dd>
+  <table class="exception">
+    <tr><td class="paramname">なし</td><td></td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a id="abf28cd979cb05ba55c5f75dade782160"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#abf28cd979cb05ba55c5f75dade782160">&#9670;&nbsp;</a></span>GetVisibleDescriptionSampleCode()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">virtual bool StApi::IStNodeMapDisplayWnd::GetVisibleDescriptionSampleCode </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">pure virtual</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+<p>説明文内のサンプルプログラムの表示/非表示を確認します。 </p><dl class="section return"><dt>戻り値</dt><dd>説明文内のサンプルプログラムが表示されている場合、 true が返されます。 </dd></dl>
+<dl class="exception"><dt>例外</dt><dd>
+  <table class="exception">
+    <tr><td class="paramname">なし</td><td></td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a id="a9a18fefb7c56f47896091178c6fbbc86"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a9a18fefb7c56f47896091178c6fbbc86">&#9670;&nbsp;</a></span>SetVisibleDescriptionSampleCode()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">virtual void StApi::IStNodeMapDisplayWnd::SetVisibleDescriptionSampleCode </td>
+          <td>(</td>
+          <td class="paramtype">bool&#160;</td>
+          <td class="paramname"><em>value</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">pure virtual</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+<p>説明文内のサンプルプログラムの表示/非表示を設定します。 </p><dl class="params"><dt>引数</dt><dd>
+  <table class="params">
+    <tr><td class="paramdir">[in]</td><td class="paramname">value</td><td>説明文内のサンプルプログラムを表示する場合、 true を指定します。 </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="exception"><dt>例外</dt><dd>
+  <table class="exception">
+    <tr><td class="paramname">なし</td><td></td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a id="a5d64b8e9f5a75e935bcb4de6c6db55f3"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a5d64b8e9f5a75e935bcb4de6c6db55f3">&#9670;&nbsp;</a></span>GetVisibleFilter()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">virtual bool StApi::IStNodeMapDisplayWnd::GetVisibleFilter </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">pure virtual</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+<p>Filterチェックボックスおよびテキストボックスの表示/非表示を確認します。 </p><dl class="section return"><dt>戻り値</dt><dd>Filterチェックボックスおよびテキストボックスが表示されている場合、 true が返されます。 </dd></dl>
+<dl class="exception"><dt>例外</dt><dd>
+  <table class="exception">
+    <tr><td class="paramname">なし</td><td></td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section since"><dt>から</dt><dd>StApi v1.1.1 </dd></dl>
+
+</div>
+</div>
+<a id="ad0f2ae737392f8a9b0068f94fd91bb0f"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ad0f2ae737392f8a9b0068f94fd91bb0f">&#9670;&nbsp;</a></span>SetVisibleFilter()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">virtual void StApi::IStNodeMapDisplayWnd::SetVisibleFilter </td>
+          <td>(</td>
+          <td class="paramtype">bool&#160;</td>
+          <td class="paramname"><em>value</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">pure virtual</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+<p>Filterチェックボックスおよびテキストボックスの表示/非表示を設定します。 </p><dl class="params"><dt>引数</dt><dd>
+  <table class="params">
+    <tr><td class="paramdir">[in]</td><td class="paramname">value</td><td>Filterチェックボックスおよびテキストボックスを表示する場合、 true を指定します。 </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="exception"><dt>例外</dt><dd>
+  <table class="exception">
+    <tr><td class="paramname">なし</td><td></td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section since"><dt>から</dt><dd>StApi v1.1.1 </dd></dl>
+
+</div>
+</div>
+<a id="a6c9a58176f499a137ed6eca2c2245db0"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a6c9a58176f499a137ed6eca2c2245db0">&#9670;&nbsp;</a></span>GetFilterText()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">virtual <a class="el" href="classGenICam_1_1gcstring.html">GenICam::gcstring</a> StApi::IStNodeMapDisplayWnd::GetFilterText </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">pure virtual</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+<p>フィルター文字列を取得します。 </p><dl class="exception"><dt>例外</dt><dd>
+  <table class="exception">
+    <tr><td class="paramname">メモリー確保に失敗した場合は、例外</td><td><a class="el" href="classGenICam_1_1GenericException.html" title="GenICam&#39;s exception class">GenICam::GenericException</a> が発生します。 </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section since"><dt>から</dt><dd>StApi v1.1.1 </dd></dl>
+
+</div>
+</div>
+<a id="a6e362f3a2289b7abbaa832ed7a732fc1"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a6e362f3a2289b7abbaa832ed7a732fc1">&#9670;&nbsp;</a></span>SetFilterText()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">virtual void StApi::IStNodeMapDisplayWnd::SetFilterText </td>
+          <td>(</td>
+          <td class="paramtype">const <a class="el" href="classGenICam_1_1gcstring.html">GenICam::gcstring</a> &amp;&#160;</td>
+          <td class="paramname"><em>strFilter</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">pure virtual</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+<p>フィルター文字列を設定します。 </p><dl class="params"><dt>引数</dt><dd>
+  <table class="params">
+    <tr><td class="paramdir">[in]</td><td class="paramname">strFilter</td><td>フィルター文字列 </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="exception"><dt>例外</dt><dd>
+  <table class="exception">
+    <tr><td class="paramname">メモリー確保に失敗した場合は、例外</td><td><a class="el" href="classGenICam_1_1GenericException.html" title="GenICam&#39;s exception class">GenICam::GenericException</a> が発生します。 </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section since"><dt>から</dt><dd>StApi v1.1.1 </dd></dl>
+
+</div>
+</div>
+<a id="abbe7ae20d8b8caeccd8f17df0414f7bb"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#abbe7ae20d8b8caeccd8f17df0414f7bb">&#9670;&nbsp;</a></span>GetEnableFilter()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">virtual bool StApi::IStNodeMapDisplayWnd::GetEnableFilter </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">pure virtual</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+<p>Filterが有効化否かを確認します。 </p><dl class="section return"><dt>戻り値</dt><dd>Filterが有効な場合、 true が返されます。 </dd></dl>
+<dl class="exception"><dt>例外</dt><dd>
+  <table class="exception">
+    <tr><td class="paramname">なし</td><td></td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section since"><dt>から</dt><dd>StApi v1.1.1 </dd></dl>
+
+</div>
+</div>
+<a id="a1895cc716f9d8e1ee57602719e758c8f"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a1895cc716f9d8e1ee57602719e758c8f">&#9670;&nbsp;</a></span>SetEnableFilter()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">virtual void StApi::IStNodeMapDisplayWnd::SetEnableFilter </td>
+          <td>(</td>
+          <td class="paramtype">bool&#160;</td>
+          <td class="paramname"><em>value</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">pure virtual</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+<p>Filterを有効化または無効化します。 </p><dl class="params"><dt>引数</dt><dd>
+  <table class="params">
+    <tr><td class="paramdir">[in]</td><td class="paramname">value</td><td>Filterを有効化する場合、 true を指定します。 </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="exception"><dt>例外</dt><dd>
+  <table class="exception">
+    <tr><td class="paramname">なし</td><td></td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section since"><dt>から</dt><dd>StApi v1.1.1 </dd></dl>
+
+</div>
+</div>
+<a id="ad20ef7d5c151d81aee609f40b8de4269"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ad20ef7d5c151d81aee609f40b8de4269">&#9670;&nbsp;</a></span>GetEnableRegularExpression()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">virtual bool StApi::IStNodeMapDisplayWnd::GetEnableRegularExpression </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">pure virtual</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+<p>正規表現フィルターが有効化否かを確認します。 </p><dl class="section return"><dt>戻り値</dt><dd>正規表現フィルターが有効な場合、 true が返されます。 </dd></dl>
+<dl class="exception"><dt>例外</dt><dd>
+  <table class="exception">
+    <tr><td class="paramname">なし</td><td></td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section since"><dt>から</dt><dd>StApi v1.1.1 </dd></dl>
+
+</div>
+</div>
+<a id="a4594dfec7c2e8b08038e489c6281a38c"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a4594dfec7c2e8b08038e489c6281a38c">&#9670;&nbsp;</a></span>SetEnableRegularExpression()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">virtual void StApi::IStNodeMapDisplayWnd::SetEnableRegularExpression </td>
+          <td>(</td>
+          <td class="paramtype">bool&#160;</td>
+          <td class="paramname"><em>value</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">pure virtual</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+<p>正規表現フィルターを有効化または無効化します。 </p><dl class="params"><dt>引数</dt><dd>
+  <table class="params">
+    <tr><td class="paramdir">[in]</td><td class="paramname">value</td><td>正規表現フィルターを有効化する場合、 true を指定します。 </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="exception"><dt>例外</dt><dd>
+  <table class="exception">
+    <tr><td class="paramname">なし</td><td></td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section since"><dt>から</dt><dd>StApi v1.1.1 </dd></dl>
+
+</div>
+</div>
+</div><!-- contents -->
+<!-- HTML footer for doxygen 1.8.13-->
+<!-- start footer part -->
+<hr class="footer"/>
+	<address class="footer">
+		<small>
+2021年10月26日(火) 13時10分26秒作成 - Sentech SDK / 構成:  &#160;
+			<a href="http://www.sentech.co.jp/">
+				<img class="footer" src="string_omron_sentech.png" alt="OMRON SENTECH CO., LTD"/>
+			</a>
+			<!--
+				DoxyGen Version =  1.8.15
+			-->
+		</small>
+	</address>
+</body>
+</html>

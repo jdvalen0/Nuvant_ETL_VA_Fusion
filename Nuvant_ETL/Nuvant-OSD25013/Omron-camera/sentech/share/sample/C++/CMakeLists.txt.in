@@ -1,0 +1,49 @@
+cmake_minimum_required (VERSION 3.2)
+
+if (APPLE)
+    set (FRAMEWORKPATH /Library/Frameworks/SentechSDK.framework)
+    set (CMAKE_MACOSX_RPATH 1)
+    set (CMAKE_INSTALL_RPATH "${FRAMEWORKPATH}/Libraries")
+endif()
+
+###############################################################################
+# Compile parameters
+###############################################################################
+set (CMAKE_CXX_STANDARD 11) 
+set (CMAKE_VERBOSE_MAKEFILE ON)
+
+add_compile_options(-Wall -Wextra --pedantic -Wno-unknown-pragmas -Wno-switch
+    -Wno-unused-but-set-variable -Wno-pointer-arith -Wno-unused-parameter)
+
+include_directories($ENV{STAPI_ROOT_PATH}/include/GenICam)
+include_directories($ENV{STAPI_ROOT_PATH}/include/StApi)
+link_directories($ENV{STAPI_ROOT_PATH}/lib)
+link_directories($ENV{STAPI_ROOT_PATH}/lib/GenICam)
+
+set (Genicam_Library
+    libGCBase.so
+    libGenApi.so
+)
+
+set (StApi_TL_Library libStApi_TL.so)
+set (StApi_IP_Library libStApi_IP.so)
+set (StApi_GUI_Library libStApi_GUI_qt.so)
+
+function(doCompile target sources withTL withIP withGUI)
+   set (TARGET ${target})
+   set (SOURCES ${sources})
+
+   if (${withTL})
+       set (LIBS ${LIBS} ${StApi_TL_Library})
+   endif(${withTL})
+   if (${withIP})
+       set (LIBS ${LIBS} ${StApi_IP_Library})
+   endif(${withIP})
+   if (${withGUI})
+       set (LIBS ${LIBS} ${StApi_GUI_Library})
+   endif(${withGUI})
+   set (LIBS ${LIBS} -lpthread)
+
+   add_executable(${TARGET} ${SOURCES}) 
+   target_link_libraries(${TARGET} ${Genicam_Library} ${LIBS})
+endfunction(doCompile)

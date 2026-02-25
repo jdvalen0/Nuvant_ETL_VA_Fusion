@@ -1,0 +1,562 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "https://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=9"/>
+<meta name="generator" content="Doxygen 1.8.15"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>Sentech SDK: GenApi::CNodeMapFactory クラス</title>
+<link href="tabs.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="jquery.js"></script>
+<script type="text/javascript" src="dynsections.js"></script>
+<link href="doxygen.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+<div id="top"><!-- do not remove this div, it is closed by doxygen! -->
+<div id="titlearea">
+<table cellspacing="0" cellpadding="0">
+ <tbody>
+ <tr style="height: 56px;">
+  <td id="projectalign" style="padding-left: 0.5em;">
+   <div id="projectname">Sentech SDK
+   </div>
+  </td>
+ </tr>
+ </tbody>
+</table>
+</div>
+<!-- end header part -->
+<!-- 構築: Doxygen 1.8.15 -->
+<script type="text/javascript" src="menudata.js"></script>
+<script type="text/javascript" src="menu.js"></script>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:cf05388f2679ee054f2beb29a391d25f4e673ac3&amp;dn=gpl-2.0.txt GPL-v2 */
+$(function() {
+  initMenu('',false,false,'search.php','検索');
+});
+/* @license-end */</script>
+<div id="main-nav"></div>
+<div id="nav-path" class="navpath">
+  <ul>
+<li class="navelem"><b>GenApi</b></li><li class="navelem"><a class="el" href="classGenApi_1_1CNodeMapFactory.html">CNodeMapFactory</a></li>  </ul>
+</div>
+</div><!-- top -->
+<div class="header">
+  <div class="summary">
+<a href="#pub-methods">公開メンバ関数</a> &#124;
+<a href="#pub-static-methods">静的公開メンバ関数</a> &#124;
+<a href="classGenApi_1_1CNodeMapFactory-members.html">全メンバ一覧</a>  </div>
+  <div class="headertitle">
+<div class="title">GenApi::CNodeMapFactory クラス<div class="ingroups"><a class="el" href="group__GenApi__PublicInterface.html">GenApiモジュール抽象インターフェース</a></div></div>  </div>
+</div><!--header-->
+<div class="contents">
+
+<p>The node map factory is used for creating node maps from camera description files.  
+ <a href="classGenApi_1_1CNodeMapFactory.html#details">[詳解]</a></p>
+<table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-methods"></a>
+公開メンバ関数</h2></td></tr>
+<tr class="memitem:a94e7b92ba383482aba055de29465f109"><td class="memItemLeft" align="right" valign="top"><a id="a94e7b92ba383482aba055de29465f109"></a>
+&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classGenApi_1_1CNodeMapFactory.html#a94e7b92ba383482aba055de29465f109">CNodeMapFactory</a> ()</td></tr>
+<tr class="memdesc:a94e7b92ba383482aba055de29465f109"><td class="mdescLeft">&#160;</td><td class="mdescRight">Creates an empty node map factory for assigning a non-empty node map factory later. <br /></td></tr>
+<tr class="separator:a94e7b92ba383482aba055de29465f109"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a1167ac74654b819d5abbe8e04acf33c3"><td class="memItemLeft" align="right" valign="top"><a id="a1167ac74654b819d5abbe8e04acf33c3"></a>
+virtual&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classGenApi_1_1CNodeMapFactory.html#a1167ac74654b819d5abbe8e04acf33c3">~CNodeMapFactory</a> ()</td></tr>
+<tr class="memdesc:a1167ac74654b819d5abbe8e04acf33c3"><td class="mdescLeft">&#160;</td><td class="mdescRight">Destroys the node map factory data if all references to the data have been released. <br /></td></tr>
+<tr class="separator:a1167ac74654b819d5abbe8e04acf33c3"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:af48c35f34c35834bfa283e6b8d9997a5"><td class="memItemLeft" align="right" valign="top"><a id="af48c35f34c35834bfa283e6b8d9997a5"></a>
+&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classGenApi_1_1CNodeMapFactory.html#af48c35f34c35834bfa283e6b8d9997a5">CNodeMapFactory</a> (const <a class="el" href="classGenApi_1_1CNodeMapFactory.html">CNodeMapFactory</a> &amp;)</td></tr>
+<tr class="memdesc:af48c35f34c35834bfa283e6b8d9997a5"><td class="mdescLeft">&#160;</td><td class="mdescRight">Creates another reference to the node map factory data. No data is copied. <br /></td></tr>
+<tr class="separator:af48c35f34c35834bfa283e6b8d9997a5"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:af061cf35964b1054d2194e5d9917abeb"><td class="memItemLeft" align="right" valign="top"><a id="af061cf35964b1054d2194e5d9917abeb"></a>
+<a class="el" href="classGenApi_1_1CNodeMapFactory.html">CNodeMapFactory</a> &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classGenApi_1_1CNodeMapFactory.html#af061cf35964b1054d2194e5d9917abeb">operator=</a> (const <a class="el" href="classGenApi_1_1CNodeMapFactory.html">CNodeMapFactory</a> &amp;)</td></tr>
+<tr class="memdesc:af061cf35964b1054d2194e5d9917abeb"><td class="mdescLeft">&#160;</td><td class="mdescRight">Creates another reference to the assigned node map factory data. Destroys the "overwritten" node map factory data if all references to the data have been released. <br /></td></tr>
+<tr class="separator:af061cf35964b1054d2194e5d9917abeb"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ad6be8c9fe1b2832793075d300204192e"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classGenApi_1_1CNodeMapFactory.html#ad6be8c9fe1b2832793075d300204192e">CNodeMapFactory</a> (<a class="el" href="group__GenApi__PublicInterface.html#ga8505fa9e1face1d778ae710a12f6b97a">EContentType_t</a> FileType, const <a class="el" href="classGenICam_1_1gcstring.html">GenICam::gcstring</a> &amp;FileName, <a class="el" href="group__GenApi__PublicInterface.html#ga1cb5866cf237ac6d0ce5f54ecc7842a5">ECacheUsage_t</a> CacheUsage=CacheUsage_Automatic, bool SuppressStringsOnLoad=false)</td></tr>
+<tr class="memdesc:ad6be8c9fe1b2832793075d300204192e"><td class="mdescLeft">&#160;</td><td class="mdescRight">Creates the node map factory and simply stores the full path to the provided camera description file data.  <a href="#ad6be8c9fe1b2832793075d300204192e">[詳解]</a><br /></td></tr>
+<tr class="separator:ad6be8c9fe1b2832793075d300204192e"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:adeb11277eb0d2bae872a40f1c9712cd1"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classGenApi_1_1CNodeMapFactory.html#adeb11277eb0d2bae872a40f1c9712cd1">CNodeMapFactory</a> (<a class="el" href="group__GenApi__PublicInterface.html#ga8505fa9e1face1d778ae710a12f6b97a">EContentType_t</a> ContentType, const void *pData, size_t DataSize, <a class="el" href="group__GenApi__PublicInterface.html#ga1cb5866cf237ac6d0ce5f54ecc7842a5">ECacheUsage_t</a> CacheUsage=CacheUsage_Automatic, bool SuppressStringsOnLoad=false)</td></tr>
+<tr class="memdesc:adeb11277eb0d2bae872a40f1c9712cd1"><td class="mdescLeft">&#160;</td><td class="mdescRight">Creates the node map factory and simply stores the pointer and the size of the provided camera description file data.  <a href="#adeb11277eb0d2bae872a40f1c9712cd1">[詳解]</a><br /></td></tr>
+<tr class="separator:adeb11277eb0d2bae872a40f1c9712cd1"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a617a9c543f0b18f1de15137b5e4a2462"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classGenApi_1_1CNodeMapFactory.html#a617a9c543f0b18f1de15137b5e4a2462">CNodeMapFactory</a> (const <a class="el" href="classGenICam_1_1gcstring.html">GenICam::gcstring</a> &amp;XmlData, <a class="el" href="group__GenApi__PublicInterface.html#ga1cb5866cf237ac6d0ce5f54ecc7842a5">ECacheUsage_t</a> CacheUsage=CacheUsage_Automatic, bool SuppressStringsOnLoad=false)</td></tr>
+<tr class="memdesc:a617a9c543f0b18f1de15137b5e4a2462"><td class="mdescLeft">&#160;</td><td class="mdescRight">Creates the node map factory and copies the provided camera description file string.  <a href="#a617a9c543f0b18f1de15137b5e4a2462">[詳解]</a><br /></td></tr>
+<tr class="separator:a617a9c543f0b18f1de15137b5e4a2462"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a6b839311d9bfe9af7d2fa86372dbc08a"><td class="memItemLeft" align="right" valign="top"><a id="a6b839311d9bfe9af7d2fa86372dbc08a"></a>
+bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classGenApi_1_1CNodeMapFactory.html#a6b839311d9bfe9af7d2fa86372dbc08a">IsEmpty</a> () const</td></tr>
+<tr class="memdesc:a6b839311d9bfe9af7d2fa86372dbc08a"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns true if nothing is loaded (<a class="el" href="classGenApi_1_1CNodeMapFactory.html#a969e6eb7acb11473107903083c14ea27" title="Can be used to check whether the LoadAndInject() processing step has been performed....">IsLoaded()</a>) and no source data is available, e.g. when the node map factory has been created with the default constructor. <br /></td></tr>
+<tr class="separator:a6b839311d9bfe9af7d2fa86372dbc08a"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a0988e140c1f51c2731448553680c9aa2"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classGenApi_1_1CNodeMapFactory.html#a0988e140c1f51c2731448553680c9aa2">AddInjectionData</a> (<a class="el" href="classGenApi_1_1CNodeMapFactory.html">CNodeMapFactory</a> &amp;injectionData)</td></tr>
+<tr class="memdesc:a0988e140c1f51c2731448553680c9aa2"><td class="mdescLeft">&#160;</td><td class="mdescRight">Adds a node map factory representing a camera description file to inject.  <a href="#a0988e140c1f51c2731448553680c9aa2">[詳解]</a><br /></td></tr>
+<tr class="separator:a0988e140c1f51c2731448553680c9aa2"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a207a1b6676f1431200342a8f9a9a6993"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classGenApi_1_1CNodeMapFactory.html#a207a1b6676f1431200342a8f9a9a6993">LoadAndInject</a> ()</td></tr>
+<tr class="memdesc:a207a1b6676f1431200342a8f9a9a6993"><td class="mdescLeft">&#160;</td><td class="mdescRight">Advanced: Loads, Parses, and Injects the camera description files recursively. The result is a memory internal representation of the camera description file(s), the CNodeDataMap (not part of the public interface).  <a href="#a207a1b6676f1431200342a8f9a9a6993">[詳解]</a><br /></td></tr>
+<tr class="separator:a207a1b6676f1431200342a8f9a9a6993"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a969e6eb7acb11473107903083c14ea27"><td class="memItemLeft" align="right" valign="top"><a id="a969e6eb7acb11473107903083c14ea27"></a>
+bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classGenApi_1_1CNodeMapFactory.html#a969e6eb7acb11473107903083c14ea27">IsLoaded</a> () const</td></tr>
+<tr class="memdesc:a969e6eb7acb11473107903083c14ea27"><td class="mdescLeft">&#160;</td><td class="mdescRight">Can be used to check whether the <a class="el" href="classGenApi_1_1CNodeMapFactory.html#a207a1b6676f1431200342a8f9a9a6993" title="Advanced: Loads, Parses, and Injects the camera description files recursively. The result is a memory...">LoadAndInject()</a> processing step has been performed. Returns true if <a class="el" href="classGenApi_1_1CNodeMapFactory.html#a5f4f8928a389b7042f14e5a327229060" title="Can be used to check whether the Preprocess() processing step has been performed.">IsPreprocessed()</a> returns true (Preprocessed Data has been loaded from cache). <br /></td></tr>
+<tr class="separator:a969e6eb7acb11473107903083c14ea27"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aa90011f60cbb7224347e77f8e77a01ff"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classGenApi_1_1CNodeMapFactory.html">CNodeMapFactory</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classGenApi_1_1CNodeMapFactory.html#aa90011f60cbb7224347e77f8e77a01ff">ExtractSubtree</a> (const <a class="el" href="classGenICam_1_1gcstring.html">GenICam::gcstring</a> &amp;SubTreeRootNodeName, bool doRenameToRoot=false)</td></tr>
+<tr class="memdesc:aa90011f60cbb7224347e77f8e77a01ff"><td class="mdescLeft">&#160;</td><td class="mdescRight">The name of the node that represents the root of the subtree that shall be extracted.  <a href="#aa90011f60cbb7224347e77f8e77a01ff">[詳解]</a><br /></td></tr>
+<tr class="separator:aa90011f60cbb7224347e77f8e77a01ff"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aa1aad47371a6525f4f4706cb4943c53a"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classGenApi_1_1CNodeMapFactory.html#aa1aad47371a6525f4f4706cb4943c53a">Preprocess</a> ()</td></tr>
+<tr class="memdesc:aa1aad47371a6525f4f4706cb4943c53a"><td class="mdescLeft">&#160;</td><td class="mdescRight">Advanced: Creates the preprocessed memory internal representation of the camera description file(s), the CNodeDataMap (not part of the public interface).  <a href="#aa1aad47371a6525f4f4706cb4943c53a">[詳解]</a><br /></td></tr>
+<tr class="separator:aa1aad47371a6525f4f4706cb4943c53a"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a5f4f8928a389b7042f14e5a327229060"><td class="memItemLeft" align="right" valign="top"><a id="a5f4f8928a389b7042f14e5a327229060"></a>
+bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classGenApi_1_1CNodeMapFactory.html#a5f4f8928a389b7042f14e5a327229060">IsPreprocessed</a> () const</td></tr>
+<tr class="memdesc:a5f4f8928a389b7042f14e5a327229060"><td class="mdescLeft">&#160;</td><td class="mdescRight">Can be used to check whether the <a class="el" href="classGenApi_1_1CNodeMapFactory.html#aa1aad47371a6525f4f4706cb4943c53a" title="Advanced: Creates the preprocessed memory internal representation of the camera description file(s),...">Preprocess()</a> processing step has been performed. <br /></td></tr>
+<tr class="separator:a5f4f8928a389b7042f14e5a327229060"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a17b0665d7edbf011c9f7beabf6a7e152"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classGenApi_1_1CNodeMapFactory.html#a17b0665d7edbf011c9f7beabf6a7e152">ReleaseCameraDescriptionFileData</a> ()</td></tr>
+<tr class="memdesc:a17b0665d7edbf011c9f7beabf6a7e152"><td class="mdescLeft">&#160;</td><td class="mdescRight">Advanced: Releases any in constructors provided camera description file data buffers or files.  <a href="#a17b0665d7edbf011c9f7beabf6a7e152">[詳解]</a><br /></td></tr>
+<tr class="separator:a17b0665d7edbf011c9f7beabf6a7e152"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a448adf027895676397d183d95bf70732"><td class="memItemLeft" align="right" valign="top"><a id="a448adf027895676397d183d95bf70732"></a>
+bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classGenApi_1_1CNodeMapFactory.html#a448adf027895676397d183d95bf70732">IsCameraDescriptionFileDataReleased</a> () const</td></tr>
+<tr class="memdesc:a448adf027895676397d183d95bf70732"><td class="mdescLeft">&#160;</td><td class="mdescRight">Can be used to check whether the <a class="el" href="classGenApi_1_1CNodeMapFactory.html#a17b0665d7edbf011c9f7beabf6a7e152" title="Advanced: Releases any in constructors provided camera description file data buffers or files.">ReleaseCameraDescriptionFileData()</a> processing step has been performed. <br /></td></tr>
+<tr class="separator:a448adf027895676397d183d95bf70732"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aa39a738ba032d566a5083b83f7f72a2d"><td class="memItemLeft" align="right" valign="top"><a class="el" href="structGenApi_1_1INodeMap.html">INodeMap</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classGenApi_1_1CNodeMapFactory.html#aa39a738ba032d566a5083b83f7f72a2d">CreateNodeMap</a> (const <a class="el" href="classGenICam_1_1gcstring.html">GenICam::gcstring</a> &amp;DeviceName=&quot;Device&quot;, bool DoReleaseCameraDescriptionFileData=true)</td></tr>
+<tr class="memdesc:aa39a738ba032d566a5083b83f7f72a2d"><td class="mdescLeft">&#160;</td><td class="mdescRight">Creates a node map from the preprocessed memory internal representation of the camera description file(s).  <a href="#aa39a738ba032d566a5083b83f7f72a2d">[詳解]</a><br /></td></tr>
+<tr class="separator:aa39a738ba032d566a5083b83f7f72a2d"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:abd147a03efdd80701429b8a3cb63ed07"><td class="memItemLeft" align="right" valign="top"><a class="el" href="structGenApi_1_1INodeMap.html">INodeMap</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classGenApi_1_1CNodeMapFactory.html#abd147a03efdd80701429b8a3cb63ed07">CreateNodeMap</a> (<a class="el" href="classGenApi_1_1CLock.html">CLock</a> &amp;UserProvidedLock, const <a class="el" href="classGenICam_1_1gcstring.html">GenICam::gcstring</a> &amp;DeviceName=&quot;Device&quot;, bool DoReleaseCameraDescriptionFileData=true)</td></tr>
+<tr class="memdesc:abd147a03efdd80701429b8a3cb63ed07"><td class="mdescLeft">&#160;</td><td class="mdescRight">Creates a node map from the preprocessed memory internal representation of the camera description file(s).  <a href="#abd147a03efdd80701429b8a3cb63ed07">[詳解]</a><br /></td></tr>
+<tr class="separator:abd147a03efdd80701429b8a3cb63ed07"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a6596baf16a353b31041cb1c18b13d1b6"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classGenApi_1_1CNodeMapFactory.html#a6596baf16a353b31041cb1c18b13d1b6">GetSupportedSchemaVersions</a> (GenICam::gcstring_vector &amp;SchemaVersions) const</td></tr>
+<tr class="separator:a6596baf16a353b31041cb1c18b13d1b6"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ad02d1dbc5abda882c258f80aecd9464d"><td class="memItemLeft" align="right" valign="top"><a id="ad02d1dbc5abda882c258f80aecd9464d"></a>
+<a class="el" href="classGenICam_1_1gcstring.html">GenICam::gcstring</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classGenApi_1_1CNodeMapFactory.html#ad02d1dbc5abda882c258f80aecd9464d">ToString</a> () const</td></tr>
+<tr class="memdesc:ad02d1dbc5abda882c258f80aecd9464d"><td class="mdescLeft">&#160;</td><td class="mdescRight">Outputs the pre-processed node map in string form (for debug purpose) <br /></td></tr>
+<tr class="separator:ad02d1dbc5abda882c258f80aecd9464d"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a70545b6e8453cecd2366a1e2a6c04a5f"><td class="memItemLeft" align="right" valign="top"><a id="a70545b6e8453cecd2366a1e2a6c04a5f"></a>
+<a class="el" href="classGenICam_1_1gcstring.html">GenICam::gcstring</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classGenApi_1_1CNodeMapFactory.html#a70545b6e8453cecd2366a1e2a6c04a5f">ToXml</a> () const</td></tr>
+<tr class="memdesc:a70545b6e8453cecd2366a1e2a6c04a5f"><td class="mdescLeft">&#160;</td><td class="mdescRight">Outputs the pre-processed node map in XML form (mainly for debug purpose) <br /></td></tr>
+<tr class="separator:a70545b6e8453cecd2366a1e2a6c04a5f"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a2fce71b5570b5e6fac80910566f57b52"><td class="memItemLeft" align="right" valign="top"><a id="a2fce71b5570b5e6fac80910566f57b52"></a>
+const <a class="el" href="classGenICam_1_1gcstring.html">GenICam::gcstring</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classGenApi_1_1CNodeMapFactory.html#a2fce71b5570b5e6fac80910566f57b52">ApplyStyleSheet</a> (const <a class="el" href="classGenICam_1_1gcstring.html">GenICam::gcstring</a> &amp;StyleSheetFileName)</td></tr>
+<tr class="memdesc:a2fce71b5570b5e6fac80910566f57b52"><td class="mdescLeft">&#160;</td><td class="mdescRight">Applies a style sheet to the pre-processed node map. <br /></td></tr>
+<tr class="separator:a2fce71b5570b5e6fac80910566f57b52"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-static-methods"></a>
+静的公開メンバ関数</h2></td></tr>
+<tr class="memitem:a612f341a9cf67c1557c55d8b7bfee72a"><td class="memItemLeft" align="right" valign="top"><a id="a612f341a9cf67c1557c55d8b7bfee72a"></a>
+static <a class="el" href="structGenApi_1_1INodeMap.html">INodeMap</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classGenApi_1_1CNodeMapFactory.html#a612f341a9cf67c1557c55d8b7bfee72a">CreateEmptyNodeMap</a> ()</td></tr>
+<tr class="memdesc:a612f341a9cf67c1557c55d8b7bfee72a"><td class="mdescLeft">&#160;</td><td class="mdescRight">Creates an empty node map usable as placeholder, e.g. if certain features are not supported by a module. <br /></td></tr>
+<tr class="separator:a612f341a9cf67c1557c55d8b7bfee72a"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a6b1d90b9b75b373bc474febfd5c2ff65"><td class="memItemLeft" align="right" valign="top"><a id="a6b1d90b9b75b373bc474febfd5c2ff65"></a>
+static bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classGenApi_1_1CNodeMapFactory.html#a6b1d90b9b75b373bc474febfd5c2ff65">ClearCache</a> ()</td></tr>
+<tr class="memdesc:a6b1d90b9b75b373bc474febfd5c2ff65"><td class="mdescLeft">&#160;</td><td class="mdescRight">Deletes all preprocessed camera description files from the cache. <br /></td></tr>
+<tr class="separator:a6b1d90b9b75b373bc474febfd5c2ff65"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table>
+<a name="details" id="details"></a><h2 class="groupheader">詳解</h2>
+<div class="textblock"><dl class="section user"><dt>Examples</dt><dd></dd></dl>
+<div class="fragment"><div class="line"><span class="comment">// Simple node map creation from buffer, downloaded from a device for instance.</span></div><div class="line"><a class="code" href="classGenApi_1_1CNodeMapFactory.html#a94e7b92ba383482aba055de29465f109">CNodeMapFactory</a> cameraNodeMapFactory( <a class="code" href="group__GenApi__PublicInterface.html#gga8505fa9e1face1d778ae710a12f6b97aa4c691615bfb96b49ba0cbc3ca717ce91">ContentType_ZippedXml</a>, buffer, bufferSize);</div><div class="line"></div><div class="line"><span class="comment">// Create the node map. The node map can be destroyed using the IDestroy interface later.</span></div><div class="line">INodeMap* pNodeMap = cameraNodeMapFactory.CreateNodeMap();</div><div class="line"><span class="comment">// The next step is attaching the device port (not shown).</span></div></div><!-- fragment --><div class="fragment"><div class="line"><span class="comment">// Node map creation with injecting additional xml fragments.</span></div><div class="line"><a class="code" href="classGenApi_1_1CNodeMapFactory.html#a94e7b92ba383482aba055de29465f109">CNodeMapFactory</a> cameraNodeMapFactory( <a class="code" href="group__GenApi__PublicInterface.html#gga8505fa9e1face1d778ae710a12f6b97aadfb5b59de28a09c7e4802e6f665dc054">ContentType_Xml</a>, buffer, bufferSize);</div><div class="line">cameraParameters.AddInjectionData( <a class="code" href="classGenApi_1_1CNodeMapFactory.html#a94e7b92ba383482aba055de29465f109">CNodeMapFactory</a>(<a class="code" href="group__GenApi__PublicInterface.html#gga8505fa9e1face1d778ae710a12f6b97aadfb5b59de28a09c7e4802e6f665dc054">ContentType_Xml</a>, filename1));</div><div class="line">cameraParameters.AddInjectionData( <a class="code" href="classGenApi_1_1CNodeMapFactory.html#a94e7b92ba383482aba055de29465f109">CNodeMapFactory</a>(<a class="code" href="group__GenApi__PublicInterface.html#gga8505fa9e1face1d778ae710a12f6b97aadfb5b59de28a09c7e4802e6f665dc054">ContentType_Xml</a>, filename2));</div><div class="line"></div><div class="line"><span class="comment">// Create the node map. The node map can be destroyed using the IDestroy interface later.</span></div><div class="line">INodeMap* pNodeMap = cameraNodeMapFactory.CreateNodeMap();</div><div class="line"><span class="comment">// The next step is attaching the device port (not shown).</span></div></div><!-- fragment --><div class="fragment"><div class="line"><span class="comment">// Node map creation and additional extraction of a category subtree.</span></div><div class="line"><a class="code" href="classGenApi_1_1CNodeMapFactory.html#a94e7b92ba383482aba055de29465f109">CNodeMapFactory</a> cameraNodeMapFactory( <a class="code" href="group__GenApi__PublicInterface.html#gga8505fa9e1face1d778ae710a12f6b97aadfb5b59de28a09c7e4802e6f665dc054">ContentType_Xml</a>, buffer, bufferSize);</div><div class="line"><span class="comment">// Extract a subtree for later chunk parsing.</span></div><div class="line"><a class="code" href="classGenApi_1_1CNodeMapFactory.html#a94e7b92ba383482aba055de29465f109">CNodeMapFactory</a> chunkDataNodeMapFactory = cameraParameters.ExtractSubtree(<span class="stringliteral">&quot;ChunkData&quot;</span>);</div><div class="line"></div><div class="line"><span class="comment">// Create the node map. The node map can be destroyed using the IDestroy interface later.</span></div><div class="line">INodeMap* pNodeMap = cameraParameters.CreateNodeMap();</div><div class="line"><span class="comment">// The next step is attaching the device port (not shown).</span></div></div><!-- fragment --><div class="fragment"><div class="line"><span class="comment">// Node map creation with injecting additional xml fragments and additional extraction of a category subtree.</span></div><div class="line"><a class="code" href="classGenApi_1_1CNodeMapFactory.html#a94e7b92ba383482aba055de29465f109">CNodeMapFactory</a> cameraNodeMapFactory( <a class="code" href="group__GenApi__PublicInterface.html#gga8505fa9e1face1d778ae710a12f6b97aadfb5b59de28a09c7e4802e6f665dc054">ContentType_Xml</a>, buffer, bufferSize);</div><div class="line">cameraParameters.AddInjectionData( <a class="code" href="classGenApi_1_1CNodeMapFactory.html#a94e7b92ba383482aba055de29465f109">CNodeMapFactory</a>(<a class="code" href="group__GenApi__PublicInterface.html#gga8505fa9e1face1d778ae710a12f6b97aadfb5b59de28a09c7e4802e6f665dc054">ContentType_Xml</a>, filename1));</div><div class="line">cameraParameters.AddInjectionData( <a class="code" href="classGenApi_1_1CNodeMapFactory.html#a94e7b92ba383482aba055de29465f109">CNodeMapFactory</a>(<a class="code" href="group__GenApi__PublicInterface.html#gga8505fa9e1face1d778ae710a12f6b97aadfb5b59de28a09c7e4802e6f665dc054">ContentType_Xml</a>, filename2));</div><div class="line"><a class="code" href="classGenApi_1_1CNodeMapFactory.html#a94e7b92ba383482aba055de29465f109">CNodeMapFactory</a> chunkDataNodeMapFactory = cameraNodeMapFactory.ExtractSubtree(<span class="stringliteral">&quot;ChunkData&quot;</span>);</div><div class="line"></div><div class="line"><span class="comment">// Create the node map. The node map can be destroyed using the IDestroy interface later.</span></div><div class="line">INodeMap* pNodeMap = cameraNodeMapFactory.CreateNodeMap();</div><div class="line"><span class="comment">// The next step is attaching the device port (not shown).</span></div><div class="line"></div><div class="line"><span class="comment">// A node map factory can create multiple node maps from the provided camera description file(s).</span></div><div class="line"><span class="keywordflow">for</span>(<span class="keywordtype">int</span> i = 0; i &lt; 20; ++i)</div><div class="line">{</div><div class="line">    INodeMap* pNodeMapChunks = chunkDataNodeMapFactory.CreateNodeMap();</div><div class="line">    <span class="comment">//...</span></div><div class="line">}</div></div><!-- fragment --><dl class="section attention"><dt>注意</dt><dd>The is <a class="el" href="classGenApi_1_1CNodeMapFactory.html" title="The node map factory is used for creating node maps from camera description files.">CNodeMapFactory</a> not thread-safe.</dd>
+<dd>
+You need to take care when camera description file data can be actually be freed, see method documentation of the node map factory for more detail. </dd></dl>
+</div><h2 class="groupheader">構築子と解体子</h2>
+<a id="ad6be8c9fe1b2832793075d300204192e"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ad6be8c9fe1b2832793075d300204192e">&#9670;&nbsp;</a></span>CNodeMapFactory() <span class="overload">[1/3]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">GenApi::CNodeMapFactory::CNodeMapFactory </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="group__GenApi__PublicInterface.html#ga8505fa9e1face1d778ae710a12f6b97a">EContentType_t</a>&#160;</td>
+          <td class="paramname"><em>FileType</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const <a class="el" href="classGenICam_1_1gcstring.html">GenICam::gcstring</a> &amp;&#160;</td>
+          <td class="paramname"><em>FileName</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="group__GenApi__PublicInterface.html#ga1cb5866cf237ac6d0ce5f54ecc7842a5">ECacheUsage_t</a>&#160;</td>
+          <td class="paramname"><em>CacheUsage</em> = <code>CacheUsage_Automatic</code>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">bool&#160;</td>
+          <td class="paramname"><em>SuppressStringsOnLoad</em> = <code>false</code>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<dl class="params"><dt>引数</dt><dd>
+  <table class="params">
+    <tr><td class="paramdir">[in]</td><td class="paramname">FileType</td><td>Defines how the camera description file is stored, e.g. as zipped XML text. </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">FileName</td><td>The full path of the camera description file to process. </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">CacheUsage</td><td>Defines if and how to use the cache for preprocessed camera description files. </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">SuppressStringsOnLoad</td><td>Suppresses loading strings that are not needed for most use cases, e.g. node tooltip or description, for reducing the memory footprint.</td></tr>
+  </table>
+  </dd>
+</dl>
+<p>Throws an invalid argument exception if FileName is empty. Throws if environment variables in FileName cannot be resolved.</p>
+<dl class="section attention"><dt>注意</dt><dd>The given file must be readable until the camera description file data has been released. The <a class="el" href="classGenApi_1_1CNodeMapFactory.html#a448adf027895676397d183d95bf70732" title="Can be used to check whether the ReleaseCameraDescriptionFileData() processing step has been performe...">IsCameraDescriptionFileDataReleased()</a> method can be used to check if releasing has been done. </dd></dl>
+
+</div>
+</div>
+<a id="adeb11277eb0d2bae872a40f1c9712cd1"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#adeb11277eb0d2bae872a40f1c9712cd1">&#9670;&nbsp;</a></span>CNodeMapFactory() <span class="overload">[2/3]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">GenApi::CNodeMapFactory::CNodeMapFactory </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="group__GenApi__PublicInterface.html#ga8505fa9e1face1d778ae710a12f6b97a">EContentType_t</a>&#160;</td>
+          <td class="paramname"><em>ContentType</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const void *&#160;</td>
+          <td class="paramname"><em>pData</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">size_t&#160;</td>
+          <td class="paramname"><em>DataSize</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="group__GenApi__PublicInterface.html#ga1cb5866cf237ac6d0ce5f54ecc7842a5">ECacheUsage_t</a>&#160;</td>
+          <td class="paramname"><em>CacheUsage</em> = <code>CacheUsage_Automatic</code>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">bool&#160;</td>
+          <td class="paramname"><em>SuppressStringsOnLoad</em> = <code>false</code>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<dl class="params"><dt>引数</dt><dd>
+  <table class="params">
+    <tr><td class="paramdir">[in]</td><td class="paramname">ContentType</td><td>Defines how the camera description file is stored, e.g. as zipped XML text. </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">pData</td><td>The pointer to the camera description file data. </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">DataSize</td><td>The size of the camera description file data. </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">CacheUsage</td><td>Defines if and how to use the cache for preprocessed camera description files. </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">SuppressStringsOnLoad</td><td>Suppresses loading strings that are not needed for most use cases, e.g. node tooltip or description, for reducing the memory footprint.</td></tr>
+  </table>
+  </dd>
+</dl>
+<p>Throws an invalid argument exception if pData is NULL or DataSize is 0.</p>
+<dl class="section attention"><dt>注意</dt><dd>The given buffer must not be freed or changed until the camera description file data has been released. The <a class="el" href="classGenApi_1_1CNodeMapFactory.html#a448adf027895676397d183d95bf70732" title="Can be used to check whether the ReleaseCameraDescriptionFileData() processing step has been performe...">IsCameraDescriptionFileDataReleased()</a> method can be used to check if releasing has been done. </dd></dl>
+
+</div>
+</div>
+<a id="a617a9c543f0b18f1de15137b5e4a2462"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a617a9c543f0b18f1de15137b5e4a2462">&#9670;&nbsp;</a></span>CNodeMapFactory() <span class="overload">[3/3]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">GenApi::CNodeMapFactory::CNodeMapFactory </td>
+          <td>(</td>
+          <td class="paramtype">const <a class="el" href="classGenICam_1_1gcstring.html">GenICam::gcstring</a> &amp;&#160;</td>
+          <td class="paramname"><em>XmlData</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="group__GenApi__PublicInterface.html#ga1cb5866cf237ac6d0ce5f54ecc7842a5">ECacheUsage_t</a>&#160;</td>
+          <td class="paramname"><em>CacheUsage</em> = <code>CacheUsage_Automatic</code>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">bool&#160;</td>
+          <td class="paramname"><em>SuppressStringsOnLoad</em> = <code>false</code>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<dl class="params"><dt>引数</dt><dd>
+  <table class="params">
+    <tr><td class="paramdir">[in]</td><td class="paramname">XmlData</td><td>The camera description file data as XML text. The provided text is copied. You can use the overloaded constructor accepting a buffer to avoid that. <div class="fragment"><div class="line">gcstring cdfData;</div><div class="line"><span class="comment">//... fill cdfData ...</span></div><div class="line"><a class="code" href="classGenApi_1_1CNodeMapFactory.html#a94e7b92ba383482aba055de29465f109">CNodeMapFactory</a> factory(<a class="code" href="group__GenApi__PublicInterface.html#gga8505fa9e1face1d778ae710a12f6b97aadfb5b59de28a09c7e4802e6f665dc054">ContentType_Xml</a>, cfdData.c_str(), cfdData.size());</div><div class="line"><span class="comment">// Create the node map. The node map can be destroyed using the IDestroy interface later.</span></div><div class="line">INodeMap* pNodeMap = factory.CreateNodeMap();</div><div class="line"><span class="comment">// The next step is attaching the device port (not shown).</span></div></div><!-- fragment --> </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">CacheUsage</td><td>Defines if and how to use the cache for preprocessed camera description files. </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">SuppressStringsOnLoad</td><td>Suppresses loading strings that are not needed for most use cases, e.g. node tooltip or description, for reducing the memory footprint.</td></tr>
+  </table>
+  </dd>
+</dl>
+<p>Throws an invalid argument exception if XmlData is empty. </p>
+
+</div>
+</div>
+<h2 class="groupheader">関数詳解</h2>
+<a id="a0988e140c1f51c2731448553680c9aa2"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a0988e140c1f51c2731448553680c9aa2">&#9670;&nbsp;</a></span>AddInjectionData()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void GenApi::CNodeMapFactory::AddInjectionData </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="classGenApi_1_1CNodeMapFactory.html">CNodeMapFactory</a> &amp;&#160;</td>
+          <td class="paramname"><em>injectionData</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<dl class="params"><dt>引数</dt><dd>
+  <table class="params">
+    <tr><td class="paramdir">[in]</td><td class="paramname">injectionData</td><td>A node map factory representing a camera description file to inject.</td></tr>
+  </table>
+  </dd>
+</dl>
+<p>The injected files are injected in the order they are added. InjectionData must not be preprocessed. The <a class="el" href="classGenApi_1_1CNodeMapFactory.html#a5f4f8928a389b7042f14e5a327229060" title="Can be used to check whether the Preprocess() processing step has been performed.">IsPreprocessed()</a> method can be used to check if preprocessing has been done before. The cache usage of injection data is ignored. </p>
+
+<p class="reference">参照元 <a class="el" href="classGenApi_1_1CNodeMapRefT.html#afa59884aa5da4715886cb48fd23095b2">GenApi::CNodeMapRefT&lt; GenApi::CGeneric_XMLLoaderParams &gt;::_LoadXMLFromFileInject()</a>, <a class="el" href="classGenApi_1_1CNodeMapRefT.html#a6bfcc35fa3408e85a2b5689f94302885">GenApi::CNodeMapRefT&lt; GenApi::CGeneric_XMLLoaderParams &gt;::_LoadXMLFromStringInject()</a>.</p>
+<div id="dynsection-0" onclick="return toggleVisibility(this)" class="dynheader closed" style="cursor:pointer;">
+  <img id="dynsection-0-trigger" src="closed.png" alt="+"/> 被呼び出し関係図:</div>
+<div id="dynsection-0-summary" class="dynsummary" style="display:block;">
+</div>
+<div id="dynsection-0-content" class="dyncontent" style="display:none;">
+<div class="center"><img src="classGenApi_1_1CNodeMapFactory_a0988e140c1f51c2731448553680c9aa2_icgraph.png" border="0" usemap="#classGenApi_1_1CNodeMapFactory_a0988e140c1f51c2731448553680c9aa2_icgraph" alt=""/></div>
+<map name="classGenApi_1_1CNodeMapFactory_a0988e140c1f51c2731448553680c9aa2_icgraph" id="classGenApi_1_1CNodeMapFactory_a0988e140c1f51c2731448553680c9aa2_icgraph">
+<area shape="rect"  title="Adds a node map factory representing a camera description file to inject." alt="" coords="317,53,512,94"/>
+<area shape="rect"  href="classGenApi_1_1CNodeMapRefT.html#afa59884aa5da4715886cb48fd23095b2" title="Creates the object from a XML target and an inject file with given file name" alt="" coords="13,5,261,61"/>
+<area shape="rect"  href="classGenApi_1_1CNodeMapRefT.html#a6bfcc35fa3408e85a2b5689f94302885" title="Creates the object from XML data given in a string with injection" alt="" coords="5,85,269,141"/>
+</map>
+</div>
+
+</div>
+</div>
+<a id="a207a1b6676f1431200342a8f9a9a6993"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a207a1b6676f1431200342a8f9a9a6993">&#9670;&nbsp;</a></span>LoadAndInject()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void GenApi::CNodeMapFactory::LoadAndInject </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>This step is usually done automatically. Prevents cache read if called manually. </p>
+
+</div>
+</div>
+<a id="aa90011f60cbb7224347e77f8e77a01ff"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aa90011f60cbb7224347e77f8e77a01ff">&#9670;&nbsp;</a></span>ExtractSubtree()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="classGenApi_1_1CNodeMapFactory.html">CNodeMapFactory</a> GenApi::CNodeMapFactory::ExtractSubtree </td>
+          <td>(</td>
+          <td class="paramtype">const <a class="el" href="classGenICam_1_1gcstring.html">GenICam::gcstring</a> &amp;&#160;</td>
+          <td class="paramname"><em>SubTreeRootNodeName</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">bool&#160;</td>
+          <td class="paramname"><em>doRenameToRoot</em> = <code>false</code>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<dl class="params"><dt>引数</dt><dd>
+  <table class="params">
+    <tr><td class="paramdir">[in]</td><td class="paramname">SubTreeRootNodeName</td><td>The root of the branch to extract, e.g. "ChunkData". </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">doRenameToRoot</td><td>Renames the extracted subtree root node SubTreeRootNodeName to "Root", sets the IsFeature property. <a class="el" href="classGenApi_1_1CNodeMapFactory.html#aa1aad47371a6525f4f4706cb4943c53a" title="Advanced: Creates the preprocessed memory internal representation of the camera description file(s),...">Preprocess()</a> is automatically called if needed to create the memory internal representation of the camera description file(s). The preprocessed result can be read from the cache or written to the cache in this step. This depends on the availability of a cache and the used CacheUsage setting. </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a id="aa1aad47371a6525f4f4706cb4943c53a"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aa1aad47371a6525f4f4706cb4943c53a">&#9670;&nbsp;</a></span>Preprocess()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void GenApi::CNodeMapFactory::Preprocess </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>This step is usually done automatically. Preprocessed data can be read from the cache or written to the cache in this step. This depends on the availability of a cache and the used CacheUsage setting. By calling this method directly direct cache load is suppressed, see <a class="el" href="classGenApi_1_1CNodeMapFactory.html#aa39a738ba032d566a5083b83f7f72a2d" title="Creates a node map from the preprocessed memory internal representation of the camera description fil...">CreateNodeMap()</a> for more information. </p>
+
+</div>
+</div>
+<a id="a17b0665d7edbf011c9f7beabf6a7e152"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a17b0665d7edbf011c9f7beabf6a7e152">&#9670;&nbsp;</a></span>ReleaseCameraDescriptionFileData()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void GenApi::CNodeMapFactory::ReleaseCameraDescriptionFileData </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>This step is usually done automatically. All references to added injection data are dropped in this step to free the data. After this step any in constructors provided buffers can be freed or any in constructors given files can be deleted. </p>
+
+</div>
+</div>
+<a id="aa39a738ba032d566a5083b83f7f72a2d"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aa39a738ba032d566a5083b83f7f72a2d">&#9670;&nbsp;</a></span>CreateNodeMap() <span class="overload">[1/2]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="structGenApi_1_1INodeMap.html">INodeMap</a>* GenApi::CNodeMapFactory::CreateNodeMap </td>
+          <td>(</td>
+          <td class="paramtype">const <a class="el" href="classGenICam_1_1gcstring.html">GenICam::gcstring</a> &amp;&#160;</td>
+          <td class="paramname"><em>DeviceName</em> = <code>&quot;Device&quot;</code>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">bool&#160;</td>
+          <td class="paramname"><em>DoReleaseCameraDescriptionFileData</em> = <code>true</code>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p><a class="el" href="classGenApi_1_1CNodeMapFactory.html#aa1aad47371a6525f4f4706cb4943c53a" title="Advanced: Creates the preprocessed memory internal representation of the camera description file(s),...">Preprocess()</a> is automatically called if needed. The preprocess step can be omitted by the factory depending on the cache mode setting when a cache file is available, then the cache file is read and converted directly into a node map. <a class="el" href="classGenApi_1_1CNodeMapFactory.html#a17b0665d7edbf011c9f7beabf6a7e152" title="Advanced: Releases any in constructors provided camera description file data buffers or files.">ReleaseCameraDescriptionFileData()</a> is called if DoReleaseCameraDescriptionFileData is true. This method can be called multiple times to create multiple instances of a node map. </p>
+
+<p class="reference">参照元 <a class="el" href="classGenApi_1_1CNodeMapRefT.html#a67afb7500f87d3e9b72389f54340aa16">GenApi::CNodeMapRefT&lt; GenApi::CGeneric_XMLLoaderParams &gt;::_LoadXMLFromFile()</a>, <a class="el" href="classGenApi_1_1CNodeMapRefT.html#afa59884aa5da4715886cb48fd23095b2">GenApi::CNodeMapRefT&lt; GenApi::CGeneric_XMLLoaderParams &gt;::_LoadXMLFromFileInject()</a>, <a class="el" href="classGenApi_1_1CNodeMapRefT.html#a26378e000eabcafb7857e9a2467c3f3b">GenApi::CNodeMapRefT&lt; GenApi::CGeneric_XMLLoaderParams &gt;::_LoadXMLFromZIPData()</a>, <a class="el" href="classGenApi_1_1CNodeMapRefT.html#a3880f538e82130bac32a8c6a97d3a4bc">GenApi::CNodeMapRefT&lt; GenApi::CGeneric_XMLLoaderParams &gt;::_LoadXMLFromZIPFile()</a>.</p>
+<div id="dynsection-1" onclick="return toggleVisibility(this)" class="dynheader closed" style="cursor:pointer;">
+  <img id="dynsection-1-trigger" src="closed.png" alt="+"/> 被呼び出し関係図:</div>
+<div id="dynsection-1-summary" class="dynsummary" style="display:block;">
+</div>
+<div id="dynsection-1-content" class="dyncontent" style="display:none;">
+<div class="center"><img src="classGenApi_1_1CNodeMapFactory_aa39a738ba032d566a5083b83f7f72a2d_icgraph.png" border="0" usemap="#classGenApi_1_1CNodeMapFactory_aa39a738ba032d566a5083b83f7f72a2d_icgraph" alt=""/></div>
+<map name="classGenApi_1_1CNodeMapFactory_aa39a738ba032d566a5083b83f7f72a2d_icgraph" id="classGenApi_1_1CNodeMapFactory_aa39a738ba032d566a5083b83f7f72a2d_icgraph">
+<area shape="rect"  title="Creates a node map from the preprocessed memory internal representation of the camera description fil..." alt="" coords="301,133,496,174"/>
+<area shape="rect"  href="classGenApi_1_1CNodeMapRefT.html#a67afb7500f87d3e9b72389f54340aa16" title="Creates the object from a XML file with given file name" alt="" coords="15,5,244,61"/>
+<area shape="rect"  href="classGenApi_1_1CNodeMapRefT.html#afa59884aa5da4715886cb48fd23095b2" title="Creates the object from a XML target and an inject file with given file name" alt="" coords="5,85,253,141"/>
+<area shape="rect"  href="classGenApi_1_1CNodeMapRefT.html#a26378e000eabcafb7857e9a2467c3f3b" title="Creates the object from a ZIP&#39;d XML file given in a string" alt="" coords="8,165,251,221"/>
+<area shape="rect"  href="classGenApi_1_1CNodeMapRefT.html#a3880f538e82130bac32a8c6a97d3a4bc" title="Creates the object from a ZIP&#39;d XML file with given file name" alt="" coords="13,245,246,301"/>
+</map>
+</div>
+
+</div>
+</div>
+<a id="abd147a03efdd80701429b8a3cb63ed07"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#abd147a03efdd80701429b8a3cb63ed07">&#9670;&nbsp;</a></span>CreateNodeMap() <span class="overload">[2/2]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="structGenApi_1_1INodeMap.html">INodeMap</a>* GenApi::CNodeMapFactory::CreateNodeMap </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="classGenApi_1_1CLock.html">CLock</a> &amp;&#160;</td>
+          <td class="paramname"><em>UserProvidedLock</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const <a class="el" href="classGenICam_1_1gcstring.html">GenICam::gcstring</a> &amp;&#160;</td>
+          <td class="paramname"><em>DeviceName</em> = <code>&quot;Device&quot;</code>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">bool&#160;</td>
+          <td class="paramname"><em>DoReleaseCameraDescriptionFileData</em> = <code>true</code>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p><a class="el" href="classGenApi_1_1CNodeMapFactory.html#aa1aad47371a6525f4f4706cb4943c53a" title="Advanced: Creates the preprocessed memory internal representation of the camera description file(s),...">Preprocess()</a> is automatically called if needed. The preprocess step can be omitted by the factory depending on the cache mode setting when a cache file is available, then the cache file is read and converted directly into a node map. <a class="el" href="classGenApi_1_1CNodeMapFactory.html#a17b0665d7edbf011c9f7beabf6a7e152" title="Advanced: Releases any in constructors provided camera description file data buffers or files.">ReleaseCameraDescriptionFileData()</a> is called if DoReleaseCameraDescriptionFileData is true. This method can be called multiple times to create multiple instances of a node map. This method allows to provide an external lock to avoid using too many locks in an application. </p><dl class="section attention"><dt>注意</dt><dd>The provided lock must not be destroyed before the created node map. </dd></dl>
+
+</div>
+</div>
+<a id="a6596baf16a353b31041cb1c18b13d1b6"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a6596baf16a353b31041cb1c18b13d1b6">&#9670;&nbsp;</a></span>GetSupportedSchemaVersions()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void GenApi::CNodeMapFactory::GetSupportedSchemaVersions </td>
+          <td>(</td>
+          <td class="paramtype">GenICam::gcstring_vector &amp;&#160;</td>
+          <td class="paramname"><em>SchemaVersions</em></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>Each list entry is a string with the format "{Major}.{Minor}" were {Major} and {Minor} are integers Example: {"1.1", "1.2"} indicates that the schema v1.1 and v1.2 are supported. The SubMinor version number is not given since it is for fully compatible bug fixes only </p>
+
+<p class="reference">参照元 <a class="el" href="classGenApi_1_1CNodeMapRefT.html#aa7355987e29fd0d12eab80ea5dd12d3f">GenApi::CNodeMapRefT&lt; GenApi::CGeneric_XMLLoaderParams &gt;::_GetSupportedSchemaVersions()</a>.</p>
+<div id="dynsection-2" onclick="return toggleVisibility(this)" class="dynheader closed" style="cursor:pointer;">
+  <img id="dynsection-2-trigger" src="closed.png" alt="+"/> 被呼び出し関係図:</div>
+<div id="dynsection-2-summary" class="dynsummary" style="display:block;">
+</div>
+<div id="dynsection-2-content" class="dyncontent" style="display:none;">
+<div class="center"><img src="classGenApi_1_1CNodeMapFactory_a6596baf16a353b31041cb1c18b13d1b6_icgraph.png" border="0" usemap="#classGenApi_1_1CNodeMapFactory_a6596baf16a353b31041cb1c18b13d1b6_icgraph" alt=""/></div>
+<map name="classGenApi_1_1CNodeMapFactory_a6596baf16a353b31041cb1c18b13d1b6_icgraph" id="classGenApi_1_1CNodeMapFactory_a6596baf16a353b31041cb1c18b13d1b6_icgraph">
+<area shape="rect"  title=" " alt="" coords="349,13,576,54"/>
+<area shape="rect"  href="classGenApi_1_1CNodeMapRefT.html#aa7355987e29fd0d12eab80ea5dd12d3f" title="Gets a list of supported schema versions" alt="" coords="5,5,301,61"/>
+</map>
+</div>
+
+</div>
+</div>
+</div><!-- contents -->
+<!-- HTML footer for doxygen 1.8.13-->
+<!-- start footer part -->
+<hr class="footer"/>
+	<address class="footer">
+		<small>
+2021年10月26日(火) 13時10分23秒作成 - Sentech SDK / 構成:  &#160;
+			<a href="http://www.sentech.co.jp/">
+				<img class="footer" src="string_omron_sentech.png" alt="OMRON SENTECH CO., LTD"/>
+			</a>
+			<!--
+				DoxyGen Version =  1.8.15
+			-->
+		</small>
+	</address>
+</body>
+</html>

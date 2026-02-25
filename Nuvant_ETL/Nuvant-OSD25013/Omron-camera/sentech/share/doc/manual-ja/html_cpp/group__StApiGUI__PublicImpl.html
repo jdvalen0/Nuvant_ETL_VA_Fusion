@@ -1,0 +1,442 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "https://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=9"/>
+<meta name="generator" content="Doxygen 1.8.15"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>Sentech SDK: StApi GUIモジュール実装部</title>
+<link href="tabs.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="jquery.js"></script>
+<script type="text/javascript" src="dynsections.js"></script>
+<link href="doxygen.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+<div id="top"><!-- do not remove this div, it is closed by doxygen! -->
+<div id="titlearea">
+<table cellspacing="0" cellpadding="0">
+ <tbody>
+ <tr style="height: 56px;">
+  <td id="projectalign" style="padding-left: 0.5em;">
+   <div id="projectname">Sentech SDK
+   </div>
+  </td>
+ </tr>
+ </tbody>
+</table>
+</div>
+<!-- end header part -->
+<!-- 構築: Doxygen 1.8.15 -->
+<script type="text/javascript" src="menudata.js"></script>
+<script type="text/javascript" src="menu.js"></script>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:cf05388f2679ee054f2beb29a391d25f4e673ac3&amp;dn=gpl-2.0.txt GPL-v2 */
+$(function() {
+  initMenu('',false,false,'search.php','検索');
+});
+/* @license-end */</script>
+<div id="main-nav"></div>
+</div><!-- top -->
+<div class="header">
+  <div class="summary">
+<a href="#files">ファイル</a> &#124;
+<a href="#typedef-members">型定義</a> &#124;
+<a href="#func-members">関数</a>  </div>
+  <div class="headertitle">
+<div class="title">StApi GUIモジュール実装部</div>  </div>
+</div><!--header-->
+<div class="contents">
+<table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="files"></a>
+ファイル</h2></td></tr>
+<tr class="memitem:StApi__GUI_8h"><td class="memItemLeft" align="right" valign="top">ファイル &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="StApi__GUI_8h.html">StApi_GUI.h</a></td></tr>
+<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:StApi__GUIDef_8h"><td class="memItemLeft" align="right" valign="top">ファイル &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="StApi__GUIDef_8h.html">StApi_GUIDef.h</a></td></tr>
+<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:StApi__GUIFunctions_8h"><td class="memItemLeft" align="right" valign="top">ファイル &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="StApi__GUIFunctions_8h.html">StApi_GUIFunctions.h</a></td></tr>
+<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="typedef-members"></a>
+型定義</h2></td></tr>
+<tr class="memitem:gaef88ab564b294de7f99228124ef4b8df"><td class="memItemLeft" align="right" valign="top">typedef <a class="el" href="classStApi_1_1CStAutoPtr.html">CStAutoPtr</a>&lt; <a class="el" href="structStApi_1_1IStWndReleasable.html">IStWndReleasable</a>, <a class="el" href="structStApi_1_1IStDeviceSelectionWnd.html">IStDeviceSelectionWnd</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__StApiGUI__PublicImpl.html#gaef88ab564b294de7f99228124ef4b8df">StApi::CIStDeviceSelectionWndPtr</a></td></tr>
+<tr class="memdesc:gaef88ab564b294de7f99228124ef4b8df"><td class="mdescLeft">&#160;</td><td class="mdescRight"><a class="el" href="structStApi_1_1IStDeviceSelectionWnd.html" title="デバイス選択ウィンドウ用インターフェース">IStDeviceSelectionWnd</a> インターフェースポインターの自動管理用クラスです。  <a href="group__StApiGUI__PublicImpl.html#gaef88ab564b294de7f99228124ef4b8df">[詳解]</a><br /></td></tr>
+<tr class="separator:gaef88ab564b294de7f99228124ef4b8df"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:gad8de2a64adb5f20e432cc4f05a4a968b"><td class="memItemLeft" align="right" valign="top">typedef <a class="el" href="classStApi_1_1CStAutoPtr.html">CStAutoPtr</a>&lt; <a class="el" href="structStApi_1_1IStWndReleasable.html">IStWndReleasable</a>, <a class="el" href="structStApi_1_1IStGraphDisplayWnd.html">IStGraphDisplayWnd</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__StApiGUI__PublicImpl.html#gad8de2a64adb5f20e432cc4f05a4a968b">StApi::CIStGraphDisplayWndPtr</a></td></tr>
+<tr class="memdesc:gad8de2a64adb5f20e432cc4f05a4a968b"><td class="mdescLeft">&#160;</td><td class="mdescRight"><a class="el" href="structStApi_1_1IStGraphDisplayWnd.html" title="グラフ表示ウィンドウ用インターフェース">IStGraphDisplayWnd</a> インターフェースポインターの自動管理用クラスです。  <a href="group__StApiGUI__PublicImpl.html#gad8de2a64adb5f20e432cc4f05a4a968b">[詳解]</a><br /></td></tr>
+<tr class="separator:gad8de2a64adb5f20e432cc4f05a4a968b"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga38dde7f856f1feaddbeb982d0af88f9a"><td class="memItemLeft" align="right" valign="top">typedef CIStWndPtrArrayT&lt; <a class="el" href="structStApi_1_1IStGraphDisplayWnd.html">IStGraphDisplayWnd</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__StApiGUI__PublicImpl.html#ga38dde7f856f1feaddbeb982d0af88f9a">StApi::CIStGraphDisplayWndPtrArray</a></td></tr>
+<tr class="memdesc:ga38dde7f856f1feaddbeb982d0af88f9a"><td class="mdescLeft">&#160;</td><td class="mdescRight"><a class="el" href="structStApi_1_1IStGraphDisplayWnd.html" title="グラフ表示ウィンドウ用インターフェース">IStGraphDisplayWnd</a> インターフェースポインターの自動管理用クラスです。  <a href="group__StApiGUI__PublicImpl.html#ga38dde7f856f1feaddbeb982d0af88f9a">[詳解]</a><br /></td></tr>
+<tr class="separator:ga38dde7f856f1feaddbeb982d0af88f9a"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:gad0ec904308813ffe8f85835c450f412d"><td class="memItemLeft" align="right" valign="top">typedef <a class="el" href="classStApi_1_1CStAutoPtr.html">CStAutoPtr</a>&lt; <a class="el" href="structStApi_1_1IStWndReleasable.html">IStWndReleasable</a>, <a class="el" href="structStApi_1_1IStImageDisplayWnd.html">IStImageDisplayWnd</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__StApiGUI__PublicImpl.html#gad0ec904308813ffe8f85835c450f412d">StApi::CIStImageDisplayWndPtr</a></td></tr>
+<tr class="memdesc:gad0ec904308813ffe8f85835c450f412d"><td class="mdescLeft">&#160;</td><td class="mdescRight"><a class="el" href="structStApi_1_1IStImageDisplayWnd.html" title="画像表示ウィンドウ用インターフェース">IStImageDisplayWnd</a> インターフェースポインターの自動管理用クラスです。  <a href="group__StApiGUI__PublicImpl.html#gad0ec904308813ffe8f85835c450f412d">[詳解]</a><br /></td></tr>
+<tr class="separator:gad0ec904308813ffe8f85835c450f412d"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga5fab8a911da1c60d4746ff2419533531"><td class="memItemLeft" align="right" valign="top">typedef CIStWndPtrArrayT&lt; <a class="el" href="structStApi_1_1IStImageDisplayWnd.html">IStImageDisplayWnd</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__StApiGUI__PublicImpl.html#ga5fab8a911da1c60d4746ff2419533531">StApi::CIStImageDisplayWndPtrArray</a></td></tr>
+<tr class="memdesc:ga5fab8a911da1c60d4746ff2419533531"><td class="mdescLeft">&#160;</td><td class="mdescRight"><a class="el" href="structStApi_1_1IStImageDisplayWnd.html" title="画像表示ウィンドウ用インターフェース">IStImageDisplayWnd</a> インターフェースポインターの自動管理用クラスです。  <a href="group__StApiGUI__PublicImpl.html#ga5fab8a911da1c60d4746ff2419533531">[詳解]</a><br /></td></tr>
+<tr class="separator:ga5fab8a911da1c60d4746ff2419533531"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:gaa31482c64f0db1540cfc174437f57430"><td class="memItemLeft" align="right" valign="top">typedef void *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__StApiGUI__PublicImpl.html#gaa31482c64f0db1540cfc174437f57430">StApi::RegisteredINodeHandle_t</a></td></tr>
+<tr class="memdesc:gaa31482c64f0db1540cfc174437f57430"><td class="mdescLeft">&#160;</td><td class="mdescRight">登録されたノード識別用ハンドル型  <a href="group__StApiGUI__PublicImpl.html#gaa31482c64f0db1540cfc174437f57430">[詳解]</a><br /></td></tr>
+<tr class="separator:gaa31482c64f0db1540cfc174437f57430"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:gadca91deaf31491de732746e764ad0a32"><td class="memItemLeft" align="right" valign="top">typedef <a class="el" href="classStApi_1_1CStAutoPtr.html">CStAutoPtr</a>&lt; <a class="el" href="structStApi_1_1IStWndReleasable.html">IStWndReleasable</a>, <a class="el" href="structStApi_1_1IStNodeMapDisplayWnd.html">IStNodeMapDisplayWnd</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__StApiGUI__PublicImpl.html#gadca91deaf31491de732746e764ad0a32">StApi::CIStNodeMapDisplayWndPtr</a></td></tr>
+<tr class="memdesc:gadca91deaf31491de732746e764ad0a32"><td class="mdescLeft">&#160;</td><td class="mdescRight"><a class="el" href="structStApi_1_1IStNodeMapDisplayWnd.html" title="ノードマップ表示ウィンドウ用インターフェース">IStNodeMapDisplayWnd</a> インターフェースポインターの自動管理用クラスです。  <a href="group__StApiGUI__PublicImpl.html#gadca91deaf31491de732746e764ad0a32">[詳解]</a><br /></td></tr>
+<tr class="separator:gadca91deaf31491de732746e764ad0a32"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga02ad819497e3b4a9a1c7bfebaca1c335"><td class="memItemLeft" align="right" valign="top">typedef CIStWndPtrArrayT&lt; <a class="el" href="structStApi_1_1IStNodeMapDisplayWnd.html">IStNodeMapDisplayWnd</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__StApiGUI__PublicImpl.html#ga02ad819497e3b4a9a1c7bfebaca1c335">StApi::CIStNodeMapDisplayWndPtrArray</a></td></tr>
+<tr class="memdesc:ga02ad819497e3b4a9a1c7bfebaca1c335"><td class="mdescLeft">&#160;</td><td class="mdescRight"><a class="el" href="structStApi_1_1IStNodeMapDisplayWnd.html" title="ノードマップ表示ウィンドウ用インターフェース">IStNodeMapDisplayWnd</a> インターフェースポインターの自動管理用クラスです。  <a href="group__StApiGUI__PublicImpl.html#ga02ad819497e3b4a9a1c7bfebaca1c335">[詳解]</a><br /></td></tr>
+<tr class="separator:ga02ad819497e3b4a9a1c7bfebaca1c335"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga511b18b41c570c028da73009da91289a"><td class="memItemLeft" align="right" valign="top">typedef <a class="el" href="classStApi_1_1CStAutoPtr.html">CStAutoPtr</a>&lt; <a class="el" href="structStApi_1_1IStWndReleasable.html">IStWndReleasable</a>, <a class="el" href="structStApi_1_1IStWnd.html">IStWnd</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__StApiGUI__PublicImpl.html#ga511b18b41c570c028da73009da91289a">StApi::CIStWndPtr</a></td></tr>
+<tr class="memdesc:ga511b18b41c570c028da73009da91289a"><td class="mdescLeft">&#160;</td><td class="mdescRight">解放可能なウィンドウ用インターフェースポインターの自動管理用クラスです。  <a href="group__StApiGUI__PublicImpl.html#ga511b18b41c570c028da73009da91289a">[詳解]</a><br /></td></tr>
+<tr class="separator:ga511b18b41c570c028da73009da91289a"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:gab8222bdd1ec2e9db6ee6db7b23a965d8"><td class="memItemLeft" align="right" valign="top">typedef CIStWndPtrArrayT&lt; <a class="el" href="structStApi_1_1IStWnd.html">IStWnd</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__StApiGUI__PublicImpl.html#gab8222bdd1ec2e9db6ee6db7b23a965d8">StApi::CIStWndPtrArray</a></td></tr>
+<tr class="memdesc:gab8222bdd1ec2e9db6ee6db7b23a965d8"><td class="mdescLeft">&#160;</td><td class="mdescRight"><a class="el" href="structStApi_1_1IStWndReleasable.html" title="解放可能なウィンドウ用インターフェース">IStWndReleasable</a> インターフェースポインターの自動管理用クラスです。  <a href="group__StApiGUI__PublicImpl.html#gab8222bdd1ec2e9db6ee6db7b23a965d8">[詳解]</a><br /></td></tr>
+<tr class="separator:gab8222bdd1ec2e9db6ee6db7b23a965d8"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="func-members"></a>
+関数</h2></td></tr>
+<tr class="memitem:ga96adab5322fc80d9509082e91c2da78d"><td class="memItemLeft" align="right" valign="top">ST_API_GUI <a class="el" href="structStApi_1_1IStWndReleasable.html">StApi::IStWndReleasable</a> *ST_API_CALL_TYPE&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__StApiGUI__PublicImpl.html#ga96adab5322fc80d9509082e91c2da78d">StApi::CreateIStWnd</a> (StApi::EStWindowType_t eWnd)</td></tr>
+<tr class="memdesc:ga96adab5322fc80d9509082e91c2da78d"><td class="mdescLeft">&#160;</td><td class="mdescRight"><a class="el" href="structStApi_1_1IStWndReleasable.html" title="解放可能なウィンドウ用インターフェース">IStWndReleasable</a> インターフェースポインターを取得します。  <a href="group__StApiGUI__PublicImpl.html#ga96adab5322fc80d9509082e91c2da78d">[詳解]</a><br /></td></tr>
+<tr class="separator:ga96adab5322fc80d9509082e91c2da78d"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga44d50182564dd68a58310cfc0e37f389"><td class="memItemLeft" align="right" valign="top">ST_API_GUI <a class="el" href="structStApi_1_1IStWndReleasable.html">StApi::IStWndReleasable</a> *ST_API_CALL_TYPE&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__StApiGUI__PublicImpl.html#ga44d50182564dd68a58310cfc0e37f389">StApi::CreateIStImageDisplayWnd</a> (<a class="el" href="structStApi_1_1IStAllocator.html">StApi::IStAllocator</a> *pIStAllocator)</td></tr>
+<tr class="memdesc:ga44d50182564dd68a58310cfc0e37f389"><td class="mdescLeft">&#160;</td><td class="mdescRight"><a class="el" href="structStApi_1_1IStWndReleasable.html" title="解放可能なウィンドウ用インターフェース">IStWndReleasable</a> インターフェースポインターを取得します。  <a href="group__StApiGUI__PublicImpl.html#ga44d50182564dd68a58310cfc0e37f389">[詳解]</a><br /></td></tr>
+<tr class="separator:ga44d50182564dd68a58310cfc0e37f389"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga8a18bae31cb9c32a0f4537ed1588dfad"><td class="memItemLeft" align="right" valign="top">ST_API_GUI <a class="el" href="structStApi_1_1IStWndReleasable.html">StApi::IStWndReleasable</a> *ST_API_CALL_TYPE&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__StApiGUI__PublicImpl.html#ga8a18bae31cb9c32a0f4537ed1588dfad">StApi::CreateIStGraphDisplayWnd</a> (<a class="el" href="structStApi_1_1IStSpecificTypeAllocator.html">StApi::IStSpecificTypeAllocator</a> *pIStSpecificTypeAllocator=NULL)</td></tr>
+<tr class="memdesc:ga8a18bae31cb9c32a0f4537ed1588dfad"><td class="mdescLeft">&#160;</td><td class="mdescRight"><a class="el" href="structStApi_1_1IStWndReleasable.html" title="解放可能なウィンドウ用インターフェース">IStWndReleasable</a> インターフェースポインターを取得します。  <a href="group__StApiGUI__PublicImpl.html#ga8a18bae31cb9c32a0f4537ed1588dfad">[詳解]</a><br /></td></tr>
+<tr class="separator:ga8a18bae31cb9c32a0f4537ed1588dfad"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga9cd753ac08f30f51e8d9833191d0a4de"><td class="memItemLeft" align="right" valign="top">ST_API_GUI void ST_API_CALL_TYPE&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__StApiGUI__PublicImpl.html#ga9cd753ac08f30f51e8d9833191d0a4de">StApi::SetIStImageToClipboard</a> (<a class="el" href="structStApi_1_1IStImage.html">StApi::IStImage</a> *pIStImage)</td></tr>
+<tr class="memdesc:ga9cd753ac08f30f51e8d9833191d0a4de"><td class="mdescLeft">&#160;</td><td class="mdescRight">画像データをクリップボードへコピーします。  <a href="group__StApiGUI__PublicImpl.html#ga9cd753ac08f30f51e8d9833191d0a4de">[詳解]</a><br /></td></tr>
+<tr class="separator:ga9cd753ac08f30f51e8d9833191d0a4de"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga7b734d631c9bae4205252e1355840d62"><td class="memItemLeft" align="right" valign="top">ST_API_GUI int ST_API_CALL_TYPE&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__StApiGUI__PublicImpl.html#ga7b734d631c9bae4205252e1355840d62">StApi::processEventGUI</a> (bool runExec=false, unsigned int maxtime=0)</td></tr>
+<tr class="memdesc:ga7b734d631c9bae4205252e1355840d62"><td class="mdescLeft">&#160;</td><td class="mdescRight">GUIイベントを処理するための関数 （Mac/Linuxのみ）。  <a href="group__StApiGUI__PublicImpl.html#ga7b734d631c9bae4205252e1355840d62">[詳解]</a><br /></td></tr>
+<tr class="separator:ga7b734d631c9bae4205252e1355840d62"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table>
+<a name="details" id="details"></a><h2 class="groupheader">詳解</h2>
+<h2 class="groupheader">型定義詳解</h2>
+<a id="gaef88ab564b294de7f99228124ef4b8df"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#gaef88ab564b294de7f99228124ef4b8df">&#9670;&nbsp;</a></span>CIStDeviceSelectionWndPtr</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="group__StApiGUI__PublicImpl.html#gaef88ab564b294de7f99228124ef4b8df">StApi::CIStDeviceSelectionWndPtr</a></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p><a class="el" href="structStApi_1_1IStDeviceSelectionWnd.html" title="デバイス選択ウィンドウ用インターフェース">IStDeviceSelectionWnd</a> インターフェースポインターの自動管理用クラスです。このクラスのデストラクタから <a class="el" href="structStApi_1_1IStReleasable.html#a9859a952fe7d65899b3b70bd65a4d487" title="解放します。">IStWndReleasable::Release()</a> が自動的に呼び出されます。 </p>
+
+</div>
+</div>
+<a id="gad8de2a64adb5f20e432cc4f05a4a968b"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#gad8de2a64adb5f20e432cc4f05a4a968b">&#9670;&nbsp;</a></span>CIStGraphDisplayWndPtr</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="group__StApiGUI__PublicImpl.html#gad8de2a64adb5f20e432cc4f05a4a968b">StApi::CIStGraphDisplayWndPtr</a></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p><a class="el" href="structStApi_1_1IStGraphDisplayWnd.html" title="グラフ表示ウィンドウ用インターフェース">IStGraphDisplayWnd</a> インターフェースポインターの自動管理用クラスです。このクラスのデストラクタから <a class="el" href="structStApi_1_1IStReleasable.html#a9859a952fe7d65899b3b70bd65a4d487" title="解放します。">IStWndReleasable::Release()</a> が自動的に呼び出されます。 </p><dl class="section since"><dt>から</dt><dd>StApi v1.1.1 </dd></dl>
+
+</div>
+</div>
+<a id="ga38dde7f856f1feaddbeb982d0af88f9a"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ga38dde7f856f1feaddbeb982d0af88f9a">&#9670;&nbsp;</a></span>CIStGraphDisplayWndPtrArray</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="group__StApiGUI__PublicImpl.html#ga38dde7f856f1feaddbeb982d0af88f9a">StApi::CIStGraphDisplayWndPtrArray</a></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p><a class="el" href="structStApi_1_1IStGraphDisplayWnd.html" title="グラフ表示ウィンドウ用インターフェース">IStGraphDisplayWnd</a> インターフェースポインターの自動管理用クラスです。このクラスのデストラクタから <a class="el" href="structStApi_1_1IStReleasable.html#a9859a952fe7d65899b3b70bd65a4d487" title="解放します。">IStWndReleasable::Release()</a> が自動的に呼び出されます。 </p><dl class="section since"><dt>から</dt><dd>StApi v1.1.1 </dd></dl>
+
+</div>
+</div>
+<a id="gad0ec904308813ffe8f85835c450f412d"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#gad0ec904308813ffe8f85835c450f412d">&#9670;&nbsp;</a></span>CIStImageDisplayWndPtr</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="group__StApiGUI__PublicImpl.html#gad0ec904308813ffe8f85835c450f412d">StApi::CIStImageDisplayWndPtr</a></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p><a class="el" href="structStApi_1_1IStImageDisplayWnd.html" title="画像表示ウィンドウ用インターフェース">IStImageDisplayWnd</a> インターフェースポインターの自動管理用クラスです。このクラスのデストラクタから <a class="el" href="structStApi_1_1IStReleasable.html#a9859a952fe7d65899b3b70bd65a4d487" title="解放します。">IStWndReleasable::Release()</a> が自動的に呼び出されます。 </p>
+
+</div>
+</div>
+<a id="ga5fab8a911da1c60d4746ff2419533531"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ga5fab8a911da1c60d4746ff2419533531">&#9670;&nbsp;</a></span>CIStImageDisplayWndPtrArray</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="group__StApiGUI__PublicImpl.html#ga5fab8a911da1c60d4746ff2419533531">StApi::CIStImageDisplayWndPtrArray</a></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p><a class="el" href="structStApi_1_1IStImageDisplayWnd.html" title="画像表示ウィンドウ用インターフェース">IStImageDisplayWnd</a> インターフェースポインターの自動管理用クラスです。このクラスのデストラクタから <a class="el" href="structStApi_1_1IStReleasable.html#a9859a952fe7d65899b3b70bd65a4d487" title="解放します。">IStWndReleasable::Release()</a> が自動的に呼び出されます。 </p>
+
+</div>
+</div>
+<a id="gaa31482c64f0db1540cfc174437f57430"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#gaa31482c64f0db1540cfc174437f57430">&#9670;&nbsp;</a></span>RegisteredINodeHandle_t</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="group__StApiGUI__PublicImpl.html#gaa31482c64f0db1540cfc174437f57430">StApi::RegisteredINodeHandle_t</a></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>登録されたノード識別用ハンドル型 </p>
+
+</div>
+</div>
+<a id="gadca91deaf31491de732746e764ad0a32"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#gadca91deaf31491de732746e764ad0a32">&#9670;&nbsp;</a></span>CIStNodeMapDisplayWndPtr</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="group__StApiGUI__PublicImpl.html#gadca91deaf31491de732746e764ad0a32">StApi::CIStNodeMapDisplayWndPtr</a></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p><a class="el" href="structStApi_1_1IStNodeMapDisplayWnd.html" title="ノードマップ表示ウィンドウ用インターフェース">IStNodeMapDisplayWnd</a> インターフェースポインターの自動管理用クラスです。このクラスのデストラクタから <a class="el" href="structStApi_1_1IStReleasable.html#a9859a952fe7d65899b3b70bd65a4d487" title="解放します。">IStWndReleasable::Release()</a> が自動的に呼び出されます。 </p>
+
+</div>
+</div>
+<a id="ga02ad819497e3b4a9a1c7bfebaca1c335"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ga02ad819497e3b4a9a1c7bfebaca1c335">&#9670;&nbsp;</a></span>CIStNodeMapDisplayWndPtrArray</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="group__StApiGUI__PublicImpl.html#ga02ad819497e3b4a9a1c7bfebaca1c335">StApi::CIStNodeMapDisplayWndPtrArray</a></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p><a class="el" href="structStApi_1_1IStNodeMapDisplayWnd.html" title="ノードマップ表示ウィンドウ用インターフェース">IStNodeMapDisplayWnd</a> インターフェースポインターの自動管理用クラスです。このクラスのデストラクタから <a class="el" href="structStApi_1_1IStReleasable.html#a9859a952fe7d65899b3b70bd65a4d487" title="解放します。">IStWndReleasable::Release()</a> が自動的に呼び出されます。 </p>
+
+</div>
+</div>
+<a id="ga511b18b41c570c028da73009da91289a"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ga511b18b41c570c028da73009da91289a">&#9670;&nbsp;</a></span>CIStWndPtr</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="group__StApiGUI__PublicImpl.html#ga511b18b41c570c028da73009da91289a">StApi::CIStWndPtr</a></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>解放可能なウィンドウ用インターフェースポインターの自動管理用クラスです。このクラスのデストラクタから <a class="el" href="structStApi_1_1IStReleasable.html#a9859a952fe7d65899b3b70bd65a4d487" title="解放します。">IStWndReleasable::Release()</a> が自動的に呼び出されます。 </p>
+
+</div>
+</div>
+<a id="gab8222bdd1ec2e9db6ee6db7b23a965d8"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#gab8222bdd1ec2e9db6ee6db7b23a965d8">&#9670;&nbsp;</a></span>CIStWndPtrArray</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="group__StApiGUI__PublicImpl.html#gab8222bdd1ec2e9db6ee6db7b23a965d8">StApi::CIStWndPtrArray</a></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p><a class="el" href="structStApi_1_1IStWndReleasable.html" title="解放可能なウィンドウ用インターフェース">IStWndReleasable</a> インターフェースポインターの自動管理用クラスです。このクラスのデストラクタから <a class="el" href="structStApi_1_1IStReleasable.html#a9859a952fe7d65899b3b70bd65a4d487" title="解放します。">IStWndReleasable::Release()</a> が自動的に呼び出されます。 </p>
+
+</div>
+</div>
+<h2 class="groupheader">関数詳解</h2>
+<a id="ga96adab5322fc80d9509082e91c2da78d"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ga96adab5322fc80d9509082e91c2da78d">&#9670;&nbsp;</a></span>CreateIStWnd()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">ST_API_GUI <a class="el" href="structStApi_1_1IStWndReleasable.html">StApi::IStWndReleasable</a>* ST_API_CALL_TYPE StApi::CreateIStWnd </td>
+          <td>(</td>
+          <td class="paramtype">StApi::EStWindowType_t&#160;</td>
+          <td class="paramname"><em>eWnd</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p><a class="el" href="structStApi_1_1IStWndReleasable.html" title="解放可能なウィンドウ用インターフェース">IStWndReleasable</a> インターフェースポインターを取得します。 </p><dl class="params"><dt>引数</dt><dd>
+  <table class="params">
+    <tr><td class="paramdir">[in]</td><td class="paramname">eWnd</td><td>使用するウィンドウのタイプ </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>戻り値</dt><dd><a class="el" href="structStApi_1_1IStWndReleasable.html" title="解放可能なウィンドウ用インターフェース">IStWndReleasable</a> インターフェースポインター </dd></dl>
+<dl class="section attention"><dt>注意</dt><dd>取得された <a class="el" href="structStApi_1_1IStWndReleasable.html" title="解放可能なウィンドウ用インターフェース">IStWndReleasable</a> インターフェースが不要になったら、 <a class="el" href="structStApi_1_1IStReleasable.html#a9859a952fe7d65899b3b70bd65a4d487" title="解放します。">IStWndReleasable::Release()</a> を呼び出して解放してください。 </dd></dl>
+<dl class="exception"><dt>例外</dt><dd>
+  <table class="exception">
+    <tr><td class="paramname">初期化されていない場合、メモリーの割り当てに失敗した場合や引数が不正な場合は、例外</td><td><a class="el" href="classGenICam_1_1GenericException.html" title="GenICam&#39;s exception class">GenICam::GenericException</a> が発生します。 </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a id="ga44d50182564dd68a58310cfc0e37f389"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ga44d50182564dd68a58310cfc0e37f389">&#9670;&nbsp;</a></span>CreateIStImageDisplayWnd()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">ST_API_GUI <a class="el" href="structStApi_1_1IStWndReleasable.html">StApi::IStWndReleasable</a>* ST_API_CALL_TYPE StApi::CreateIStImageDisplayWnd </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="structStApi_1_1IStAllocator.html">StApi::IStAllocator</a> *&#160;</td>
+          <td class="paramname"><em>pIStAllocator</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p><a class="el" href="structStApi_1_1IStWndReleasable.html" title="解放可能なウィンドウ用インターフェース">IStWndReleasable</a> インターフェースポインターを取得します。 </p><dl class="params"><dt>引数</dt><dd>
+  <table class="params">
+    <tr><td class="paramdir">[in]</td><td class="paramname">pIStAllocator</td><td><a class="el" href="structStApi_1_1IStAllocator.html" title="メモリーの割り当て用インターフェース">IStAllocator</a> インターフェースポインター </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>戻り値</dt><dd><a class="el" href="structStApi_1_1IStWndReleasable.html" title="解放可能なウィンドウ用インターフェース">IStWndReleasable</a> インターフェースポインター </dd></dl>
+<dl class="section attention"><dt>注意</dt><dd>取得された <a class="el" href="structStApi_1_1IStWndReleasable.html" title="解放可能なウィンドウ用インターフェース">IStWndReleasable</a> インターフェースが不要になったら、 <a class="el" href="structStApi_1_1IStReleasable.html#a9859a952fe7d65899b3b70bd65a4d487" title="解放します。">IStWndReleasable::Release()</a> を呼び出して解放してください。 </dd></dl>
+<dl class="exception"><dt>例外</dt><dd>
+  <table class="exception">
+    <tr><td class="paramname">初期化されていない場合、メモリーの割り当てに失敗した場合や引数が不正な場合は、例外</td><td><a class="el" href="classGenICam_1_1GenericException.html" title="GenICam&#39;s exception class">GenICam::GenericException</a> が発生します。 </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a id="ga8a18bae31cb9c32a0f4537ed1588dfad"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ga8a18bae31cb9c32a0f4537ed1588dfad">&#9670;&nbsp;</a></span>CreateIStGraphDisplayWnd()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">ST_API_GUI <a class="el" href="structStApi_1_1IStWndReleasable.html">StApi::IStWndReleasable</a>* ST_API_CALL_TYPE StApi::CreateIStGraphDisplayWnd </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="structStApi_1_1IStSpecificTypeAllocator.html">StApi::IStSpecificTypeAllocator</a> *&#160;</td>
+          <td class="paramname"><em>pIStSpecificTypeAllocator</em> = <code>NULL</code></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p><a class="el" href="structStApi_1_1IStWndReleasable.html" title="解放可能なウィンドウ用インターフェース">IStWndReleasable</a> インターフェースポインターを取得します。 </p><dl class="params"><dt>引数</dt><dd>
+  <table class="params">
+    <tr><td class="paramdir">[in]</td><td class="paramname">pIStSpecificTypeAllocator</td><td><a class="el" href="structStApi_1_1IStSpecificTypeAllocator.html" title="メモリーの割り当て用インターフェース">IStSpecificTypeAllocator</a> インターフェースポインター </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>戻り値</dt><dd><a class="el" href="structStApi_1_1IStWndReleasable.html" title="解放可能なウィンドウ用インターフェース">IStWndReleasable</a> インターフェースポインター </dd></dl>
+<dl class="section attention"><dt>注意</dt><dd>取得された <a class="el" href="structStApi_1_1IStWndReleasable.html" title="解放可能なウィンドウ用インターフェース">IStWndReleasable</a> インターフェースが不要になったら、 <a class="el" href="structStApi_1_1IStReleasable.html#a9859a952fe7d65899b3b70bd65a4d487" title="解放します。">IStWndReleasable::Release()</a> を呼び出して解放してください。 </dd></dl>
+<dl class="exception"><dt>例外</dt><dd>
+  <table class="exception">
+    <tr><td class="paramname">初期化されていない場合、メモリーの割り当てに失敗した場合や引数が不正な場合は、例外</td><td><a class="el" href="classGenICam_1_1GenericException.html" title="GenICam&#39;s exception class">GenICam::GenericException</a> が発生します。 </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a id="ga9cd753ac08f30f51e8d9833191d0a4de"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ga9cd753ac08f30f51e8d9833191d0a4de">&#9670;&nbsp;</a></span>SetIStImageToClipboard()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">ST_API_GUI void ST_API_CALL_TYPE StApi::SetIStImageToClipboard </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="structStApi_1_1IStImage.html">StApi::IStImage</a> *&#160;</td>
+          <td class="paramname"><em>pIStImage</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>画像データをクリップボードへコピーします。 </p><dl class="params"><dt>引数</dt><dd>
+  <table class="params">
+    <tr><td class="paramdir">[in]</td><td class="paramname">pIStImage</td><td><a class="el" href="structStApi_1_1IStImage.html" title="画像用インターフェース">IStImage</a> interface pointer. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section attention"><dt>注意</dt><dd>StPFNC_Mono8, StPFNC_BGR8, StPFNC_BGRa8 以外のフォーマットの画像データは、変換後にクリップボードへコピーされます。変換方法を指定したい場合は、あらかじめ <a class="el" href="structStApi_1_1IStPixelFormatConverter.html" title="ピクセルフォーマットコンバーター用インターフェース">IStPixelFormatConverter</a> を使用して、 StPFNC_Mono8, StPFNC_BGR8, StPFNC_BGRa8 へ変換された画像データを引数に指定してください。 </dd></dl>
+<dl class="exception"><dt>例外</dt><dd>
+  <table class="exception">
+    <tr><td class="paramname">初期化されていない場合、メモリーの割り当てに失敗した場合や引数が不正な場合は、例外</td><td><a class="el" href="classGenICam_1_1GenericException.html" title="GenICam&#39;s exception class">GenICam::GenericException</a> が発生します。 </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a id="ga7b734d631c9bae4205252e1355840d62"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ga7b734d631c9bae4205252e1355840d62">&#9670;&nbsp;</a></span>processEventGUI()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">ST_API_GUI int ST_API_CALL_TYPE StApi::processEventGUI </td>
+          <td>(</td>
+          <td class="paramtype">bool&#160;</td>
+          <td class="paramname"><em>runExec</em> = <code>false</code>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">unsigned int&#160;</td>
+          <td class="paramname"><em>maxtime</em> = <code>0</code>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>GUIイベントを処理するための関数 （Mac/Linuxのみ）。 </p><dl class="section return"><dt>戻り値</dt><dd>QApplication::exec()からのリターン。processEvents()を実行すれば、ゼロです。 </dd></dl>
+<dl class="params"><dt>引数</dt><dd>
+  <table class="params">
+    <tr><td class="paramdir">[in]</td><td class="paramname">runExec</td><td>True場合はQtのQApplication::exec()を実行します。False場合はQtのQApplication::instance()-&gt;processEvents()を実行します。 </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">maxtime</td><td>runExecがFalseのときに適用されます. processEvents()の最大の処理時間 [ms]。ゼロを設定する場合は処理時間制限が解放します。 </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+</div><!-- contents -->
+<!-- HTML footer for doxygen 1.8.13-->
+<!-- start footer part -->
+<hr class="footer"/>
+	<address class="footer">
+		<small>
+2021年10月26日(火) 13時10分23秒作成 - Sentech SDK / 構成:  &#160;
+			<a href="http://www.sentech.co.jp/">
+				<img class="footer" src="string_omron_sentech.png" alt="OMRON SENTECH CO., LTD"/>
+			</a>
+			<!--
+				DoxyGen Version =  1.8.15
+			-->
+		</small>
+	</address>
+</body>
+</html>

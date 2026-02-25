@@ -1,0 +1,198 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "https://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=9"/>
+<meta name="generator" content="Doxygen 1.8.15"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>Sentech SDK C: カメラインターフェース</title>
+<link href="tabs.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="jquery.js"></script>
+<script type="text/javascript" src="dynsections.js"></script>
+<link href="doxygen.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+<div id="top"><!-- do not remove this div, it is closed by doxygen! -->
+<div id="titlearea">
+<table cellspacing="0" cellpadding="0">
+ <tbody>
+ <tr style="height: 56px;">
+  <td id="projectalign" style="padding-left: 0.5em;">
+   <div id="projectname">Sentech SDK C
+   </div>
+  </td>
+ </tr>
+ </tbody>
+</table>
+</div>
+<!-- end header part -->
+<!-- 構築: Doxygen 1.8.15 -->
+<script type="text/javascript" src="menudata.js"></script>
+<script type="text/javascript" src="menu.js"></script>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:cf05388f2679ee054f2beb29a391d25f4e673ac3&amp;dn=gpl-2.0.txt GPL-v2 */
+$(function() {
+  initMenu('',false,false,'search.php','検索');
+});
+/* @license-end */</script>
+<div id="main-nav"></div>
+</div><!-- top -->
+<div class="PageDoc"><div class="header">
+  <div class="headertitle">
+<div class="title">カメラインターフェース </div>  </div>
+</div><!--header-->
+<div class="contents">
+<div class="toc"><h3>目次</h3>
+<ul><li class="level1"><a href="#USB3Vision">USB3Vision</a><ul><li class="level2"><a href="#HostControllerDrivers">ホストコントローラードライバー</a></li>
+<li class="level2"><a href="#PowerSaveMode">省電力モード (Windows OS)</a></li>
+<li class="level2"><a href="#HostControllerDriversLinux">ホストコントローラードライバー(Linux OS)</a></li>
+<li class="level2"><a href="#USB3VisionBlockID">BlockID</a></li>
+<li class="level2"><a href="#UserDefinedName">User Defined Name</a></li>
+<li class="level2"><a href="#USB3VisionLimited">制限事項</a></li>
+</ul>
+</li>
+<li class="level1"><a href="#GigEVision">GigEVision</a><ul><li class="level2"><a href="#JumboPacket">JumboPacket (Windows OS)</a></li>
+<li class="level2"><a href="#ReceiveBuffers">Receive Buffers (Windows OS)</a></li>
+<li class="level2"><a href="#StGigEDriver">StGigE Driver (Windows OS)</a></li>
+<li class="level2"><a href="#JumboPacketLinux">Jumbo Frameと戻り経路フィルタ(LinuxとMac OS)</a></li>
+<li class="level2"><a href="#Firewall">Firewall</a></li>
+<li class="level2"><a href="#GigEVisionBlockID">BlockID</a></li>
+<li class="level2"><a href="#Heartbeat">Heartbeat</a></li>
+<li class="level2"><a href="#GigEVisionLimited">制限事項</a></li>
+</ul>
+</li>
+<li class="level1"><a href="#CoaXPress">CoaXPress</a><ul><li class="level2"><a href="#GenTL">GenTL</a></li>
+<li class="level2"><a href="#DEVICE_ACCESS_STATUS">GenTL::DEVICE_ACCESS_STATUS</a></li>
+</ul>
+</li>
+</ul>
+</div>
+<div class="textblock"><p>カメラのインターフェース(USB3Vision/GigEVision/CoaXPress)間の相違点について説明します。</p>
+<h1><a class="anchor" id="USB3Vision"></a>
+USB3Vision</h1>
+<h2><a class="anchor" id="HostControllerDrivers"></a>
+ホストコントローラードライバー</h2>
+<p>Windows 7以前のOS用のUSB 3.0 ホストコントローラードライバーは、ボードメーカーまたはチップメーカーから提供されています。ドライバーのバージョンが古い場合、正常に動作しないことがありますので、ご注意ください。弊社で把握している各ベンダーの最新のバージョンは以下の通りです。最新のドライバーの入手方法につきましては、お手持ちのボードまたはパソコンのメーカーにお問い合わせください。また、パソコンによって最新のBIOSへのアップデートが必要になる場合があります。</p>
+<table class="doxtable">
+<tr>
+<th>Vendor</th><th>Chip</th><th>Firmware</th><th>Driver</th><th>入手元 </th></tr>
+<tr>
+<td>Intel </td><td>Intel 7 Series </td><td>- </td><td>1.0.10.255 </td><td><p class="starttd">%CommonProgramFiles%\OMRON_SENTECH\Driver\USBHost\Intel</p>
+<p class="endtd"></p>
+</td></tr>
+<tr>
+<td>Intel </td><td>Intel 8/9/100/200 Series </td><td>- </td><td>5.0.4.43 v2 </td><td><p class="starttd">%CommonProgramFiles%\OMRON_SENTECH\Driver\USBHost\Intel</p>
+<p class="endtd"></p>
+</td></tr>
+<tr>
+<td>Renesas </td><td>uPD720200 </td><td>3.0.3.4 </td><td>2.1.39.0 </td><td>ボードメーカー  </td></tr>
+<tr>
+<td>Renesas </td><td>uPD720201,2 </td><td>2.0.2.6 </td><td>3.0.23.0 </td><td>ボードメーカー  </td></tr>
+<tr>
+<td>Fresco </td><td>FL1000,1009,1100 </td><td>- </td><td>3.8.35514.0 </td><td><p class="starttd"><a href="https://support.frescologic.com/portal/en/kb/articles/usb">Fresco社WEBサイト</a> または本SDK(%CommonProgramFiles%\OMRON_SENTECH\Driver\USBHost\Fresco)</p>
+<p class="endtd"></p>
+</td></tr>
+</table>
+<h2><a class="anchor" id="PowerSaveMode"></a>
+省電力モード (Windows OS)</h2>
+<p>CPUの省電力モードが有効になっていると、USBバスの実効帯域が低下し、フレームドロップが発生することがあります。 [コントロールパネル][システムとセキュリティ][電源オプション]で「高パフォーマンス」を選択することで改善することがあります。</p>
+<div class="image">
+<img src="PowerOption_HighPerformance_jpn.png" alt="PowerOption_HighPerformance_jpn.png"/>
+<div class="caption">
+高パフォーマンス</div></div>
+<p> 環境によっては付属のツール「StPowerCtrl.exe」を使用し、省電力モードの無効化が必要な場合もあります。</p>
+<div class="image">
+<img src="StPowerCtrl_jpn.gif" alt="StPowerCtrl_jpn.gif"/>
+<div class="caption">
+StPowerCtrl.exe</div></div>
+ <ul>
+<li>『自動電源制御』 チェックを入れると、「StPowerCtrl.exe」を起動している間にカメラを検出すると、自動的に省電力設定が無効になります。 </li>
+<li>『省電力設定有効(AC/Battery) 』 チェックを外すと省電力設定が無効になります。設定値はレジストリに保存されるため、「StPowerCtrl.exe」を終了した後でも設定した内容は保持されます。</li>
+</ul>
+<h2><a class="anchor" id="HostControllerDriversLinux"></a>
+ホストコントローラードライバー(Linux OS)</h2>
+<p>USBサブシステムに割り当てられるメモリの上限を設定するために、${STAPI_ROOT_PATH}/bin/setusb.shスクリプトを実行してください（パソコンが再起動されるまで効果があります）。 Linuxのブートスクリプトのカーネルパラメターにusbcore.usbfs_memory_mb=0を追加した場合は、setusb.shを実行する必要はありません。 <br />
+ V4L2ドライバーをインストールしている場合は、このソフトウエアを利用する際にV4L2ドライバーのアンインストールもしくはドライバモジュールのメモリーからのアンロード（$ sudo rmmod stcam_dd）が必要となります。 <br />
+</p>
+<dl class="section attention"><dt>注意</dt><dd>Nvidia Jetson TX1 (3.10.96-tegra)上では、USB3Visionカメラをデータ通信中の際に取り外した場合、新しく接続されるUSB3デバイスが認識できなくなることがあります。この際にはシステムの再起動が必要となります。</dd></dl>
+<h2><a class="anchor" id="USB3VisionBlockID"></a>
+BlockID</h2>
+<p>USB3Visionカメラでは、カメラから出力されるPayloadData(画像データおよびチャンクデータ)に対して連番でBlockIDが割り当てられます。帯域不足などによりカメラ側で破棄されたフレームに対しては、BlockIDが割り当てられませんので、アプリケーション側でBlockIDの抜けを検出しても、フレームドロップを検出することはできません。BlockIDは、 StApi::IStStreamBufferInfo::GetFrameID() で取得できます。</p>
+<h2><a class="anchor" id="UserDefinedName"></a>
+User Defined Name</h2>
+<p>UserDefinedNameを設定することでユーザーがカメラに名前を付けることができますが、UserDefinedNameにASCII文字列以外を入力した場合、USBのDescriptorから文字列が取得できなくなるため、下記の制限が生じます。 </p><ul>
+<li>StApi::IStDeviceInfo::GetUserDefinedName() が正常に機能しません。そのため、 StApi::IStDeviceInfo::GetUserDefinedName() を使用しているデバイス選択画面で文字化けが発生します。 </li>
+<li>他社製ライブラリ使用時にも文字化けなど動作に支障をきたす恐れがあります。</li>
+</ul>
+<h2><a class="anchor" id="USB3VisionLimited"></a>
+制限事項</h2>
+<p>USB3Visionでは下記の機能は動作しません。 </p><ul>
+<li>バッファ不足によるドロップフレーム数のカウント値を取得する機能 </li>
+<li>STC-MCCM200U3V, STC-MBCM200U3V, STC-MCCM401U3V, STC-MBCM401U3Vに搭載されたマルチROI機能 <br />
+ これらのカメラに対してマルチROI設定を行った場合、先頭の領域のみ認識されます。その他の機種(STC-MBS241U3V等)で搭載されたマルチROI機能を使用した場合、すべての領域が結合された1枚の画像として処理されます。</li>
+</ul>
+<h1><a class="anchor" id="GigEVision"></a>
+GigEVision</h1>
+<h2><a class="anchor" id="JumboPacket"></a>
+JumboPacket (Windows OS)</h2>
+<p>使用されるネットワーク機器がジャンボパケットに対応している場合は、ジャンボパケット設定を行うことで転送効率が改善します。ジャンボパケット設定はホスト側およびカメラ側で行う必要があります。ホスト側の設定はデバイスマネージャーからネットワークアダプターのプロパティを開き、下記のような設定画面で行います(Windows Vista以降のOSでは、本SDK付属のStNICConfigツールからも設定可能)。ジャンボパケットは手動での設定が必要となりますので、ご注意ください。 </p><div class="image">
+<img src="GigEVision_JumboPacketSetting_jpn.gif" alt="GigEVision_JumboPacketSetting_jpn.gif"/>
+<div class="caption">
+Jumbo Packet</div></div>
+ <h2><a class="anchor" id="ReceiveBuffers"></a>
+Receive Buffers (Windows OS)</h2>
+<p>Receive Buffersを増加させることで転送が安定する場合があります。Receive Buffersの設定はデバイスマネージャーからネットワークアダプターのプロパティを開き、下記のような設定画面で行います(Windows Vista以降のOSでは、本SDK付属のStNICConfigツールからも設定可能)。 </p><div class="image">
+<img src="GigEVision_ReceiveBuffers_jpn.gif" alt="GigEVision_ReceiveBuffers_jpn.gif"/>
+<div class="caption">
+Receive Buffers</div></div>
+ <h2><a class="anchor" id="StGigEDriver"></a>
+StGigE Driver (Windows OS)</h2>
+<p>Windows Vista以降のOSでは、StGigE Driverを使用することで、CPU負荷を軽減できます。本SDK付属のStNICConfigツールによりStGigE Driverのインストールおよび有効無効切り替えが可能です。StGigE Driverはインストール時に自動的に有効になっていますので、手動で設定する必要はありません。ただし、GigEVisionカメラを使用しないカードに対しては、StGigE Driverを無効に設定した方がCPU負荷が軽減されます。 </p><div class="image">
+<img src="StNICConfig_StGigEDriver_jpn.gif" alt="StNICConfig_StGigEDriver_jpn.gif"/>
+<div class="caption">
+StGigE Driver</div></div>
+ <h2><a class="anchor" id="JumboPacketLinux"></a>
+Jumbo Frameと戻り経路フィルタ(LinuxとMac OS)</h2>
+<p>使用されるネットワーク機器がジャンボフレームに対応している場合は、MTU設定とソケットバッファサイズ設定を行うことで転送効率が改善します。また、Linux上でGigEカメラのIPとネットワークインタフェースカードのネットワークが異なる場合、GigEカメラの認識が出来ないことがあります。その場合は戻り経路フィルタの設定が必要となります。ネットワーク設定を行うために下記のスクリプトを実行してください。</p><ul>
+<li>Linux：${STAPI_ROOT_PATH}/bin/setnetwork.sh （パソコンが再起動されるまで効果があります）。</li>
+<li>Mac：/Applications/SentechSDK/setnetwork.command （パソコンが再起動されるまで効果があります）。</li>
+</ul>
+<h2><a class="anchor" id="Firewall"></a>
+Firewall</h2>
+<p>OSやセキュリティソフトなどのファイアウォールが有効になっているとカメラからのパケットが受け取れず、「カメラが発見できない」、「画像データを取得できない」といった問題が発生することがあります。その場合には、ファイアウォールを無効にするか、使用されるアプリケーションを例外に登録してご使用ください。</p>
+<h2><a class="anchor" id="GigEVisionBlockID"></a>
+BlockID</h2>
+<p>StApi::IStStreamBufferInfo::GetFrameID() を使用することで64ビットのBlockIDを受け取ることができます。カメラから送られてくる32ビットのBlockIDは0xFFFFFFFFに達すると次のBlockIDは0x000000001になりますが、 StApi::IStStreamBufferInfo::GetFrameID() では64ビット化された連続した値が取得されます。</p>
+<h2><a class="anchor" id="Heartbeat"></a>
+Heartbeat</h2>
+<p>アプリケーションがGigEVisionカメラをコントロールモードまたは排他モードで開くと、アプリケーションはカメラに対して排他的なアクセス権を獲得します。アプリケーションがアクセス権を保持したまま終了した際に、他のアプリケーションがカメラへアクセスできなくなってしまうのを防ぐため、アプリケーションからコマンドを受け取らない期間がDeviceLinkHeartbeatTimeout[us単位](またはGevHeartbeatTimeout[ms単位])を超えると、カメラはアクセス権をはく奪します。GigEVisionカメラがコントロールモードまたは排他モードで開かれた場合、GenTLモジュールはアクセス権を維持するために定期的にカメラへコマンドを送信しています。 デバッガー等でアプリケーションの実行を停止した場合、この定期的なコマンド送信も停止してしまうため、カメラのアクセス権が失われ、実行を再開した際に、カメラをコントロールできなくなることがあります。 GenTLモジュールはGigEVisionカメラオープン時にデバッガーを検出すると、自動的にカメラのDeviceLinkHeartbeatTimeout[us単位](またはGevHeartbeatTimeout[ms単位])を300,000[ms]に設定します。また、環境変数「STGENTL_GIGE_HEARTBEAT」[ms単位]でタイムアウト時間が指定されている場合は、デバッガの有無にかかわらず、その値をカメラへ設定します。GenTLモジュールでは、この設定値の1/3の間隔(300,000[ms]に設定されている場合は、100[s]ごと)でアクセス権を維持するためのカメラへコマンドが送信されます。</p>
+<p>GigEVisionカメラが正常に閉じられた場合は、タイムアウト時間の設定が元に戻され、アクセス権も破棄されます。アプリケーションが異常終了するなどした場合、タイムアウト時間が経過するか、カメラの電源ケーブルもしくはネットワークケーブルを抜き差しするなどしてカメラをリセットするまで、カメラへアクセスできなくなりますのでご注意ください。</p>
+<h2><a class="anchor" id="GigEVisionLimited"></a>
+制限事項</h2>
+<p>弊社の古いGigEVisionカメラシリーズで対応していたSFNC非準拠のガンマテーブル設定の機能には本SDKは対応していません。</p>
+<h1><a class="anchor" id="CoaXPress"></a>
+CoaXPress</h1>
+<h2><a class="anchor" id="GenTL"></a>
+GenTL</h2>
+<p>CoaXPressではサードパーティー製のGenTLモジュールを使用します。対応しているGenTL仕様のバージョン等により、一部の機能が正常に動作しない場合があります。ボードメーカーから最新のドライバを入手してください。</p>
+<h2><a class="anchor" id="DEVICE_ACCESS_STATUS"></a>
+GenTL::DEVICE_ACCESS_STATUS</h2>
+<p>StApi::IStDeviceInfo::GetAccessStatus() で取得される GenTL::DEVICE_ACCESS_STATUS の値が使用するボードのメーカーやバージョンによって、USB3Vision/GigEVisionの値とは異なることがあります。 </p>
+</div></div><!-- PageDoc -->
+</div><!-- contents -->
+<!-- HTML footer for doxygen 1.8.13-->
+<!-- start footer part -->
+<hr class="footer"/>
+	<address class="footer">
+		<small>
+2021年10月26日(火) 13時17分12秒作成 - Sentech SDK C / 構成:  &#160;
+			<a href="http://www.sentech.co.jp/">
+				<img class="footer" src="string_omron_sentech.png" alt="OMRON SENTECH CO., LTD"/>
+			</a>
+			<!--
+				DoxyGen Version =  1.8.15
+			-->
+		</small>
+	</address>
+</body>
+</html>

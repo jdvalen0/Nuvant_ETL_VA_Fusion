@@ -1,0 +1,441 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "https://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=9"/>
+<meta name="generator" content="Doxygen 1.8.15"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>Sentech SDK: StApi::IStColorTransformationFilter インタフェース</title>
+<link href="tabs.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="jquery.js"></script>
+<script type="text/javascript" src="dynsections.js"></script>
+<link href="doxygen.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+<div id="top"><!-- do not remove this div, it is closed by doxygen! -->
+<div id="titlearea">
+<table cellspacing="0" cellpadding="0">
+ <tbody>
+ <tr style="height: 56px;">
+  <td id="projectalign" style="padding-left: 0.5em;">
+   <div id="projectname">Sentech SDK
+   </div>
+  </td>
+ </tr>
+ </tbody>
+</table>
+</div>
+<!-- end header part -->
+<!-- 構築: Doxygen 1.8.15 -->
+<script type="text/javascript" src="menudata.js"></script>
+<script type="text/javascript" src="menu.js"></script>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:cf05388f2679ee054f2beb29a391d25f4e673ac3&amp;dn=gpl-2.0.txt GPL-v2 */
+$(function() {
+  initMenu('',false,false,'search.php','検索');
+});
+/* @license-end */</script>
+<div id="main-nav"></div>
+<div id="nav-path" class="navpath">
+  <ul>
+<li class="navelem"><b>StApi</b></li><li class="navelem"><a class="el" href="structStApi_1_1IStColorTransformationFilter.html">IStColorTransformationFilter</a></li>  </ul>
+</div>
+</div><!-- top -->
+<div class="header">
+  <div class="summary">
+<a href="#pub-methods">公開メンバ関数</a> &#124;
+<a href="structStApi_1_1IStColorTransformationFilter-members.html">全メンバ一覧</a>  </div>
+  <div class="headertitle">
+<div class="title">StApi::IStColorTransformationFilter インタフェース<span class="mlabels"><span class="mlabel">abstract</span></span><div class="ingroups"><a class="el" href="group__StApiIP__PublicInterface.html">StApi 画像処理モジュール抽象インターフェース</a></div></div>  </div>
+</div><!--header-->
+<div class="contents">
+
+<p>色変換フィルター用インターフェース  
+ <a href="structStApi_1_1IStColorTransformationFilter.html#details">[詳解]</a></p>
+<div id="dynsection-0" onclick="return toggleVisibility(this)" class="dynheader closed" style="cursor:pointer;">
+  <img id="dynsection-0-trigger" src="closed.png" alt="+"/> StApi::IStColorTransformationFilter の継承関係図</div>
+<div id="dynsection-0-summary" class="dynsummary" style="display:block;">
+</div>
+<div id="dynsection-0-content" class="dyncontent" style="display:none;">
+<div class="center"><img src="structStApi_1_1IStColorTransformationFilter__inherit__graph.png" border="0" usemap="#StApi_1_1IStColorTransformationFilter_inherit__map" alt="Inheritance graph"/></div>
+<map name="StApi_1_1IStColorTransformationFilter_inherit__map" id="StApi_1_1IStColorTransformationFilter_inherit__map">
+<area shape="rect"  title="è²å¤æãã£ã«ã¿ã¼ç¨ã¤ã³ã¿ã¼ãã§ã¼ã¹" alt="" coords="5,155,219,196"/>
+<area shape="rect"  href="structStApi_1_1IStFilter.html" title="ãã£ã«ã¿ã¼ç¨ã¤ã³ã¿ã¼ãã§ã¼ã¹" alt="" coords="55,80,169,107"/>
+<area shape="rect"  href="structStApi_1_1IStRegisterCallback.html" title="StApiã³ã¼ã«ããã¯é¢æ°ã®ç»é²ããã³ç»é²è§£é¤ã«ä½¿ç¨ãããã¤ã³ã¿ã¼ãã§ã¼ã¹" alt="" coords="17,5,207,32"/>
+</map>
+<center><span class="legend">[<a href="graph_legend.html">凡例</a>]</span></center></div>
+<div id="dynsection-1" onclick="return toggleVisibility(this)" class="dynheader closed" style="cursor:pointer;">
+  <img id="dynsection-1-trigger" src="closed.png" alt="+"/> StApi::IStColorTransformationFilter 連携図</div>
+<div id="dynsection-1-summary" class="dynsummary" style="display:block;">
+</div>
+<div id="dynsection-1-content" class="dyncontent" style="display:none;">
+<div class="center"><img src="structStApi_1_1IStColorTransformationFilter__coll__graph.png" border="0" usemap="#StApi_1_1IStColorTransformationFilter_coll__map" alt="Collaboration graph"/></div>
+<map name="StApi_1_1IStColorTransformationFilter_coll__map" id="StApi_1_1IStColorTransformationFilter_coll__map">
+<area shape="rect"  title="è²å¤æãã£ã«ã¿ã¼ç¨ã¤ã³ã¿ã¼ãã§ã¼ã¹" alt="" coords="5,155,219,196"/>
+<area shape="rect"  href="structStApi_1_1IStFilter.html" title="ãã£ã«ã¿ã¼ç¨ã¤ã³ã¿ã¼ãã§ã¼ã¹" alt="" coords="55,80,169,107"/>
+<area shape="rect"  href="structStApi_1_1IStRegisterCallback.html" title="StApiã³ã¼ã«ããã¯é¢æ°ã®ç»é²ããã³ç»é²è§£é¤ã«ä½¿ç¨ãããã¤ã³ã¿ã¼ãã§ã¼ã¹" alt="" coords="17,5,207,32"/>
+</map>
+<center><span class="legend">[<a href="graph_legend.html">凡例</a>]</span></center></div>
+<table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-methods"></a>
+公開メンバ関数</h2></td></tr>
+<tr class="memitem:af33d7f26287cffdcb215abdf33174df3"><td class="memItemLeft" align="right" valign="top">virtual bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structStApi_1_1IStColorTransformationFilter.html#af33d7f26287cffdcb215abdf33174df3">GetColorTransformationEnable</a> () const =0</td></tr>
+<tr class="memdesc:af33d7f26287cffdcb215abdf33174df3"><td class="mdescLeft">&#160;</td><td class="mdescRight">色変換処理の有効/無効を取得します。  <a href="#af33d7f26287cffdcb215abdf33174df3">[詳解]</a><br /></td></tr>
+<tr class="separator:af33d7f26287cffdcb215abdf33174df3"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a0d38d0b0d957eee9a8e21ac4aa5a7961"><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structStApi_1_1IStColorTransformationFilter.html#a0d38d0b0d957eee9a8e21ac4aa5a7961">SetColorTransformationEnable</a> (bool value)=0</td></tr>
+<tr class="memdesc:a0d38d0b0d957eee9a8e21ac4aa5a7961"><td class="mdescLeft">&#160;</td><td class="mdescRight">色変換処理の有効/無効を設定します。  <a href="#a0d38d0b0d957eee9a8e21ac4aa5a7961">[詳解]</a><br /></td></tr>
+<tr class="separator:a0d38d0b0d957eee9a8e21ac4aa5a7961"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a55a07489d53c6c3e361d542a9ca3ed84"><td class="memItemLeft" align="right" valign="top">virtual double&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structStApi_1_1IStColorTransformationFilter.html#a55a07489d53c6c3e361d542a9ca3ed84">GetColorTransformationValue</a> (<a class="el" href="group__StApiIP__PublicImpl.html#gaa57c1bf6e95cc1f996892560c17f5ae4">EStColorTransformationValueSelector_t</a> eCTVS) const =0</td></tr>
+<tr class="memdesc:a55a07489d53c6c3e361d542a9ca3ed84"><td class="mdescLeft">&#160;</td><td class="mdescRight">色変換行列の値を取得します。  <a href="#a55a07489d53c6c3e361d542a9ca3ed84">[詳解]</a><br /></td></tr>
+<tr class="separator:a55a07489d53c6c3e361d542a9ca3ed84"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:af3dbbd4193fbd90b49ee3aa1ce342abd"><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structStApi_1_1IStColorTransformationFilter.html#af3dbbd4193fbd90b49ee3aa1ce342abd">SetColorTransformationValue</a> (<a class="el" href="group__StApiIP__PublicImpl.html#gaa57c1bf6e95cc1f996892560c17f5ae4">EStColorTransformationValueSelector_t</a> eCTVS, double value)=0</td></tr>
+<tr class="memdesc:af3dbbd4193fbd90b49ee3aa1ce342abd"><td class="mdescLeft">&#160;</td><td class="mdescRight">色変換行列の値を設定します。  <a href="#af3dbbd4193fbd90b49ee3aa1ce342abd">[詳解]</a><br /></td></tr>
+<tr class="separator:af3dbbd4193fbd90b49ee3aa1ce342abd"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a95a50d33e5f7cccf43c16dc6458f4ac0"><td class="memItemLeft" align="right" valign="top">virtual double&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structStApi_1_1IStColorTransformationFilter.html#a95a50d33e5f7cccf43c16dc6458f4ac0">GetHueCorrection</a> () const =0</td></tr>
+<tr class="memdesc:a95a50d33e5f7cccf43c16dc6458f4ac0"><td class="mdescLeft">&#160;</td><td class="mdescRight">色相の補正値を取得します。  <a href="#a95a50d33e5f7cccf43c16dc6458f4ac0">[詳解]</a><br /></td></tr>
+<tr class="separator:a95a50d33e5f7cccf43c16dc6458f4ac0"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a342cae2cbeb2a8e4980718f2d5e3e01a"><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structStApi_1_1IStColorTransformationFilter.html#a342cae2cbeb2a8e4980718f2d5e3e01a">SetHueCorrection</a> (double value)=0</td></tr>
+<tr class="memdesc:a342cae2cbeb2a8e4980718f2d5e3e01a"><td class="mdescLeft">&#160;</td><td class="mdescRight">色相の補正値を設定します。  <a href="#a342cae2cbeb2a8e4980718f2d5e3e01a">[詳解]</a><br /></td></tr>
+<tr class="separator:a342cae2cbeb2a8e4980718f2d5e3e01a"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:abaddc55f76dabeb478a23db7f97ec514"><td class="memItemLeft" align="right" valign="top">virtual double&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structStApi_1_1IStColorTransformationFilter.html#abaddc55f76dabeb478a23db7f97ec514">GetSaturationCorrection</a> () const =0</td></tr>
+<tr class="memdesc:abaddc55f76dabeb478a23db7f97ec514"><td class="mdescLeft">&#160;</td><td class="mdescRight">彩度の補正値を取得します。  <a href="#abaddc55f76dabeb478a23db7f97ec514">[詳解]</a><br /></td></tr>
+<tr class="separator:abaddc55f76dabeb478a23db7f97ec514"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ac0b199205b85c50b91c7717f78a96398"><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structStApi_1_1IStColorTransformationFilter.html#ac0b199205b85c50b91c7717f78a96398">SetSaturationCorrection</a> (double value)=0</td></tr>
+<tr class="memdesc:ac0b199205b85c50b91c7717f78a96398"><td class="mdescLeft">&#160;</td><td class="mdescRight">彩度の補正値を設定します。  <a href="#ac0b199205b85c50b91c7717f78a96398">[詳解]</a><br /></td></tr>
+<tr class="separator:ac0b199205b85c50b91c7717f78a96398"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="inherit_header pub_methods_structStApi_1_1IStFilter"><td colspan="2" onclick="javascript:toggleInherit('pub_methods_structStApi_1_1IStFilter')"><img src="closed.png" alt="-"/>&#160;基底クラス <a class="el" href="structStApi_1_1IStFilter.html">StApi::IStFilter</a> に属する継承公開メンバ関数</td></tr>
+<tr class="memitem:a074a72898c49bbd00ac1a5b304dfafef inherit pub_methods_structStApi_1_1IStFilter"><td class="memItemLeft" align="right" valign="top">virtual <a class="el" href="structStApi_1_1IStFilterInfo.html">IStFilterInfo</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structStApi_1_1IStFilter.html#a074a72898c49bbd00ac1a5b304dfafef">GetIStFilterInfo</a> () const =0</td></tr>
+<tr class="memdesc:a074a72898c49bbd00ac1a5b304dfafef inherit pub_methods_structStApi_1_1IStFilter"><td class="mdescLeft">&#160;</td><td class="mdescRight"><a class="el" href="structStApi_1_1IStFilterInfo.html" title="フィルター情報用インターフェース">IStFilterInfo</a> インターフェースポインターを取得します。  <a href="structStApi_1_1IStFilter.html#a074a72898c49bbd00ac1a5b304dfafef">[詳解]</a><br /></td></tr>
+<tr class="separator:a074a72898c49bbd00ac1a5b304dfafef inherit pub_methods_structStApi_1_1IStFilter"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a6b08e31fa9a526d289488c5c98b46233 inherit pub_methods_structStApi_1_1IStFilter"><td class="memItemLeft" align="right" valign="top">virtual <a class="el" href="structStApi_1_1IStImage.html">IStImage</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structStApi_1_1IStFilter.html#a6b08e31fa9a526d289488c5c98b46233">Filter</a> (<a class="el" href="structStApi_1_1IStImage.html">IStImage</a> *pImage)=0</td></tr>
+<tr class="memdesc:a6b08e31fa9a526d289488c5c98b46233 inherit pub_methods_structStApi_1_1IStFilter"><td class="mdescLeft">&#160;</td><td class="mdescRight">フィルター処理を実行します。入力した画像は処理後の画像で上書きされます。  <a href="structStApi_1_1IStFilter.html#a6b08e31fa9a526d289488c5c98b46233">[詳解]</a><br /></td></tr>
+<tr class="separator:a6b08e31fa9a526d289488c5c98b46233 inherit pub_methods_structStApi_1_1IStFilter"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a267ee622a23a0f5ff2feb277b2fdf659 inherit pub_methods_structStApi_1_1IStFilter"><td class="memItemLeft" align="right" valign="top">virtual <a class="el" href="structGenApi_1_1INodeMap.html">GenApi::INodeMap</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structStApi_1_1IStFilter.html#a267ee622a23a0f5ff2feb277b2fdf659">GetINodeMap</a> ()=0</td></tr>
+<tr class="memdesc:a267ee622a23a0f5ff2feb277b2fdf659 inherit pub_methods_structStApi_1_1IStFilter"><td class="mdescLeft">&#160;</td><td class="mdescRight">INodeMap インターフェースポインターを取得します。  <a href="structStApi_1_1IStFilter.html#a267ee622a23a0f5ff2feb277b2fdf659">[詳解]</a><br /></td></tr>
+<tr class="separator:a267ee622a23a0f5ff2feb277b2fdf659 inherit pub_methods_structStApi_1_1IStFilter"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="inherit_header pub_methods_structStApi_1_1IStRegisterCallback"><td colspan="2" onclick="javascript:toggleInherit('pub_methods_structStApi_1_1IStRegisterCallback')"><img src="closed.png" alt="-"/>&#160;基底クラス <a class="el" href="structStApi_1_1IStRegisterCallback.html">StApi::IStRegisterCallback</a> に属する継承公開メンバ関数</td></tr>
+<tr class="memitem:a3e9da3d4173d22f96664cd8be00c9c70 inherit pub_methods_structStApi_1_1IStRegisterCallback"><td class="memItemLeft" align="right" valign="top">virtual <a class="el" href="group__StApiTL__PublicImpl.html#ga50382bf603d23086b9a3887988985273">StApiCallbackHandle_t</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structStApi_1_1IStRegisterCallback.html#a3e9da3d4173d22f96664cd8be00c9c70">RegisterCallback</a> (<a class="el" href="structStApi_1_1IStCallback.html">IStCallback</a> *pIStCallback)=0</td></tr>
+<tr class="memdesc:a3e9da3d4173d22f96664cd8be00c9c70 inherit pub_methods_structStApi_1_1IStRegisterCallback"><td class="mdescLeft">&#160;</td><td class="mdescRight">コールバック関数を登録します。  <a href="structStApi_1_1IStRegisterCallback.html#a3e9da3d4173d22f96664cd8be00c9c70">[詳解]</a><br /></td></tr>
+<tr class="separator:a3e9da3d4173d22f96664cd8be00c9c70 inherit pub_methods_structStApi_1_1IStRegisterCallback"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a642e9d0ae0e64dafa24fd5db03c20fea inherit pub_methods_structStApi_1_1IStRegisterCallback"><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structStApi_1_1IStRegisterCallback.html#a642e9d0ae0e64dafa24fd5db03c20fea">DeregisterCallback</a> (<a class="el" href="group__StApiTL__PublicImpl.html#ga50382bf603d23086b9a3887988985273">StApiCallbackHandle_t</a> hCallback)=0</td></tr>
+<tr class="memdesc:a642e9d0ae0e64dafa24fd5db03c20fea inherit pub_methods_structStApi_1_1IStRegisterCallback"><td class="mdescLeft">&#160;</td><td class="mdescRight">コールバック関数の登録を解除します。  <a href="structStApi_1_1IStRegisterCallback.html#a642e9d0ae0e64dafa24fd5db03c20fea">[詳解]</a><br /></td></tr>
+<tr class="separator:a642e9d0ae0e64dafa24fd5db03c20fea inherit pub_methods_structStApi_1_1IStRegisterCallback"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table>
+<a name="details" id="details"></a><h2 class="groupheader">詳解</h2>
+<div class="textblock"><p>色変換フィルター用インターフェース </p><dl class="section see"><dt>参照</dt><dd><a class="el" href="group__StApiIP__PublicImpl.html#ga54b3f1b8b6b336312cdc6aaf83b497ba" title="IStFilterReleasable インターフェースポインターを取得します。IStFilterReleasable で行われる画像処理では、 IStConverterReleasable で行われる...">CreateIStFilter()</a>, <a class="el" href="structStApi_1_1IStFilter.html#a074a72898c49bbd00ac1a5b304dfafef" title="IStFilterInfo インターフェースポインターを取得します。">GetIStFilterInfo()</a> </dd></dl>
+</div><h2 class="groupheader">関数詳解</h2>
+<a id="af33d7f26287cffdcb215abdf33174df3"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#af33d7f26287cffdcb215abdf33174df3">&#9670;&nbsp;</a></span>GetColorTransformationEnable()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">virtual bool StApi::IStColorTransformationFilter::GetColorTransformationEnable </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">pure virtual</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+<p>色変換処理の有効/無効を取得します。 </p><dl class="section return"><dt>戻り値</dt><dd>有効な時 true が返されます。 </dd></dl>
+<dl class="exception"><dt>例外</dt><dd>
+  <table class="exception">
+    <tr><td class="paramname">なし</td><td></td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a id="a0d38d0b0d957eee9a8e21ac4aa5a7961"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a0d38d0b0d957eee9a8e21ac4aa5a7961">&#9670;&nbsp;</a></span>SetColorTransformationEnable()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">virtual void StApi::IStColorTransformationFilter::SetColorTransformationEnable </td>
+          <td>(</td>
+          <td class="paramtype">bool&#160;</td>
+          <td class="paramname"><em>value</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">pure virtual</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+<p>色変換処理の有効/無効を設定します。 </p><dl class="params"><dt>引数</dt><dd>
+  <table class="params">
+    <tr><td class="paramdir">[in]</td><td class="paramname">value</td><td>有効にする場合、 true を指定します。 </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="exception"><dt>例外</dt><dd>
+  <table class="exception">
+    <tr><td class="paramname">なし</td><td></td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a id="a55a07489d53c6c3e361d542a9ca3ed84"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a55a07489d53c6c3e361d542a9ca3ed84">&#9670;&nbsp;</a></span>GetColorTransformationValue()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">virtual double StApi::IStColorTransformationFilter::GetColorTransformationValue </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="group__StApiIP__PublicImpl.html#gaa57c1bf6e95cc1f996892560c17f5ae4">EStColorTransformationValueSelector_t</a>&#160;</td>
+          <td class="paramname"><em>eCTVS</em></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">pure virtual</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+<p>色変換行列の値を取得します。 </p><dl class="params"><dt>引数</dt><dd>
+  <table class="params">
+    <tr><td class="paramdir">[in]</td><td class="paramname">eCTVS</td><td>対象とする行列の要素を指定します。 </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>戻り値</dt><dd>色変換行列値 </dd></dl>
+<dl class="exception"><dt>例外</dt><dd>
+  <table class="exception">
+    <tr><td class="paramname">不正な引数が指定された場合は、例外</td><td><a class="el" href="classGenICam_1_1GenericException.html" title="GenICam&#39;s exception class">GenICam::GenericException</a> が発生します。 </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a id="af3dbbd4193fbd90b49ee3aa1ce342abd"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#af3dbbd4193fbd90b49ee3aa1ce342abd">&#9670;&nbsp;</a></span>SetColorTransformationValue()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">virtual void StApi::IStColorTransformationFilter::SetColorTransformationValue </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="group__StApiIP__PublicImpl.html#gaa57c1bf6e95cc1f996892560c17f5ae4">EStColorTransformationValueSelector_t</a>&#160;</td>
+          <td class="paramname"><em>eCTVS</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">double&#160;</td>
+          <td class="paramname"><em>value</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">pure virtual</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+<p>色変換行列の値を設定します。 </p><dl class="params"><dt>引数</dt><dd>
+  <table class="params">
+    <tr><td class="paramdir">[in]</td><td class="paramname">eCTVS</td><td>対象とする行列の要素を指定します。 </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">value</td><td>色変換行列値(ゲイン値:-16.0～16.0, オフセット値:-65535～65535) </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="exception"><dt>例外</dt><dd>
+  <table class="exception">
+    <tr><td class="paramname">不正な引数が指定された場合は、例外</td><td><a class="el" href="classGenICam_1_1GenericException.html" title="GenICam&#39;s exception class">GenICam::GenericException</a> が発生します。 </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a id="a95a50d33e5f7cccf43c16dc6458f4ac0"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a95a50d33e5f7cccf43c16dc6458f4ac0">&#9670;&nbsp;</a></span>GetHueCorrection()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">virtual double StApi::IStColorTransformationFilter::GetHueCorrection </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">pure virtual</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+<p>色相の補正値を取得します。 </p><dl class="section return"><dt>戻り値</dt><dd>補正値 </dd></dl>
+<dl class="exception"><dt>例外</dt><dd>
+  <table class="exception">
+    <tr><td class="paramname">なし</td><td></td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a id="a342cae2cbeb2a8e4980718f2d5e3e01a"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a342cae2cbeb2a8e4980718f2d5e3e01a">&#9670;&nbsp;</a></span>SetHueCorrection()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">virtual void StApi::IStColorTransformationFilter::SetHueCorrection </td>
+          <td>(</td>
+          <td class="paramtype">double&#160;</td>
+          <td class="paramname"><em>value</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">pure virtual</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+<p>色相の補正値を設定します。 </p><dl class="params"><dt>引数</dt><dd>
+  <table class="params">
+    <tr><td class="paramdir">[in]</td><td class="paramname">value</td><td>補正値(-180.0～180.0) </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="exception"><dt>例外</dt><dd>
+  <table class="exception">
+    <tr><td class="paramname">不正な引数が指定された場合は、例外</td><td><a class="el" href="classGenICam_1_1GenericException.html" title="GenICam&#39;s exception class">GenICam::GenericException</a> が発生します。 </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a id="abaddc55f76dabeb478a23db7f97ec514"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#abaddc55f76dabeb478a23db7f97ec514">&#9670;&nbsp;</a></span>GetSaturationCorrection()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">virtual double StApi::IStColorTransformationFilter::GetSaturationCorrection </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">pure virtual</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+<p>彩度の補正値を取得します。 </p><dl class="section return"><dt>戻り値</dt><dd>補正値 </dd></dl>
+<dl class="exception"><dt>例外</dt><dd>
+  <table class="exception">
+    <tr><td class="paramname">なし</td><td></td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a id="ac0b199205b85c50b91c7717f78a96398"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ac0b199205b85c50b91c7717f78a96398">&#9670;&nbsp;</a></span>SetSaturationCorrection()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">virtual void StApi::IStColorTransformationFilter::SetSaturationCorrection </td>
+          <td>(</td>
+          <td class="paramtype">double&#160;</td>
+          <td class="paramname"><em>value</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">pure virtual</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+<p>彩度の補正値を設定します。 </p><dl class="params"><dt>引数</dt><dd>
+  <table class="params">
+    <tr><td class="paramdir">[in]</td><td class="paramname">value</td><td>補正値(0.0～4.0) </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="exception"><dt>例外</dt><dd>
+  <table class="exception">
+    <tr><td class="paramname">不正な引数が指定された場合は、例外</td><td><a class="el" href="classGenICam_1_1GenericException.html" title="GenICam&#39;s exception class">GenICam::GenericException</a> が発生します。 </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+</div><!-- contents -->
+<!-- HTML footer for doxygen 1.8.13-->
+<!-- start footer part -->
+<hr class="footer"/>
+	<address class="footer">
+		<small>
+2021年10月26日(火) 13時10分25秒作成 - Sentech SDK / 構成:  &#160;
+			<a href="http://www.sentech.co.jp/">
+				<img class="footer" src="string_omron_sentech.png" alt="OMRON SENTECH CO., LTD"/>
+			</a>
+			<!--
+				DoxyGen Version =  1.8.15
+			-->
+		</small>
+	</address>
+</body>
+</html>

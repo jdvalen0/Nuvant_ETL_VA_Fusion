@@ -1,0 +1,114 @@
+version: '3.8'
+
+# ══════════════════════════════════════════════════════════════════════════════
+# Nuvant Vision System — Multi-Línea (Modular)
+#
+# FASE ACTUAL: 1 línea, 1 cámara (bridge-l1-final)
+# ESCALAR:    Duplicar el bloque bridge-l1-final, cambiar CAMERA_LINE_ID,
+#             CAMERA_POINT_ID y CAMERA_ID — sin cambios de código.
+# ══════════════════════════════════════════════════════════════════════════════
+
+services:
+
+  # ── Backend de Visión Artificial ───────────────────────────────────────────
+  nuvant-backend:
+    build:
+      context: ./Nuvant_VA
+      dockerfile: docker/Dockerfile
+    container_name: nuvant-backend
+    ports:
+      - "8000:8000"
+    volumes:
+      - storage_data:/app/local_storage
+      - db_data:/app/db
+      - log_data:/app/logs
+    environment:
+      - ENV=production
+      - PYTHONUNBUFFERED=1
+      - STORAGE_DIR=/app/local_storage
+      - DATABASE_URL=sqlite:////app/db/nuvant.db
+      - PATCHCORE_CORESET_RATIO=0.1
+      - PATCHCORE_NEIGHBORS=9
+      - PATCHCORE_ROI_CROP=0.08
+      - PATCHCORE_USE_CLAHE=false
+    networks:
+      - nuvant-net
+    restart: unless-stopped
+    healthcheck:
+      test: [ "CMD", "python3", "-c", "import urllib.request; urllib.request.urlopen('http://localhost:8000/')" ]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+      start_period: 120s
+
+  # ── Definición base reutilizable (anchor YAML) ────────────────────────────
+  # No se levanta directamente. Solo sirve para heredar configuración.
+  x-bridge-base: &bridge-base
+    build:
+      context: ./camera_bridge
+      dockerfile: Dockerfile
+    depends_on:
+      nuvant-backend:
+        condition: service_healthy
+    networks:
+      - nuvant-net
+    restart: unless-stopped
+    environment: &bridge-env-base
+      VA_BACKEND_WS_URL: "ws://nuvant-backend:8000/api/inference/camera_feed"
+      SIMULATE_DIR: "/simulate_images"
+      JPEG_QUALITY: "80"
+
+  # ══════════════════════════════════════════════════════════════════════════
+  # LÍNEA 1 — Punto: Final / Enrollado
+  # ── Fase actual: única cámara en producción
+  # ══════════════════════════════════════════════════════════════════════════
+  bridge-l1-final:
+    <<: *bridge-base
+    container_name: bridge-linea1-final
+    volumes:
+      - ./simulate_images:/simulate_images:ro
+    environment:
+      <<: *bridge-env-base
+      CAMERA_MODE: "${CAMERA_MODE:-simulate}"
+      CAMERA_FPS: "${CAMERA_FPS:-5.0}"
+      CAMERA_LINE_ID: "1"
+      CAMERA_POINT_ID: "1"
+      CAMERA_ID: "cam-l1-final"
+      CAMERA_IP: "${CAMERA_IP:-}"
+  # ══════════════════════════════════════════════════════════════════════════
+  # FUTURAS CÁMARAS (descomentar cuando estén disponibles)
+  # ══════════════════════════════════════════════════════════════════════════
+
+  # Línea 1 — Inicio
+  # bridge-l1-inicio:
+  #   <<: *bridge-base
+  #   container_name: bridge-linea1-inicio
+  #   volumes:
+  #     - ./simulate_images:/simulate_images:ro
+  #   environment:
+  #     <<: *bridge-env-base
+  #     CAMERA_MODE:     simulate
+  #     CAMERA_LINE_ID:  "1"
+  #     CAMERA_POINT_ID: "2"
+  #     CAMERA_ID:       "cam-l1-inicio"
+
+  # Línea 2 — Final
+  # bridge-l2-final:
+  #   <<: *bridge-base
+  #   container_name: bridge-linea2-final
+  #   environment:
+  #     <<: *bridge-env-base
+  #     CAMERA_MODE:     live
+  #     CAMERA_LINE_ID:  "2"
+  #     CAMERA_POINT_ID: "3"
+  #     CAMERA_ID:       "cam-l2-final"
+
+
+networks:
+  nuvant-net:
+    driver: bridge
+
+volumes:
+  storage_data:
+  db_data:
+  log_data:

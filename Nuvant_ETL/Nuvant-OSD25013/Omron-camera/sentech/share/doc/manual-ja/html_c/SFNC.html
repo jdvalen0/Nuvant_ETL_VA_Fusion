@@ -1,0 +1,141 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "https://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=9"/>
+<meta name="generator" content="Doxygen 1.8.15"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>Sentech SDK C: SFNC(Standard Features Naming Convention)</title>
+<link href="tabs.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="jquery.js"></script>
+<script type="text/javascript" src="dynsections.js"></script>
+<link href="doxygen.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+<div id="top"><!-- do not remove this div, it is closed by doxygen! -->
+<div id="titlearea">
+<table cellspacing="0" cellpadding="0">
+ <tbody>
+ <tr style="height: 56px;">
+  <td id="projectalign" style="padding-left: 0.5em;">
+   <div id="projectname">Sentech SDK C
+   </div>
+  </td>
+ </tr>
+ </tbody>
+</table>
+</div>
+<!-- end header part -->
+<!-- 構築: Doxygen 1.8.15 -->
+<script type="text/javascript" src="menudata.js"></script>
+<script type="text/javascript" src="menu.js"></script>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:cf05388f2679ee054f2beb29a391d25f4e673ac3&amp;dn=gpl-2.0.txt GPL-v2 */
+$(function() {
+  initMenu('',false,false,'search.php','検索');
+});
+/* @license-end */</script>
+<div id="main-nav"></div>
+</div><!-- top -->
+<div class="PageDoc"><div class="header">
+  <div class="headertitle">
+<div class="title">SFNC(Standard Features Naming Convention) </div>  </div>
+</div><!--header-->
+<div class="contents">
+<div class="toc"><h3>目次</h3>
+<ul><li class="level1"><a href="#Exposure">露光時間</a></li>
+<li class="level1"><a href="#BalanceRatio">ホワイトバランス</a></li>
+<li class="level1"><a href="#ROI">ROI</a></li>
+<li class="level1"><a href="#Decimation">間引き</a></li>
+<li class="level1"><a href="#UserSetControl">カメラへの設定保存</a></li>
+<li class="level1"><a href="#Reverse">上下左右反転</a></li>
+<li class="level1"><a href="#Line">IO端子設定</a></li>
+<li class="level1"><a href="#Trigger">トリガー機能</a></li>
+<li class="level1"><a href="#Event">イベント</a></li>
+<li class="level1"><a href="#Chunk">チャンク</a></li>
+</ul>
+</div>
+<div class="textblock"><p>SFNC(Standard Features Naming Convention)で規定されている設定項目の一部を紹介します。</p>
+<h1><a class="anchor" id="Exposure"></a>
+露光時間</h1>
+<p>露光時間の設定には、 ExposureMode や ExposureTime などが使用されます。ExposureModeは Off, Timed, TriggerWidth, TriggerControlled のいずれかの値となります。</p>
+<table class="doxtable">
+<tr>
+<th>ExposureMode</th><th>露光時間 </th></tr>
+<tr>
+<td>Off </td><td>現在のフレームレートでの最長時間となります。  </td></tr>
+<tr>
+<td>Timed </td><td>ExposureAutoが有効(Off以外)になっている場合、露光時間は指定された明るさになるように自動で制御されます。ExposureAutoが無効(Off)になっている場合、露光時間はExposureTime[us]で設定した値となります。古い規格に対応しているカメラでは、ExposureTimeAbs, ExposureTimeRawが使用されており、設定単位がカメラにより異なっています。  </td></tr>
+<tr>
+<td>TriggerWidth </td><td>トリガーパルスの幅で決まります。  </td></tr>
+<tr>
+<td>TriggerControlled </td><td>露光開始と終了のタイミングが、トリガーで指定されます。  </td></tr>
+</table>
+<p>(参照:サンプルプログラム 『AutoFunctionsC』：【<a href="PageSampleProgramsC.html#AutoFunctionsC">Windows</a>】【<a href="PageSampleProgramsCLinux.html#LinuxAutoFunctionsC">Linux</a>】)</p>
+<h1><a class="anchor" id="BalanceRatio"></a>
+ホワイトバランス</h1>
+<p>BalanceWhiteAutoをOffに設定すると、ホワイトバランスゲインを手動で設定できるようになります。 BalanceRatioSelector で設定する色を選択してから、 BalanceRatio を設定します。 (参照:サンプルプログラム 『AutoFunctionsC』：【<a href="PageSampleProgramsC.html#AutoFunctionsC">Windows</a>】【<a href="PageSampleProgramsCLinux.html#LinuxAutoFunctionsC">Linux</a>】)</p>
+<h1><a class="anchor" id="ROI"></a>
+ROI</h1>
+<p>画像データの一部分のみを切り出してカメラから転送させる場合、位置とサイズは OffsetX, OffsetY, Width, Heightで指定します。複数の領域を指定できる場合は、指定する領域を RegionSelector で選択した後に、 RegionMode でその領域の有効/無効および位置とサイズを指定します。 (参照:サンプルプログラム 『CameraSideROIC』：【<a href="PageSampleProgramsC.html#CameraSideROIC">Windows</a>】【<a href="PageSampleProgramsCLinux.html#LinuxCameraSideROIC">Linux</a>】)</p>
+<h1><a class="anchor" id="Decimation"></a>
+間引き</h1>
+<p>画素を間引く機能は、SFNCではDecimationHorizontal/DecimationVerticalと呼ばれます。DecimationHorizontalを1から2へ変えると、1画素おきに画素が間引かれるようになり、横サイズが半分になります。</p>
+<h1><a class="anchor" id="UserSetControl"></a>
+カメラへの設定保存</h1>
+<p>現在の設定値をカメラへ保存する際は、下記の手順でUserSetControl機能を使用します。 </p><ol>
+<li>
+UserSetSelector で保存先を選択(※ Default以外) </li>
+<li>
+UserSetSave を実行 </li>
+</ol>
+<p>保存された設定をカメラへ反映する際は、下記の手順でUserSetControl機能を使用します。 </p><ol>
+<li>
+UserSetSelector で読み込み元を選択 </li>
+<li>
+UserSetLoad を実行 </li>
+</ol>
+<p>電源投入時に反映すべきデータは、 UserSetDefault で指定します。 (参照:サンプルプログラム　『UserSetCtrlC』：【<a href="PageSampleProgramsC.html#UserSetCtrlC">Windows</a>】【<a href="PageSampleProgramsCLinux.html#LinuxUserSetCtrlC">Linux</a>】)</p>
+<h1><a class="anchor" id="Reverse"></a>
+上下左右反転</h1>
+<p>左右反転時は ReverseX を、上下反転時は ReverseY を True へ設定します。</p>
+<h1><a class="anchor" id="Line"></a>
+IO端子設定</h1>
+<p>IO端子の設定は設定を行う端子を LineSelector で指定した後、 LineMode, LineInverter, LineStatus, LineSource を設定します。Line0からHighまたはLowを出力する場合は、LineSelector に Line0を指定し、LineMode を Output へ設定した上で、LineSource を UserOutput0 へ設定します。HighまたはLowへの設定は、UserOutputSelectorにUserOutput0を指定した後, UserOutputValueを設定します。</p>
+<h1><a class="anchor" id="Trigger"></a>
+トリガー機能</h1>
+<p>SFNCでは様々なトリガーの実装が想定されているため、トリガーの設定を行う前に、どのトリガーに対する設定を行うのかをTriggerSelectorで指定します。 サンプルプログラム　『FrameStartTriggerC』 (【<a href="PageSampleProgramsC.html#FrameStartTriggerC">Windows</a>】【<a href="PageSampleProgramsCLinux.html#LinuxFrameStartTriggerC">Linux</a>】) では下記の設定を行いソフトウェアトリガーで画像を取得します。 </p><ol>
+<li>
+TriggerSelector を FrameStart (または ExposureStart )へ設定 </li>
+<li>
+TriggerMode を On へ設定 </li>
+<li>
+TriggerSource を Software へ設定 </li>
+<li>
+TriggerSoftware を実行 </li>
+</ol>
+<p>ハートトリガーを使用する際は、使用する Line (端子)を、予め Input に設定した上で、 TriggerSource へ指定します。</p>
+<h1><a class="anchor" id="Event"></a>
+イベント</h1>
+<p>カメラ等からのイベントの取得を有効にするには、有効にするイベントを EventSelector で選択した後、 EventNotification を On に設定します。 (参照:サンプルプログラム 『GrabCameraEventC』：【<a href="PageSampleProgramsC.html#GrabCameraEventC">Windows</a>】【<a href="PageSampleProgramsCLinux.html#LinuxGrabCameraEventC">Linux</a>】)</p>
+<h1><a class="anchor" id="Chunk"></a>
+チャンク</h1>
+<p>カメラからのチャンク出力を有効にするには、有効にするチャンクを ChunkSelector で選択した後、 ChunkEnable を true に設定します。 (参照:サンプルプログラム 『GrabChunkImageC』：【<a href="PageSampleProgramsC.html#GrabChunkImageC">Windows</a>】【<a href="PageSampleProgramsCLinux.html#LinuxGrabChunkImageC">Linux</a>】) </p>
+</div></div><!-- PageDoc -->
+</div><!-- contents -->
+<!-- HTML footer for doxygen 1.8.13-->
+<!-- start footer part -->
+<hr class="footer"/>
+	<address class="footer">
+		<small>
+2021年10月26日(火) 13時17分12秒作成 - Sentech SDK C / 構成:  &#160;
+			<a href="http://www.sentech.co.jp/">
+				<img class="footer" src="string_omron_sentech.png" alt="OMRON SENTECH CO., LTD"/>
+			</a>
+			<!--
+				DoxyGen Version =  1.8.15
+			-->
+		</small>
+	</address>
+</body>
+</html>

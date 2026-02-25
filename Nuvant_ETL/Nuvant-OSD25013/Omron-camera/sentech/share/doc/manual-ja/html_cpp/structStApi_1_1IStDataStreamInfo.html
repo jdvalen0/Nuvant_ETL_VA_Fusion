@@ -1,0 +1,568 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "https://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=9"/>
+<meta name="generator" content="Doxygen 1.8.15"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>Sentech SDK: StApi::IStDataStreamInfo インタフェース</title>
+<link href="tabs.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="jquery.js"></script>
+<script type="text/javascript" src="dynsections.js"></script>
+<link href="doxygen.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+<div id="top"><!-- do not remove this div, it is closed by doxygen! -->
+<div id="titlearea">
+<table cellspacing="0" cellpadding="0">
+ <tbody>
+ <tr style="height: 56px;">
+  <td id="projectalign" style="padding-left: 0.5em;">
+   <div id="projectname">Sentech SDK
+   </div>
+  </td>
+ </tr>
+ </tbody>
+</table>
+</div>
+<!-- end header part -->
+<!-- 構築: Doxygen 1.8.15 -->
+<script type="text/javascript" src="menudata.js"></script>
+<script type="text/javascript" src="menu.js"></script>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:cf05388f2679ee054f2beb29a391d25f4e673ac3&amp;dn=gpl-2.0.txt GPL-v2 */
+$(function() {
+  initMenu('',false,false,'search.php','検索');
+});
+/* @license-end */</script>
+<div id="main-nav"></div>
+<div id="nav-path" class="navpath">
+  <ul>
+<li class="navelem"><b>StApi</b></li><li class="navelem"><a class="el" href="structStApi_1_1IStDataStreamInfo.html">IStDataStreamInfo</a></li>  </ul>
+</div>
+</div><!-- top -->
+<div class="header">
+  <div class="summary">
+<a href="#pub-methods">公開メンバ関数</a> &#124;
+<a href="structStApi_1_1IStDataStreamInfo-members.html">全メンバ一覧</a>  </div>
+  <div class="headertitle">
+<div class="title">StApi::IStDataStreamInfo インタフェース<span class="mlabels"><span class="mlabel">abstract</span></span><div class="ingroups"><a class="el" href="group__StApiTL__PublicInterface.html">StApi トランスポート層モジュール抽象インターフェース</a></div></div>  </div>
+</div><!--header-->
+<div class="contents">
+
+<p>データストリーム情報用インターフェース  
+ <a href="structStApi_1_1IStDataStreamInfo.html#details">[詳解]</a></p>
+<table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-methods"></a>
+公開メンバ関数</h2></td></tr>
+<tr class="memitem:a19869b435f45fa4a7a23b1bef1107cd9"><td class="memItemLeft" align="right" valign="top">virtual <a class="el" href="classGenICam_1_1gcstring.html">GenICam::gcstring</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structStApi_1_1IStDataStreamInfo.html#a19869b435f45fa4a7a23b1bef1107cd9">GetID</a> () const =0</td></tr>
+<tr class="memdesc:a19869b435f45fa4a7a23b1bef1107cd9"><td class="mdescLeft">&#160;</td><td class="mdescRight"><a class="el" href="StGenTL__Function_8h.html#a3564ba0125bf82ee0e6341ad2b14aa59">GenTL::DSGetInfo()</a> を使用して GenTL::STREAM_INFO_ID の情報を取得します。  <a href="#a19869b435f45fa4a7a23b1bef1107cd9">[詳解]</a><br /></td></tr>
+<tr class="separator:a19869b435f45fa4a7a23b1bef1107cd9"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aa7b75167adfb13fedda311d6cc09c3b2"><td class="memItemLeft" align="right" valign="top">virtual uint64_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structStApi_1_1IStDataStreamInfo.html#aa7b75167adfb13fedda311d6cc09c3b2">GetNumDelivered</a> () const =0</td></tr>
+<tr class="memdesc:aa7b75167adfb13fedda311d6cc09c3b2"><td class="mdescLeft">&#160;</td><td class="mdescRight"><a class="el" href="StGenTL__Function_8h.html#a3564ba0125bf82ee0e6341ad2b14aa59">GenTL::DSGetInfo()</a> を使用して GenTL::STREAM_INFO_NUM_DELIVERED の情報を取得します。  <a href="#aa7b75167adfb13fedda311d6cc09c3b2">[詳解]</a><br /></td></tr>
+<tr class="separator:aa7b75167adfb13fedda311d6cc09c3b2"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ad11faf41af87962541b059b674c70964"><td class="memItemLeft" align="right" valign="top">virtual uint64_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structStApi_1_1IStDataStreamInfo.html#ad11faf41af87962541b059b674c70964">GetNumUnderrun</a> () const =0</td></tr>
+<tr class="memdesc:ad11faf41af87962541b059b674c70964"><td class="mdescLeft">&#160;</td><td class="mdescRight"><a class="el" href="StGenTL__Function_8h.html#a3564ba0125bf82ee0e6341ad2b14aa59">GenTL::DSGetInfo()</a> を使用して GenTL::STREAM_INFO_NUM_UNDERRUN の情報を取得します。  <a href="#ad11faf41af87962541b059b674c70964">[詳解]</a><br /></td></tr>
+<tr class="separator:ad11faf41af87962541b059b674c70964"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a4464ecd912c3ce4d69857932bc8b2c8e"><td class="memItemLeft" align="right" valign="top">virtual size_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structStApi_1_1IStDataStreamInfo.html#a4464ecd912c3ce4d69857932bc8b2c8e">GetNumAnnounced</a> () const =0</td></tr>
+<tr class="memdesc:a4464ecd912c3ce4d69857932bc8b2c8e"><td class="mdescLeft">&#160;</td><td class="mdescRight"><a class="el" href="StGenTL__Function_8h.html#a3564ba0125bf82ee0e6341ad2b14aa59">GenTL::DSGetInfo()</a> を使用して GenTL::STREAM_INFO_NUM_ANNOUNCED の情報を取得します。  <a href="#a4464ecd912c3ce4d69857932bc8b2c8e">[詳解]</a><br /></td></tr>
+<tr class="separator:a4464ecd912c3ce4d69857932bc8b2c8e"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a839ecd0c23e312c3adf67b76d258abb0"><td class="memItemLeft" align="right" valign="top">virtual size_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structStApi_1_1IStDataStreamInfo.html#a839ecd0c23e312c3adf67b76d258abb0">GetNumQueued</a> () const =0</td></tr>
+<tr class="memdesc:a839ecd0c23e312c3adf67b76d258abb0"><td class="mdescLeft">&#160;</td><td class="mdescRight"><a class="el" href="StGenTL__Function_8h.html#a3564ba0125bf82ee0e6341ad2b14aa59">GenTL::DSGetInfo()</a> を使用して GenTL::STREAM_INFO_NUM_QUEUED の情報を取得します。  <a href="#a839ecd0c23e312c3adf67b76d258abb0">[詳解]</a><br /></td></tr>
+<tr class="separator:a839ecd0c23e312c3adf67b76d258abb0"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a8a4d85e4197e3915727cdaf85d03b4e4"><td class="memItemLeft" align="right" valign="top">virtual size_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structStApi_1_1IStDataStreamInfo.html#a8a4d85e4197e3915727cdaf85d03b4e4">GetNumAwaitDelivery</a> () const =0</td></tr>
+<tr class="memdesc:a8a4d85e4197e3915727cdaf85d03b4e4"><td class="mdescLeft">&#160;</td><td class="mdescRight"><a class="el" href="StGenTL__Function_8h.html#a3564ba0125bf82ee0e6341ad2b14aa59">GenTL::DSGetInfo()</a> を使用して GenTL::STREAM_INFO_NUM_AWAIT_DELIVERY の情報を取得します。  <a href="#a8a4d85e4197e3915727cdaf85d03b4e4">[詳解]</a><br /></td></tr>
+<tr class="separator:a8a4d85e4197e3915727cdaf85d03b4e4"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a2b5515bba19e26142fed71b4dad1e282"><td class="memItemLeft" align="right" valign="top">virtual uint64_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structStApi_1_1IStDataStreamInfo.html#a2b5515bba19e26142fed71b4dad1e282">GetNumStarted</a> () const =0</td></tr>
+<tr class="memdesc:a2b5515bba19e26142fed71b4dad1e282"><td class="mdescLeft">&#160;</td><td class="mdescRight"><a class="el" href="StGenTL__Function_8h.html#a3564ba0125bf82ee0e6341ad2b14aa59">GenTL::DSGetInfo()</a> を使用して GenTL::STREAM_INFO_NUM_STARTED の情報を取得します。  <a href="#a2b5515bba19e26142fed71b4dad1e282">[詳解]</a><br /></td></tr>
+<tr class="separator:a2b5515bba19e26142fed71b4dad1e282"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a2621a99b283e67b369f31b06d5d7501f"><td class="memItemLeft" align="right" valign="top">virtual size_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structStApi_1_1IStDataStreamInfo.html#a2621a99b283e67b369f31b06d5d7501f">GetPayloadSize</a> () const =0</td></tr>
+<tr class="memdesc:a2621a99b283e67b369f31b06d5d7501f"><td class="mdescLeft">&#160;</td><td class="mdescRight"><a class="el" href="StGenTL__Function_8h.html#a3564ba0125bf82ee0e6341ad2b14aa59">GenTL::DSGetInfo()</a> を使用して GenTL::STREAM_INFO_PAYLOAD_SIZE の情報を取得します。  <a href="#a2621a99b283e67b369f31b06d5d7501f">[詳解]</a><br /></td></tr>
+<tr class="separator:a2621a99b283e67b369f31b06d5d7501f"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aef4edd6d72b47a55fd750c1bc0681db9"><td class="memItemLeft" align="right" valign="top">virtual bool8_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structStApi_1_1IStDataStreamInfo.html#aef4edd6d72b47a55fd750c1bc0681db9">IsGrabbing</a> () const =0</td></tr>
+<tr class="memdesc:aef4edd6d72b47a55fd750c1bc0681db9"><td class="mdescLeft">&#160;</td><td class="mdescRight"><a class="el" href="StGenTL__Function_8h.html#a3564ba0125bf82ee0e6341ad2b14aa59">GenTL::DSGetInfo()</a> を使用して GenTL::STREAM_INFO_IS_GRABBING の情報を取得します。  <a href="#aef4edd6d72b47a55fd750c1bc0681db9">[詳解]</a><br /></td></tr>
+<tr class="separator:aef4edd6d72b47a55fd750c1bc0681db9"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a65f8a5245eb22fc35c9905b5ac756f5b"><td class="memItemLeft" align="right" valign="top">virtual bool8_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structStApi_1_1IStDataStreamInfo.html#a65f8a5245eb22fc35c9905b5ac756f5b">GetDefinesPayloadSize</a> () const =0</td></tr>
+<tr class="memdesc:a65f8a5245eb22fc35c9905b5ac756f5b"><td class="mdescLeft">&#160;</td><td class="mdescRight"><a class="el" href="StGenTL__Function_8h.html#a3564ba0125bf82ee0e6341ad2b14aa59">GenTL::DSGetInfo()</a> を使用して GenTL::STREAM_INFO_DEFINES_PAYLOADSIZE の情報を取得します。  <a href="#a65f8a5245eb22fc35c9905b5ac756f5b">[詳解]</a><br /></td></tr>
+<tr class="separator:a65f8a5245eb22fc35c9905b5ac756f5b"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ae68731184ea1b25824fc982fef81714a"><td class="memItemLeft" align="right" valign="top">virtual <a class="el" href="classGenICam_1_1gcstring.html">GenICam::gcstring</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structStApi_1_1IStDataStreamInfo.html#ae68731184ea1b25824fc982fef81714a">GetTLType</a> () const =0</td></tr>
+<tr class="memdesc:ae68731184ea1b25824fc982fef81714a"><td class="mdescLeft">&#160;</td><td class="mdescRight"><a class="el" href="StGenTL__Function_8h.html#a3564ba0125bf82ee0e6341ad2b14aa59">GenTL::DSGetInfo()</a> を使用して GenTL::STREAM_INFO_TLTYPE の情報を取得します。  <a href="#ae68731184ea1b25824fc982fef81714a">[詳解]</a><br /></td></tr>
+<tr class="separator:ae68731184ea1b25824fc982fef81714a"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ad69abec3489fb25fbb775750e47e8927"><td class="memItemLeft" align="right" valign="top">virtual size_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structStApi_1_1IStDataStreamInfo.html#ad69abec3489fb25fbb775750e47e8927">GetNumChunksMax</a> () const =0</td></tr>
+<tr class="memdesc:ad69abec3489fb25fbb775750e47e8927"><td class="mdescLeft">&#160;</td><td class="mdescRight"><a class="el" href="StGenTL__Function_8h.html#a3564ba0125bf82ee0e6341ad2b14aa59">GenTL::DSGetInfo()</a> を使用して GenTL::STREAM_INFO_NUM_CHUNKS_MAX の情報を取得します。  <a href="#ad69abec3489fb25fbb775750e47e8927">[詳解]</a><br /></td></tr>
+<tr class="separator:ad69abec3489fb25fbb775750e47e8927"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a1f6d18ec6fc08126a6bef9f52804f95b"><td class="memItemLeft" align="right" valign="top">virtual size_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structStApi_1_1IStDataStreamInfo.html#a1f6d18ec6fc08126a6bef9f52804f95b">GetBufAnnounceMin</a> () const =0</td></tr>
+<tr class="memdesc:a1f6d18ec6fc08126a6bef9f52804f95b"><td class="mdescLeft">&#160;</td><td class="mdescRight"><a class="el" href="StGenTL__Function_8h.html#a3564ba0125bf82ee0e6341ad2b14aa59">GenTL::DSGetInfo()</a> を使用して GenTL::STREAM_INFO_BUF_ANNOUNCE_MIN の情報を取得します。  <a href="#a1f6d18ec6fc08126a6bef9f52804f95b">[詳解]</a><br /></td></tr>
+<tr class="separator:a1f6d18ec6fc08126a6bef9f52804f95b"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ae0d231a55ff930780e776db58ac2ea83"><td class="memItemLeft" align="right" valign="top">virtual size_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structStApi_1_1IStDataStreamInfo.html#ae0d231a55ff930780e776db58ac2ea83">GetBufAlignment</a> () const =0</td></tr>
+<tr class="memdesc:ae0d231a55ff930780e776db58ac2ea83"><td class="mdescLeft">&#160;</td><td class="mdescRight"><a class="el" href="StGenTL__Function_8h.html#a3564ba0125bf82ee0e6341ad2b14aa59">GenTL::DSGetInfo()</a> を使用して GenTL::STREAM_INFO_BUF_ALIGNMENT の情報を取得します。  <a href="#ae0d231a55ff930780e776db58ac2ea83">[詳解]</a><br /></td></tr>
+<tr class="separator:ae0d231a55ff930780e776db58ac2ea83"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table>
+<a name="details" id="details"></a><h2 class="groupheader">詳解</h2>
+<div class="textblock"><p>データストリーム情報用インターフェース </p>
+</div><h2 class="groupheader">関数詳解</h2>
+<a id="a19869b435f45fa4a7a23b1bef1107cd9"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a19869b435f45fa4a7a23b1bef1107cd9">&#9670;&nbsp;</a></span>GetID()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">virtual <a class="el" href="classGenICam_1_1gcstring.html">GenICam::gcstring</a> StApi::IStDataStreamInfo::GetID </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">pure virtual</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+<p><a class="el" href="StGenTL__Function_8h.html#a3564ba0125bf82ee0e6341ad2b14aa59">GenTL::DSGetInfo()</a> を使用して GenTL::STREAM_INFO_ID の情報を取得します。 </p><dl class="section return"><dt>戻り値</dt><dd>STREAM_INFO_ID </dd></dl>
+<dl class="exception"><dt>例外</dt><dd>
+  <table class="exception">
+    <tr><td class="paramname">メモリー確保に失敗した場合や</td><td><a class="el" href="StGenTL__Function_8h.html#a3564ba0125bf82ee0e6341ad2b14aa59">GenTL::DSGetInfo()</a> がエラーを返した場合は、例外 <a class="el" href="classGenICam_1_1GenericException.html" title="GenICam&#39;s exception class">GenICam::GenericException</a> が発生します。 </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a id="aa7b75167adfb13fedda311d6cc09c3b2"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aa7b75167adfb13fedda311d6cc09c3b2">&#9670;&nbsp;</a></span>GetNumDelivered()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">virtual uint64_t StApi::IStDataStreamInfo::GetNumDelivered </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">pure virtual</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+<p><a class="el" href="StGenTL__Function_8h.html#a3564ba0125bf82ee0e6341ad2b14aa59">GenTL::DSGetInfo()</a> を使用して GenTL::STREAM_INFO_NUM_DELIVERED の情報を取得します。 </p><dl class="section return"><dt>戻り値</dt><dd>STREAM_INFO_NUM_DELIVERED </dd></dl>
+<dl class="exception"><dt>例外</dt><dd>
+  <table class="exception">
+    <tr><td class="paramname"><a class="el" href="StGenTL__Function_8h.html#a3564ba0125bf82ee0e6341ad2b14aa59">GenTL::DSGetInfo()</a></td><td>がエラーを返した場合は、例外 <a class="el" href="classGenICam_1_1GenericException.html" title="GenICam&#39;s exception class">GenICam::GenericException</a> が発生します。 </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a id="ad11faf41af87962541b059b674c70964"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ad11faf41af87962541b059b674c70964">&#9670;&nbsp;</a></span>GetNumUnderrun()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">virtual uint64_t StApi::IStDataStreamInfo::GetNumUnderrun </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">pure virtual</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+<p><a class="el" href="StGenTL__Function_8h.html#a3564ba0125bf82ee0e6341ad2b14aa59">GenTL::DSGetInfo()</a> を使用して GenTL::STREAM_INFO_NUM_UNDERRUN の情報を取得します。 </p><dl class="section return"><dt>戻り値</dt><dd>STREAM_INFO_NUM_UNDERRUN </dd></dl>
+<dl class="exception"><dt>例外</dt><dd>
+  <table class="exception">
+    <tr><td class="paramname"><a class="el" href="StGenTL__Function_8h.html#a3564ba0125bf82ee0e6341ad2b14aa59">GenTL::DSGetInfo()</a></td><td>がエラーを返した場合は、例外 <a class="el" href="classGenICam_1_1GenericException.html" title="GenICam&#39;s exception class">GenICam::GenericException</a> が発生します。 </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a id="a4464ecd912c3ce4d69857932bc8b2c8e"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a4464ecd912c3ce4d69857932bc8b2c8e">&#9670;&nbsp;</a></span>GetNumAnnounced()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">virtual size_t StApi::IStDataStreamInfo::GetNumAnnounced </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">pure virtual</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+<p><a class="el" href="StGenTL__Function_8h.html#a3564ba0125bf82ee0e6341ad2b14aa59">GenTL::DSGetInfo()</a> を使用して GenTL::STREAM_INFO_NUM_ANNOUNCED の情報を取得します。 </p><dl class="section return"><dt>戻り値</dt><dd>STREAM_INFO_NUM_ANNOUNCED </dd></dl>
+<dl class="exception"><dt>例外</dt><dd>
+  <table class="exception">
+    <tr><td class="paramname"><a class="el" href="StGenTL__Function_8h.html#a3564ba0125bf82ee0e6341ad2b14aa59">GenTL::DSGetInfo()</a></td><td>がエラーを返した場合は、例外 <a class="el" href="classGenICam_1_1GenericException.html" title="GenICam&#39;s exception class">GenICam::GenericException</a> が発生します。 </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a id="a839ecd0c23e312c3adf67b76d258abb0"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a839ecd0c23e312c3adf67b76d258abb0">&#9670;&nbsp;</a></span>GetNumQueued()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">virtual size_t StApi::IStDataStreamInfo::GetNumQueued </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">pure virtual</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+<p><a class="el" href="StGenTL__Function_8h.html#a3564ba0125bf82ee0e6341ad2b14aa59">GenTL::DSGetInfo()</a> を使用して GenTL::STREAM_INFO_NUM_QUEUED の情報を取得します。 </p><dl class="section return"><dt>戻り値</dt><dd>STREAM_INFO_NUM_QUEUED </dd></dl>
+<dl class="exception"><dt>例外</dt><dd>
+  <table class="exception">
+    <tr><td class="paramname"><a class="el" href="StGenTL__Function_8h.html#a3564ba0125bf82ee0e6341ad2b14aa59">GenTL::DSGetInfo()</a></td><td>がエラーを返した場合は、例外 <a class="el" href="classGenICam_1_1GenericException.html" title="GenICam&#39;s exception class">GenICam::GenericException</a> が発生します。 </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a id="a8a4d85e4197e3915727cdaf85d03b4e4"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a8a4d85e4197e3915727cdaf85d03b4e4">&#9670;&nbsp;</a></span>GetNumAwaitDelivery()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">virtual size_t StApi::IStDataStreamInfo::GetNumAwaitDelivery </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">pure virtual</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+<p><a class="el" href="StGenTL__Function_8h.html#a3564ba0125bf82ee0e6341ad2b14aa59">GenTL::DSGetInfo()</a> を使用して GenTL::STREAM_INFO_NUM_AWAIT_DELIVERY の情報を取得します。 </p><dl class="section return"><dt>戻り値</dt><dd>STREAM_INFO_NUM_AWAIT_DELIVERY </dd></dl>
+<dl class="exception"><dt>例外</dt><dd>
+  <table class="exception">
+    <tr><td class="paramname"><a class="el" href="StGenTL__Function_8h.html#a3564ba0125bf82ee0e6341ad2b14aa59">GenTL::DSGetInfo()</a></td><td>がエラーを返した場合は、例外 <a class="el" href="classGenICam_1_1GenericException.html" title="GenICam&#39;s exception class">GenICam::GenericException</a> が発生します。 </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a id="a2b5515bba19e26142fed71b4dad1e282"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a2b5515bba19e26142fed71b4dad1e282">&#9670;&nbsp;</a></span>GetNumStarted()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">virtual uint64_t StApi::IStDataStreamInfo::GetNumStarted </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">pure virtual</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+<p><a class="el" href="StGenTL__Function_8h.html#a3564ba0125bf82ee0e6341ad2b14aa59">GenTL::DSGetInfo()</a> を使用して GenTL::STREAM_INFO_NUM_STARTED の情報を取得します。 </p><dl class="section return"><dt>戻り値</dt><dd>STREAM_INFO_NUM_STARTED </dd></dl>
+<dl class="exception"><dt>例外</dt><dd>
+  <table class="exception">
+    <tr><td class="paramname"><a class="el" href="StGenTL__Function_8h.html#a3564ba0125bf82ee0e6341ad2b14aa59">GenTL::DSGetInfo()</a></td><td>がエラーを返した場合は、例外 <a class="el" href="classGenICam_1_1GenericException.html" title="GenICam&#39;s exception class">GenICam::GenericException</a> が発生します。 </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a id="a2621a99b283e67b369f31b06d5d7501f"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a2621a99b283e67b369f31b06d5d7501f">&#9670;&nbsp;</a></span>GetPayloadSize()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">virtual size_t StApi::IStDataStreamInfo::GetPayloadSize </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">pure virtual</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+<p><a class="el" href="StGenTL__Function_8h.html#a3564ba0125bf82ee0e6341ad2b14aa59">GenTL::DSGetInfo()</a> を使用して GenTL::STREAM_INFO_PAYLOAD_SIZE の情報を取得します。 </p><dl class="section return"><dt>戻り値</dt><dd>STREAM_INFO_PAYLOAD_SIZE </dd></dl>
+<dl class="exception"><dt>例外</dt><dd>
+  <table class="exception">
+    <tr><td class="paramname"><a class="el" href="StGenTL__Function_8h.html#a3564ba0125bf82ee0e6341ad2b14aa59">GenTL::DSGetInfo()</a></td><td>がエラーを返した場合は、例外 <a class="el" href="classGenICam_1_1GenericException.html" title="GenICam&#39;s exception class">GenICam::GenericException</a> が発生します。 </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a id="aef4edd6d72b47a55fd750c1bc0681db9"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aef4edd6d72b47a55fd750c1bc0681db9">&#9670;&nbsp;</a></span>IsGrabbing()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">virtual bool8_t StApi::IStDataStreamInfo::IsGrabbing </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">pure virtual</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+<p><a class="el" href="StGenTL__Function_8h.html#a3564ba0125bf82ee0e6341ad2b14aa59">GenTL::DSGetInfo()</a> を使用して GenTL::STREAM_INFO_IS_GRABBING の情報を取得します。 </p><dl class="section return"><dt>戻り値</dt><dd>STREAM_INFO_IS_GRABBING </dd></dl>
+<dl class="exception"><dt>例外</dt><dd>
+  <table class="exception">
+    <tr><td class="paramname"><a class="el" href="StGenTL__Function_8h.html#a3564ba0125bf82ee0e6341ad2b14aa59">GenTL::DSGetInfo()</a></td><td>がエラーを返した場合は、例外 <a class="el" href="classGenICam_1_1GenericException.html" title="GenICam&#39;s exception class">GenICam::GenericException</a> が発生します。 </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a id="a65f8a5245eb22fc35c9905b5ac756f5b"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a65f8a5245eb22fc35c9905b5ac756f5b">&#9670;&nbsp;</a></span>GetDefinesPayloadSize()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">virtual bool8_t StApi::IStDataStreamInfo::GetDefinesPayloadSize </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">pure virtual</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+<p><a class="el" href="StGenTL__Function_8h.html#a3564ba0125bf82ee0e6341ad2b14aa59">GenTL::DSGetInfo()</a> を使用して GenTL::STREAM_INFO_DEFINES_PAYLOADSIZE の情報を取得します。 </p><dl class="section return"><dt>戻り値</dt><dd>STREAM_INFO_DEFINES_PAYLOADSIZE </dd></dl>
+<dl class="exception"><dt>例外</dt><dd>
+  <table class="exception">
+    <tr><td class="paramname"><a class="el" href="StGenTL__Function_8h.html#a3564ba0125bf82ee0e6341ad2b14aa59">GenTL::DSGetInfo()</a></td><td>がエラーを返した場合は、例外 <a class="el" href="classGenICam_1_1GenericException.html" title="GenICam&#39;s exception class">GenICam::GenericException</a> が発生します。 </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a id="ae68731184ea1b25824fc982fef81714a"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ae68731184ea1b25824fc982fef81714a">&#9670;&nbsp;</a></span>GetTLType()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">virtual <a class="el" href="classGenICam_1_1gcstring.html">GenICam::gcstring</a> StApi::IStDataStreamInfo::GetTLType </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">pure virtual</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+<p><a class="el" href="StGenTL__Function_8h.html#a3564ba0125bf82ee0e6341ad2b14aa59">GenTL::DSGetInfo()</a> を使用して GenTL::STREAM_INFO_TLTYPE の情報を取得します。 </p><dl class="section return"><dt>戻り値</dt><dd>STREAM_INFO_TLTYPE </dd></dl>
+<dl class="exception"><dt>例外</dt><dd>
+  <table class="exception">
+    <tr><td class="paramname"><a class="el" href="StGenTL__Function_8h.html#a3564ba0125bf82ee0e6341ad2b14aa59">GenTL::DSGetInfo()</a></td><td>がエラーを返した場合は、例外 <a class="el" href="classGenICam_1_1GenericException.html" title="GenICam&#39;s exception class">GenICam::GenericException</a> が発生します。 </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a id="ad69abec3489fb25fbb775750e47e8927"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ad69abec3489fb25fbb775750e47e8927">&#9670;&nbsp;</a></span>GetNumChunksMax()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">virtual size_t StApi::IStDataStreamInfo::GetNumChunksMax </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">pure virtual</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+<p><a class="el" href="StGenTL__Function_8h.html#a3564ba0125bf82ee0e6341ad2b14aa59">GenTL::DSGetInfo()</a> を使用して GenTL::STREAM_INFO_NUM_CHUNKS_MAX の情報を取得します。 </p><dl class="section return"><dt>戻り値</dt><dd>STREAM_INFO_NUM_CHUNKS_MAX </dd></dl>
+<dl class="exception"><dt>例外</dt><dd>
+  <table class="exception">
+    <tr><td class="paramname"><a class="el" href="StGenTL__Function_8h.html#a3564ba0125bf82ee0e6341ad2b14aa59">GenTL::DSGetInfo()</a></td><td>がエラーを返した場合は、例外 <a class="el" href="classGenICam_1_1GenericException.html" title="GenICam&#39;s exception class">GenICam::GenericException</a> が発生します。 </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a id="a1f6d18ec6fc08126a6bef9f52804f95b"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a1f6d18ec6fc08126a6bef9f52804f95b">&#9670;&nbsp;</a></span>GetBufAnnounceMin()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">virtual size_t StApi::IStDataStreamInfo::GetBufAnnounceMin </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">pure virtual</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+<p><a class="el" href="StGenTL__Function_8h.html#a3564ba0125bf82ee0e6341ad2b14aa59">GenTL::DSGetInfo()</a> を使用して GenTL::STREAM_INFO_BUF_ANNOUNCE_MIN の情報を取得します。 </p><dl class="section return"><dt>戻り値</dt><dd>STREAM_INFO_BUF_ANNOUNCE_MIN </dd></dl>
+<dl class="exception"><dt>例外</dt><dd>
+  <table class="exception">
+    <tr><td class="paramname"><a class="el" href="StGenTL__Function_8h.html#a3564ba0125bf82ee0e6341ad2b14aa59">GenTL::DSGetInfo()</a></td><td>がエラーを返した場合は、例外 <a class="el" href="classGenICam_1_1GenericException.html" title="GenICam&#39;s exception class">GenICam::GenericException</a> が発生します。 </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a id="ae0d231a55ff930780e776db58ac2ea83"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ae0d231a55ff930780e776db58ac2ea83">&#9670;&nbsp;</a></span>GetBufAlignment()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">virtual size_t StApi::IStDataStreamInfo::GetBufAlignment </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">pure virtual</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+<p><a class="el" href="StGenTL__Function_8h.html#a3564ba0125bf82ee0e6341ad2b14aa59">GenTL::DSGetInfo()</a> を使用して GenTL::STREAM_INFO_BUF_ALIGNMENT の情報を取得します。 </p><dl class="section return"><dt>戻り値</dt><dd>STREAM_INFO_BUF_ALIGNMENT </dd></dl>
+<dl class="exception"><dt>例外</dt><dd>
+  <table class="exception">
+    <tr><td class="paramname"><a class="el" href="StGenTL__Function_8h.html#a3564ba0125bf82ee0e6341ad2b14aa59">GenTL::DSGetInfo()</a></td><td>がエラーを返した場合は、例外 <a class="el" href="classGenICam_1_1GenericException.html" title="GenICam&#39;s exception class">GenICam::GenericException</a> が発生します。 </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+</div><!-- contents -->
+<!-- HTML footer for doxygen 1.8.13-->
+<!-- start footer part -->
+<hr class="footer"/>
+	<address class="footer">
+		<small>
+2021年10月26日(火) 13時10分25秒作成 - Sentech SDK / 構成:  &#160;
+			<a href="http://www.sentech.co.jp/">
+				<img class="footer" src="string_omron_sentech.png" alt="OMRON SENTECH CO., LTD"/>
+			</a>
+			<!--
+				DoxyGen Version =  1.8.15
+			-->
+		</small>
+	</address>
+</body>
+</html>

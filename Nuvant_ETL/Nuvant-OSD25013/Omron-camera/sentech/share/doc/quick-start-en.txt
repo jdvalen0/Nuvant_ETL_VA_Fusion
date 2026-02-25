@@ -1,0 +1,218 @@
+******************************************************************************
+SentechSDK Linux version 1.1.2-Update5
+(C) 2021 OMRON SENTECH CO., LTD.
+
+Quick Start
+Content:
+* Overview
+* Installation Procedure and Viewer Application Execution
+* Installation Results
+* Uninstallation Procedure
+* Building and Executing Sample codes
+* Cautions
+
+For detail information, please refer to the SDK documentation: 
+	/installation_path/share/doc/manual-en/main.html
+
+******************************************************************************
+
+
+******************************************************************************
+* Overview
+******************************************************************************
+Files:
+- SentechSDK-1.1.2-Update5-Ubuntu1804-aarch64.tgz:
+  Tested on: Ubuntu 18.04 (NVidia Jetson Nano Tegra Aarch64)
+
+******************************************************************************
+* Installation Procedure and Viewer Application Execution
+******************************************************************************
+Warning: If old version of the SentechSDK exists, please uninstall the old version 
+         using the uninstallation script of the old version.
+         $ sudo bash -c /opt/sentech/bin/stuninstall.sh
+
+1. Extract the tgz file:
+$ tar xf SentechSDK-1.1.2-Update5-Ubuntu1804-aarch64.tgz
+$ cd SentechSDK-1.1.2-Update5-Ubuntu1804-aarch64
+
+2. Execute installer (super user password will be required). By default, the installation path is /opt/sentech.
+The command format is as follows:
+$ ./SentechSDK-1.1.2-Update5-Ubuntu1804-aarch64-install.run <Parameters>
+<Parameters> are optional. Some useful parameters are as follows:
+  --accept : automatically accept end user license agreement.
+  -- "-y -p /install/path" : Either -y or -p /install/path or both can be used:
+      "-y"                 : automatically answer yes for any questions during installation.
+      "-p /install/path"   : set the installation path to /install/path.
+To install with default setting:
+$ ./SentechSDK-1.1.2-Update5-Ubuntu1804-aarch64-install.run
+To automatically answer all questions with yes and set the installation path to /opt/my-install-path:
+$ ./SentechSDK-1.1.2-Update5-Ubuntu1804-aarch64-install.run --accept -- "-y -p /opt/my-install-path"
+
+3. Set the environment variables (STAPI_ROOT_PATH, GENICAM_GENTL64_PATH, etc):
+$ source /opt/sentech/.stprofile
+* It is recommended to append .stprofile to the user's login script such as $HOME/.bashrc
+* To apply the environment variables globally, please copy the .stprofile to /etc/profile.d/stprofile.sh and /opt/sentech/stldlib.conf to/etc/ld.so.conf.d/ as follows:
+   $ sudo cp /opt/sentech/.stprofile /etc/profile.d/stprofile.sh
+   $ sudo cp /opt/sentech/stldlib.conf /etc/ld.so.conf.d/
+   $ sudo ldconfig
+
+* Environment variable settings are required for building and executing the sample codes
+   (including the viewer).
+   STAPI_ROOT_PATH is the installation path. Default: /opt/sentech
+   GENICAM_GENTL64_PATH is the path containing GenTL cti file. Default: $STAPI_ROOT_PATH/lib:$GENICAM_GENTL64_PATH
+   In a 32 bit environment, this is GENICAM_GENTL32_PATH.
+   
+4. OS parameter tuning (network: MTU, reverse path filtering, packet buffer; USB: USB buffer):
+Network:
+$ /opt/sentech/bin/setnetwork.sh
+If the network interface name is known:
+$ /opt/sentech/bin/setnetwork.sh <interface name>
+USB:
+$ /opt/sentech/bin/setusb.sh
+
+* OS parameter tuning takes effect only until the system is rebooted.
+* The detail of the OS parameter tuning can be found in troubleshooting document (troubleshoot-en.txt).
+
+5. Viewer application execution:
+$ /opt/sentech/bin/StViewer
+* Please ensure that the environment variables have been properly set.
+
+
+******************************************************************************
+* Installation Results
+******************************************************************************
+Below is the structure of the installation results:
+/etc/
+    |-./udev/rules.d/30-stcam.rules                          udev rules setting
+
+${STAPI_ROOT_PATH}/
+                  |-./.stprofile                             Environment variables setting
+                  |-./stdlib.conf                            System level load library path setting
+                  |-./bin/
+                  |      |-./setnetwork.sh                   Network parameter tuning
+                  |      |-./setusb.sh                       USB parameter tuning
+                  |      |-./stuninstall.sh                  Uninstallation script
+                  |      |-./StViewer                        Viewer application
+                  |      |-./StFWUpdater                     GigE Firmware Updater
+                  |      |-./GigECameraIPConfig              GigE Camera IP Configurator
+                  | 
+                  |-./lib/
+                  |      |-./GenICam/*.so                    GenICam libraries
+                  |      |-./libStApi_C.*                    StApi's C library files
+                  |      |-./libStApi_TL.*                   StApi's transport layer library files
+                  |      |-./libStApi_IP.*                   StApi's image processing library files
+                  |      |-./libStApi_GUI_qt.*               StApi's Qt-based GUI library files
+                  |      |-./libstgentl*                     OMRON SENTECH GenTL cti file
+                  |      |-./libusb*                         usb library files
+                  |
+                  |-./include/
+                  |          |-./GenICam/*                   Include files for using GenICam libraries
+                  |          |-./StApi/*                     Include files for using Sentech SDK
+                  |
+                  |-./share/
+                           |-./doc/*                         quick guide, troubleshoot, and SDK documentation
+                           |-./sample/C++/*                  C++ language Sample codes
+                           |-./sample/C/*                    C language Sample codes
+                           |-./thirdparties/*                Third parties license information.
+                  
+
+******************************************************************************
+* Uninstallation Procedure
+******************************************************************************
+- If the environment variables in the .stprofile are manually inserted to the user login script,
+  please also manually remove the setting in the login script.
+- The uninstallation script will delete the installation directory including all files and directories
+  inside. File /etc/udev/rules.d/30-stcam.rules is also deleted.
+  Execute the uninstallation script as follows:
+  $ sudo bash -c /opt/sentech/bin/stuninstall.sh
+
+
+******************************************************************************
+* Building and Executing Sample codes
+******************************************************************************
+When building the sample codes, ensure that the environment variables have been set.
+Refer to the installation step 3 to set the environment variables.
+To build the sample codes, standard development tool such as GNU gcc-c++ and make are
+required. If the Linux OS is installed with default software package, the standard development
+tool may already be installed. In case that separate installation is needed:
+- Ubuntu: $ sudo apt-get install build-essential
+
+* One of the sample code requires OpenCV. If OpenCV libraries could not be detected, 
+   the building of the sample code requiring OpenCV will be skipped. 
+   OpenCV can be installed using the following command:
+   - Ubuntu: $ sudo apt-get install libopencv-dev
+   Please refer to http://www.opencv.org for more information.
+   
+Sample codes can be built using one of the following methods:
+- Using Make
+- Using Cmake (CMake 3.2 or above is required)
+- Using qmake (Only for sample codes that requires Qt SDK)
+* Please refer to troubleshoot-en.txt for any trouble when building the sample code.
+
+---------------------------------------------------------
+- Using Make
+---------------------------------------------------------
+1. Create folder to store the build results:
+$ mkdir ~/samplebuild
+$ cd ~/samplebuild
+
+2. Execute Make (all sample codes excluding samples requiring Qt SDk will be built):
+$ make --file=$STAPI_ROOT_PATH/share/sample/C++/Makefile
+* It is also possible to build only one sample code. Example:
+   $ make Grab --file=$STAPI_ROOT_PATH/share/sample/C++/Makefile
+ 
+3. Execution:
+The build results (executable files) can be found inside the build folder. 
+For example, to execute Grab, simply type:
+$ ./Grab
+
+---------------------------------------------------------
+- Using CMake (CMake 3.2 or above is required)
+---------------------------------------------------------
+1. Create folder to store the build results:
+$ mkdir ~/samplebuild
+$ cd ~/samplebuild
+
+2. Execute CMake (all sample codes excluding samples requiring Qt SDk will be built):
+$ cmake $STAPI_ROOT_PATH/share/sample/C++
+Or depending on the Linux distribution:
+$ cmake3 $STAPI_ROOT_PATH/share/sample/C++
+* To build only one of the sample code: $ cmake $STAPI_ROOT_PATH/share/sample/C++/Grab
+
+3. Execute Make:
+$ make
+
+4. Execution:
+The build results (executable files) can be found inside the sample directories inside the build 
+folder. For example, to execute Grab:
+$ cd Grab
+$ ./Grab
+* If only one sample code is built, the executable file can be found inside the build folder.
+
+---------------------------------------------------------
+- Using qmake (Only for sample codes that requires Qt SDK)
+---------------------------------------------------------
+Qt SDK can be installed either by downloading the installer through Qt website (recommended) or 
+through Linux package repository as follows:
+- Ubuntu: $ sudo apt-get install qt5-default qtcreator
+Please refer to http://doc.qt.io/qt-5/linux.html for more information.
+
+When building the sample code, either open and build the Qt project file (*.pro) using Qt Creator or
+use qmake from console. Example:
+$ mkdir ~/StViewer
+$ cd ~/StViewer
+Depending on the distribution:
+$ qmake $STAPI_ROOT_PATH/share/sample/C++/StViewerQt/StViewer
+or
+$ qmake-qt5 $STAPI_ROOT_PATH/share/sample/C++/StViewerQt/StViewer
+Then:
+$ make
+To execute:
+$ ./StViewer
+
+******************************************************************************
+* Cautions
+******************************************************************************
+- USB3Vision Camera:
+	- If Sentech V4L2 kernel driver is installed, the kernel driver must be either uninstalled or
+	   unloaded from the memory. Otherwise, image acquisition may fail.

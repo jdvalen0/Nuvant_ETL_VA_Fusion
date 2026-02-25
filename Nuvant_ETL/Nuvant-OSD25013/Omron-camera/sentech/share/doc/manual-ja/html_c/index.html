@@ -1,0 +1,124 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "https://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=9"/>
+<meta name="generator" content="Doxygen 1.8.15"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>Sentech SDK C: はじめに</title>
+<link href="tabs.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="jquery.js"></script>
+<script type="text/javascript" src="dynsections.js"></script>
+<link href="doxygen.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+<div id="top"><!-- do not remove this div, it is closed by doxygen! -->
+<div id="titlearea">
+<table cellspacing="0" cellpadding="0">
+ <tbody>
+ <tr style="height: 56px;">
+  <td id="projectalign" style="padding-left: 0.5em;">
+   <div id="projectname">Sentech SDK C
+   </div>
+  </td>
+ </tr>
+ </tbody>
+</table>
+</div>
+<!-- end header part -->
+<!-- 構築: Doxygen 1.8.15 -->
+<script type="text/javascript" src="menudata.js"></script>
+<script type="text/javascript" src="menu.js"></script>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:cf05388f2679ee054f2beb29a391d25f4e673ac3&amp;dn=gpl-2.0.txt GPL-v2 */
+$(function() {
+  initMenu('',false,false,'search.php','検索');
+});
+/* @license-end */</script>
+<div id="main-nav"></div>
+</div><!-- top -->
+<div class="PageDoc"><div class="header">
+  <div class="headertitle">
+<div class="title">はじめに </div>  </div>
+</div><!--header-->
+<div class="contents">
+<div class="textblock"><h1><a class="anchor" id="SectionGenICam"></a>
+GenICam</h1>
+<p>カメラや取り込みボードごとにインターフェースが異なっている場合、使用するカメラや取り込みボードに応じて、アプリケーションの開発が必要となります。使用するカメラや取り込みボードに依存しない、汎用的なインターフェース[GenICam (Generic Interface for Cameras) <a href="http://www.GenICam.org">http://www.GenICam.org</a>]を実現するためにさまざまな規格が策定されています。</p>
+<table class="doxtable">
+<tr>
+<th>規格</th><th>内容 </th></tr>
+<tr>
+<td>SFNC (Standard Features Naming Convention) </td><td>機能の名称や設定値の型などが規定されています。この規格により、使用するカメラのメーカーが異なっても、同じ機能は同じ名称で提供されるようになります。例えば露光時間は、 ExposureTime という名称が使用されており、us単位の実数で設定されます。  </td></tr>
+<tr>
+<td>PFNC (Pixel Format Naming Convention) </td><td>ピクセルフォーマットの名称や識別用の値について規定されています。  </td></tr>
+<tr>
+<td>GenApi (Application Programming interface) </td><td>一般にGenICam対応と呼ばれるカメラでは、カメラ内部にXMLファイルというテキストファイルが保存されており、そのファイルに対応している機能の名称や実装されているアドレス等が明記されています。この規格ではXMLファイルの書式やその処理に使用されるAPIが規定さており、XMLファイルの処理に利用可能なAPIが無償で配布されています。カメラから取得したXMLファイルとこのAPIを使用することで、ユーザーはカメラ内部のアドレスを意識せずに、カメラの設定を行うことができます。   </td></tr>
+<tr>
+<td>GenCP (Control Protocol) </td><td>USB3VisionやCamera Link HSで採用されている通信プロトコルが規定されています。   </td></tr>
+<tr>
+<td>GenTL (Transport Layer) </td><td>カメラと通信を行うためのAPIが規定されています。この規格により、カメラや取り込みボードに依存しないコードでカメラと通信できるようになります。GigEVisionおよびUSB3Visionではこの規格への対応がオプション扱いとなっているため、一部のカメラメーカーのみ対応しています。CoaXPressではこの規格への対応が必須とされています。  </td></tr>
+<tr>
+<td>GenTL SFNC (GenTL Standard Features Naming Convention) </td><td>GenTL用のSFNCです。  </td></tr>
+<tr>
+<td>GigEVision, USB3Vision, CoaXPress, Camera Link HS </td><td>インターフェースごとに従うべき規約が規定されています。この規格により、画像処理ライブラリが様々なカメラメーカーのカメラにアクセスできるようになります。  </td></tr>
+</table>
+<p>これらの規格は下記の団体により規格化されており、WEBサイトから規格書等の入手が可能です。 </p><table class="doxtable">
+<tr>
+<th>規格団体</th><th>URL</th><th>規格 </th></tr>
+<tr>
+<td>EMVA (European Machine Vision Association) </td><td><a href="http://www.emva.org/">http://www.emva.org/</a> </td><td>GenICam(SFNC, PFNC, GenApi, GenCP, GenTL, GenTL SFNC)  </td></tr>
+<tr>
+<td>AIA (Automated Imaging Association) </td><td><a href="http://www.visiononline.org/">http://www.visiononline.org/</a> </td><td>GigEVision, USB3Vision, Camera Link HS  </td></tr>
+<tr>
+<td>JIIA (Japan Industrial Imaging Association) </td><td><a href="http://www.jiia.org/">http://www.jiia.org/</a> </td><td>CoaXPress  </td></tr>
+</table>
+<p>これらの規格に従い、汎用的なAPI(GenApi, GenTL)および汎用的な名称(SFNC, PFNC)を使用することで、特定のカメラに依存しないアプリケーション開発が可能になります。</p>
+<div class="image">
+<img src="GenTLAppStructure.gif" alt="GenTLAppStructure.gif"/>
+<div class="caption">
+GenTL アプリケーションの構成</div></div>
+<p> しかし、汎用的なAPIを直接使用してアプリケーションを開発する場合、GenTLやGenApiの詳細について理解が必要になります。また、カメラから出力されたベイヤー配列フォーマットなど特殊な画像データを、プレビュー可能なRGBフォーマットなどへ変換するために、別途、画像処理ライブラリが必要になる場合があります。</p>
+<h1><a class="anchor" id="SectionStApi"></a>
+StApi</h1>
+<p>StApiはGenTLやGenApiを使用したカメラ用APIです。StApiはGenTLやGenApiを使用する際に必要となる複雑な処理を内部に隠ぺいしているため、GenTLやGenApiを詳細まで理解していなくても使用することができます。また、ピクセルフォーマット変換などの画像処理機能やGUI機能も提供されているため、別途画像処理ライブラリを用意しなくても、カラー画像のプレビューやファイルへの保存が可能です。 StApiはUSB3Vision, GigEVisionに対応したSDK付属のGenTLに加え、CoaXPressに対応したEuresys社製、SiliconSoftware社製、Kaya社製およびActiveSilicon社製（※）のGenTLに対応しており、これによりUSB3Vision, GigEVision, CoaXPressカメラに対応したアプリケーションを構築できます。</p>
+<dl class="section attention"><dt>注意</dt><dd>※ Kaya社製およびActiveSilicon社製のGenTLは、Windows版のみ対応しています。</dd></dl>
+<p>StApiは以下のように構成されています。ユーザーは緑色の枠内のモジュールを使用します。GenTLはTransport Layerの5つのインターフェイス(System, Interface, Device, Data Stream, Stream Buffer)により間接的に使用されます。Transport LayerとGenApiを使用することでカメラの設定および画像データ,イベント等の取得が可能になります。</p>
+<dl class="section attention"><dt>注意</dt><dd>※ StApiCは、Visual C++ 2005以降用に開発されたStApiを、直接使用できないC/C++開発環境で利用する際に使用されるAPIです。Visual C++ 2005以降を御使用になられる場合は、StApiを直接使用されることを推奨いたします。</dd></dl>
+<div class="image">
+<img src="StApiCAppStructure.gif" alt="StApiCAppStructure.gif"/>
+<div class="caption">
+StApiC アプリケーションの構成</div></div>
+ <ul>
+<li>
+<a class="el" href="PageProgrammersGuide.html">プログラマーズガイド</a> </li>
+<li>
+<a class="el" href="SFNC.html">SFNC(Standard Features Naming Convention)</a> </li>
+<li>
+<a class="el" href="PageDependOnInterface.html">カメラインターフェース</a> </li>
+<li>
+<a class="el" href="PageSampleProgramsCLinux.html">Linux OS用サンプルプログラム</a> </li>
+<li>
+<a class="el" href="FAQ.html">よくあるご質問</a> </li>
+<li>
+<a class="el" href="ChangeHistory.html">更新履歴</a> </li>
+</ul>
+<p>PageSampleProgramsLinux  <a class="el" href="FAQ.html">よくあるご質問</a>  <a class="el" href="ChangeHistory.html">更新履歴</a>  </p>
+</div></div><!-- PageDoc -->
+</div><!-- contents -->
+<!-- HTML footer for doxygen 1.8.13-->
+<!-- start footer part -->
+<hr class="footer"/>
+	<address class="footer">
+		<small>
+2021年10月26日(火) 13時17分14秒作成 - Sentech SDK C / 構成:  &#160;
+			<a href="http://www.sentech.co.jp/">
+				<img class="footer" src="string_omron_sentech.png" alt="OMRON SENTECH CO., LTD"/>
+			</a>
+			<!--
+				DoxyGen Version =  1.8.15
+			-->
+		</small>
+	</address>
+</body>
+</html>

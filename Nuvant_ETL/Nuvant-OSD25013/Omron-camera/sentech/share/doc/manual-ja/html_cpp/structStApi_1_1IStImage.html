@@ -1,0 +1,444 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "https://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=9"/>
+<meta name="generator" content="Doxygen 1.8.15"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>Sentech SDK: StApi::IStImage インタフェース</title>
+<link href="tabs.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="jquery.js"></script>
+<script type="text/javascript" src="dynsections.js"></script>
+<link href="doxygen.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+<div id="top"><!-- do not remove this div, it is closed by doxygen! -->
+<div id="titlearea">
+<table cellspacing="0" cellpadding="0">
+ <tbody>
+ <tr style="height: 56px;">
+  <td id="projectalign" style="padding-left: 0.5em;">
+   <div id="projectname">Sentech SDK
+   </div>
+  </td>
+ </tr>
+ </tbody>
+</table>
+</div>
+<!-- end header part -->
+<!-- 構築: Doxygen 1.8.15 -->
+<script type="text/javascript" src="menudata.js"></script>
+<script type="text/javascript" src="menu.js"></script>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:cf05388f2679ee054f2beb29a391d25f4e673ac3&amp;dn=gpl-2.0.txt GPL-v2 */
+$(function() {
+  initMenu('',false,false,'search.php','検索');
+});
+/* @license-end */</script>
+<div id="main-nav"></div>
+<div id="nav-path" class="navpath">
+  <ul>
+<li class="navelem"><b>StApi</b></li><li class="navelem"><a class="el" href="structStApi_1_1IStImage.html">IStImage</a></li>  </ul>
+</div>
+</div><!-- top -->
+<div class="header">
+  <div class="summary">
+<a href="#pub-methods">公開メンバ関数</a> &#124;
+<a href="structStApi_1_1IStImage-members.html">全メンバ一覧</a>  </div>
+  <div class="headertitle">
+<div class="title">StApi::IStImage インタフェース<span class="mlabels"><span class="mlabel">abstract</span></span><div class="ingroups"><a class="el" href="group__StApiTL__PublicInterface.html">StApi トランスポート層モジュール抽象インターフェース</a></div></div>  </div>
+</div><!--header-->
+<div class="contents">
+
+<p>画像用インターフェース  
+ <a href="structStApi_1_1IStImage.html#details">[詳解]</a></p>
+<table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-methods"></a>
+公開メンバ関数</h2></td></tr>
+<tr class="memitem:a7f6c5219b404b7d97dab9fd46bcccb7c"><td class="memItemLeft" align="right" valign="top">virtual size_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structStApi_1_1IStImage.html#a7f6c5219b404b7d97dab9fd46bcccb7c">GetImageWidth</a> () const =0</td></tr>
+<tr class="memdesc:a7f6c5219b404b7d97dab9fd46bcccb7c"><td class="mdescLeft">&#160;</td><td class="mdescRight">画像の横サイズを取得します。  <a href="#a7f6c5219b404b7d97dab9fd46bcccb7c">[詳解]</a><br /></td></tr>
+<tr class="separator:a7f6c5219b404b7d97dab9fd46bcccb7c"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a189d407ddf5efff7728e2f882a46dc6a"><td class="memItemLeft" align="right" valign="top">virtual size_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structStApi_1_1IStImage.html#a189d407ddf5efff7728e2f882a46dc6a">GetImageHeight</a> () const =0</td></tr>
+<tr class="memdesc:a189d407ddf5efff7728e2f882a46dc6a"><td class="mdescLeft">&#160;</td><td class="mdescRight">画像の縦サイズを取得します。  <a href="#a189d407ddf5efff7728e2f882a46dc6a">[詳解]</a><br /></td></tr>
+<tr class="separator:a189d407ddf5efff7728e2f882a46dc6a"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a8cd576020d4fb394051338462455fabb"><td class="memItemLeft" align="right" valign="top">virtual size_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structStApi_1_1IStImage.html#a8cd576020d4fb394051338462455fabb">GetImageLinePitch</a> () const =0</td></tr>
+<tr class="memdesc:a8cd576020d4fb394051338462455fabb"><td class="mdescLeft">&#160;</td><td class="mdescRight">画像のラインピッチ(1ライン当たりのバイト数)を取得します。  <a href="#a8cd576020d4fb394051338462455fabb">[詳解]</a><br /></td></tr>
+<tr class="separator:a8cd576020d4fb394051338462455fabb"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:af0bb2e490924dea33e4cb8217c2d999c"><td class="memItemLeft" align="right" valign="top">virtual size_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structStApi_1_1IStImage.html#af0bb2e490924dea33e4cb8217c2d999c">GetImagePlanePitch</a> () const =0</td></tr>
+<tr class="memdesc:af0bb2e490924dea33e4cb8217c2d999c"><td class="mdescLeft">&#160;</td><td class="mdescRight">画像のプレーンあたりのバイト数を取得します。  <a href="#af0bb2e490924dea33e4cb8217c2d999c">[詳解]</a><br /></td></tr>
+<tr class="separator:af0bb2e490924dea33e4cb8217c2d999c"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a199e39b092cdb6e2a6d9ee0d557a86b2"><td class="memItemLeft" align="right" valign="top">virtual <a class="el" href="group__StApiTL__PublicImpl.html#ga2dde686b2ed8dcb5d27fdbf892ceb9fd">EStPixelFormatNamingConvention_t</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structStApi_1_1IStImage.html#a199e39b092cdb6e2a6d9ee0d557a86b2">GetImagePixelFormat</a> () const =0</td></tr>
+<tr class="memdesc:a199e39b092cdb6e2a6d9ee0d557a86b2"><td class="mdescLeft">&#160;</td><td class="mdescRight">画像のピクセルフォーマットを取得します。  <a href="#a199e39b092cdb6e2a6d9ee0d557a86b2">[詳解]</a><br /></td></tr>
+<tr class="separator:a199e39b092cdb6e2a6d9ee0d557a86b2"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a62ca1545ce18d9a45fa3ceffe86c8e05"><td class="memItemLeft" align="right" valign="top">virtual void *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structStApi_1_1IStImage.html#a62ca1545ce18d9a45fa3ceffe86c8e05">GetImageBuffer</a> () const =0</td></tr>
+<tr class="memdesc:a62ca1545ce18d9a45fa3ceffe86c8e05"><td class="mdescLeft">&#160;</td><td class="mdescRight">画像バッファーのアドレスを取得します。  <a href="#a62ca1545ce18d9a45fa3ceffe86c8e05">[詳解]</a><br /></td></tr>
+<tr class="separator:a62ca1545ce18d9a45fa3ceffe86c8e05"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a741eaeae82c888db48bbc42b48daf8e1"><td class="memItemLeft" align="right" valign="top">virtual void *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structStApi_1_1IStImage.html#a741eaeae82c888db48bbc42b48daf8e1">GetUserContext</a> () const =0</td></tr>
+<tr class="memdesc:a741eaeae82c888db48bbc42b48daf8e1"><td class="mdescLeft">&#160;</td><td class="mdescRight">ユーザー用データポインターを取得します。  <a href="#a741eaeae82c888db48bbc42b48daf8e1">[詳解]</a><br /></td></tr>
+<tr class="separator:a741eaeae82c888db48bbc42b48daf8e1"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a335e7d55596257550dba249abaadfc53"><td class="memItemLeft" align="right" valign="top">virtual <a class="el" href="structStApi_1_1IStImage.html">IStImage</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structStApi_1_1IStImage.html#a335e7d55596257550dba249abaadfc53">GetROIImage</a> (size_t x, size_t y, size_t width, size_t height)=0</td></tr>
+<tr class="memdesc:a335e7d55596257550dba249abaadfc53"><td class="mdescLeft">&#160;</td><td class="mdescRight">切り取った画像用の <a class="el" href="structStApi_1_1IStImage.html" title="画像用インターフェース">IStImage</a> インターフェースポインターを取得します。  <a href="#a335e7d55596257550dba249abaadfc53">[詳解]</a><br /></td></tr>
+<tr class="separator:a335e7d55596257550dba249abaadfc53"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ab0e2bd65698dc21ad8e9bb4d16bc1111"><td class="memItemLeft" align="right" valign="top">virtual <a class="el" href="structStApi_1_1IStPixelComponentValue.html">IStPixelComponentValue</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structStApi_1_1IStImage.html#ab0e2bd65698dc21ad8e9bb4d16bc1111">GetIStPixelComponentValue</a> (size_t x, size_t y)=0</td></tr>
+<tr class="memdesc:ab0e2bd65698dc21ad8e9bb4d16bc1111"><td class="mdescLeft">&#160;</td><td class="mdescRight">指定した位置の画素情報を取得します。  <a href="#ab0e2bd65698dc21ad8e9bb4d16bc1111">[詳解]</a><br /></td></tr>
+<tr class="separator:ab0e2bd65698dc21ad8e9bb4d16bc1111"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table>
+<a name="details" id="details"></a><h2 class="groupheader">詳解</h2>
+<div class="textblock"><p>画像用インターフェース </p>
+</div><h2 class="groupheader">関数詳解</h2>
+<a id="a7f6c5219b404b7d97dab9fd46bcccb7c"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a7f6c5219b404b7d97dab9fd46bcccb7c">&#9670;&nbsp;</a></span>GetImageWidth()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">virtual size_t StApi::IStImage::GetImageWidth </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">pure virtual</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+<p>画像の横サイズを取得します。 </p><dl class="section return"><dt>戻り値</dt><dd>画像の横サイズ </dd></dl>
+<dl class="exception"><dt>例外</dt><dd>
+  <table class="exception">
+    <tr><td class="paramname">なし</td><td></td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a id="a189d407ddf5efff7728e2f882a46dc6a"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a189d407ddf5efff7728e2f882a46dc6a">&#9670;&nbsp;</a></span>GetImageHeight()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">virtual size_t StApi::IStImage::GetImageHeight </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">pure virtual</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+<p>画像の縦サイズを取得します。 </p><dl class="section return"><dt>戻り値</dt><dd>画像の縦サイズ </dd></dl>
+<dl class="exception"><dt>例外</dt><dd>
+  <table class="exception">
+    <tr><td class="paramname">なし</td><td></td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a id="a8cd576020d4fb394051338462455fabb"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a8cd576020d4fb394051338462455fabb">&#9670;&nbsp;</a></span>GetImageLinePitch()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">virtual size_t StApi::IStImage::GetImageLinePitch </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">pure virtual</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+<p>画像のラインピッチ(1ライン当たりのバイト数)を取得します。 </p><dl class="section return"><dt>戻り値</dt><dd>画像のラインピッチ </dd></dl>
+<dl class="exception"><dt>例外</dt><dd>
+  <table class="exception">
+    <tr><td class="paramname">なし</td><td></td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a id="af0bb2e490924dea33e4cb8217c2d999c"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#af0bb2e490924dea33e4cb8217c2d999c">&#9670;&nbsp;</a></span>GetImagePlanePitch()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">virtual size_t StApi::IStImage::GetImagePlanePitch </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">pure virtual</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+<p>画像のプレーンあたりのバイト数を取得します。 </p><dl class="section return"><dt>戻り値</dt><dd>画像のプレーンピッチ </dd></dl>
+<dl class="exception"><dt>例外</dt><dd>
+  <table class="exception">
+    <tr><td class="paramname">なし</td><td></td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a id="a199e39b092cdb6e2a6d9ee0d557a86b2"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a199e39b092cdb6e2a6d9ee0d557a86b2">&#9670;&nbsp;</a></span>GetImagePixelFormat()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">virtual <a class="el" href="group__StApiTL__PublicImpl.html#ga2dde686b2ed8dcb5d27fdbf892ceb9fd">EStPixelFormatNamingConvention_t</a> StApi::IStImage::GetImagePixelFormat </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">pure virtual</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+<p>画像のピクセルフォーマットを取得します。 </p><dl class="section return"><dt>戻り値</dt><dd>画像のピクセルフォーマット </dd></dl>
+<dl class="exception"><dt>例外</dt><dd>
+  <table class="exception">
+    <tr><td class="paramname">なし</td><td></td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a id="a62ca1545ce18d9a45fa3ceffe86c8e05"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a62ca1545ce18d9a45fa3ceffe86c8e05">&#9670;&nbsp;</a></span>GetImageBuffer()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">virtual void* StApi::IStImage::GetImageBuffer </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">pure virtual</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+<p>画像バッファーのアドレスを取得します。 </p><dl class="section return"><dt>戻り値</dt><dd>画像バッファーのアドレス </dd></dl>
+<dl class="exception"><dt>例外</dt><dd>
+  <table class="exception">
+    <tr><td class="paramname">なし</td><td></td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a id="a741eaeae82c888db48bbc42b48daf8e1"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a741eaeae82c888db48bbc42b48daf8e1">&#9670;&nbsp;</a></span>GetUserContext()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">virtual void* StApi::IStImage::GetUserContext </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">pure virtual</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+<p>ユーザー用データポインターを取得します。 </p><dl class="section return"><dt>戻り値</dt><dd>ユーザー用データポインター。指定されていない場合は、NULLが返されます。 </dd></dl>
+<dl class="exception"><dt>例外</dt><dd>
+  <table class="exception">
+    <tr><td class="paramname">なし</td><td></td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a id="a335e7d55596257550dba249abaadfc53"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a335e7d55596257550dba249abaadfc53">&#9670;&nbsp;</a></span>GetROIImage()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">virtual <a class="el" href="structStApi_1_1IStImage.html">IStImage</a>* StApi::IStImage::GetROIImage </td>
+          <td>(</td>
+          <td class="paramtype">size_t&#160;</td>
+          <td class="paramname"><em>x</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">size_t&#160;</td>
+          <td class="paramname"><em>y</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">size_t&#160;</td>
+          <td class="paramname"><em>width</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">size_t&#160;</td>
+          <td class="paramname"><em>height</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">pure virtual</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+<p>切り取った画像用の <a class="el" href="structStApi_1_1IStImage.html" title="画像用インターフェース">IStImage</a> インターフェースポインターを取得します。 データのコピーは行われず、元のデータが参照されます。そのため、元の画像が変化したり、再度この関数が呼び出された場合は、以前取得された <a class="el" href="structStApi_1_1IStImage.html" title="画像用インターフェース">IStImage</a> は無効になります。 </p><dl class="params"><dt>引数</dt><dd>
+  <table class="params">
+    <tr><td class="paramdir">[in]</td><td class="paramname">x</td><td>横方向のオフセット値 </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">y</td><td>縦方向のオフセット値 </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">width</td><td>ROI画像の横サイズ </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">height</td><td>ROI画像の縦サイズ </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>戻り値</dt><dd><a class="el" href="structStApi_1_1IStImage.html" title="画像用インターフェース">IStImage</a> インターフェースポインター </dd></dl>
+<dl class="exception"><dt>例外</dt><dd>
+  <table class="exception">
+    <tr><td class="paramname">不正な引数が指定された場合は、例外</td><td><a class="el" href="classGenICam_1_1GenericException.html" title="GenICam&#39;s exception class">GenICam::GenericException</a> が発生します。 </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a id="ab0e2bd65698dc21ad8e9bb4d16bc1111"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ab0e2bd65698dc21ad8e9bb4d16bc1111">&#9670;&nbsp;</a></span>GetIStPixelComponentValue()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">virtual <a class="el" href="structStApi_1_1IStPixelComponentValue.html">IStPixelComponentValue</a>* StApi::IStImage::GetIStPixelComponentValue </td>
+          <td>(</td>
+          <td class="paramtype">size_t&#160;</td>
+          <td class="paramname"><em>x</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">size_t&#160;</td>
+          <td class="paramname"><em>y</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">pure virtual</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+<p>指定した位置の画素情報を取得します。 </p><dl class="params"><dt>引数</dt><dd>
+  <table class="params">
+    <tr><td class="paramdir">[in]</td><td class="paramname">x</td><td>横方向の位置 </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">y</td><td>縦方向の位置 </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>戻り値</dt><dd><a class="el" href="structStApi_1_1IStPixelComponentValue.html" title="ピクセル構成要素用インターフェース">IStPixelComponentValue</a> インターフェースポインター </dd></dl>
+<dl class="section attention"><dt>注意</dt><dd>再度この関数が呼び出されると、 <a class="el" href="structStApi_1_1IStPixelComponentValue.html" title="ピクセル構成要素用インターフェース">IStPixelComponentValue</a> インターフェースポインターを使用して得られる値が変化します。取得された <a class="el" href="structStApi_1_1IStPixelComponentValue.html" title="ピクセル構成要素用インターフェース">IStPixelComponentValue</a> インターフェースポインターは元の画像が破棄されると無効になります。 </dd></dl>
+<dl class="exception"><dt>例外</dt><dd>
+  <table class="exception">
+    <tr><td class="paramname">不正な引数が指定された場合は、例外</td><td><a class="el" href="classGenICam_1_1GenericException.html" title="GenICam&#39;s exception class">GenICam::GenericException</a> が発生します。 </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+</div><!-- contents -->
+<!-- HTML footer for doxygen 1.8.13-->
+<!-- start footer part -->
+<hr class="footer"/>
+	<address class="footer">
+		<small>
+2021年10月26日(火) 13時10分26秒作成 - Sentech SDK / 構成:  &#160;
+			<a href="http://www.sentech.co.jp/">
+				<img class="footer" src="string_omron_sentech.png" alt="OMRON SENTECH CO., LTD"/>
+			</a>
+			<!--
+				DoxyGen Version =  1.8.15
+			-->
+		</small>
+	</address>
+</body>
+</html>

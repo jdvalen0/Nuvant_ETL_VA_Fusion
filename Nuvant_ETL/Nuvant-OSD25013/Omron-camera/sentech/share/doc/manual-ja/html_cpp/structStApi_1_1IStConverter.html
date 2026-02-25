@@ -1,0 +1,308 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "https://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=9"/>
+<meta name="generator" content="Doxygen 1.8.15"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>Sentech SDK: StApi::IStConverter インタフェース</title>
+<link href="tabs.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="jquery.js"></script>
+<script type="text/javascript" src="dynsections.js"></script>
+<link href="doxygen.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+<div id="top"><!-- do not remove this div, it is closed by doxygen! -->
+<div id="titlearea">
+<table cellspacing="0" cellpadding="0">
+ <tbody>
+ <tr style="height: 56px;">
+  <td id="projectalign" style="padding-left: 0.5em;">
+   <div id="projectname">Sentech SDK
+   </div>
+  </td>
+ </tr>
+ </tbody>
+</table>
+</div>
+<!-- end header part -->
+<!-- 構築: Doxygen 1.8.15 -->
+<script type="text/javascript" src="menudata.js"></script>
+<script type="text/javascript" src="menu.js"></script>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:cf05388f2679ee054f2beb29a391d25f4e673ac3&amp;dn=gpl-2.0.txt GPL-v2 */
+$(function() {
+  initMenu('',false,false,'search.php','検索');
+});
+/* @license-end */</script>
+<div id="main-nav"></div>
+<div id="nav-path" class="navpath">
+  <ul>
+<li class="navelem"><b>StApi</b></li><li class="navelem"><a class="el" href="structStApi_1_1IStConverter.html">IStConverter</a></li>  </ul>
+</div>
+</div><!-- top -->
+<div class="header">
+  <div class="summary">
+<a href="#pub-methods">公開メンバ関数</a> &#124;
+<a href="structStApi_1_1IStConverter-members.html">全メンバ一覧</a>  </div>
+  <div class="headertitle">
+<div class="title">StApi::IStConverter インタフェース<span class="mlabels"><span class="mlabel">abstract</span></span><div class="ingroups"><a class="el" href="group__StApiIP__PublicInterface.html">StApi 画像処理モジュール抽象インターフェース</a></div></div>  </div>
+</div><!--header-->
+<div class="contents">
+
+<p>コンバーター用インターフェース  
+ <a href="structStApi_1_1IStConverter.html#details">[詳解]</a></p>
+<div id="dynsection-0" onclick="return toggleVisibility(this)" class="dynheader closed" style="cursor:pointer;">
+  <img id="dynsection-0-trigger" src="closed.png" alt="+"/> StApi::IStConverter の継承関係図</div>
+<div id="dynsection-0-summary" class="dynsummary" style="display:block;">
+</div>
+<div id="dynsection-0-content" class="dyncontent" style="display:none;">
+<div class="center"><img src="structStApi_1_1IStConverter__inherit__graph.png" border="0" usemap="#StApi_1_1IStConverter_inherit__map" alt="Inheritance graph"/></div>
+<map name="StApi_1_1IStConverter_inherit__map" id="StApi_1_1IStConverter_inherit__map">
+<area shape="rect"  title="ã³ã³ãã¼ã¿ã¼ç¨ã¤ã³ã¿ã¼ãã§ã¼ã¹" alt="" coords="244,56,389,83"/>
+<area shape="rect"  href="structStApi_1_1IStConverterReleasable.html" title="è§£æ¾å¯è½ãªã³ã³ãã¼ã¿ã¼ç¨ã¤ã³ã¿ã¼ãã§ã¼ã¹" alt="" coords="441,5,657,32"/>
+<area shape="rect"  href="structStApi_1_1IStPixelFormatConverter.html" title="ãã¯ã»ã«ãã©ã¼ãããã³ã³ãã¼ã¿ã¼ç¨ã¤ã³ã¿ã¼ãã§ã¼ã¹" alt="" coords="437,56,660,83"/>
+<area shape="rect"  href="structStApi_1_1IStReverseConverter.html" title="åè»¢åè»¢ã³ã³ãã¼ã¿ã¼ç¨ã¤ã³ã¿ã¼ãã§ã¼ã¹" alt="" coords="450,107,647,133"/>
+<area shape="rect"  href="structStApi_1_1IStRegisterCallback.html" title="StApiã³ã¼ã«ããã¯é¢æ°ã®ç»é²ããã³ç»é²è§£é¤ã«ä½¿ç¨ãããã¤ã³ã¿ã¼ãã§ã¼ã¹" alt="" coords="5,56,196,83"/>
+</map>
+<center><span class="legend">[<a href="graph_legend.html">凡例</a>]</span></center></div>
+<div id="dynsection-1" onclick="return toggleVisibility(this)" class="dynheader closed" style="cursor:pointer;">
+  <img id="dynsection-1-trigger" src="closed.png" alt="+"/> StApi::IStConverter 連携図</div>
+<div id="dynsection-1-summary" class="dynsummary" style="display:block;">
+</div>
+<div id="dynsection-1-content" class="dyncontent" style="display:none;">
+<div class="center"><img src="structStApi_1_1IStConverter__coll__graph.png" border="0" usemap="#StApi_1_1IStConverter_coll__map" alt="Collaboration graph"/></div>
+<map name="StApi_1_1IStConverter_coll__map" id="StApi_1_1IStConverter_coll__map">
+<area shape="rect"  title="ã³ã³ãã¼ã¿ã¼ç¨ã¤ã³ã¿ã¼ãã§ã¼ã¹" alt="" coords="28,80,173,107"/>
+<area shape="rect"  href="structStApi_1_1IStRegisterCallback.html" title="StApiã³ã¼ã«ããã¯é¢æ°ã®ç»é²ããã³ç»é²è§£é¤ã«ä½¿ç¨ãããã¤ã³ã¿ã¼ãã§ã¼ã¹" alt="" coords="5,5,196,32"/>
+</map>
+<center><span class="legend">[<a href="graph_legend.html">凡例</a>]</span></center></div>
+<table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-methods"></a>
+公開メンバ関数</h2></td></tr>
+<tr class="memitem:a42746c7719b5e1bedbf94558eef60ea2"><td class="memItemLeft" align="right" valign="top">virtual const <a class="el" href="structStApi_1_1IStConverterInfo.html">IStConverterInfo</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structStApi_1_1IStConverter.html#a42746c7719b5e1bedbf94558eef60ea2">GetIStConverterInfo</a> () const =0</td></tr>
+<tr class="memdesc:a42746c7719b5e1bedbf94558eef60ea2"><td class="mdescLeft">&#160;</td><td class="mdescRight"><a class="el" href="structStApi_1_1IStConverterInfo.html" title="コンバーター情報用インターフェース">IStConverterInfo</a> インターフェースポインターを取得します。  <a href="#a42746c7719b5e1bedbf94558eef60ea2">[詳解]</a><br /></td></tr>
+<tr class="separator:a42746c7719b5e1bedbf94558eef60ea2"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a3fe125bb5a10de9a609cd7e97ae6e320"><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structStApi_1_1IStConverter.html#a3fe125bb5a10de9a609cd7e97ae6e320">Convert</a> (<a class="el" href="structStApi_1_1IStImage.html">IStImage</a> *pSourceIStImage, <a class="el" href="structStApi_1_1IStImageBuffer.html">IStImageBuffer</a> *pDestIStImageBuffer)=0</td></tr>
+<tr class="memdesc:a3fe125bb5a10de9a609cd7e97ae6e320"><td class="mdescLeft">&#160;</td><td class="mdescRight">画像の変換処理を行います。  <a href="#a3fe125bb5a10de9a609cd7e97ae6e320">[詳解]</a><br /></td></tr>
+<tr class="separator:a3fe125bb5a10de9a609cd7e97ae6e320"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a9dfb3348a8d89c1bb6e78bf14d6a8518"><td class="memItemLeft" align="right" valign="top">virtual <a class="el" href="structGenApi_1_1INodeMap.html">GenApi::INodeMap</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structStApi_1_1IStConverter.html#a9dfb3348a8d89c1bb6e78bf14d6a8518">GetINodeMap</a> ()=0</td></tr>
+<tr class="memdesc:a9dfb3348a8d89c1bb6e78bf14d6a8518"><td class="mdescLeft">&#160;</td><td class="mdescRight">INodeMap インターフェースポインターを取得します。  <a href="#a9dfb3348a8d89c1bb6e78bf14d6a8518">[詳解]</a><br /></td></tr>
+<tr class="separator:a9dfb3348a8d89c1bb6e78bf14d6a8518"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a2e5af69b1082ec530e91665f1ba8b7f8"><td class="memItemLeft" align="right" valign="top">virtual size_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structStApi_1_1IStConverter.html#a2e5af69b1082ec530e91665f1ba8b7f8">GetLinePitchAlignment</a> () const =0</td></tr>
+<tr class="memdesc:a2e5af69b1082ec530e91665f1ba8b7f8"><td class="mdescLeft">&#160;</td><td class="mdescRight">変換後の画像のラインピッチの最小単位を取得します。  <a href="#a2e5af69b1082ec530e91665f1ba8b7f8">[詳解]</a><br /></td></tr>
+<tr class="separator:a2e5af69b1082ec530e91665f1ba8b7f8"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ad33d8f400d7e70cacb3f4d1d49b84fe4"><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structStApi_1_1IStConverter.html#ad33d8f400d7e70cacb3f4d1d49b84fe4">SetLinePitchAlignment</a> (size_t nLinePitchAlignment)=0</td></tr>
+<tr class="memdesc:ad33d8f400d7e70cacb3f4d1d49b84fe4"><td class="mdescLeft">&#160;</td><td class="mdescRight">変換後の画像のラインピッチの最小単位を設定します。  <a href="#ad33d8f400d7e70cacb3f4d1d49b84fe4">[詳解]</a><br /></td></tr>
+<tr class="separator:ad33d8f400d7e70cacb3f4d1d49b84fe4"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="inherit_header pub_methods_structStApi_1_1IStRegisterCallback"><td colspan="2" onclick="javascript:toggleInherit('pub_methods_structStApi_1_1IStRegisterCallback')"><img src="closed.png" alt="-"/>&#160;基底クラス <a class="el" href="structStApi_1_1IStRegisterCallback.html">StApi::IStRegisterCallback</a> に属する継承公開メンバ関数</td></tr>
+<tr class="memitem:a3e9da3d4173d22f96664cd8be00c9c70 inherit pub_methods_structStApi_1_1IStRegisterCallback"><td class="memItemLeft" align="right" valign="top">virtual <a class="el" href="group__StApiTL__PublicImpl.html#ga50382bf603d23086b9a3887988985273">StApiCallbackHandle_t</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structStApi_1_1IStRegisterCallback.html#a3e9da3d4173d22f96664cd8be00c9c70">RegisterCallback</a> (<a class="el" href="structStApi_1_1IStCallback.html">IStCallback</a> *pIStCallback)=0</td></tr>
+<tr class="memdesc:a3e9da3d4173d22f96664cd8be00c9c70 inherit pub_methods_structStApi_1_1IStRegisterCallback"><td class="mdescLeft">&#160;</td><td class="mdescRight">コールバック関数を登録します。  <a href="structStApi_1_1IStRegisterCallback.html#a3e9da3d4173d22f96664cd8be00c9c70">[詳解]</a><br /></td></tr>
+<tr class="separator:a3e9da3d4173d22f96664cd8be00c9c70 inherit pub_methods_structStApi_1_1IStRegisterCallback"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a642e9d0ae0e64dafa24fd5db03c20fea inherit pub_methods_structStApi_1_1IStRegisterCallback"><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structStApi_1_1IStRegisterCallback.html#a642e9d0ae0e64dafa24fd5db03c20fea">DeregisterCallback</a> (<a class="el" href="group__StApiTL__PublicImpl.html#ga50382bf603d23086b9a3887988985273">StApiCallbackHandle_t</a> hCallback)=0</td></tr>
+<tr class="memdesc:a642e9d0ae0e64dafa24fd5db03c20fea inherit pub_methods_structStApi_1_1IStRegisterCallback"><td class="mdescLeft">&#160;</td><td class="mdescRight">コールバック関数の登録を解除します。  <a href="structStApi_1_1IStRegisterCallback.html#a642e9d0ae0e64dafa24fd5db03c20fea">[詳解]</a><br /></td></tr>
+<tr class="separator:a642e9d0ae0e64dafa24fd5db03c20fea inherit pub_methods_structStApi_1_1IStRegisterCallback"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table>
+<a name="details" id="details"></a><h2 class="groupheader">詳解</h2>
+<div class="textblock"><p>コンバーター用インターフェース </p><dl class="section see"><dt>参照</dt><dd><a class="el" href="group__StApiIP__PublicImpl.html#gac421717a7209a422ebd431e4ce7c9105" title="IStConverterReleasable インターフェースポインターを取得します。IStConverterReleasable で行われる画像処理では、 IStFilterReleasable で行...">CreateIStConverter()</a> </dd></dl>
+</div><h2 class="groupheader">関数詳解</h2>
+<a id="a42746c7719b5e1bedbf94558eef60ea2"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a42746c7719b5e1bedbf94558eef60ea2">&#9670;&nbsp;</a></span>GetIStConverterInfo()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">virtual const <a class="el" href="structStApi_1_1IStConverterInfo.html">IStConverterInfo</a>* StApi::IStConverter::GetIStConverterInfo </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">pure virtual</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+<p><a class="el" href="structStApi_1_1IStConverterInfo.html" title="コンバーター情報用インターフェース">IStConverterInfo</a> インターフェースポインターを取得します。 </p><dl class="section return"><dt>戻り値</dt><dd><a class="el" href="structStApi_1_1IStConverterInfo.html" title="コンバーター情報用インターフェース">IStConverterInfo</a> インターフェースポインター。 </dd></dl>
+<dl class="exception"><dt>例外</dt><dd>
+  <table class="exception">
+    <tr><td class="paramname">なし</td><td></td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a id="a3fe125bb5a10de9a609cd7e97ae6e320"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a3fe125bb5a10de9a609cd7e97ae6e320">&#9670;&nbsp;</a></span>Convert()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">virtual void StApi::IStConverter::Convert </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="structStApi_1_1IStImage.html">IStImage</a> *&#160;</td>
+          <td class="paramname"><em>pSourceIStImage</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="structStApi_1_1IStImageBuffer.html">IStImageBuffer</a> *&#160;</td>
+          <td class="paramname"><em>pDestIStImageBuffer</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">pure virtual</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+<p>画像の変換処理を行います。 </p><dl class="params"><dt>引数</dt><dd>
+  <table class="params">
+    <tr><td class="paramdir">[in]</td><td class="paramname">pSourceIStImage</td><td>入力画像 </td></tr>
+    <tr><td class="paramdir">[in,out]</td><td class="paramname">pDestIStImageBuffer</td><td>出力画像バッファー </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="exception"><dt>例外</dt><dd>
+  <table class="exception">
+    <tr><td class="paramname">不正な引数が指定された場合は、例外</td><td><a class="el" href="classGenICam_1_1GenericException.html" title="GenICam&#39;s exception class">GenICam::GenericException</a> が発生します。 </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a id="a9dfb3348a8d89c1bb6e78bf14d6a8518"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a9dfb3348a8d89c1bb6e78bf14d6a8518">&#9670;&nbsp;</a></span>GetINodeMap()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">virtual <a class="el" href="structGenApi_1_1INodeMap.html">GenApi::INodeMap</a>* StApi::IStConverter::GetINodeMap </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">pure virtual</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+<p>INodeMap インターフェースポインターを取得します。 </p><dl class="section return"><dt>戻り値</dt><dd>INodeMap インターフェースポインター。 </dd></dl>
+<dl class="exception"><dt>例外</dt><dd>
+  <table class="exception">
+    <tr><td class="paramname">なし</td><td></td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a id="a2e5af69b1082ec530e91665f1ba8b7f8"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a2e5af69b1082ec530e91665f1ba8b7f8">&#9670;&nbsp;</a></span>GetLinePitchAlignment()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">virtual size_t StApi::IStConverter::GetLinePitchAlignment </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">pure virtual</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+<p>変換後の画像のラインピッチの最小単位を取得します。 </p><dl class="section return"><dt>戻り値</dt><dd>変換後の画像のラインピッチの最小単位 </dd></dl>
+<dl class="exception"><dt>例外</dt><dd>
+  <table class="exception">
+    <tr><td class="paramname">なし</td><td></td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a id="ad33d8f400d7e70cacb3f4d1d49b84fe4"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ad33d8f400d7e70cacb3f4d1d49b84fe4">&#9670;&nbsp;</a></span>SetLinePitchAlignment()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">virtual void StApi::IStConverter::SetLinePitchAlignment </td>
+          <td>(</td>
+          <td class="paramtype">size_t&#160;</td>
+          <td class="paramname"><em>nLinePitchAlignment</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">pure virtual</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+<p>変換後の画像のラインピッチの最小単位を設定します。 </p><dl class="params"><dt>引数</dt><dd>
+  <table class="params">
+    <tr><td class="paramdir">[in]</td><td class="paramname">nLinePitchAlignment</td><td>変換後の画像のラインピッチの最小単位 </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="exception"><dt>例外</dt><dd>
+  <table class="exception">
+    <tr><td class="paramname">不正な引数が指定された場合は、例外</td><td><a class="el" href="classGenICam_1_1GenericException.html" title="GenICam&#39;s exception class">GenICam::GenericException</a> が発生します。 </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+</div><!-- contents -->
+<!-- HTML footer for doxygen 1.8.13-->
+<!-- start footer part -->
+<hr class="footer"/>
+	<address class="footer">
+		<small>
+2021年10月26日(火) 13時10分25秒作成 - Sentech SDK / 構成:  &#160;
+			<a href="http://www.sentech.co.jp/">
+				<img class="footer" src="string_omron_sentech.png" alt="OMRON SENTECH CO., LTD"/>
+			</a>
+			<!--
+				DoxyGen Version =  1.8.15
+			-->
+		</small>
+	</address>
+</body>
+</html>

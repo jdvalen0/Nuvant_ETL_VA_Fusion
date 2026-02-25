@@ -1,0 +1,315 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "https://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=9"/>
+<meta name="generator" content="Doxygen 1.8.15"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>Sentech SDK: プログラマーズガイド</title>
+<link href="tabs.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="jquery.js"></script>
+<script type="text/javascript" src="dynsections.js"></script>
+<link href="doxygen.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+<div id="top"><!-- do not remove this div, it is closed by doxygen! -->
+<div id="titlearea">
+<table cellspacing="0" cellpadding="0">
+ <tbody>
+ <tr style="height: 56px;">
+  <td id="projectalign" style="padding-left: 0.5em;">
+   <div id="projectname">Sentech SDK
+   </div>
+  </td>
+ </tr>
+ </tbody>
+</table>
+</div>
+<!-- end header part -->
+<!-- 構築: Doxygen 1.8.15 -->
+<script type="text/javascript" src="menudata.js"></script>
+<script type="text/javascript" src="menu.js"></script>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:cf05388f2679ee054f2beb29a391d25f4e673ac3&amp;dn=gpl-2.0.txt GPL-v2 */
+$(function() {
+  initMenu('',false,false,'search.php','検索');
+});
+/* @license-end */</script>
+<div id="main-nav"></div>
+</div><!-- top -->
+<div class="PageDoc"><div class="header">
+  <div class="headertitle">
+<div class="title">プログラマーズガイド </div>  </div>
+</div><!--header-->
+<div class="contents">
+<div class="toc"><h3>目次</h3>
+<ul><li class="level1"><a href="#StructureOfStApi">StApiの構成</a></li>
+<li class="level1"><a href="#Environment">対応環境</a></li>
+<li class="level1"><a href="#ErrorHandling">エラー処理</a></li>
+<li class="level1"><a href="#flowOfGettingImageData">画像データの取得までの流れ</a></li>
+<li class="level1"><a href="#ImageAcquisition">画像データ取得</a></li>
+<li class="level1"><a href="#Callback">コールバック</a></li>
+<li class="level1"><a href="#InstallerLinux">Linux インストーラーとアンインストーラー</a></li>
+</ul>
+</div>
+<div class="textblock"><p>StApiの構成や使用方法について説明します。</p>
+<h1><a class="anchor" id="StructureOfStApi"></a>
+StApiの構成</h1>
+<p>StApiは、USB3Vision, GigEVision, CoaXPressカメラ用のAPIです。APIの機能は大きく3つに分類されます。</p>
+<ol>
+<li>
+カメラ制御機能(Transport Layer) <br />
+カメラの設定変更や画像データ、イベントデータ等を取得する機能が提供されます。カメラとの通信にはGenTLモジュールが使用されます。SDK付属のGenTLモジュールはUSB3VisionおよびGigEVisionに対応しています。CoaXPress用取り込みボードメーカー製のGenTLモジュールを使用することでCoaXPressカメラも利用できます。カメラの設定変更にはGenApiが使用されます。画像処理機能やGUI機能が不要であれば、この機能(下図の水色線枠内)だけを使用してアプリケーションを開発できます。 <table class="doxtable">
+<tr>
+<th>モジュール</th><th>主な用途 </th></tr>
+<tr>
+<td>System</td><td>CTIファイル(GenTL用DLLファイル)の情報取得に使用されます。 </td></tr>
+<tr>
+<td>Interface</td><td>インターフェースに関する設定や接続されているカメラの情報取得などに使用されます。 </td></tr>
+<tr>
+<td>Device</td><td>カメラの設定に使用されます。 </td></tr>
+<tr>
+<td>Data Stream</td><td>画像データ等のストリーミングの設定に使用されます。 </td></tr>
+<tr>
+<td>Stream Buffer</td><td>ストリーミングに使用されているバッファの情報取得に使用されます。 </td></tr>
+</table>
+</li>
+<li>
+画像処理機能(Image Processing) <br />
+フォーマット変換(ベイヤー画像の色補間処理)やFFCなどの画像処理や、静止画ファイル, 動画ファイルの生成機能が提供されます。提供される機能は大きく下記の3つに分類されます。 <table class="doxtable">
+<tr>
+<th>タイプ</th><th>特徴 </th></tr>
+<tr>
+<td>Filter </td><td>入力された画像データが処理後のデータで上書きされます。ピクセルフォーマットは変化しません。 <table class="doxtable">
+<tr>
+<th>モジュール</th><th>用途 </th></tr>
+<tr>
+<td>Field Flat Correction Filter</td><td>照明ムラ等に対する補正に使用されます。 </td></tr>
+<tr>
+<td>Noise Reduction Filter</td><td>ノイズ軽減処理に使用されます。 </td></tr>
+<tr>
+<td>Gamma Correction Filter</td><td>ガンマ補正に使用されます。 </td></tr>
+<tr>
+<td>Edge Enhancement Filter</td><td>エッジ強調に使用されます。 </td></tr>
+<tr>
+<td>Color Transformation Filter</td><td>RGBデータに対する行列演算に使用されます。 </td></tr>
+<tr>
+<td>Chroma Suppression Filter</td><td>高輝度部/低輝度部の着色を抑制に使用されます。 </td></tr>
+<tr>
+<td>Balance Ratio Filter</td><td>ホワイトバランス処理に使用されます。カメラ側にホワイトバランス処理が実装されている場合は、不要な機能です。 </td></tr>
+<tr>
+<td>Graph Data Filter</td><td>グラフ表示用データの生成に使用されます。 </td></tr>
+<tr>
+<td>Image Averaging Filter</td><td>平均化された画像データの生成に使用されます。 </td></tr>
+</table>
+</td></tr>
+<tr>
+<td>Converter </td><td>指定したバッファへ画像データが出力されます。ピクセルフォーマットが変化することがあります。 <table class="doxtable">
+<tr>
+<th>モジュール</th><th>用途 </th></tr>
+<tr>
+<td>Pixel Format Converter</td><td>ピクセルフォーマット変換に使用されます。 </td></tr>
+<tr>
+<td>Reverse Converter</td><td>画像の上下左右反転処理や回転処理に使用されます。カメラ側に上下左右反転が実装されている場合は、PCの負荷を軽減するため、カメラ側の処理を使用してください。 </td></tr>
+</table>
+</td></tr>
+<tr>
+<td>Filer </td><td>静止画ファイルや動画ファイルを生成します。 <table class="doxtable">
+<tr>
+<th>モジュール</th><th>主な用途 </th></tr>
+<tr>
+<td>Still Image Filer</td><td>静止画ファイルの保存に使用されます。 </td></tr>
+<tr>
+<td>Video Filer</td><td>動画ファイルの保存に使用されます。 </td></tr>
+</table>
+</td></tr>
+</table>
+</li>
+<li>
+GUI機能 <br />
+ GUIが提供されます。 <table class="doxtable">
+<tr>
+<th>モジュール</th><th>主な用途 </th></tr>
+<tr>
+<td>Device Selection</td><td>カメラ選択ウィンドウの表示に使用されます。 </td></tr>
+<tr>
+<td>Image Display</td><td>プレビューウィンドウの表示に使用されます。 </td></tr>
+<tr>
+<td>Node Map Display</td><td>ノードマップ表示(設定)ウィンドウの表示に使用されます。 </td></tr>
+<tr>
+<td>Graph Display</td><td>グラフ表示ウィンドウの表示に使用されます。 </td></tr>
+</table>
+</li>
+</ol>
+<div class="image">
+<img src="StApiAppStructure.gif" alt="StApiAppStructure.gif"/>
+<div class="caption">
+StApi アプリケーションの構成</div></div>
+ <h1><a class="anchor" id="Environment"></a>
+対応環境</h1>
+<p>StApiは下記の環境に対応しています。 </p><ul>
+<li>
+Linux<br />
+ Linuxテスト環境は下記のとおりです。 <ul>
+<li>
+Ubuntu 18.04 (x86_64/aarch64) </li>
+<li>
+Raspberry Pi OS (32-bit) </li>
+</ul>
+取り込みボードメーカーのGenTLモジュールをご使用になる場合は、そのGenTLモジュールの対応環境により制限される場合があります。<br />
+  </li>
+<li>
+<p class="startli">Mac OS (動作確認済み：Mojave 10.14.6とCatalina 10.15.3)</p>
+<p class="endli"></p>
+</li>
+</ul>
+<p>StApiは下記の開発環境に対応しています。 </p><ul>
+<li>
+Linux OS: GNU gcc (c++11規格以降)、GUI機能：Linux OSディストリビューションに配布されたQt ライブラリ </li>
+<li>
+<p class="startli">Mac OS: 確認済み開発環境はXCode 11.3、Qt 5.8.0</p>
+<p class="endli"></p>
+</li>
+</ul>
+<h1><a class="anchor" id="ErrorHandling"></a>
+エラー処理</h1>
+<p>StApiでエラーが発生した際には <a class="el" href="classGenICam_1_1GenericException.html" title="GenICam&#39;s exception class">GenICam::GenericException</a> から派生された例外が発生します。下記のようなコードで例外を捕捉できます。 </p><div class="fragment"><div class="line"><span class="keywordflow">try</span></div><div class="line">{</div><div class="line">    <span class="comment">//例外を発生する処理</span></div><div class="line">}</div><div class="line"><span class="keywordflow">catch</span> (<span class="keyword">const</span> <a class="code" href="classGenICam_1_1GenericException.html">GenICam::GenericException</a> &amp;e)</div><div class="line">{</div><div class="line">    std::cerr &lt;&lt; <span class="stringliteral">&quot;An exception occurred.&quot;</span> &lt;&lt; std::endl &lt;&lt; e.<a class="code" href="classGenICam_1_1GenericException.html#aaab2e6aff14d2bd127b64f3072733ad2">GetDescription</a>() &lt;&lt; std::endl;</div><div class="line">}</div></div><!-- fragment --><h1><a class="anchor" id="flowOfGettingImageData"></a>
+画像データの取得までの流れ</h1>
+</p><ol type="1">
+<li>インクルードファイルをインクルードし、使用するネームスペースを指定します。 <div class="fragment"><div class="line"><span class="preprocessor">#include &lt;<a class="code" href="StApi__TL_8h.html">StApi_TL.h</a>&gt;</span></div><div class="line"><span class="keyword">using namespace </span>StApi;</div><div class="line"></div><div class="line"><span class="keywordtype">void</span> main()</div><div class="line">{</div></div><!-- fragment --></li>
+<li>StApiライブラリの初期化を行います。<br />
+ <a class="el" href="group__StApiTL__PublicImpl.html#gaf1b5b6e7d97f4809836e453a487d050b" title="StApiライブラリを初期化します。">StApiInitialize()</a> を呼び出しStApiライブラリの初期化を行います。StApiライブラリを使い終わった後は <a class="el" href="group__StApiTL__PublicImpl.html#gaef596dc5945d8f6ecdac970fa149000e" title="StApiライブラリの終了処理を行います。">StApiTerminate()</a> を呼び出して終了処理を行います。下記のコードでは <a class="el" href="classStApi_1_1CStApiAutoInit.html" title="StApiライブラリの初期化および終了処理を自動化するためのクラス">StApi::CStApiAutoInit</a> のコンストラクタから <a class="el" href="group__StApiTL__PublicImpl.html#gaf1b5b6e7d97f4809836e453a487d050b" title="StApiライブラリを初期化します。">StApiInitialize()</a> が、デストラクタから <a class="el" href="group__StApiTL__PublicImpl.html#gaef596dc5945d8f6ecdac970fa149000e" title="StApiライブラリの終了処理を行います。">StApiTerminate()</a> が呼び出されます。 <div class="fragment"><div class="line">    CStApiAutoInit objStApiAutoInit;</div></div><!-- fragment --></li>
+<li>システム(GenTLモジュール)を開き、 <a class="el" href="structStApi_1_1IStSystemReleasable.html" title="解放可能なシステムモジュール用インターフェース">StApi::IStSystemReleasable</a> を取得します。 <br />
+ <a class="el" href="group__StApiTL__PublicImpl.html#gacb4a9088c4be0323ef3633ebfdf50f63" title="GenTLのシステムモージュールをオープンし、 IStSystemReleasable インターフェースポインターを取得します。">CreateIStSystem()</a> を使用し <a class="el" href="structStApi_1_1IStSystemReleasable.html" title="解放可能なシステムモジュール用インターフェース">StApi::IStSystemReleasable</a> を取得します。 <a class="el" href="structStApi_1_1IStSystemReleasable.html" title="解放可能なシステムモジュール用インターフェース">StApi::IStSystemReleasable</a> を使い終わった後は <a class="el" href="structStApi_1_1IStReleasable.html#a9859a952fe7d65899b3b70bd65a4d487" title="解放します。">StApi::IStSystemReleasable::Release()</a> を呼び出してStApi内部に生成されたオブジェクトを破棄する必要があります。下記のコードでは StApi::CIStSystemPtr のデストラクタから <a class="el" href="structStApi_1_1IStReleasable.html#a9859a952fe7d65899b3b70bd65a4d487" title="解放します。">StApi::IStSystemReleasable::Release()</a> が呼び出されるため、手動で呼び出す必要はありません。 <div class="fragment"><div class="line">    <a class="code" href="group__StApiTL__PublicImpl.html#ga21c276e153790bc35616c04949c4574e">CIStSystemPtr</a> pIStSystem(<a class="code" href="group__StApiTL__PublicImpl.html#gacb4a9088c4be0323ef3633ebfdf50f63">CreateIStSystem</a>());</div></div><!-- fragment --></li>
+<li>デバイス(カメラ)をオープンし、 <a class="el" href="structStApi_1_1IStDeviceReleasable.html" title="解放可能なデバイス用インターフェース">StApi::IStDeviceReleasable</a> を取得します。 <br />
+ <a class="el" href="structStApi_1_1IStSystem.html#a786eb1d9a5f07d03c46b79d71cddc6e4" title="このシステムで最初に見つかったデバイスを作成し、 IStDeviceReleasable インターフェースポインターを取得します。">StApi::IStSystem::CreateFirstIStDevice()</a> を使用して、最初に見つかったデバイスに対する <a class="el" href="structStApi_1_1IStDeviceReleasable.html" title="解放可能なデバイス用インターフェース">StApi::IStDeviceReleasable</a> を取得します。 <a class="el" href="structStApi_1_1IStDeviceReleasable.html" title="解放可能なデバイス用インターフェース">StApi::IStDeviceReleasable</a> を使い終わった後は <a class="el" href="structStApi_1_1IStReleasable.html#a9859a952fe7d65899b3b70bd65a4d487" title="解放します。">StApi::IStDeviceReleasable::Release()</a> を呼び出してStApi内部に生成されたオブジェクトを破棄する必要があります。下記のコードでは StApi::CIStDevicePtr のデストラクタから <a class="el" href="structStApi_1_1IStReleasable.html#a9859a952fe7d65899b3b70bd65a4d487" title="解放します。">StApi::IStDeviceReleasable::Release()</a> が呼び出されるため、手動で呼び出す必要はありません。 <div class="fragment"><div class="line">    <a class="code" href="group__StApiTL__PublicImpl.html#ga991f965afe46b6b8c2e3b39231ea2cf5">CIStDevicePtr</a> pIStDevice(pIStSystem-&gt;CreateFirstIStDevice());</div></div><!-- fragment --></li>
+<li>データストリームをオープンし、取得した <a class="el" href="structStApi_1_1IStDataStreamReleasable.html" title="解放可能なデータストリーム用インターフェース">StApi::IStDataStreamReleasable</a> を使用して画像データの取得を開始します。 <br />
+ <a class="el" href="structStApi_1_1IStDevice.html#a54cbb92b5a3da5d4becd5e3c49b11251" title="データストリームをオープンし IStDataStreamReleasable インターフェースポインターを取得します。">StApi::IStDevice::CreateIStDataStream()</a> を使用して <a class="el" href="structStApi_1_1IStDataStreamReleasable.html" title="解放可能なデータストリーム用インターフェース">StApi::IStDataStreamReleasable</a> を取得し、画像データの取得を開始します。 <a class="el" href="structStApi_1_1IStDataStreamReleasable.html" title="解放可能なデータストリーム用インターフェース">StApi::IStDataStreamReleasable</a> を使い終わった後は <a class="el" href="structStApi_1_1IStReleasable.html#a9859a952fe7d65899b3b70bd65a4d487" title="解放します。">StApi::IStDataStreamReleasable::Release()</a> を呼び出してStApi内部に生成されたオブジェクトを破棄する必要があります。下記のコードでは StApi::CIStDataStreamPtr のデストラクタから <a class="el" href="structStApi_1_1IStReleasable.html#a9859a952fe7d65899b3b70bd65a4d487" title="解放します。">StApi::IStDataStreamReleasable::Release()</a> が呼び出されるため、手動で呼び出す必要はありません。 <div class="fragment"><div class="line">    <a class="code" href="group__StApiTL__PublicImpl.html#ga99c1e0d7d34132516cc2b8d2a6b0d130">CIStDataStreamPtr</a> pIStDataStream(pIStDevice-&gt;CreateIStDataStream(0));</div><div class="line">    pIStDataStream-&gt;StartAcquisition(100);</div></div><!-- fragment --></li>
+<li><a class="el" href="structStApi_1_1IStDevice.html#a7a6552d952ec9bda63505f9eefbe1ba6" title="カメラのAcquisitionStartコマンドを実行し、カメラからのデータ出力を開始します。">StApi::IStDevice::AcquisitionStart()</a> を呼び出し、カメラから画像データの出力を開始します。<br />
+<div class="fragment"><div class="line">    pIStDevice-&gt;AcquisitionStart();</div></div><!-- fragment --></li>
+<li>画像データが入ったバッファの取得と、使用済バッファのキューへの挿入を繰り返し行います。<br />
+ <a class="el" href="structStApi_1_1IStDataStream.html#aa30b63d5c9baeb1cf4e0a59cde703c70" title="転送が完了したバッファ用の IStStreamBufferReleasable インターフェースポインターを取得します。">StApi::IStDataStream::RetrieveBuffer()</a> を呼び出すと、データの受信を完了したバッファの <a class="el" href="structStApi_1_1IStStreamBufferReleasable.html" title="解放可能なストリームバッファ用インターフェース">StApi::IStStreamBufferReleasable</a> が取得できます。取得した <a class="el" href="structStApi_1_1IStStreamBufferReleasable.html" title="解放可能なストリームバッファ用インターフェース">StApi::IStStreamBufferReleasable</a> が不要になったら、再度受信に使用するため <a class="el" href="structStApi_1_1IStReleasable.html#a9859a952fe7d65899b3b70bd65a4d487" title="解放します。">StApi::IStStreamBufferReleasable::Release()</a> を呼び出し、転送バッファーキューに挿入します。下記のコードでは StApi::CIStStreamBufferPtr のデストラクタから <a class="el" href="structStApi_1_1IStReleasable.html#a9859a952fe7d65899b3b70bd65a4d487" title="解放します。">StApi::IStStreamBufferReleasable::Release()</a> が呼び出されるため、手動で呼び出す必要はありません。 <div class="fragment"><div class="line">    <span class="keywordflow">while</span>(pIStDataStream-&gt;IsGrabbing())</div><div class="line">    {</div><div class="line">        CIStStreamBufferPtr pIStStreamBuffer(pIStDataStream-&gt;RetrieveBuffer(5000));</div><div class="line">        <span class="keywordflow">if</span>(pIStStreamBuffer-&gt;GetIStStreamBufferInfo()-&gt;IsImagePresent())</div><div class="line">        {</div><div class="line">            IStImage *pIStImage = pIStStreamBuffer-&gt;GetIStImage();</div><div class="line"></div><div class="line">            std::cout &lt;&lt; <span class="stringliteral">&quot;\r BlockId=&quot;</span> &lt;&lt; pIStStreamBuffer-&gt;GetIStStreamBufferInfo()-&gt;GetFrameID()</div><div class="line">                &lt;&lt; <span class="stringliteral">&quot; Size:&quot;</span> &lt;&lt; pIStImage-&gt;GetImageWidth() &lt;&lt; <span class="stringliteral">&quot; x &quot;</span> &lt;&lt; pIStImage-&gt;GetImageHeight()</div><div class="line">                &lt;&lt; <span class="stringliteral">&quot; First byte =&quot;</span> &lt;&lt; (uint32_t)*(uint8_t*)pIStImage-&gt;GetImageBuffer();</div><div class="line">        }</div><div class="line">        <span class="keywordflow">else</span></div><div class="line">        {</div><div class="line">            std::cout &lt;&lt; <span class="stringliteral">&quot;Image data is not exist&quot;</span> &lt;&lt; std::endl;</div><div class="line">        }</div><div class="line">    }</div></div><!-- fragment --></li>
+<li>カメラからの画像の出力を停止します。 <div class="fragment"><div class="line">    pIStDevice-&gt;AcquisitionStop();</div></div><!-- fragment --></li>
+<li>画像の取得を停止します。 <div class="fragment"><div class="line">    pIStDataStream-&gt;StopAcquisition();</div><div class="line">}</div></div><!-- fragment --></li>
+</ol>
+<div class="fragment"><div class="line"><a name="l00001"></a><span class="lineno">    1</span>&#160;<span class="preprocessor">#include &lt;<a class="code" href="StApi__TL_8h.html">StApi_TL.h</a>&gt;</span></div><div class="line"><a name="l00002"></a><span class="lineno">    2</span>&#160;<span class="keyword">using namespace </span>StApi;</div><div class="line"><a name="l00003"></a><span class="lineno">    3</span>&#160;</div><div class="line"><a name="l00004"></a><span class="lineno">    4</span>&#160;<span class="keywordtype">void</span> main()</div><div class="line"><a name="l00005"></a><span class="lineno">    5</span>&#160;{</div><div class="line"><a name="l00006"></a><span class="lineno">    6</span>&#160;    <a class="code" href="classStApi_1_1CStApiAutoInit.html">CStApiAutoInit</a> objStApiAutoInit;</div><div class="line"><a name="l00007"></a><span class="lineno">    7</span>&#160;    <a class="code" href="classStApi_1_1CStAutoPtr.html">CIStSystemPtr</a> pIStSystem(<a class="code" href="group__StApiTL__PublicImpl.html#gacb4a9088c4be0323ef3633ebfdf50f63">CreateIStSystem</a>());</div><div class="line"><a name="l00008"></a><span class="lineno">    8</span>&#160;    <a class="code" href="classStApi_1_1CStAutoPtr.html">CIStDevicePtr</a> pIStDevice(pIStSystem-&gt;CreateFirstIStDevice());</div><div class="line"><a name="l00009"></a><span class="lineno">    9</span>&#160;    <a class="code" href="classStApi_1_1CStAutoPtr.html">CIStDataStreamPtr</a> pIStDataStream(pIStDevice-&gt;CreateIStDataStream(0));</div><div class="line"><a name="l00010"></a><span class="lineno">   10</span>&#160;    pIStDataStream-&gt;StartAcquisition(100);</div><div class="line"><a name="l00011"></a><span class="lineno">   11</span>&#160;    pIStDevice-&gt;AcquisitionStart();</div><div class="line"><a name="l00012"></a><span class="lineno">   12</span>&#160;    <span class="keywordflow">while</span>(pIStDataStream-&gt;IsGrabbing())</div><div class="line"><a name="l00013"></a><span class="lineno">   13</span>&#160;    {</div><div class="line"><a name="l00014"></a><span class="lineno">   14</span>&#160;        <a class="code" href="classStApi_1_1CStAutoPtr.html">CIStStreamBufferPtr</a> pIStStreamBuffer(pIStDataStream-&gt;RetrieveBuffer(5000));</div><div class="line"><a name="l00015"></a><span class="lineno">   15</span>&#160;        <span class="keywordflow">if</span>(pIStStreamBuffer-&gt;GetIStStreamBufferInfo()-&gt;IsImagePresent())</div><div class="line"><a name="l00016"></a><span class="lineno">   16</span>&#160;        {</div><div class="line"><a name="l00017"></a><span class="lineno">   17</span>&#160;            <a class="code" href="structStApi_1_1IStImage.html">IStImage</a> *pIStImage = pIStStreamBuffer-&gt;GetIStImage();</div><div class="line"><a name="l00018"></a><span class="lineno">   18</span>&#160;</div><div class="line"><a name="l00019"></a><span class="lineno">   19</span>&#160;            std::cout &lt;&lt; <span class="stringliteral">&quot;\r BlockId=&quot;</span> &lt;&lt; pIStStreamBuffer-&gt;GetIStStreamBufferInfo()-&gt;GetFrameID()</div><div class="line"><a name="l00020"></a><span class="lineno">   20</span>&#160;                &lt;&lt; <span class="stringliteral">&quot; Size:&quot;</span> &lt;&lt; pIStImage-&gt;<a class="code" href="structStApi_1_1IStImage.html#a7f6c5219b404b7d97dab9fd46bcccb7c">GetImageWidth</a>() &lt;&lt; <span class="stringliteral">&quot; x &quot;</span> &lt;&lt; pIStImage-&gt;<a class="code" href="structStApi_1_1IStImage.html#a189d407ddf5efff7728e2f882a46dc6a">GetImageHeight</a>()</div><div class="line"><a name="l00021"></a><span class="lineno">   21</span>&#160;                &lt;&lt; <span class="stringliteral">&quot; First byte =&quot;</span> &lt;&lt; (uint32_t)*(uint8_t*)pIStImage-&gt;<a class="code" href="structStApi_1_1IStImage.html#a62ca1545ce18d9a45fa3ceffe86c8e05">GetImageBuffer</a>();</div><div class="line"><a name="l00022"></a><span class="lineno">   22</span>&#160;        }</div><div class="line"><a name="l00023"></a><span class="lineno">   23</span>&#160;        <span class="keywordflow">else</span></div><div class="line"><a name="l00024"></a><span class="lineno">   24</span>&#160;        {</div><div class="line"><a name="l00025"></a><span class="lineno">   25</span>&#160;            std::cout &lt;&lt; <span class="stringliteral">&quot;Image data is not exist&quot;</span> &lt;&lt; std::endl;</div><div class="line"><a name="l00026"></a><span class="lineno">   26</span>&#160;        }</div><div class="line"><a name="l00027"></a><span class="lineno">   27</span>&#160;    }</div><div class="line"><a name="l00028"></a><span class="lineno">   28</span>&#160;    pIStDevice-&gt;AcquisitionStop();</div><div class="line"><a name="l00029"></a><span class="lineno">   29</span>&#160;    pIStDataStream-&gt;StopAcquisition();</div><div class="line"><a name="l00030"></a><span class="lineno">   30</span>&#160;}</div><div class="ttc" id="structStApi_1_1IStImage_html_a7f6c5219b404b7d97dab9fd46bcccb7c"><div class="ttname"><a href="structStApi_1_1IStImage.html#a7f6c5219b404b7d97dab9fd46bcccb7c">StApi::IStImage::GetImageWidth</a></div><div class="ttdeci">virtual size_t GetImageWidth() const =0</div><div class="ttdoc">画像の横サイズを取得します。</div></div>
+<div class="ttc" id="classStApi_1_1CStApiAutoInit_html"><div class="ttname"><a href="classStApi_1_1CStApiAutoInit.html">StApi::CStApiAutoInit</a></div><div class="ttdoc">StApiライブラリの初期化および終了処理を自動化するためのクラス</div><div class="ttdef"><b>Definition:</b> StApi_TLFunctions.h:191</div></div>
+<div class="ttc" id="structStApi_1_1IStImage_html_a189d407ddf5efff7728e2f882a46dc6a"><div class="ttname"><a href="structStApi_1_1IStImage.html#a189d407ddf5efff7728e2f882a46dc6a">StApi::IStImage::GetImageHeight</a></div><div class="ttdeci">virtual size_t GetImageHeight() const =0</div><div class="ttdoc">画像の縦サイズを取得します。</div></div>
+<div class="ttc" id="structStApi_1_1IStImage_html"><div class="ttname"><a href="structStApi_1_1IStImage.html">StApi::IStImage</a></div><div class="ttdoc">画像用インターフェース</div><div class="ttdef"><b>Definition:</b> IStImage.h:29</div></div>
+<div class="ttc" id="classStApi_1_1CStAutoPtr_html"><div class="ttname"><a href="classStApi_1_1CStAutoPtr.html">StApi::CStAutoPtr</a></div><div class="ttdoc">指定されたインターフェースポインターの終了処理を自動化するクラスの実装</div><div class="ttdef"><b>Definition:</b> CStAutoPtr.h:34</div></div>
+<div class="ttc" id="structStApi_1_1IStImage_html_a62ca1545ce18d9a45fa3ceffe86c8e05"><div class="ttname"><a href="structStApi_1_1IStImage.html#a62ca1545ce18d9a45fa3ceffe86c8e05">StApi::IStImage::GetImageBuffer</a></div><div class="ttdeci">virtual void * GetImageBuffer() const =0</div><div class="ttdoc">画像バッファーのアドレスを取得します。</div></div>
+<div class="ttc" id="StApi__TL_8h_html"><div class="ttname"><a href="StApi__TL_8h.html">StApi_TL.h</a></div></div>
+<div class="ttc" id="group__StApiTL__PublicImpl_html_gacb4a9088c4be0323ef3633ebfdf50f63"><div class="ttname"><a href="group__StApiTL__PublicImpl.html#gacb4a9088c4be0323ef3633ebfdf50f63">StApi::CreateIStSystem</a></div><div class="ttdeci">ST_API_TL StApi::IStSystemReleasable *ST_API_CALL_TYPE CreateIStSystem(StApi::EStSystemVendor_t eStSystemVendor=StSystemVendor_Default, StApi::EStInterfaceType_t eInterfaceMask=StInterfaceType_All)</div><div class="ttdoc">GenTLのシステムモージュールをオープンし、 IStSystemReleasable インターフェースポインターを取得します。</div></div>
+</div><!-- fragment --><h1><a class="anchor" id="ImageAcquisition"></a>
+画像データ取得</h1>
+<p>画像データを取得する方法には、2つの方法があります。 一つは上記のサンプルのように画像データが取得されるまでスレッドを「待機」させる方法です(参照：サンプルプログラム『<a href="PageSamplePrograms.html#Grab">Grab</a>』)。 もう一つは、予め登録された関数が画像データを取得したタイミングで呼び出(コールバック)される方法です(参照：サンプルプログラム『<a href="PageSamplePrograms.html#GrabCallback">GrabCallback</a>』)。</p>
+<h1><a class="anchor" id="Callback"></a>
+コールバック</h1>
+<p>本SDKで使用されるコールバック関数には大きく2種類あります。1つは「StApi」独自のもの、もう一つは「GenApi」のものです。StApiのコールバック関数は、StApiで生成されるモジュールに対して登録されます。例えば IStDataStream インターフェースを使用してDataStreamモジュールにコールバック関数を登録すると、画像データが取得されたタイミングなどで登録された関数が呼び出されます。GenApiのコールバック関数はXMLファイル(カメラなどの設定項目が記述されたテキストファイル)をもとに生成されたノードマップの各ノード(設定項目)に対して登録されます。 Eventに関連したノードにコールバック関数を登録すると、Event発生時にコールバック関数が呼び出されます。</p>
+<h1><a class="anchor" id="InstallerLinux"></a>
+Linux インストーラーとアンインストーラー</h1>
+<p>インストールする際は、SentechSDK-xxx-xxx.tgzを解凍し、インストーラー（.runファイル）を実行してください（スーパーユーザーのパスワードが必要）。<br />
+ </p><div class="fragment"><div class="line">$ tar xf SentechSDK-xxx-xxx.tgz</div><div class="line">$ cd SentechSDK-xxx-xxx</div><div class="line">$ ./SentechSDK-xxx-xxx.run</div></div><!-- fragment --><p> インストールパスの既定値は/opt/sentechになります。インストールパスは<code>STAPI_ROOT_PATH</code>環境変数に保存されます。 全ての質問に対して自動でYesと返答し、インストール先を/opt/sentechに設定する場合は、以下のようなコマンドを実行します。 </p><div class="fragment"><div class="line">$ ./SentechSDK-xxx-xxx.run --accept -- &quot;-y -p /opt/sentech&quot; </div></div><!-- fragment --><p> インストール結果は下記のとおりです。 </p><table class="doxtable">
+<tr>
+<th>ファイルやディレクトリー</th><th>内容 </th></tr>
+<tr>
+<td>/etc/udev/rules.d/30-stcam.rules</td><td>USB3Visionカメラのアクセスするためのudevルール </td></tr>
+<tr>
+<td>${STAPI_ROOT_PATH}/.stprofile </td><td>SDK用の環境変数の設定. <table class="doxtable">
+<tr>
+<th>変数</th><th>内容 </th></tr>
+<tr>
+<td>STAPI_ROOT_PATH=インストールパス</td><td>既定値は/opt/sentechとなります。 </td></tr>
+<tr>
+<td>GENICAM_GENTL64_PATH=${STAPI_ROOT_PATH}/lib:${GENICAM_GENTL64_PATH}</td><td>GenTLモジュールへのパス(32bit環境時は64ではなく32になります) </td></tr>
+<tr>
+<td>LD_LIBRARY_PATH=${STAPI_ROOT_PATH}/lib:${STAPI_ROOT_PATH}/lib/GenICam:${LD_LIBRARY_PATH}</td><td>Sentech SDK用のライブラリパス </td></tr>
+<tr>
+<td>LIBRARY_PATH=${STAPI_ROOT_PATH}/lib:${STAPI_ROOT_PATH}/lib/GenICam:${LIBRARY_PATH}</td><td><p class="starttd">Path for using sentech SDK</p>
+<p class="endtd"></p>
+</td></tr>
+</table>
+自動的に設定したい場合は、「source ${STAPI_ROOT_PATH}/.stprofile」をログインスクリプトに追加してください: <div class="fragment"><div class="line">$ echo &#39;source ${STAPI_ROOT_PATH}/.stprofile&#39; &gt;&gt; $HOME/.bashrc</div></div><!-- fragment --> 或いは、グローバルで全てのユーザーに適用したい場合はスーパーユーザーで/etc/profile.d/stprofile.sh へ/opt/sentech/.stprofileをコピーください： <div class="fragment"><div class="line">$ sudo cp ${STAPI_ROOT_PATH}/.stprofile /etc/profile.d/stprofile.sh</div></div><!-- fragment -->   </td></tr>
+<tr>
+<td>${STAPI_ROOT_PATH}/bin/* </td><td><ul>
+<li>
+./GigECameraIPConfig: GigEカメラのIP設定 </li>
+<li>
+./StFWUpdater: GigEカメラのファームウェア更新ツール </li>
+<li>
+./StViewer: カメラビューワー (ソースコードはC++サンプルディレクトリーStViewerQtにあります) </li>
+<li>
+./setusb.sh: USBサブシステムに割り当てられるメモリの制限を解除するスクリプト </li>
+<li>
+./setnetwork.sh: ネットワークデバイスの設定を最適化するスクリプト </li>
+<li>
+./stuninstall.sh: StApiをアンインストールするためのスクリプト。アンインストールする際に ${STAPI_ROOT_PATH}/* と/etc/udev/rules.d/30-stcam.rulesと/etc/ld.so.conf.d/sentechSDK.confが削除されます。 </li>
+</ul>
+</td></tr>
+<tr>
+<td>${STAPI_ROOT_PATH}/include/* </td><td><ul>
+<li>
+./GenICam/*: GenICam C++ヘッダーファイル </li>
+<li>
+./StApi/*: StApi C/C++ヘッダーファイル </li>
+</ul>
+</td></tr>
+<tr>
+<td>${STAPI_ROOT_PATH}/lib/* </td><td><ul>
+<li>
+./GenICam/*: GenICam GenApi関連ライブラリファイル </li>
+<li>
+./libstgentl.cti: OMRON SENTECH GenTL ctiファイル </li>
+<li>
+./libStApi_C.*: StApi C言語ライブラリファイル </li>
+<li>
+./libStApi_TL.*: StApi Transport Layerライブラリファイル </li>
+<li>
+./libStApi_IP.*: StApi Image Processingライブラリファイル </li>
+<li>
+./libStApi_GUI_qt.*: StApi GUIライブラリファイル </li>
+<li>
+その他のsoファイル: StApi SDKとGenTL用のサードパーティーライブラリファイル </li>
+</ul>
+</td></tr>
+<tr>
+<td>${STAPI_ROOT_PATH}/share/* </td><td><ul>
+<li>
+./doc/quick-start-en.txt: クイックスタートガイド (英語) </li>
+<li>
+./doc/quick-start-ja.txt: クイックスタートガイド (日本語) </li>
+<li>
+./doc/troubleshoot-en.txt: トラブルシュートガイド (英語) </li>
+<li>
+./doc/troubleshoot-ja.txt: トラブルシュートガイド (日本語) </li>
+<li>
+./doc/manual-en/main.html: Sentech SDKのドキュメント (英語) </li>
+<li>
+./doc/manual-ja/main.html: Sentech SDKのドキュメントl (日本語) </li>
+<li>
+./sample/*: サンプルプログラム </li>
+<li>
+./thirdparties/*: サードパーティーライセンス情報 </li>
+</ul>
+</td></tr>
+</table>
+<p><br />
+ アンインストールする際は下記のようなコマンドを実行してください：<br />
+ </p><div class="fragment"><div class="line">$ $STAPI_ROOT_PATH/bin/stuninstall.sh</div></div><!-- fragment --> </div></div><!-- PageDoc -->
+</div><!-- contents -->
+<!-- HTML footer for doxygen 1.8.13-->
+<!-- start footer part -->
+<hr class="footer"/>
+	<address class="footer">
+		<small>
+2021年10月26日(火) 13時10分21秒作成 - Sentech SDK / 構成:  &#160;
+			<a href="http://www.sentech.co.jp/">
+				<img class="footer" src="string_omron_sentech.png" alt="OMRON SENTECH CO., LTD"/>
+			</a>
+			<!--
+				DoxyGen Version =  1.8.15
+			-->
+		</small>
+	</address>
+</body>
+</html>

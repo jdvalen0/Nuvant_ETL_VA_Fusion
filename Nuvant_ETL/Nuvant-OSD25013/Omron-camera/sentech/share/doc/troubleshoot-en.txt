@@ -1,0 +1,199 @@
+******************************************************************************
+SentechSDK Linux version 1.1.2-Update5
+(C) 2021 OMRON SENTECH CO., LTD.
+
+Troubleshooting
+Contents:
+* Troubleshooting GigEVision Camera:
+	- Camera cannot be detected
+	- Many Framedrops or low frame rate
+	- Execution of setnetwork.sh failed
+* Troubleshooting USB3Vision Camera:
+	- Camera cannot be detected
+	- Image acquisition failed
+	- Low frame rate
+	- Execution of setusb.sh failed
+* Troubleshooting Sample Codes:
+	- Error occured when bulding or executing the sample codes
+	- OpenCV already installed but unable to build sample code that requires OpenCV
+
+If your problem does not resolve with below information, please contact: techsupport-ose@omron.com
+When contacting support, please include the information such as CPU, RAM, OS version,
+camera model, and network setting (in case of GigEVision camera), etc.
+******************************************************************************
+
+
+******************************************************************************
+* Troubleshooting GigEVision Camera:
+******************************************************************************
+- Camera cannot be detected
+	- GigEVision camera uses UDP port for data communication. Please either turn OFF firewall
+	   or open UDP port 3956 and port above 10000. Configuration for UDP setting may vary 
+	   depending on the Linux distribution and network management software.
+	   If standard firewall software is used, the following command will turn OFF the firewall:
+	   - Ubuntu: $ sudo ufw disable
+	- If the camera's IP address resides on different subnet from the interface card, reverse path
+	   filtering setting may be required to allow the camera discovery. The setting can be done by
+	   executing setnetwork.sh and set the reverse path filtering to 2.
+	- If the two above settings have been done but the camera still cannot be detected, please 
+	   make sure the ethernet cable is properly connected.
+	   
+- Many Framedrops or low frame rate
+	- Enable jumbo frame by increasing the MTU and packet memory buffer setting through
+	   setnetwork.sh script.
+          (But Raspberry Pi 4 does not support jumbo frames.)
+	- Ensure that the connection to the GigEVision camera is 1000Mbps. If the camera is connected 
+	   to interface eth0:
+	   $ ethtool eth0
+	- Ensure that the ethernet cable supports Gigabit ethernet.
+    - Change the process priority to realtime before opening the camera:
+       $ sudo chrt -f -p 99 `pidof StViewer`
+	- Depending on the CPU, memory, ethernet chipset (card), etc, the frame rate may be lower than
+	   the camera specification. 
+
+- Execution of setnetwork.sh failed
+	- Depending on the OS environment, execution may fail. In this case, please manually perform
+	   the tuning parameter.
+	- setnetwork.sh performs the following tuning:
+	   (1)  Reverse path filtering setting:
+	         Depending on the reverse path filtering setting, Linux kernel determines whether received
+			 packet will be dropped or not. There are three settings as follows:
+			  0: Without source validation
+			  1: RFC3704 strict reverse path
+			  2: RFC3704 loose reverse path
+			 To check the current setting:
+			  $ cat /proc/sys/net/ipv4/conf/all/rp_filter
+			  $ cat /proc/sys/net/ipv4/conf/default/rp_filter
+			  $ cat /proc/sys/net/ipv4/<interface name>/rp_filter
+			 If the <interface name> is eth0, the following command will set the value to 2:
+			  $ sudo sh -c "echo 2 > cat /proc/sys/net/ipv4/conf/all/rp_filter"
+			  $ sudo sh -c "echo 2 > cat /proc/sys/net/ipv4/conf/default/rp_filter"
+			  $ sudo sh -c "echo 2 > cat /proc/sys/net/ipv4/conf/eth0/rp_filter"	
+			 Or:
+			  $ sudo sh -c "sysctl -w net.ipv4.conf.all.rp_filter=2"
+			  $ sudo sh -c "sysctl -w net.ipv4.default.all.rp_filter=2"
+			  $ sudo sh -c "sysctl -w net.ipv4.conf.eth0.rp_filter=2"
+			 These settings take effect only until the system is rebooted.
+			 To make the setting persistent, add the following lines to /etc/sysctl.conf:
+				net.ipv4.conf.all.rp_filter=2
+				net.ipv4.conf.default.rp_filter=2
+				net.ipv4.conf.eth0.rp_filter=2		 
+	   (2)  MTU (Maximum Transmission Unit) setting:
+			 MTU defines the largest packet size in one transfer. The standard MTU value of 1500 means that
+			 the maximum packet size in one transfer is 1500 bytes.
+			 If the network interface supports jumbo frames, MTU value can be increased (MTU
+			 value for Jumbo frame varies depending on the network card).
+			 If the interface name is eth0, MTU value can be checked as follows:
+			  $ ip address show eth0
+			  1: eth0: <BROADCAST,MULTICAST,UP,LOWER_UP> mtu 1500 qdisc pfifo_fast state UP group default qlen 1000		
+			 ...
+			 From the first line of the displayed information, the MTU value of the eth0 is 1500.
+			 The following command will set the MTU of eth0 to 8192:
+			  $ sudo sh -c "ip link set dev eth0 mtu 8192"
+			 Once the command is executed, please recheck the value.
+			 This setting takes effect only until the system is rebooted.
+			 The procedure to keep the MTU setting persistent varies between the Linux OS. Please consult your Linux distribution manual.
+             Warning: If the MTU value is too large, the frame rate may actually decrease. In this case, adjust the MTU value.
+	   (3) Packet memory buffer setting:
+			 When jumbo packet is used, the limit of packet memory buffer shall be increased as well.
+			 To check the current setting:
+			  $ cat /proc/sys/net/core/rmem_max
+			  $ cat /proc/sys/net/core/wmem_max
+			  $ cat /proc/sys/net/core/rmem_default
+			  $ cat /proc/sys/net/core/wmem_default
+			 As an example, to set the limit to 8388608 [8M] (setnetwork.sh uses this value):
+			  $ sudo sh -c "sysctl -w net.core.rmem_max=8388608"
+			  $ sudo sh -c "sysctl -w net.core.wmem_max=8388608"
+			  $ sudo sh -c "sysctl -w net.core.rmem_default=8388608"
+			  $ sudo sh -c "sysctl -w net.core.wmem_default=8388608"
+			 These settings take effect only until the system is rebooted.
+			 To make the setting persistent, add the following lines to /etc/sysctl.conf:
+			  net.core.rmem_max=8388608
+			  net.core.wmem_max=8388608
+			  net.core.rmem_default=8388608
+			  net.core.wmem_default=8388608
+	   After performing setting (1) to (3), restart the network service as follows:
+			 - Ubuntu: $ sudo service networking restart or $ sudo service network-manager restart
+			 These settings take effect only until the system is rebooted.
+
+
+******************************************************************************
+* Troubleshooting USB3Vision Camera:
+******************************************************************************
+- Camera cannot be detected
+	- Ensure that the camera is detected by the Linux OS:
+	   $ lsusb
+	   The above command will display all detected USB devices. For example:
+		...
+		Bus 007 Device 002: ID 413c:2003 Dell Computer Corp. Keyboard
+		Bus 007 Device 001: ID 1d6b:0001 Linux Foundation 1.1 root hub
+		Bus 009 Device 001: ID 1d6b:0002 Linux Foundation 2.0 root hub
+		Bus 010 Device 002: ID 1421:0415 Sensor Technology
+		Bus 010 Device 001: ID 1d6b:0003 Linux Foundation 3.0 root hub
+		...
+	    The camera is detected if ID of 1421:XXXX Sensor Technology is among the list.
+	- If /etc/udev/rules.d/30-stcam.rules has ever been edited, please revert back to the original
+	   file. Then, reload the udev and reconnect the camera. The following command reloads udev:
+	   $ sudo udevadm control --reload-rules && udevadm trigger
+	- If the problem persists after trying the above procedures, please check the USB cable connection.
+	   
+- Image acquisition failed
+	- Check if Sentech V4L2 kernel driver is installed:
+	   - Driver version 4.0.0 and above: $ lsmod | grep stcam_dd
+	   - Older version: $ lsmod | grep Sentech
+	   If Sentech V4L2 kernel driver is installed, the kernel driver must be either uninstalled or unloaded 
+	   from the memory when the camera is connected. To unload:
+	   - Driver version 4.0.0 and above: $ sudo rmmod stcam_dd
+	   - Older version: $ sudo rmmod Sentech
+	- The default USB memory buffer is 16MB. Depending on the image data size and frame rates,
+	   the default memory buffer may be inadequate. Remove the USB memory buffer limit by executing
+	   setusb.sh.
+	   
+- Low frame rate
+	- The default USB memory buffer is 16MB. Depending on the image data size and frame rates,
+	   the default memory buffer may be inadequate. Remove the USB memory buffer limit by executing
+	   setusb.sh.
+    - Change the process priority to realtime before opening the camera:
+       $ sudo chrt -f -p 99 `pidof StViewer`
+	- Depending on the CPU, memory, USB3 chipset, etc, the frame rate may be lower than the camera 
+	  specification. 
+          On a Raspberry Pi 4, the frame rate sometimes drops 
+          because the image processing (Bayer Transformation - Display) cannot keep up with the data rate of USB3.
+	  
+- Execution of setusb.sh failed
+	- Depending on the OS environment, execution may fail. In this case, please manually perform
+	   the tuning parameter.
+	- setusb.sh performs the following tuning:
+	   (1)  Removing the limit of USB memory buffer:
+	         To check the current USB memory buffer limit:
+			 $ cat /sys/module/usbcore/parameters/usbfs_memory_mb
+			 To increase the limit to 4000 MB:
+			 $ sudo sh -c "echo 4000 > /sys/module/usbcore/parameters/usbfs_memory_mb"
+			 To remove the limit completely:
+			 $ sudo sh -c "echo 0 > /sys/module/usbcore/parameters/usbfs_memory_mb"
+			 This setting takes effect only until the system is rebooted.
+			 To keep the setting persistent, add usbcore.usbfs_memory_mb parameter to the boot parameter.
+			 The procedure to add the boot parameter varies between the Linux OS. Please consult your 
+			 Linux distribution manual.
+
+			 
+******************************************************************************
+* Troubleshooting Sample Codes:
+******************************************************************************
+- Error occured when bulding or executing the sample codes
+	- Check if the environment variables (STAPI_ROOT_PATH, GENICAM_GENTL64_PATH) are properly set:
+	 $ echo $STAPI_ROOT_PATH
+	 $ echo $GENICAM_GENTL64_PATH
+	 If the environment variables have not been set, the above commands will return empty text.
+	 For details, please refer to quick-start-en.txt.
+	- Make sure that the build procedure is the same as described in the build procedure manual.
+	- If CMake is used, please use CMake version 3.2 or above.
+	 
+- OpenCV already installed but unable to build sample code that requires OpenCV
+	- In the build script, the existance of OpenCV library is checked by using pkg-config.
+	  Please manually check whether OpenCV library can be found using pkg-config as follows:
+	  $ pkg-config --libs --cflags opencv
+	  or
+	  $ pkg-config --libs --cflags opencv4
+	  If pkg-config could not find the OpenCV, please re-install OpenCV or consult the official OpenCV
+	  homepage: http://www.opencv.org.

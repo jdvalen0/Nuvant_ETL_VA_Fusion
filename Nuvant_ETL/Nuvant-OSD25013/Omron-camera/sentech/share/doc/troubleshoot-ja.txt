@@ -1,0 +1,203 @@
+******************************************************************************
+SentechSDK Linux version 1.1.2-Update5
+(C) 2021 OMRON SENTECH CO., LTD.
+
+トラブルシューティング
+目次：
+* GigEVisionカメラ関連:
+   - カメラが見つからない
+   - フレームレートが低い
+   - setnetwork.shを実行中にエラーが発生する
+* USB3Visionカメラ関連:
+   - カメラが見つからない
+   - 画像の取得が出来ない
+   - フレームレートが低い
+   - setusb.shを実行中にエラーが発生する
+* サンプルコード関連：
+   - ビルド中にエラーが発生する、ビルドが実行できない
+   - OpenCVのサンプルコードのビルドが失敗（OpenCVインストール済）
+   
+トラブルが解決できない場合は、技術サポートまでご連絡ください： 
+	techsupport-ose@omron.com
+その際には、スムーズな対応のために
+CPU、RAM、OSバージョン、カメラ機種、ネットワーク設定(GigEの場合)なども合わせて
+ご連絡ください
+******************************************************************************
+
+
+******************************************************************************
+* GigEVisionカメラ関連:
+******************************************************************************
+- カメラが見つからない
+	・GigEVisonカメラはUDPポート（ポート3956と10000以降）を利用しています。
+         ファイアウォールでブロックされている場合は、
+         ファイアウォールの設定を変更する必要があります。
+         設定方法につきましては、ご使用になられているファイアウォールのソフトウェアのマニュアルをご参照ください。
+	 標準のファイヤウォールを使用されている場合は、下記のコマンドでファイアウォールを無効化できます。
+	 $ sudo ufw disable
+	・戻り経路フィルタにより、カーネルは届いたパケットをルーティングするかドロップするかを決定します。
+          カメラのIPアドレスのサブネットがPC側のサブネットと異なる場合は、
+          戻り経路フィルタの設定（reverse path filtering setting）が必要となります。
+          setnetwork.shを実行し、戻り経路フィルタ値を2へ設定してください。
+	・上記のように設定してもカメラが見つからない場合は、イーサネットケーブルの接続をご確認ください。
+	
+- フレームレートが低い
+	・通信時のデータの最大サイズは、MTUの設定値(標準的には1500)に制限されます。
+          ジャンボフレームに対応するネットワークカードでは、
+          MTU値を上げることで、転送効率を上げることが出来ます。
+          設定可能なMTUの値はネットワークカードにより異なります。
+          ※ Raspberry Pi4では、ジャンボフレームの設定ができません。
+        ・ソケットのバッファが溢れてしまうと再送などにより転送効率が低下するため、
+          ソケットのバッファサイズを大きくしてください。
+	  setnetwork.shでMTUとソケットのバッファの設定ができます。
+	・ネットワークカードが、
+          ギガビットイーサネット(1000Mbps)に対応しているかどうかをご確認ください。
+	　ネットワークカードのインターフェース名がeth0の場合は、下記のようなコマンドで確認できます：
+	　$ ethtool eth0
+	・使用されているイーサネットケーブルやスイッチなどのネットワーク機器が、
+          ギガビットイーサネットに対応しているか確認してください。	
+	・カメラをオープンする前にプロセスをリアルタイムに設定してください。
+          実行時: $ sudo chrt -f 99 ./StViewer
+          実行後: $ sudo chrt -f -p 99 `pidof StViewer`
+	・CPU、メモリやイーサネットチップ（カード）などにより、フレームレートが低下することがあります。
+
+-setnetwork.shを実行中にエラーが発生する
+	・環境により設定方法が異なる可能性があるため、パラメータチューニングを手動で行ってください。
+	・setnetwork.shでは下記のチューニングを行っています：
+	　(1) 戻り経路フィルタ（reverse path filtering setting）:
+		戻り経路フィルタの設定は3種類あります：
+		0: フィルタ無
+		1: RFC3704に基づき厳しくフィルタする
+		2: RFC3704に基づき緩くフィルタする
+		現在の設定を確認する場合：
+		$ cat /proc/sys/net/ipv4/conf/all/rp_filter
+		$ cat /proc/sys/net/ipv4/conf/default/rp_filter
+		$ cat /proc/sys/net/ipv4/conf/<インターフェース名>/rp_filter
+		下記のコマンドは<インターフェース名>eth0の設定を2へ変更します。
+		$ sudo sh -c "echo 2 > cat /proc/sys/net/ipv4/conf/all/rp_filter"
+		$ sudo sh -c "echo 2 > cat /proc/sys/net/ipv4/conf/default/rp_filter"
+		$ sudo sh -c "echo 2 > cat /proc/sys/net/ipv4/conf/eth0/rp_filter"
+		或いは
+		$ sudo sh -c "sysctl -w net.ipv4.conf.all.rp_filter=2"
+		$ sudo sh -c "sysctl -w net.ipv4.conf.default.rp_filter=2"
+		$ sudo sh -c "sysctl -w net.ipv4.conf.eth0.rp_filter=2"
+		この設定は再起動するまで有効となります。
+                再起動した後も効果を継続させる場合は、/etc/sysctl.confに下記の行を追加してください。
+		 net.ipv4.conf.all.rp_filter=2
+		 net.ipv4.conf.default.rp_filter=2
+		 net.ipv4.conf.eth0.rp_filter=2		 
+	　(2) MTU (Maximum Transmission Unit)の設定：
+                インターフェースeth0のMTU値を確認する場合：
+		$ ip address show eth0
+		1: eth0: <BROADCAST,MULTICAST,UP,LOWER_UP> mtu 1500 qdisc pfifo_fast state UP group default qlen 1000
+		...
+		一行目に表示する情報でMTUの値が確認できます。上の例の場合はMTU値は1500です。
+		インターフェースeth0のMTU値を8192に設定する場合：
+		$ sudo sh -c "ip link set dev eth0 mtu 8192"
+		設定後、MTU値を再確認してください。
+		この設定は再起動するまで有効となります。
+		再起動した後も効果を継続させる方法は、
+                Linuxのディストリビューションごとに異なります。
+                注意：MTU値が大きすぎるとかえってフレームレートが低下することがあります。その際はMTU値を調整してください。
+	　(3) ソケットバッファの設定：
+		パケットの喪失を防止するため、ソケットのバッファサイズの設定を行います。
+		現在の設定を確認する場合：
+		$ cat /proc/sys/net/core/rmem_max
+		$ cat /proc/sys/net/core/wmem_max
+		$ cat /proc/sys/net/core/rmem_default
+		$ cat /proc/sys/net/core/wmem_default
+		8388608 [8M]（setnetwork.shに利用する値）へ変更する場合：
+		$ sudo sh -c "sysctl -w net.core.rmem_max=8388608"
+		$ sudo sh -c "sysctl -w net.core.wmem_max=8388608"
+		$ sudo sh -c "sysctl -w net.core.rmem_default=8388608"
+		$ sudo sh -c "sysctl -w net.core.wmem_default=8388608"
+		この設定は再起動するまで有効となります。
+                再起動した後も効果を継続させる場合は、/etc/sysctl.confへ下記の行を追加してください。
+		 net.core.rmem_max=8388608
+		 net.core.wmem_max=8388608
+		 net.core.rmem_default=8388608
+		 net.core.wmem_default=8388608
+	　上記の(1)～(3)の設定を実行後、ネットワークサービスを再起動することを推奨いたします：
+		- Ubuntu: $ sudo service networking restart 或いは $ sudo service network-manager restart
+		 この設定は再起動するまで有効となります。
+
+
+******************************************************************************
+* USB3Visionカメラ関連:
+******************************************************************************
+- カメラが見つからない
+	・Linux上でカメラを認識しているかどうか、ご確認ください。
+	  $ lsusb
+	  認識されているUSBデバイスが表示されます。
+          例：
+		...
+		Bus 007 Device 002: ID 413c:2003 Dell Computer Corp. Keyboard
+		Bus 007 Device 001: ID 1d6b:0001 Linux Foundation 1.1 root hub
+		Bus 009 Device 001: ID 1d6b:0002 Linux Foundation 2.0 root hub
+		Bus 010 Device 002: ID 1421:0415 Sensor Technology
+		Bus 010 Device 001: ID 1d6b:0003 Linux Foundation 3.0 root hub
+		...
+		弊社カメラが認識されると、ID 1421:XXXX　Sensor Technologyが表示されます。
+	・/etc/udev/rules.d/30-stcam.rulesを編集している場合は、
+          元の設定へ戻してからudevルールをリロードし、
+          カメラを再接続してください。
+          下記のコマンドでudevルールのリロードができます。
+		$ sudo udevadm control --reload-rules && udevadm trigger
+	・上記のような確認と設定を行ってもカメラが見つからない場合は、USBケーブルの接続をご確認ください。
+
+- 画像の取得が出来ない
+	・弊社のV4L2カーネルドライバが、インストールされていないことをご確認ください。
+	 -バージョン4.0.0以降の場合は $ lsmod | grep stcam_dd
+	 -旧バージョンの場合は $ lsmod | grep Sentech
+          弊社のV4L2カーネルドライバがインストールされている場合は、
+          アンインストールを行うか、または、カメラを接続後にメモリーからアンロードしてください。
+	 -バージョン4.0.0以降の場合は $ sudo rmmod stcam_dd
+	 -旧バージョンの場合は $ sudo rmmod Sentech
+	・標準のUSBのメモリーバッファは16MBですが、
+          画像データサイズやフレームレートにより不足することがあります。
+	　USBのメモリーバッファの制限を上げるか制限を解除してください。
+          setusb.shを実行すると、制限が解除されます。
+	
+- フレームレートが低い
+	・標準のUSBのメモリーバッファは16MBですが、
+          画像データサイズやフレームレートにより不足することがあります。
+	　USBのメモリーバッファの制限を上げるか解除してください。
+          setusb.shを実行すると、制限が解除されます。
+	・カメラをオープンする前にプロセスをリアルタイムに設定してください。
+          $ sudo chrt -f -p 99 `pidof StViewer`
+	・CPU、メモリやUSB3のホストコントローラーなどにより、フレームレートが低くなる可能性もあります。
+	　Raspberry Pi4では、USB3のデータレートに、画像処理(ベイヤー変換～表示)が間に合わず、フレームレートが下がることがあります。
+
+- setusb.shを実行中にエラーが発生する
+	・環境により設定方法が異なる可能性があるため、パラメータチューニングを手動で行ってください。
+	・setusb.shは下記のチューニングを行います：
+	　(1)　USBのメモリーバッファの制限を解除します：
+		現在の制限を確認する場合：
+		$ cat /sys/module/usbcore/parameters/usbfs_memory_mb
+		制限を4000MBへ変更する場合：
+		$ sudo sh -c "echo 4000 > /sys/module/usbcore/parameters/usbfs_memory_mb"
+		制限を解除する場合：
+		$ sudo sh -c "echo 0 > /sys/module/usbcore/parameters/usbfs_memory_mb"
+		この設定は再起動するまで有効となります。
+		再起動した後も効果を継続させる場合は、
+                Linuxのブートパラメータに直接usbcore.usbfs_memory_mbの設定が必要です。
+		Linuxのディストリビューションにより設定方法が異なります。
+
+******************************************************************************
+* サンプルコード関連：
+******************************************************************************
+- ビルド中にエラーが発生する、ビルドが実行できない
+	・環境変数の設定（STAPI_ROOT_PATH、GENICAM_GENTL64_PATHなど）をご確認ください。
+          $ echo $STAPI_ROOT_PATH
+          $ echo $GENICAM_GENTL64_PATH
+	  上記のコマンドで何も表示されない場合は環境変数が設定されていません。
+          設定方法につきましては、quick-start-ja.txtをご参照ください。
+	・CMakeを使用する場合は、CMake 3.2以降を使用してください。
+	 
+- OpenCVのサンプルコードのビルドが失敗（OpenCVインストール済）
+	・下記のコマンドで、OpenCVが見つかることをご確認ください。
+	 $ pkg-config --libs --cflags opencv
+	 または
+	 $ pkg-config --libs --cflags opencv4
+	 OpenCVが見つからない場合は、OpenCVを再インストールしてください。
+	 また、OpenCVに関してはhttp://www.opencv.orgをご参照ください。

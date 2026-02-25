@@ -1,0 +1,321 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "https://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=9"/>
+<meta name="generator" content="Doxygen 1.8.15"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>Sentech SDK C: プログラマーズガイド</title>
+<link href="tabs.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="jquery.js"></script>
+<script type="text/javascript" src="dynsections.js"></script>
+<link href="doxygen.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+<div id="top"><!-- do not remove this div, it is closed by doxygen! -->
+<div id="titlearea">
+<table cellspacing="0" cellpadding="0">
+ <tbody>
+ <tr style="height: 56px;">
+  <td id="projectalign" style="padding-left: 0.5em;">
+   <div id="projectname">Sentech SDK C
+   </div>
+  </td>
+ </tr>
+ </tbody>
+</table>
+</div>
+<!-- end header part -->
+<!-- 構築: Doxygen 1.8.15 -->
+<script type="text/javascript" src="menudata.js"></script>
+<script type="text/javascript" src="menu.js"></script>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:cf05388f2679ee054f2beb29a391d25f4e673ac3&amp;dn=gpl-2.0.txt GPL-v2 */
+$(function() {
+  initMenu('',false,false,'search.php','検索');
+});
+/* @license-end */</script>
+<div id="main-nav"></div>
+</div><!-- top -->
+<div class="PageDoc"><div class="header">
+  <div class="headertitle">
+<div class="title">プログラマーズガイド </div>  </div>
+</div><!--header-->
+<div class="contents">
+<div class="toc"><h3>目次</h3>
+<ul><li class="level1"><a href="#StructureOfStApi">StApiの構成</a></li>
+<li class="level1"><a href="#Environment">対応環境</a></li>
+<li class="level1"><a href="#BuildingSampleProgram">サンプルプログラムのビルド方法</a><ul><li class="level2"><a href="#MSC">Visual C++</a></li>
+<li class="level2"><a href="#MinGW">MinGW(gcc)</a></li>
+<li class="level2"><a href="#Embarcadero">Embarcadero(Borland)社 C++ Compiler / Builder</a></li>
+</ul>
+</li>
+<li class="level1"><a href="#GetStringCFunction">文字列を取得する関数について</a></li>
+<li class="level1"><a href="#InstallerLinux">Linux インストーラーとアンインストーラー</a></li>
+</ul>
+</div>
+<div class="textblock"><p>StApiの構成や使用方法について説明します。</p>
+<h1><a class="anchor" id="StructureOfStApi"></a>
+StApiの構成</h1>
+<p>StApiは、USB3Vision, GigEVision, CoaXPressカメラ用のAPIです。APIの機能は大きく3つに分類されます。</p>
+<ol>
+<li>
+カメラ制御機能(Transport Layer) <br />
+カメラの設定変更や画像データ、イベントデータ等を取得する機能が提供されます。カメラとの通信にはGenTLモジュールが使用されます。SDK付属のGenTLモジュールはUSB3VisionおよびGigEVisionに対応しています。CoaXPress用取り込みボードメーカー製のGenTLモジュールを使用することでCoaXPressカメラも利用できます。カメラの設定変更にはGenApiが使用されます。画像処理機能やGUI機能が不要であれば、この機能(下図の水色線枠内)だけを使用してアプリケーションを開発できます。 <table class="doxtable">
+<tr>
+<th>モジュール</th><th>主な用途 </th></tr>
+<tr>
+<td>System</td><td>CTIファイル(GenTL用DLLファイル)の情報取得に使用されます。 </td></tr>
+<tr>
+<td>Interface</td><td>インターフェースに関する設定や接続されているカメラの情報取得などに使用されます。 </td></tr>
+<tr>
+<td>Device</td><td>カメラの設定に使用されます。 </td></tr>
+<tr>
+<td>Data Stream</td><td>画像データ等のストリーミングの設定に使用されます。 </td></tr>
+<tr>
+<td>Stream Buffer</td><td>ストリーミングに使用されているバッファの情報取得に使用されます。 </td></tr>
+</table>
+</li>
+<li>
+画像処理機能(Image Processing) <br />
+フォーマット変換(ベイヤー画像の色補間処理)やFFCなどの画像処理や、静止画ファイル, 動画ファイルの生成機能が提供されます。提供される機能は大きく下記の3つに分類されます。 <table class="doxtable">
+<tr>
+<th>タイプ</th><th>特徴 </th></tr>
+<tr>
+<td>Filter </td><td>入力された画像データが処理後のデータで上書きされます。ピクセルフォーマットは変化しません。 <table class="doxtable">
+<tr>
+<th>モジュール</th><th>用途 </th></tr>
+<tr>
+<td>Field Flat Correction Filter</td><td>照明ムラ等に対する補正に使用されます。 </td></tr>
+<tr>
+<td>Noise Reduction Filter</td><td>ノイズ軽減処理に使用されます。 </td></tr>
+<tr>
+<td>Gamma Correction Filter</td><td>ガンマ補正に使用されます。 </td></tr>
+<tr>
+<td>Edge Enhancement Filter</td><td>エッジ強調に使用されます。 </td></tr>
+<tr>
+<td>Color Transformation Filter</td><td>RGBデータに対する行列演算に使用されます。 </td></tr>
+<tr>
+<td>Chroma Suppression Filter</td><td>高輝度部/低輝度部の着色を抑制に使用されます。 </td></tr>
+<tr>
+<td>Balance Ratio Filter</td><td>ホワイトバランス処理に使用されます。カメラ側にホワイトバランス処理が実装されている場合は、不要な機能です。 </td></tr>
+<tr>
+<td>Graph Data Filter</td><td>グラフ表示用データの生成に使用されます。 </td></tr>
+<tr>
+<td>Image Averaging Filter</td><td>平均化された画像データの生成に使用されます。 </td></tr>
+</table>
+</td></tr>
+<tr>
+<td>Converter </td><td>指定したバッファへ画像データが出力されます。ピクセルフォーマットが変化することがあります。 <table class="doxtable">
+<tr>
+<th>モジュール</th><th>用途 </th></tr>
+<tr>
+<td>Pixel Format Converter</td><td>ピクセルフォーマット変換に使用されます。 </td></tr>
+<tr>
+<td>Reverse Converter</td><td>画像の上下左右反転処理や回転処理に使用されます。カメラ側に上下左右反転が実装されている場合は、PCの負荷を軽減するため、カメラ側の処理を使用してください。 </td></tr>
+</table>
+</td></tr>
+<tr>
+<td>Filer </td><td>静止画ファイルや動画ファイルを生成します。 <table class="doxtable">
+<tr>
+<th>モジュール</th><th>主な用途 </th></tr>
+<tr>
+<td>Still Image Filer</td><td>静止画ファイルの保存に使用されます。 </td></tr>
+<tr>
+<td>Video Filer</td><td>動画ファイルの保存に使用されます。 </td></tr>
+</table>
+</td></tr>
+</table>
+</li>
+<li>
+GUI機能 <br />
+ GUIが提供されます。 <table class="doxtable">
+<tr>
+<th>モジュール</th><th>主な用途 </th></tr>
+<tr>
+<td>Device Selection</td><td>カメラ選択ウィンドウの表示に使用されます。 </td></tr>
+<tr>
+<td>Image Display</td><td>プレビューウィンドウの表示に使用されます。 </td></tr>
+<tr>
+<td>Node Map Display</td><td>ノードマップ表示(設定)ウィンドウの表示に使用されます。 </td></tr>
+<tr>
+<td>Graph Display</td><td>グラフ表示ウィンドウの表示に使用されます。 </td></tr>
+</table>
+</li>
+</ol>
+<div class="image">
+<img src="StApiCAppStructure.gif" alt="StApiCAppStructure.gif"/>
+<div class="caption">
+StApiC アプリケーションの構成</div></div>
+ <h1><a class="anchor" id="Environment"></a>
+対応環境</h1>
+<p>StApiCは下記の環境に対応しています。 </p><ul>
+<li>
+<p class="startli">Linux OS (C++と同様)</p>
+<p class="endli"></p>
+</li>
+</ul>
+<p>StApiCは下記の開発環境で動作確認を行っております。 </p><ul>
+<li>
+<p class="startli">Linux OS: gcc</p>
+<p class="endli"></p>
+</li>
+</ul>
+<p>(※) 使用される環境によっては、下記のような対応が必要となります。</p>
+<table class="doxtable">
+<tr>
+<td>libファイルの作成 </td><td>SDKに付属しているlibファイルが使用できない場合は、libファイルを生成し、リンクを行う必要があります。C++Builderを使用して64bit版のライブラリを使用する場合は、本SDKに添付されているFree C++ Compiler用の32bit版のlibファイルは使用できませんので、コマンドプロンプトから下記のようなコマンドを実行して、DLLファイルからlibファイルを生成する必要があります。 <div class="fragment"><div class="line">mkexp StApi_C_MD_BCC_v1_1.a StApi_C_MD_VC141_V1_1.dll</div></div><!-- fragment --> 生成されたlibファイルは%STAPI_ROOT_PATH%lib/x64/へコピーし、生成したlibファイルの名称に応じてStApi_C.hでリンクされているlibファイルの名称を書き換えてください。   </td></tr>
+<tr>
+<td>ディレクトリの設定 </td><td>インクルードファイルやライブラリのパスを指定する必要があります。 Visual C++ 6.0では、[プロジェクト][オプション]の[ディレクトリ/条件]に下記のパスを追加します。 <ul>
+<li>
+インクルードパス <div class="fragment"><div class="line">$(STAPI_ROOT_PATH)Include/StApi/; $(STAPI_ROOT_PATH)Include/GenICam/</div></div><!-- fragment -->  </li>
+<li>
+ライブラリパス <div class="fragment"><div class="line">32ビット版:$(STAPI_ROOT_PATH)lib/Win32/</div><div class="line">64ビット版:$(STAPI_ROOT_PATH)lib/x64/</div></div><!-- fragment -->  </li>
+</ul>
+</td></tr>
+<tr>
+<td>使用するランタイムライブラリの指定 </td><td><p class="starttd">Visual C++ 6.0では、[プロジェクト][設定]の[C/C++][コード生成]の「使用するランタイムライブラリ」で、「マルチスレッド」もしくは「マルチスレッド(Dll)」およびそれらのDebugバージョンを指定します。「シングルスレッド」および「シングルスレッド(デバッグ)」が指定されている場合はビルドできません。  </p>
+<p class="endtd"></p>
+</td></tr>
+</table>
+<h1><a class="anchor" id="BuildingSampleProgram"></a>
+サンプルプログラムのビルド方法</h1>
+<p>各開発環境ごとのビルド方法は下記のとおりです。 サンプルプログラムをビルドする前に、予め圧縮されているC言語用のサンプルプログラム(Sample_C.zip)を書き込み権限のあるパスに展開してください。 開発環境によってはサンプルプログラムのprintf関数などの書式型指定子のサイズ プレフィックスの変更が必要な場合があります。 </p>
+<h2><a class="anchor" id="MSC"></a>
+Visual C++</h2>
+<p>StApiCはStApi(C++)を直接使用できない開発環境のために用意されているAPIです。Visual C++ 2005以降の環境を御使用の場合は、StApi(C++)を直接使用されることを推奨いたします。 Visual C++ 6.0でサンプルプログラムをビルドする場合、ワークスペースファイル「Sample_C++6_2003.dsw」を使用します。</p>
+<h2><a class="anchor" id="MinGW"></a>
+MinGW(gcc)</h2>
+<p>MinGW(gcc)を使用する場合、下記の手順でサンプルプログラムをビルドします。 </p><ol>
+<li>
+mingw-get-setup.exeを実行してMinGWのインストールを行い、mingw32-base,mingw32-gcc-g++を選択して追加します。 </li>
+<li>
+binフォルダをPATHへ登録します。 </li>
+<li>
+コマンドプロンプトを開きます。 </li>
+<li>
+サンプルプログラムのフォルダへ移動して、下記のコマンドを実行します。 <div class="fragment"><div class="line">&gt; mingw32-make</div></div><!-- fragment -->  </li>
+<li>
+BuildAllForMinGW.batを実行するとすべてのサンプルプログラムがビルドされます。 </li>
+</ol>
+<h2><a class="anchor" id="Embarcadero"></a>
+Embarcadero(Borland)社 C++ Compiler / Builder</h2>
+<p>Embarcadero(Borland)社 C++ Compiler / Builderを使用する場合、下記の手順でサンプルプログラムをビルドします。 </p><ol>
+<li>
+C++ Compiler / Builderをインストールし、コンパイラのパスがPATHへ登録された状態にします。バージョンによってはbcc32.exeと同じフォルダへ下記のような内容のbcc32.cfgファイルを作成し、標準インクルード/ライブラリファイルの場所を指定する必要があります。詳細につきましては、C++ Compiler / Builderのドキュメントをご参照ください。 <div class="fragment"><div class="line">-I<span class="stringliteral">&quot;C:\borland\bcc55\include&quot;</span></div><div class="line">-L<span class="stringliteral">&quot;C:\borland\bcc55\lib&quot;</span></div></div><!-- fragment --> </li>
+<li>
+コマンドプロンプトを開きます。 </li>
+<li>
+サンプルプログラムのフォルダへ移動して、下記のコマンドを実行します。 <div class="fragment"><div class="line">&gt; make -fBCCmakefile</div></div><!-- fragment -->  </li>
+<li>
+BuildAllForBCC.batを実行するとすべてのサンプルプログラムがビルドされます。 </li>
+</ol>
+<h1><a class="anchor" id="GetStringCFunction"></a>
+文字列を取得する関数について</h1>
+<p>文字列を取得する関数の引数には、文字列用バッファ(char *szText)およびそのサイズ(size_t *pnLen)が必要になります。取得する文字列のサイズが不明な場合は、下記に示すコードのように、文字列バッファにNULLを指定して関数を呼び出すことで文字列のサイズが取得できますので、必要なバッファを確保した後、改めて関数を呼び出してください。 </p><div class="fragment"><div class="line">PGenApi_INode_Functions_t pINode = psApiFunctions-&gt;GenApi-&gt;INode;</div><div class="line"><span class="keywordtype">size_t</span> nLen;</div><div class="line">pINode-&gt;GetNameA(pINodeHandle, <span class="keyword">false</span>, NULL, &amp;nLen);</div><div class="line"><span class="keywordtype">char</span> *szText = (<span class="keywordtype">char</span>*)malloc(nLen);</div><div class="line">pINode-&gt;GetNameA(pINodeHandle, <span class="keyword">false</span>, szText, &amp;nLen);</div><div class="line">...</div><div class="line">free(szText);</div></div><!-- fragment --><h1><a class="anchor" id="InstallerLinux"></a>
+Linux インストーラーとアンインストーラー</h1>
+<p>インストールする際は、SentechSDK-xxx-xxx.tgzを解凍し、インストーラー（.runファイル）を実行してください（スーパーユーザーのパスワードが必要）。<br />
+ </p><div class="fragment"><div class="line">$ tar xf SentechSDK-xxx-xxx.tgz</div><div class="line">$ cd SentechSDK-xxx-xxx</div><div class="line">$ ./SentechSDK-xxx-xxx.run</div></div><!-- fragment --><p> インストールパスの既定値は/opt/sentechになります。インストールパスは<code>STAPI_ROOT_PATH</code>環境変数に保存されます。 全ての質問に対して自動でYesと返答し、インストール先を/opt/sentechに設定する場合は、以下のようなコマンドを実行します。 </p><div class="fragment"><div class="line">$ ./SentechSDK-xxx-xxx.run --accept -- &quot;-y -p /opt/sentech&quot; </div></div><!-- fragment --><p> インストール結果は下記のとおりです。 </p><table class="doxtable">
+<tr>
+<th>ファイルやディレクトリー</th><th>内容 </th></tr>
+<tr>
+<td>/etc/udev/rules.d/30-stcam.rules</td><td>USB3Visionカメラのアクセスするためのudevルール </td></tr>
+<tr>
+<td>${STAPI_ROOT_PATH}/.stprofile </td><td>SDK用の環境変数の設定. <table class="doxtable">
+<tr>
+<th>変数</th><th>内容 </th></tr>
+<tr>
+<td>STAPI_ROOT_PATH=インストールパス</td><td>既定値は/opt/sentechとなります。 </td></tr>
+<tr>
+<td>GENICAM_GENTL64_PATH=${STAPI_ROOT_PATH}/lib:${GENICAM_GENTL64_PATH}</td><td>GenTLモジュールへのパス(32bit環境時は64ではなく32になります) </td></tr>
+<tr>
+<td>LD_LIBRARY_PATH=${STAPI_ROOT_PATH}/lib:${STAPI_ROOT_PATH}/lib/GenICam:${LD_LIBRARY_PATH}</td><td>Sentech SDK用のライブラリパス </td></tr>
+<tr>
+<td>LIBRARY_PATH=${STAPI_ROOT_PATH}/lib:${STAPI_ROOT_PATH}/lib/GenICam:${LIBRARY_PATH}</td><td><p class="starttd">Path for using sentech SDK</p>
+<p class="endtd"></p>
+</td></tr>
+</table>
+自動的に設定したい場合は、「source ${STAPI_ROOT_PATH}/.stprofile」をログインスクリプトに追加してください: <div class="fragment"><div class="line">$ echo &#39;source ${STAPI_ROOT_PATH}/.stprofile&#39; &gt;&gt; $HOME/.bashrc</div></div><!-- fragment --> 或いは、グローバルで全てのユーザーに適用したい場合はスーパーユーザーで/etc/profile.d/stprofile.sh へ/opt/sentech/.stprofileをコピーください： <div class="fragment"><div class="line">$ sudo cp ${STAPI_ROOT_PATH}/.stprofile /etc/profile.d/stprofile.sh</div></div><!-- fragment -->   </td></tr>
+<tr>
+<td>${STAPI_ROOT_PATH}/bin/* </td><td><ul>
+<li>
+./GigECameraIPConfig: GigEカメラのIP設定 </li>
+<li>
+./StFWUpdater: GigEカメラのファームウェア更新ツール </li>
+<li>
+./StViewer: カメラビューワー (ソースコードはC++サンプルディレクトリーStViewerQtにあります) </li>
+<li>
+./setusb.sh: USBサブシステムに割り当てられるメモリの制限を解除するスクリプト </li>
+<li>
+./setnetwork.sh: ネットワークデバイスの設定を最適化するスクリプト </li>
+<li>
+./stuninstall.sh: StApiをアンインストールするためのスクリプト。アンインストールする際に ${STAPI_ROOT_PATH}/* と/etc/udev/rules.d/30-stcam.rulesと/etc/ld.so.conf.d/sentechSDK.confが削除されます。 </li>
+</ul>
+</td></tr>
+<tr>
+<td>${STAPI_ROOT_PATH}/include/* </td><td><ul>
+<li>
+./GenICam/*: GenICam C++ヘッダーファイル </li>
+<li>
+./StApi/*: StApi C/C++ヘッダーファイル </li>
+</ul>
+</td></tr>
+<tr>
+<td>${STAPI_ROOT_PATH}/lib/* </td><td><ul>
+<li>
+./GenICam/*: GenICam GenApi関連ライブラリファイル </li>
+<li>
+./libstgentl.cti: OMRON SENTECH GenTL ctiファイル </li>
+<li>
+./libStApi_C.*: StApi C言語ライブラリファイル </li>
+<li>
+./libStApi_TL.*: StApi Transport Layerライブラリファイル </li>
+<li>
+./libStApi_IP.*: StApi Image Processingライブラリファイル </li>
+<li>
+./libStApi_GUI_qt.*: StApi GUIライブラリファイル </li>
+<li>
+その他のsoファイル: StApi SDKとGenTL用のサードパーティーライブラリファイル </li>
+</ul>
+</td></tr>
+<tr>
+<td>${STAPI_ROOT_PATH}/share/* </td><td><ul>
+<li>
+./doc/quick-start-en.txt: クイックスタートガイド (英語) </li>
+<li>
+./doc/quick-start-ja.txt: クイックスタートガイド (日本語) </li>
+<li>
+./doc/troubleshoot-en.txt: トラブルシュートガイド (英語) </li>
+<li>
+./doc/troubleshoot-ja.txt: トラブルシュートガイド (日本語) </li>
+<li>
+./doc/manual-en/main.html: Sentech SDKのドキュメント (英語) </li>
+<li>
+./doc/manual-ja/main.html: Sentech SDKのドキュメントl (日本語) </li>
+<li>
+./sample/*: サンプルプログラム </li>
+<li>
+./thirdparties/*: サードパーティーライセンス情報 </li>
+</ul>
+</td></tr>
+</table>
+<p><br />
+ アンインストールする際は下記のようなコマンドを実行してください：<br />
+ </p><div class="fragment"><div class="line">$ $STAPI_ROOT_PATH/bin/stuninstall.sh</div></div><!-- fragment --> </div></div><!-- PageDoc -->
+</div><!-- contents -->
+<!-- HTML footer for doxygen 1.8.13-->
+<!-- start footer part -->
+<hr class="footer"/>
+	<address class="footer">
+		<small>
+2021年10月26日(火) 13時17分12秒作成 - Sentech SDK C / 構成:  &#160;
+			<a href="http://www.sentech.co.jp/">
+				<img class="footer" src="string_omron_sentech.png" alt="OMRON SENTECH CO., LTD"/>
+			</a>
+			<!--
+				DoxyGen Version =  1.8.15
+			-->
+		</small>
+	</address>
+</body>
+</html>

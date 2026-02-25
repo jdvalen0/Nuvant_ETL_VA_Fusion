@@ -1,0 +1,533 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "https://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=9"/>
+<meta name="generator" content="Doxygen 1.8.15"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>Sentech SDK: StApi::IStPortInfo インタフェース</title>
+<link href="tabs.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="jquery.js"></script>
+<script type="text/javascript" src="dynsections.js"></script>
+<link href="doxygen.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+<div id="top"><!-- do not remove this div, it is closed by doxygen! -->
+<div id="titlearea">
+<table cellspacing="0" cellpadding="0">
+ <tbody>
+ <tr style="height: 56px;">
+  <td id="projectalign" style="padding-left: 0.5em;">
+   <div id="projectname">Sentech SDK
+   </div>
+  </td>
+ </tr>
+ </tbody>
+</table>
+</div>
+<!-- end header part -->
+<!-- 構築: Doxygen 1.8.15 -->
+<script type="text/javascript" src="menudata.js"></script>
+<script type="text/javascript" src="menu.js"></script>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:cf05388f2679ee054f2beb29a391d25f4e673ac3&amp;dn=gpl-2.0.txt GPL-v2 */
+$(function() {
+  initMenu('',false,false,'search.php','検索');
+});
+/* @license-end */</script>
+<div id="main-nav"></div>
+<div id="nav-path" class="navpath">
+  <ul>
+<li class="navelem"><b>StApi</b></li><li class="navelem"><a class="el" href="structStApi_1_1IStPortInfo.html">IStPortInfo</a></li>  </ul>
+</div>
+</div><!-- top -->
+<div class="header">
+  <div class="summary">
+<a href="#pub-methods">公開メンバ関数</a> &#124;
+<a href="structStApi_1_1IStPortInfo-members.html">全メンバ一覧</a>  </div>
+  <div class="headertitle">
+<div class="title">StApi::IStPortInfo インタフェース<span class="mlabels"><span class="mlabel">abstract</span></span><div class="ingroups"><a class="el" href="group__StApiTL__PublicInterface.html">StApi トランスポート層モジュール抽象インターフェース</a></div></div>  </div>
+</div><!--header-->
+<div class="contents">
+
+<p>ポート情報用インターフェース  
+ <a href="structStApi_1_1IStPortInfo.html#details">[詳解]</a></p>
+<table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-methods"></a>
+公開メンバ関数</h2></td></tr>
+<tr class="memitem:a82233335a69809ce9ae4c3627f1adf8d"><td class="memItemLeft" align="right" valign="top">virtual <a class="el" href="classGenICam_1_1gcstring.html">GenICam::gcstring</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structStApi_1_1IStPortInfo.html#a82233335a69809ce9ae4c3627f1adf8d">GetID</a> () const =0</td></tr>
+<tr class="memdesc:a82233335a69809ce9ae4c3627f1adf8d"><td class="mdescLeft">&#160;</td><td class="mdescRight"><a class="el" href="StGenTL__Function_8h.html#a264874f095680bb4b5af740e1939412d">GenTL::GCGetPortInfo()</a> を使用して GenTL::PORT_INFO_ID の情報を取得します。  <a href="#a82233335a69809ce9ae4c3627f1adf8d">[詳解]</a><br /></td></tr>
+<tr class="separator:a82233335a69809ce9ae4c3627f1adf8d"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a6085e32ce1e474a7e58cd024ef2447d9"><td class="memItemLeft" align="right" valign="top">virtual <a class="el" href="classGenICam_1_1gcstring.html">GenICam::gcstring</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structStApi_1_1IStPortInfo.html#a6085e32ce1e474a7e58cd024ef2447d9">GetVendor</a> () const =0</td></tr>
+<tr class="memdesc:a6085e32ce1e474a7e58cd024ef2447d9"><td class="mdescLeft">&#160;</td><td class="mdescRight"><a class="el" href="StGenTL__Function_8h.html#a264874f095680bb4b5af740e1939412d">GenTL::GCGetPortInfo()</a> を使用して GenTL::PORT_INFO_VENDOR の情報を取得します。  <a href="#a6085e32ce1e474a7e58cd024ef2447d9">[詳解]</a><br /></td></tr>
+<tr class="separator:a6085e32ce1e474a7e58cd024ef2447d9"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a38a47e1aa06d7a87c8aa39fcf847c726"><td class="memItemLeft" align="right" valign="top">virtual <a class="el" href="classGenICam_1_1gcstring.html">GenICam::gcstring</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structStApi_1_1IStPortInfo.html#a38a47e1aa06d7a87c8aa39fcf847c726">GetModel</a> () const =0</td></tr>
+<tr class="memdesc:a38a47e1aa06d7a87c8aa39fcf847c726"><td class="mdescLeft">&#160;</td><td class="mdescRight"><a class="el" href="StGenTL__Function_8h.html#a264874f095680bb4b5af740e1939412d">GenTL::GCGetPortInfo()</a> を使用して GenTL::PORT_INFO_MODEL の情報を取得します。  <a href="#a38a47e1aa06d7a87c8aa39fcf847c726">[詳解]</a><br /></td></tr>
+<tr class="separator:a38a47e1aa06d7a87c8aa39fcf847c726"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a8bcf126377bc7f2d2f46116d23c1a72e"><td class="memItemLeft" align="right" valign="top">virtual <a class="el" href="classGenICam_1_1gcstring.html">GenICam::gcstring</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structStApi_1_1IStPortInfo.html#a8bcf126377bc7f2d2f46116d23c1a72e">GetTLType</a> () const =0</td></tr>
+<tr class="memdesc:a8bcf126377bc7f2d2f46116d23c1a72e"><td class="mdescLeft">&#160;</td><td class="mdescRight"><a class="el" href="StGenTL__Function_8h.html#a264874f095680bb4b5af740e1939412d">GenTL::GCGetPortInfo()</a> を使用して GenTL::PORT_INFO_TLTYPE の情報を取得します。  <a href="#a8bcf126377bc7f2d2f46116d23c1a72e">[詳解]</a><br /></td></tr>
+<tr class="separator:a8bcf126377bc7f2d2f46116d23c1a72e"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a22b2065f60cc6d20510430506ca8c3f2"><td class="memItemLeft" align="right" valign="top">virtual <a class="el" href="classGenICam_1_1gcstring.html">GenICam::gcstring</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structStApi_1_1IStPortInfo.html#a22b2065f60cc6d20510430506ca8c3f2">GetModule</a> () const =0</td></tr>
+<tr class="memdesc:a22b2065f60cc6d20510430506ca8c3f2"><td class="mdescLeft">&#160;</td><td class="mdescRight"><a class="el" href="StGenTL__Function_8h.html#a264874f095680bb4b5af740e1939412d">GenTL::GCGetPortInfo()</a> を使用して GenTL::PORT_INFO_MODULE の情報を取得します。  <a href="#a22b2065f60cc6d20510430506ca8c3f2">[詳解]</a><br /></td></tr>
+<tr class="separator:a22b2065f60cc6d20510430506ca8c3f2"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a01a790f29d12f56f71ef7979b543d69f"><td class="memItemLeft" align="right" valign="top">virtual bool8_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structStApi_1_1IStPortInfo.html#a01a790f29d12f56f71ef7979b543d69f">IsLittleEndian</a> () const =0</td></tr>
+<tr class="memdesc:a01a790f29d12f56f71ef7979b543d69f"><td class="mdescLeft">&#160;</td><td class="mdescRight"><a class="el" href="StGenTL__Function_8h.html#a264874f095680bb4b5af740e1939412d">GenTL::GCGetPortInfo()</a> を使用して GenTL::PORT_INFO_LITTLE_ENDIAN の情報を取得します。  <a href="#a01a790f29d12f56f71ef7979b543d69f">[詳解]</a><br /></td></tr>
+<tr class="separator:a01a790f29d12f56f71ef7979b543d69f"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a7529902e4ca542408745a15de249975f"><td class="memItemLeft" align="right" valign="top">virtual bool8_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structStApi_1_1IStPortInfo.html#a7529902e4ca542408745a15de249975f">IsBigEndian</a> () const =0</td></tr>
+<tr class="memdesc:a7529902e4ca542408745a15de249975f"><td class="mdescLeft">&#160;</td><td class="mdescRight"><a class="el" href="StGenTL__Function_8h.html#a264874f095680bb4b5af740e1939412d">GenTL::GCGetPortInfo()</a> を使用して GenTL::PORT_INFO_BIG_ENDIAN の情報を取得します。  <a href="#a7529902e4ca542408745a15de249975f">[詳解]</a><br /></td></tr>
+<tr class="separator:a7529902e4ca542408745a15de249975f"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a1be370e1173dfaa475cb6afb5b3f47f0"><td class="memItemLeft" align="right" valign="top">virtual bool8_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structStApi_1_1IStPortInfo.html#a1be370e1173dfaa475cb6afb5b3f47f0">IsAccessRead</a> () const =0</td></tr>
+<tr class="memdesc:a1be370e1173dfaa475cb6afb5b3f47f0"><td class="mdescLeft">&#160;</td><td class="mdescRight"><a class="el" href="StGenTL__Function_8h.html#a264874f095680bb4b5af740e1939412d">GenTL::GCGetPortInfo()</a> を使用して GenTL::PORT_INFO_ACCESS_READ の情報を取得します。  <a href="#a1be370e1173dfaa475cb6afb5b3f47f0">[詳解]</a><br /></td></tr>
+<tr class="separator:a1be370e1173dfaa475cb6afb5b3f47f0"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ab235e71b51c6171c39a13370752bf347"><td class="memItemLeft" align="right" valign="top">virtual bool8_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structStApi_1_1IStPortInfo.html#ab235e71b51c6171c39a13370752bf347">IsAccessWrite</a> () const =0</td></tr>
+<tr class="memdesc:ab235e71b51c6171c39a13370752bf347"><td class="mdescLeft">&#160;</td><td class="mdescRight"><a class="el" href="StGenTL__Function_8h.html#a264874f095680bb4b5af740e1939412d">GenTL::GCGetPortInfo()</a> を使用して GenTL::PORT_INFO_ACCESS_WRITE の情報を取得します。  <a href="#ab235e71b51c6171c39a13370752bf347">[詳解]</a><br /></td></tr>
+<tr class="separator:ab235e71b51c6171c39a13370752bf347"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a00169a9109d5172dabeaf61d7fa3c024"><td class="memItemLeft" align="right" valign="top">virtual bool8_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structStApi_1_1IStPortInfo.html#a00169a9109d5172dabeaf61d7fa3c024">IsAccessNA</a> () const =0</td></tr>
+<tr class="memdesc:a00169a9109d5172dabeaf61d7fa3c024"><td class="mdescLeft">&#160;</td><td class="mdescRight"><a class="el" href="StGenTL__Function_8h.html#a264874f095680bb4b5af740e1939412d">GenTL::GCGetPortInfo()</a> を使用して GenTL::PORT_INFO_ACCESS_NA の情報を取得します。  <a href="#a00169a9109d5172dabeaf61d7fa3c024">[詳解]</a><br /></td></tr>
+<tr class="separator:a00169a9109d5172dabeaf61d7fa3c024"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a45dc0a258f822765be29a380f7482421"><td class="memItemLeft" align="right" valign="top">virtual bool8_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structStApi_1_1IStPortInfo.html#a45dc0a258f822765be29a380f7482421">IsAccessNI</a> () const =0</td></tr>
+<tr class="memdesc:a45dc0a258f822765be29a380f7482421"><td class="mdescLeft">&#160;</td><td class="mdescRight"><a class="el" href="StGenTL__Function_8h.html#a264874f095680bb4b5af740e1939412d">GenTL::GCGetPortInfo()</a> を使用して GenTL::PORT_INFO_ACCESS_NI の情報を取得します。  <a href="#a45dc0a258f822765be29a380f7482421">[詳解]</a><br /></td></tr>
+<tr class="separator:a45dc0a258f822765be29a380f7482421"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aed90e72b6e55d30bb28339900fedbfc7"><td class="memItemLeft" align="right" valign="top">virtual <a class="el" href="classGenICam_1_1gcstring.html">GenICam::gcstring</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structStApi_1_1IStPortInfo.html#aed90e72b6e55d30bb28339900fedbfc7">GetVersion</a> () const =0</td></tr>
+<tr class="memdesc:aed90e72b6e55d30bb28339900fedbfc7"><td class="mdescLeft">&#160;</td><td class="mdescRight"><a class="el" href="StGenTL__Function_8h.html#a264874f095680bb4b5af740e1939412d">GenTL::GCGetPortInfo()</a> を使用して GenTL::PORT_INFO_VERSION の情報を取得します。  <a href="#aed90e72b6e55d30bb28339900fedbfc7">[詳解]</a><br /></td></tr>
+<tr class="separator:aed90e72b6e55d30bb28339900fedbfc7"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ac772f979854e35fe2ca14837dc28cd48"><td class="memItemLeft" align="right" valign="top">virtual <a class="el" href="classGenICam_1_1gcstring.html">GenICam::gcstring</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structStApi_1_1IStPortInfo.html#ac772f979854e35fe2ca14837dc28cd48">GetPortName</a> () const =0</td></tr>
+<tr class="memdesc:ac772f979854e35fe2ca14837dc28cd48"><td class="mdescLeft">&#160;</td><td class="mdescRight"><a class="el" href="StGenTL__Function_8h.html#a264874f095680bb4b5af740e1939412d">GenTL::GCGetPortInfo()</a> を使用して GenTL::PORT_INFO_PORTNAME の情報を取得します。  <a href="#ac772f979854e35fe2ca14837dc28cd48">[詳解]</a><br /></td></tr>
+<tr class="separator:ac772f979854e35fe2ca14837dc28cd48"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table>
+<a name="details" id="details"></a><h2 class="groupheader">詳解</h2>
+<div class="textblock"><p>ポート情報用インターフェース </p>
+</div><h2 class="groupheader">関数詳解</h2>
+<a id="a82233335a69809ce9ae4c3627f1adf8d"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a82233335a69809ce9ae4c3627f1adf8d">&#9670;&nbsp;</a></span>GetID()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">virtual <a class="el" href="classGenICam_1_1gcstring.html">GenICam::gcstring</a> StApi::IStPortInfo::GetID </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">pure virtual</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+<p><a class="el" href="StGenTL__Function_8h.html#a264874f095680bb4b5af740e1939412d">GenTL::GCGetPortInfo()</a> を使用して GenTL::PORT_INFO_ID の情報を取得します。 </p><dl class="section return"><dt>戻り値</dt><dd>PORT_INFO_ID データ </dd></dl>
+<dl class="exception"><dt>例外</dt><dd>
+  <table class="exception">
+    <tr><td class="paramname">メモリー確保に失敗した場合や</td><td><a class="el" href="StGenTL__Function_8h.html#a264874f095680bb4b5af740e1939412d">GenTL::GCGetPortInfo()</a> がエラーを返した場合は、例外 <a class="el" href="classGenICam_1_1GenericException.html" title="GenICam&#39;s exception class">GenICam::GenericException</a> が発生します。 </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a id="a6085e32ce1e474a7e58cd024ef2447d9"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a6085e32ce1e474a7e58cd024ef2447d9">&#9670;&nbsp;</a></span>GetVendor()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">virtual <a class="el" href="classGenICam_1_1gcstring.html">GenICam::gcstring</a> StApi::IStPortInfo::GetVendor </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">pure virtual</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+<p><a class="el" href="StGenTL__Function_8h.html#a264874f095680bb4b5af740e1939412d">GenTL::GCGetPortInfo()</a> を使用して GenTL::PORT_INFO_VENDOR の情報を取得します。 </p><dl class="section return"><dt>戻り値</dt><dd>PORT_INFO_VENDOR データ </dd></dl>
+<dl class="exception"><dt>例外</dt><dd>
+  <table class="exception">
+    <tr><td class="paramname">メモリー確保に失敗した場合や</td><td><a class="el" href="StGenTL__Function_8h.html#a264874f095680bb4b5af740e1939412d">GenTL::GCGetPortInfo()</a> がエラーを返した場合は、例外 <a class="el" href="classGenICam_1_1GenericException.html" title="GenICam&#39;s exception class">GenICam::GenericException</a> が発生します。 </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a id="a38a47e1aa06d7a87c8aa39fcf847c726"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a38a47e1aa06d7a87c8aa39fcf847c726">&#9670;&nbsp;</a></span>GetModel()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">virtual <a class="el" href="classGenICam_1_1gcstring.html">GenICam::gcstring</a> StApi::IStPortInfo::GetModel </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">pure virtual</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+<p><a class="el" href="StGenTL__Function_8h.html#a264874f095680bb4b5af740e1939412d">GenTL::GCGetPortInfo()</a> を使用して GenTL::PORT_INFO_MODEL の情報を取得します。 </p><dl class="section return"><dt>戻り値</dt><dd>PORT_INFO_MODEL データ </dd></dl>
+<dl class="exception"><dt>例外</dt><dd>
+  <table class="exception">
+    <tr><td class="paramname">メモリー確保に失敗した場合や</td><td><a class="el" href="StGenTL__Function_8h.html#a264874f095680bb4b5af740e1939412d">GenTL::GCGetPortInfo()</a> がエラーを返した場合は、例外 <a class="el" href="classGenICam_1_1GenericException.html" title="GenICam&#39;s exception class">GenICam::GenericException</a> が発生します。 </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a id="a8bcf126377bc7f2d2f46116d23c1a72e"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a8bcf126377bc7f2d2f46116d23c1a72e">&#9670;&nbsp;</a></span>GetTLType()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">virtual <a class="el" href="classGenICam_1_1gcstring.html">GenICam::gcstring</a> StApi::IStPortInfo::GetTLType </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">pure virtual</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+<p><a class="el" href="StGenTL__Function_8h.html#a264874f095680bb4b5af740e1939412d">GenTL::GCGetPortInfo()</a> を使用して GenTL::PORT_INFO_TLTYPE の情報を取得します。 </p><dl class="section return"><dt>戻り値</dt><dd>PORT_INFO_TLTYPE データ </dd></dl>
+<dl class="exception"><dt>例外</dt><dd>
+  <table class="exception">
+    <tr><td class="paramname">メモリー確保に失敗した場合や</td><td><a class="el" href="StGenTL__Function_8h.html#a264874f095680bb4b5af740e1939412d">GenTL::GCGetPortInfo()</a> がエラーを返した場合は、例外 <a class="el" href="classGenICam_1_1GenericException.html" title="GenICam&#39;s exception class">GenICam::GenericException</a> が発生します。 </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a id="a22b2065f60cc6d20510430506ca8c3f2"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a22b2065f60cc6d20510430506ca8c3f2">&#9670;&nbsp;</a></span>GetModule()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">virtual <a class="el" href="classGenICam_1_1gcstring.html">GenICam::gcstring</a> StApi::IStPortInfo::GetModule </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">pure virtual</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+<p><a class="el" href="StGenTL__Function_8h.html#a264874f095680bb4b5af740e1939412d">GenTL::GCGetPortInfo()</a> を使用して GenTL::PORT_INFO_MODULE の情報を取得します。 </p><dl class="section return"><dt>戻り値</dt><dd>PORT_INFO_MODULE データ </dd></dl>
+<dl class="exception"><dt>例外</dt><dd>
+  <table class="exception">
+    <tr><td class="paramname">メモリー確保に失敗した場合や</td><td><a class="el" href="StGenTL__Function_8h.html#a264874f095680bb4b5af740e1939412d">GenTL::GCGetPortInfo()</a> がエラーを返した場合は、例外 <a class="el" href="classGenICam_1_1GenericException.html" title="GenICam&#39;s exception class">GenICam::GenericException</a> が発生します。 </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a id="a01a790f29d12f56f71ef7979b543d69f"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a01a790f29d12f56f71ef7979b543d69f">&#9670;&nbsp;</a></span>IsLittleEndian()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">virtual bool8_t StApi::IStPortInfo::IsLittleEndian </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">pure virtual</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+<p><a class="el" href="StGenTL__Function_8h.html#a264874f095680bb4b5af740e1939412d">GenTL::GCGetPortInfo()</a> を使用して GenTL::PORT_INFO_LITTLE_ENDIAN の情報を取得します。 </p><dl class="section return"><dt>戻り値</dt><dd>PORT_INFO_LITTLE_ENDIAN データ </dd></dl>
+<dl class="exception"><dt>例外</dt><dd>
+  <table class="exception">
+    <tr><td class="paramname"><a class="el" href="StGenTL__Function_8h.html#a264874f095680bb4b5af740e1939412d">GenTL::GCGetPortInfo()</a></td><td>がエラーを返した場合は、例外 <a class="el" href="classGenICam_1_1GenericException.html" title="GenICam&#39;s exception class">GenICam::GenericException</a> が発生します。 </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a id="a7529902e4ca542408745a15de249975f"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a7529902e4ca542408745a15de249975f">&#9670;&nbsp;</a></span>IsBigEndian()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">virtual bool8_t StApi::IStPortInfo::IsBigEndian </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">pure virtual</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+<p><a class="el" href="StGenTL__Function_8h.html#a264874f095680bb4b5af740e1939412d">GenTL::GCGetPortInfo()</a> を使用して GenTL::PORT_INFO_BIG_ENDIAN の情報を取得します。 </p><dl class="section return"><dt>戻り値</dt><dd>PORT_INFO_BIG_ENDIAN データ </dd></dl>
+<dl class="exception"><dt>例外</dt><dd>
+  <table class="exception">
+    <tr><td class="paramname"><a class="el" href="StGenTL__Function_8h.html#a264874f095680bb4b5af740e1939412d">GenTL::GCGetPortInfo()</a></td><td>がエラーを返した場合は、例外 <a class="el" href="classGenICam_1_1GenericException.html" title="GenICam&#39;s exception class">GenICam::GenericException</a> が発生します。 </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a id="a1be370e1173dfaa475cb6afb5b3f47f0"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a1be370e1173dfaa475cb6afb5b3f47f0">&#9670;&nbsp;</a></span>IsAccessRead()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">virtual bool8_t StApi::IStPortInfo::IsAccessRead </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">pure virtual</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+<p><a class="el" href="StGenTL__Function_8h.html#a264874f095680bb4b5af740e1939412d">GenTL::GCGetPortInfo()</a> を使用して GenTL::PORT_INFO_ACCESS_READ の情報を取得します。 </p><dl class="section return"><dt>戻り値</dt><dd>PORT_INFO_ACCESS_READ データ </dd></dl>
+<dl class="exception"><dt>例外</dt><dd>
+  <table class="exception">
+    <tr><td class="paramname"><a class="el" href="StGenTL__Function_8h.html#a264874f095680bb4b5af740e1939412d">GenTL::GCGetPortInfo()</a></td><td>がエラーを返した場合は、例外 <a class="el" href="classGenICam_1_1GenericException.html" title="GenICam&#39;s exception class">GenICam::GenericException</a> が発生します。 </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a id="ab235e71b51c6171c39a13370752bf347"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ab235e71b51c6171c39a13370752bf347">&#9670;&nbsp;</a></span>IsAccessWrite()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">virtual bool8_t StApi::IStPortInfo::IsAccessWrite </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">pure virtual</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+<p><a class="el" href="StGenTL__Function_8h.html#a264874f095680bb4b5af740e1939412d">GenTL::GCGetPortInfo()</a> を使用して GenTL::PORT_INFO_ACCESS_WRITE の情報を取得します。 </p><dl class="section return"><dt>戻り値</dt><dd>PORT_INFO_ACCESS_WRITE データ </dd></dl>
+<dl class="exception"><dt>例外</dt><dd>
+  <table class="exception">
+    <tr><td class="paramname"><a class="el" href="StGenTL__Function_8h.html#a264874f095680bb4b5af740e1939412d">GenTL::GCGetPortInfo()</a></td><td>がエラーを返した場合は、例外 <a class="el" href="classGenICam_1_1GenericException.html" title="GenICam&#39;s exception class">GenICam::GenericException</a> が発生します。 </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a id="a00169a9109d5172dabeaf61d7fa3c024"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a00169a9109d5172dabeaf61d7fa3c024">&#9670;&nbsp;</a></span>IsAccessNA()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">virtual bool8_t StApi::IStPortInfo::IsAccessNA </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">pure virtual</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+<p><a class="el" href="StGenTL__Function_8h.html#a264874f095680bb4b5af740e1939412d">GenTL::GCGetPortInfo()</a> を使用して GenTL::PORT_INFO_ACCESS_NA の情報を取得します。 </p><dl class="section return"><dt>戻り値</dt><dd>PORT_INFO_ACCESS_NA データ </dd></dl>
+<dl class="exception"><dt>例外</dt><dd>
+  <table class="exception">
+    <tr><td class="paramname"><a class="el" href="StGenTL__Function_8h.html#a264874f095680bb4b5af740e1939412d">GenTL::GCGetPortInfo()</a></td><td>がエラーを返した場合は、例外 <a class="el" href="classGenICam_1_1GenericException.html" title="GenICam&#39;s exception class">GenICam::GenericException</a> が発生します。 </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a id="a45dc0a258f822765be29a380f7482421"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a45dc0a258f822765be29a380f7482421">&#9670;&nbsp;</a></span>IsAccessNI()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">virtual bool8_t StApi::IStPortInfo::IsAccessNI </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">pure virtual</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+<p><a class="el" href="StGenTL__Function_8h.html#a264874f095680bb4b5af740e1939412d">GenTL::GCGetPortInfo()</a> を使用して GenTL::PORT_INFO_ACCESS_NI の情報を取得します。 </p><dl class="section return"><dt>戻り値</dt><dd>PORT_INFO_ACCESS_NI データ </dd></dl>
+<dl class="exception"><dt>例外</dt><dd>
+  <table class="exception">
+    <tr><td class="paramname"><a class="el" href="StGenTL__Function_8h.html#a264874f095680bb4b5af740e1939412d">GenTL::GCGetPortInfo()</a></td><td>がエラーを返した場合は、例外 <a class="el" href="classGenICam_1_1GenericException.html" title="GenICam&#39;s exception class">GenICam::GenericException</a> が発生します。 </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a id="aed90e72b6e55d30bb28339900fedbfc7"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aed90e72b6e55d30bb28339900fedbfc7">&#9670;&nbsp;</a></span>GetVersion()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">virtual <a class="el" href="classGenICam_1_1gcstring.html">GenICam::gcstring</a> StApi::IStPortInfo::GetVersion </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">pure virtual</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+<p><a class="el" href="StGenTL__Function_8h.html#a264874f095680bb4b5af740e1939412d">GenTL::GCGetPortInfo()</a> を使用して GenTL::PORT_INFO_VERSION の情報を取得します。 </p><dl class="section return"><dt>戻り値</dt><dd>PORT_INFO_VERSION データ </dd></dl>
+<dl class="exception"><dt>例外</dt><dd>
+  <table class="exception">
+    <tr><td class="paramname">メモリー確保に失敗した場合や</td><td><a class="el" href="StGenTL__Function_8h.html#a264874f095680bb4b5af740e1939412d">GenTL::GCGetPortInfo()</a> がエラーを返した場合は、例外 <a class="el" href="classGenICam_1_1GenericException.html" title="GenICam&#39;s exception class">GenICam::GenericException</a> が発生します。 </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a id="ac772f979854e35fe2ca14837dc28cd48"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ac772f979854e35fe2ca14837dc28cd48">&#9670;&nbsp;</a></span>GetPortName()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">virtual <a class="el" href="classGenICam_1_1gcstring.html">GenICam::gcstring</a> StApi::IStPortInfo::GetPortName </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">pure virtual</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+<p><a class="el" href="StGenTL__Function_8h.html#a264874f095680bb4b5af740e1939412d">GenTL::GCGetPortInfo()</a> を使用して GenTL::PORT_INFO_PORTNAME の情報を取得します。 </p><dl class="section return"><dt>戻り値</dt><dd>PORT_INFO_PORTNAME データ </dd></dl>
+<dl class="exception"><dt>例外</dt><dd>
+  <table class="exception">
+    <tr><td class="paramname">メモリー確保に失敗した場合や</td><td><a class="el" href="StGenTL__Function_8h.html#a264874f095680bb4b5af740e1939412d">GenTL::GCGetPortInfo()</a> がエラーを返した場合は、例外 <a class="el" href="classGenICam_1_1GenericException.html" title="GenICam&#39;s exception class">GenICam::GenericException</a> が発生します。 </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+</div><!-- contents -->
+<!-- HTML footer for doxygen 1.8.13-->
+<!-- start footer part -->
+<hr class="footer"/>
+	<address class="footer">
+		<small>
+2021年10月26日(火) 13時10分26秒作成 - Sentech SDK / 構成:  &#160;
+			<a href="http://www.sentech.co.jp/">
+				<img class="footer" src="string_omron_sentech.png" alt="OMRON SENTECH CO., LTD"/>
+			</a>
+			<!--
+				DoxyGen Version =  1.8.15
+			-->
+		</small>
+	</address>
+</body>
+</html>

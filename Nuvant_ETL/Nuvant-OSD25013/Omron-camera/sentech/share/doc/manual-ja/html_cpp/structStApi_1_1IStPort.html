@@ -1,0 +1,370 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "https://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=9"/>
+<meta name="generator" content="Doxygen 1.8.15"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>Sentech SDK: StApi::IStPort インタフェース</title>
+<link href="tabs.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="jquery.js"></script>
+<script type="text/javascript" src="dynsections.js"></script>
+<link href="doxygen.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+<div id="top"><!-- do not remove this div, it is closed by doxygen! -->
+<div id="titlearea">
+<table cellspacing="0" cellpadding="0">
+ <tbody>
+ <tr style="height: 56px;">
+  <td id="projectalign" style="padding-left: 0.5em;">
+   <div id="projectname">Sentech SDK
+   </div>
+  </td>
+ </tr>
+ </tbody>
+</table>
+</div>
+<!-- end header part -->
+<!-- 構築: Doxygen 1.8.15 -->
+<script type="text/javascript" src="menudata.js"></script>
+<script type="text/javascript" src="menu.js"></script>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:cf05388f2679ee054f2beb29a391d25f4e673ac3&amp;dn=gpl-2.0.txt GPL-v2 */
+$(function() {
+  initMenu('',false,false,'search.php','検索');
+});
+/* @license-end */</script>
+<div id="main-nav"></div>
+<div id="nav-path" class="navpath">
+  <ul>
+<li class="navelem"><b>StApi</b></li><li class="navelem"><a class="el" href="structStApi_1_1IStPort.html">IStPort</a></li>  </ul>
+</div>
+</div><!-- top -->
+<div class="header">
+  <div class="summary">
+<a href="#pub-methods">公開メンバ関数</a> &#124;
+<a href="structStApi_1_1IStPort-members.html">全メンバ一覧</a>  </div>
+  <div class="headertitle">
+<div class="title">StApi::IStPort インタフェース<span class="mlabels"><span class="mlabel">abstract</span></span><div class="ingroups"><a class="el" href="group__StApiTL__PublicInterface.html">StApi トランスポート層モジュール抽象インターフェース</a></div></div>  </div>
+</div><!--header-->
+<div class="contents">
+
+<p>ポート用インターフェース  
+ <a href="structStApi_1_1IStPort.html#details">[詳解]</a></p>
+<table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-methods"></a>
+公開メンバ関数</h2></td></tr>
+<tr class="memitem:ae434622ecc9d0e59839f8d30fa1614af"><td class="memItemLeft" align="right" valign="top">virtual uint32_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structStApi_1_1IStPort.html#ae434622ecc9d0e59839f8d30fa1614af">GetPortURLCount</a> () const =0</td></tr>
+<tr class="memdesc:ae434622ecc9d0e59839f8d30fa1614af"><td class="mdescLeft">&#160;</td><td class="mdescRight">このポートの利用可能なURLの数を取得します。  <a href="#ae434622ecc9d0e59839f8d30fa1614af">[詳解]</a><br /></td></tr>
+<tr class="separator:ae434622ecc9d0e59839f8d30fa1614af"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ac7e9033072a6860606a699a8d773fbb5"><td class="memItemLeft" align="right" valign="top">virtual uint32_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structStApi_1_1IStPort.html#ac7e9033072a6860606a699a8d773fbb5">GetPortURLIndex</a> () const =0</td></tr>
+<tr class="memdesc:ac7e9033072a6860606a699a8d773fbb5"><td class="mdescLeft">&#160;</td><td class="mdescRight">ポートURLインディックスの設定値を取得します。  <a href="#ac7e9033072a6860606a699a8d773fbb5">[詳解]</a><br /></td></tr>
+<tr class="separator:ac7e9033072a6860606a699a8d773fbb5"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a00a5ac91cb8ea385e40e20c072364ad5"><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structStApi_1_1IStPort.html#a00a5ac91cb8ea385e40e20c072364ad5">SetPortURLIndex</a> (uint32_t nIndex)=0</td></tr>
+<tr class="memdesc:a00a5ac91cb8ea385e40e20c072364ad5"><td class="mdescLeft">&#160;</td><td class="mdescRight">ポートURLインディックスの値を設定します。  <a href="#a00a5ac91cb8ea385e40e20c072364ad5">[詳解]</a><br /></td></tr>
+<tr class="separator:a00a5ac91cb8ea385e40e20c072364ad5"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a536ffe451b0292a4779e29b2da85095f"><td class="memItemLeft" align="right" valign="top">virtual const <a class="el" href="structStApi_1_1IStPortURLInfo.html">IStPortURLInfo</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structStApi_1_1IStPort.html#a536ffe451b0292a4779e29b2da85095f">GetIStPortURLInfo</a> () const =0</td></tr>
+<tr class="memdesc:a536ffe451b0292a4779e29b2da85095f"><td class="mdescLeft">&#160;</td><td class="mdescRight"><a class="el" href="structStApi_1_1IStPortURLInfo.html" title="ポートURL情報用インターフェース">IStPortURLInfo</a> インターフェースポインターを取得します。  <a href="#a536ffe451b0292a4779e29b2da85095f">[詳解]</a><br /></td></tr>
+<tr class="separator:a536ffe451b0292a4779e29b2da85095f"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a8b537a0f57b115d7e694f09ba075e4ba"><td class="memItemLeft" align="right" valign="top">virtual <a class="el" href="structGenApi_1_1INodeMap.html">GenApi::INodeMap</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structStApi_1_1IStPort.html#a8b537a0f57b115d7e694f09ba075e4ba">GetINodeMap</a> ()=0</td></tr>
+<tr class="memdesc:a8b537a0f57b115d7e694f09ba075e4ba"><td class="mdescLeft">&#160;</td><td class="mdescRight">INodeMap インターフェースポインターを取得します。  <a href="#a8b537a0f57b115d7e694f09ba075e4ba">[詳解]</a><br /></td></tr>
+<tr class="separator:a8b537a0f57b115d7e694f09ba075e4ba"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a62ea2c5df2df59522d6b4308ec1535e5"><td class="memItemLeft" align="right" valign="top">virtual const <a class="el" href="structStApi_1_1IStPortInfo.html">IStPortInfo</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structStApi_1_1IStPort.html#a62ea2c5df2df59522d6b4308ec1535e5">GetIStPortInfo</a> () const =0</td></tr>
+<tr class="memdesc:a62ea2c5df2df59522d6b4308ec1535e5"><td class="mdescLeft">&#160;</td><td class="mdescRight"><a class="el" href="structStApi_1_1IStPortInfo.html" title="ポート情報用インターフェース">IStPortInfo</a> インターフェースポインターを取得します。  <a href="#a62ea2c5df2df59522d6b4308ec1535e5">[詳解]</a><br /></td></tr>
+<tr class="separator:a62ea2c5df2df59522d6b4308ec1535e5"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:afe7eb60a44ac80ad79db0a6bead6d679"><td class="memItemLeft" align="right" valign="top">virtual <a class="el" href="classGenICam_1_1gcstring.html">GenICam::gcstring</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structStApi_1_1IStPort.html#afe7eb60a44ac80ad79db0a6bead6d679">GetXMLFileName</a> ()=0</td></tr>
+<tr class="memdesc:afe7eb60a44ac80ad79db0a6bead6d679"><td class="mdescLeft">&#160;</td><td class="mdescRight">XMLファイルのファイル名を取得します。  <a href="#afe7eb60a44ac80ad79db0a6bead6d679">[詳解]</a><br /></td></tr>
+<tr class="separator:afe7eb60a44ac80ad79db0a6bead6d679"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a1e01d2e8d7f76fde75ced83fd77e5a08"><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structStApi_1_1IStPort.html#a1e01d2e8d7f76fde75ced83fd77e5a08">SaveXMLFile</a> (const <a class="el" href="classGenICam_1_1gcstring.html">GenICam::gcstring</a> &amp;strFileName)=0</td></tr>
+<tr class="memdesc:a1e01d2e8d7f76fde75ced83fd77e5a08"><td class="mdescLeft">&#160;</td><td class="mdescRight">このポートで使用されているXMLファイルを保存します。  <a href="#a1e01d2e8d7f76fde75ced83fd77e5a08">[詳解]</a><br /></td></tr>
+<tr class="separator:a1e01d2e8d7f76fde75ced83fd77e5a08"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table>
+<a name="details" id="details"></a><h2 class="groupheader">詳解</h2>
+<div class="textblock"><p>ポート用インターフェース </p>
+</div><h2 class="groupheader">関数詳解</h2>
+<a id="ae434622ecc9d0e59839f8d30fa1614af"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ae434622ecc9d0e59839f8d30fa1614af">&#9670;&nbsp;</a></span>GetPortURLCount()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">virtual uint32_t StApi::IStPort::GetPortURLCount </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">pure virtual</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+<p>このポートの利用可能なURLの数を取得します。 </p><dl class="section return"><dt>戻り値</dt><dd>このポートの利用可能なURLの数 </dd></dl>
+<dl class="exception"><dt>例外</dt><dd>
+  <table class="exception">
+    <tr><td class="paramname">GenTL</td><td>関数がエラーを返した場合は、例外 <a class="el" href="classGenICam_1_1GenericException.html" title="GenICam&#39;s exception class">GenICam::GenericException</a> が発生します。 </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a id="ac7e9033072a6860606a699a8d773fbb5"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ac7e9033072a6860606a699a8d773fbb5">&#9670;&nbsp;</a></span>GetPortURLIndex()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">virtual uint32_t StApi::IStPort::GetPortURLIndex </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">pure virtual</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+<p>ポートURLインディックスの設定値を取得します。 </p><dl class="section return"><dt>戻り値</dt><dd>ポートURLインディックス </dd></dl>
+<dl class="exception"><dt>例外</dt><dd>
+  <table class="exception">
+    <tr><td class="paramname">なし</td><td></td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a id="a00a5ac91cb8ea385e40e20c072364ad5"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a00a5ac91cb8ea385e40e20c072364ad5">&#9670;&nbsp;</a></span>SetPortURLIndex()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">virtual void StApi::IStPort::SetPortURLIndex </td>
+          <td>(</td>
+          <td class="paramtype">uint32_t&#160;</td>
+          <td class="paramname"><em>nIndex</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">pure virtual</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+<p>ポートURLインディックスの値を設定します。 </p><dl class="params"><dt>引数</dt><dd>
+  <table class="params">
+    <tr><td class="paramdir">[in]</td><td class="paramname">nIndex</td><td>ポートURLインディックス </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="exception"><dt>例外</dt><dd>
+  <table class="exception">
+    <tr><td class="paramname">不正な引数が指定された場合は、例外</td><td><a class="el" href="classGenICam_1_1GenericException.html" title="GenICam&#39;s exception class">GenICam::GenericException</a> が発生します。 </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a id="a536ffe451b0292a4779e29b2da85095f"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a536ffe451b0292a4779e29b2da85095f">&#9670;&nbsp;</a></span>GetIStPortURLInfo()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">virtual const <a class="el" href="structStApi_1_1IStPortURLInfo.html">IStPortURLInfo</a>* StApi::IStPort::GetIStPortURLInfo </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">pure virtual</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+<p><a class="el" href="structStApi_1_1IStPortURLInfo.html" title="ポートURL情報用インターフェース">IStPortURLInfo</a> インターフェースポインターを取得します。 </p><dl class="section return"><dt>戻り値</dt><dd><a class="el" href="structStApi_1_1IStPortURLInfo.html" title="ポートURL情報用インターフェース">IStPortURLInfo</a> インターフェースポインター </dd></dl>
+<dl class="exception"><dt>例外</dt><dd>
+  <table class="exception">
+    <tr><td class="paramname">なし</td><td></td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a id="a8b537a0f57b115d7e694f09ba075e4ba"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a8b537a0f57b115d7e694f09ba075e4ba">&#9670;&nbsp;</a></span>GetINodeMap()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">virtual <a class="el" href="structGenApi_1_1INodeMap.html">GenApi::INodeMap</a>* StApi::IStPort::GetINodeMap </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">pure virtual</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+<p>INodeMap インターフェースポインターを取得します。 </p><dl class="section return"><dt>戻り値</dt><dd>INodeMap インターフェースポインター </dd></dl>
+<dl class="exception"><dt>例外</dt><dd>
+  <table class="exception">
+    <tr><td class="paramname">メモリー確保に失敗した場合や</td><td>GenTL 関数がエラーを返した場合は、例外 <a class="el" href="classGenICam_1_1GenericException.html" title="GenICam&#39;s exception class">GenICam::GenericException</a> が発生します。 </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a id="a62ea2c5df2df59522d6b4308ec1535e5"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a62ea2c5df2df59522d6b4308ec1535e5">&#9670;&nbsp;</a></span>GetIStPortInfo()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">virtual const <a class="el" href="structStApi_1_1IStPortInfo.html">IStPortInfo</a>* StApi::IStPort::GetIStPortInfo </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">pure virtual</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+<p><a class="el" href="structStApi_1_1IStPortInfo.html" title="ポート情報用インターフェース">IStPortInfo</a> インターフェースポインターを取得します。 </p><dl class="section return"><dt>戻り値</dt><dd><a class="el" href="structStApi_1_1IStPortInfo.html" title="ポート情報用インターフェース">IStPortInfo</a> インターフェースポインター </dd></dl>
+<dl class="exception"><dt>例外</dt><dd>
+  <table class="exception">
+    <tr><td class="paramname">なし</td><td></td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a id="afe7eb60a44ac80ad79db0a6bead6d679"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#afe7eb60a44ac80ad79db0a6bead6d679">&#9670;&nbsp;</a></span>GetXMLFileName()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">virtual <a class="el" href="classGenICam_1_1gcstring.html">GenICam::gcstring</a> StApi::IStPort::GetXMLFileName </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">pure virtual</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+<p>XMLファイルのファイル名を取得します。 </p><dl class="section return"><dt>戻り値</dt><dd>XMLファイルのファイル名 </dd></dl>
+<dl class="exception"><dt>例外</dt><dd>
+  <table class="exception">
+    <tr><td class="paramname">メモリー確保に失敗した場合や</td><td>GenTL 関数がエラーを返した場合は、例外 <a class="el" href="classGenICam_1_1GenericException.html" title="GenICam&#39;s exception class">GenICam::GenericException</a> が発生します。 </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a id="a1e01d2e8d7f76fde75ced83fd77e5a08"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a1e01d2e8d7f76fde75ced83fd77e5a08">&#9670;&nbsp;</a></span>SaveXMLFile()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">virtual void StApi::IStPort::SaveXMLFile </td>
+          <td>(</td>
+          <td class="paramtype">const <a class="el" href="classGenICam_1_1gcstring.html">GenICam::gcstring</a> &amp;&#160;</td>
+          <td class="paramname"><em>strFileName</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">pure virtual</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+<p>このポートで使用されているXMLファイルを保存します。 </p><dl class="params"><dt>引数</dt><dd>
+  <table class="params">
+    <tr><td class="paramdir">[in]</td><td class="paramname">strFileName</td><td>ファイル名 </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="exception"><dt>例外</dt><dd>
+  <table class="exception">
+    <tr><td class="paramname">メモリー確保に失敗した場合や</td><td>GenTL 関数がエラーを返した場合は、例外 <a class="el" href="classGenICam_1_1GenericException.html" title="GenICam&#39;s exception class">GenICam::GenericException</a> が発生します。 </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+</div><!-- contents -->
+<!-- HTML footer for doxygen 1.8.13-->
+<!-- start footer part -->
+<hr class="footer"/>
+	<address class="footer">
+		<small>
+2021年10月26日(火) 13時10分26秒作成 - Sentech SDK / 構成:  &#160;
+			<a href="http://www.sentech.co.jp/">
+				<img class="footer" src="string_omron_sentech.png" alt="OMRON SENTECH CO., LTD"/>
+			</a>
+			<!--
+				DoxyGen Version =  1.8.15
+			-->
+		</small>
+	</address>
+</body>
+</html>

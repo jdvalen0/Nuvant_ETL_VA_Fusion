@@ -1,0 +1,209 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "https://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=9"/>
+<meta name="generator" content="Doxygen 1.8.15"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>Sentech SDK: StApi::IStRegisterCallback インタフェース</title>
+<link href="tabs.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="jquery.js"></script>
+<script type="text/javascript" src="dynsections.js"></script>
+<link href="doxygen.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+<div id="top"><!-- do not remove this div, it is closed by doxygen! -->
+<div id="titlearea">
+<table cellspacing="0" cellpadding="0">
+ <tbody>
+ <tr style="height: 56px;">
+  <td id="projectalign" style="padding-left: 0.5em;">
+   <div id="projectname">Sentech SDK
+   </div>
+  </td>
+ </tr>
+ </tbody>
+</table>
+</div>
+<!-- end header part -->
+<!-- 構築: Doxygen 1.8.15 -->
+<script type="text/javascript" src="menudata.js"></script>
+<script type="text/javascript" src="menu.js"></script>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:cf05388f2679ee054f2beb29a391d25f4e673ac3&amp;dn=gpl-2.0.txt GPL-v2 */
+$(function() {
+  initMenu('',false,false,'search.php','検索');
+});
+/* @license-end */</script>
+<div id="main-nav"></div>
+<div id="nav-path" class="navpath">
+  <ul>
+<li class="navelem"><b>StApi</b></li><li class="navelem"><a class="el" href="structStApi_1_1IStRegisterCallback.html">IStRegisterCallback</a></li>  </ul>
+</div>
+</div><!-- top -->
+<div class="header">
+  <div class="summary">
+<a href="#pub-methods">公開メンバ関数</a> &#124;
+<a href="structStApi_1_1IStRegisterCallback-members.html">全メンバ一覧</a>  </div>
+  <div class="headertitle">
+<div class="title">StApi::IStRegisterCallback インタフェース<span class="mlabels"><span class="mlabel">abstract</span></span><div class="ingroups"><a class="el" href="group__StApiTL__PublicInterface.html">StApi トランスポート層モジュール抽象インターフェース</a></div></div>  </div>
+</div><!--header-->
+<div class="contents">
+
+<p>StApiコールバック関数の登録および登録解除に使用されるインターフェース  
+ <a href="structStApi_1_1IStRegisterCallback.html#details">[詳解]</a></p>
+<div id="dynsection-0" onclick="return toggleVisibility(this)" class="dynheader closed" style="cursor:pointer;">
+  <img id="dynsection-0-trigger" src="closed.png" alt="+"/> StApi::IStRegisterCallback の継承関係図</div>
+<div id="dynsection-0-summary" class="dynsummary" style="display:block;">
+</div>
+<div id="dynsection-0-content" class="dyncontent" style="display:none;">
+<div class="center"><img src="structStApi_1_1IStRegisterCallback__inherit__graph.png" border="0" usemap="#StApi_1_1IStRegisterCallback_inherit__map" alt="Inheritance graph"/></div>
+<map name="StApi_1_1IStRegisterCallback_inherit__map" id="StApi_1_1IStRegisterCallback_inherit__map">
+<area shape="rect"  title="StApiã³ã¼ã«ããã¯é¢æ°ã®ç»é²ããã³ç»é²è§£é¤ã«ä½¿ç¨ãããã¤ã³ã¿ã¼ãã§ã¼ã¹" alt="" coords="5,724,196,751"/>
+<area shape="rect"  href="structStApi_1_1IStConverter.html" title="ã³ã³ãã¼ã¿ã¼ç¨ã¤ã³ã¿ã¼ãã§ã¼ã¹" alt="" coords="255,95,400,121"/>
+<area shape="rect"  href="structStApi_1_1IStDataStream.html" title="ãã¼ã¿ã¹ããªã¼ã ç¨ã¤ã³ã¿ã¼ãã§ã¼ã¹" alt="" coords="248,171,407,197"/>
+<area shape="rect"  href="structStApi_1_1IStDevice.html" title="ããã¤ã¹ç¨ã¤ã³ã¿ã¼ãã§ã¼ã¹" alt="" coords="264,272,391,299"/>
+<area shape="rect"  href="structStApi_1_1IStFiler.html" title="ãã¡ã¤ã©ã¼ç¨ã¤ã³ã¿ã¼ãã§ã¼ã¹" alt="" coords="273,341,381,368"/>
+<area shape="rect"  href="structStApi_1_1IStFilter.html" title="ãã£ã«ã¿ã¼ç¨ã¤ã³ã¿ã¼ãã§ã¼ã¹" alt="" coords="271,724,384,751"/>
+<area shape="rect"  href="structStApi_1_1IStInterface.html" title="ã¤ã³ã¿ã¼ãã§ã¼ã¹ç¨ã¤ã³ã¿ã¼ãã§ã¼ã¹" alt="" coords="258,775,397,801"/>
+<area shape="rect"  href="structStApi_1_1IStStreamBuffer.html" title="ã¹ããªã¼ã ãããã¡ç¨ã¤ã³ã¿ã¼ãã§ã¼ã¹" alt="" coords="244,983,411,1009"/>
+<area shape="rect"  href="structStApi_1_1IStSystem.html" title="ã·ã¹ãã ã¢ã¸ã¥ã¼ã«ç¨ã¤ã³ã¿ã¼ãã§ã¼ã¹" alt="" coords="262,1112,393,1139"/>
+<area shape="rect"  href="structStApi_1_1IStWnd.html" title="ã¦ã£ã³ãã¦ç¨ã¤ã³ã¿ã¼ãã§ã¼ã¹" alt="" coords="272,1317,383,1344"/>
+<area shape="rect"  href="structStApi_1_1IStConverterReleasable.html" title="è§£æ¾å¯è½ãªã³ã³ãã¼ã¿ã¼ç¨ã¤ã³ã¿ã¼ãã§ã¼ã¹" alt="" coords="470,5,686,32"/>
+<area shape="rect"  href="structStApi_1_1IStPixelFormatConverter.html" title="ãã¯ã»ã«ãã©ã¼ãããã³ã³ãã¼ã¿ã¼ç¨ã¤ã³ã¿ã¼ãã§ã¼ã¹" alt="" coords="467,56,689,83"/>
+<area shape="rect"  href="structStApi_1_1IStReverseConverter.html" title="åè»¢åè»¢ã³ã³ãã¼ã¿ã¼ç¨ã¤ã³ã¿ã¼ãã§ã¼ã¹" alt="" coords="479,107,677,133"/>
+<area shape="rect"  href="structStApi_1_1IStDataStreamReleasable.html" title="è§£æ¾å¯è½ãªãã¼ã¿ã¹ããªã¼ã ç¨ã¤ã³ã¿ã¼ãã§ã¼ã¹" alt="" coords="463,157,693,184"/>
+<area shape="rect"  href="structStApi_1_1IStDeviceReleasable.html" title="è§£æ¾å¯è½ãªããã¤ã¹ç¨ã¤ã³ã¿ã¼ãã§ã¼ã¹" alt="" coords="479,208,677,235"/>
+<area shape="rect"  href="structStApi_1_1IStFilerReleasable.html" title="è§£æ¾å¯è½ãªãã¡ã¤ã©ã¼ç¨ã¤ã³ã¿ã¼ãã§ã¼ã¹" alt="" coords="489,259,667,285"/>
+<area shape="rect"  href="structStApi_1_1IStStillImageFiler.html" title="éæ­¢ç»ãã¡ã¤ã©ã¼ç¨ã¤ã³ã¿ã¼ãã§ã¼ã¹" alt="" coords="491,309,665,336"/>
+<area shape="rect"  href="structStApi_1_1IStVideoFiler.html" title="åç»ãã¡ã¤ã©ã¼ç¨ã¤ã³ã¿ã¼ãã§ã¼ã¹" alt="" coords="505,360,651,387"/>
+<area shape="rect"  href="structStApi_1_1IStBalanceRatioFilter.html" title="ãã©ã³ã¹ã¬ã¼ããã£ã«ã¿ã¼ç¨ã¤ã³ã¿ã¼ãã§ã¼ã¹" alt="" coords="479,411,677,437"/>
+<area shape="rect"  href="structStApi_1_1IStChromaSuppressionFilter.html" title="ã¯ã­ããµãã¬ã¹ãã£ã«ã¿ã¼ç¨ã¤ã³ã¿ã¼ãã§ã¼ã¹" alt="" coords="473,462,683,503"/>
+<area shape="rect"  href="structStApi_1_1IStColorTransformationFilter.html" title="è²å¤æãã£ã«ã¿ã¼ç¨ã¤ã³ã¿ã¼ãã§ã¼ã¹" alt="" coords="471,527,685,569"/>
+<area shape="rect"  href="structStApi_1_1IStDefectivePixelDetectionFilter.html" title="æ¬ é¥ç»ç´ æ¤åºãã£ã«ã¿ã¼ç¨ã¤ã³ã¿ã¼ãã§ã¼ã¹" alt="" coords="490,593,666,634"/>
+<area shape="rect"  href="structStApi_1_1IStEdgeEnhancementFilter.html" title="ã¨ãã¸å¼·èª¿ãã£ã«ã¿ã¼ç¨ã¤ã³ã¿ã¼ãã§ã¼ã¹" alt="" coords="477,658,679,699"/>
+<area shape="rect"  href="structStApi_1_1IStFilterReleasable.html" title="è§£æ¾å¯è½ãªãã£ã«ã¿ã¼ç¨ã¤ã³ã¿ã¼ãã§ã¼ã¹" alt="" coords="486,724,670,751"/>
+<area shape="rect"  href="structStApi_1_1IStFlatFieldCorrectionFilter.html" title="ãã©ãããã£ã¼ã«ãè£æ­£ãã£ã«ã¿ã¼ç¨ã¤ã³ã¿ã¼ãã§ã¼ã¹" alt="" coords="477,775,679,817"/>
+<area shape="rect"  href="structStApi_1_1IStGammaCorrectionFilter.html" title="ã¬ã³ãè£æ­£ãã£ã«ã¿ã¼ç¨ã¤ã³ã¿ã¼ãã§ã¼ã¹" alt="" coords="478,841,678,882"/>
+<area shape="rect"  href="structStApi_1_1IStGraphDataFilter.html" title="ã°ã©ããã¼ã¿ãã£ã«ã¿ã¼ç¨ã¤ã³ã¿ã¼ãã§ã¼ã¹" alt="" coords="487,907,669,933"/>
+<area shape="rect"  href="structStApi_1_1IStImageAveragingFilter.html" title="ç»åå¹³ååãã£ã«ã¿ã¼ç¨ã¤ã³ã¿ã¼ãã§ã¼ã¹" alt="" coords="485,958,671,999"/>
+<area shape="rect"  href="structStApi_1_1IStNoiseReductionFilter.html" title="ãã¤ãºè»½æ¸ãã£ã«ã¿ã¼ç¨ã¤ã³ã¿ã¼ãã§ã¼ã¹" alt="" coords="487,1023,669,1065"/>
+<area shape="rect"  href="structStApi_1_1IStSNMeasurementFilter.html" title="SNæ¸¬å®ãã£ã«ã¿ã¼ç¨ã¤ã³ã¿ã¼ãã§ã¼ã¹" alt="" coords="468,1089,688,1116"/>
+<area shape="rect"  href="structStApi_1_1IStDefectivePixelDetectionFilterReleasable.html" title="è§£æ¾å¯è½ãªæ¬ é¥ç»ç´ æ¤åºã¤ã³ã¿ã¼ãã§ã¼ã¹" alt="" coords="745,593,933,634"/>
+<area shape="rect"  href="structStApi_1_1IStImageAveragingFilterReleasable.html" title="è§£æ¾å¯è½ãªç»åç©ç®ç¨ã¤ã³ã¿ã¼ãã§ã¼ã¹" alt="" coords="746,958,933,999"/>
+<area shape="rect"  href="structStApi_1_1IStStreamBufferReleasable.html" title="è§£æ¾å¯è½ãªã¹ããªã¼ã ãããã¡ç¨ã¤ã³ã¿ã¼ãã§ã¼ã¹" alt="" coords="459,1140,697,1167"/>
+<area shape="rect"  href="structStApi_1_1IStSystemReleasable.html" title="è§£æ¾å¯è½ãªã·ã¹ãã ã¢ã¸ã¥ã¼ã«ç¨ã¤ã³ã¿ã¼ãã§ã¼ã¹" alt="" coords="477,1191,679,1217"/>
+<area shape="rect"  href="structStApi_1_1IStDeviceSelectionWnd.html" title="ããã¤ã¹é¸æã¦ã£ã³ãã¦ç¨ã¤ã³ã¿ã¼ãã§ã¼ã¹" alt="" coords="471,1241,685,1268"/>
+<area shape="rect"  href="structStApi_1_1IStGraphDisplayWnd.html" title="ã°ã©ãè¡¨ç¤ºã¦ã£ã³ãã¦ç¨ã¤ã³ã¿ã¼ãã§ã¼ã¹" alt="" coords="479,1292,677,1319"/>
+<area shape="rect"  href="structStApi_1_1IStImageDisplayWnd.html" title="ç»åè¡¨ç¤ºã¦ã£ã³ãã¦ç¨ã¤ã³ã¿ã¼ãã§ã¼ã¹" alt="" coords="478,1343,678,1369"/>
+<area shape="rect"  href="structStApi_1_1IStNodeMapDisplayWnd.html" title="ãã¼ããããè¡¨ç¤ºã¦ã£ã³ãã¦ç¨ã¤ã³ã¿ã¼ãã§ã¼ã¹" alt="" coords="468,1393,688,1420"/>
+<area shape="rect"  href="structStApi_1_1IStWndReleasable.html" title="è§£æ¾å¯è½ãªã¦ã£ã³ãã¦ç¨ã¤ã³ã¿ã¼ãã§ã¼ã¹" alt="" coords="487,1444,669,1471"/>
+</map>
+<center><span class="legend">[<a href="graph_legend.html">凡例</a>]</span></center></div>
+<table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-methods"></a>
+公開メンバ関数</h2></td></tr>
+<tr class="memitem:a3e9da3d4173d22f96664cd8be00c9c70"><td class="memItemLeft" align="right" valign="top">virtual <a class="el" href="group__StApiTL__PublicImpl.html#ga50382bf603d23086b9a3887988985273">StApiCallbackHandle_t</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structStApi_1_1IStRegisterCallback.html#a3e9da3d4173d22f96664cd8be00c9c70">RegisterCallback</a> (<a class="el" href="structStApi_1_1IStCallback.html">IStCallback</a> *pIStCallback)=0</td></tr>
+<tr class="memdesc:a3e9da3d4173d22f96664cd8be00c9c70"><td class="mdescLeft">&#160;</td><td class="mdescRight">コールバック関数を登録します。  <a href="#a3e9da3d4173d22f96664cd8be00c9c70">[詳解]</a><br /></td></tr>
+<tr class="separator:a3e9da3d4173d22f96664cd8be00c9c70"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a642e9d0ae0e64dafa24fd5db03c20fea"><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structStApi_1_1IStRegisterCallback.html#a642e9d0ae0e64dafa24fd5db03c20fea">DeregisterCallback</a> (<a class="el" href="group__StApiTL__PublicImpl.html#ga50382bf603d23086b9a3887988985273">StApiCallbackHandle_t</a> hCallback)=0</td></tr>
+<tr class="memdesc:a642e9d0ae0e64dafa24fd5db03c20fea"><td class="mdescLeft">&#160;</td><td class="mdescRight">コールバック関数の登録を解除します。  <a href="#a642e9d0ae0e64dafa24fd5db03c20fea">[詳解]</a><br /></td></tr>
+<tr class="separator:a642e9d0ae0e64dafa24fd5db03c20fea"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table>
+<a name="details" id="details"></a><h2 class="groupheader">詳解</h2>
+<div class="textblock"><p>StApiコールバック関数の登録および登録解除に使用されるインターフェース </p>
+</div><h2 class="groupheader">関数詳解</h2>
+<a id="a3e9da3d4173d22f96664cd8be00c9c70"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a3e9da3d4173d22f96664cd8be00c9c70">&#9670;&nbsp;</a></span>RegisterCallback()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">virtual <a class="el" href="group__StApiTL__PublicImpl.html#ga50382bf603d23086b9a3887988985273">StApiCallbackHandle_t</a> StApi::IStRegisterCallback::RegisterCallback </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="structStApi_1_1IStCallback.html">IStCallback</a> *&#160;</td>
+          <td class="paramname"><em>pIStCallback</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">pure virtual</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+<p>コールバック関数を登録します。 </p><dl class="params"><dt>引数</dt><dd>
+  <table class="params">
+    <tr><td class="paramdir">[in]</td><td class="paramname">pIStCallback</td><td><a class="el" href="structStApi_1_1IStCallback.html" title="StApiコールバック用インターフェース">IStCallback</a> インターフェースポインター </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>戻り値</dt><dd>コールバック関数識別子 </dd></dl>
+<dl class="exception"><dt>例外</dt><dd>
+  <table class="exception">
+    <tr><td class="paramname">メモリー確保に失敗した場合は、例外</td><td><a class="el" href="classGenICam_1_1GenericException.html" title="GenICam&#39;s exception class">GenICam::GenericException</a> が発生します。 </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a id="a642e9d0ae0e64dafa24fd5db03c20fea"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a642e9d0ae0e64dafa24fd5db03c20fea">&#9670;&nbsp;</a></span>DeregisterCallback()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">virtual void StApi::IStRegisterCallback::DeregisterCallback </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="group__StApiTL__PublicImpl.html#ga50382bf603d23086b9a3887988985273">StApiCallbackHandle_t</a>&#160;</td>
+          <td class="paramname"><em>hCallback</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">pure virtual</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+<p>コールバック関数の登録を解除します。 </p><dl class="params"><dt>引数</dt><dd>
+  <table class="params">
+    <tr><td class="paramdir">[in]</td><td class="paramname">hCallback</td><td>コールバック関数識別子 </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="exception"><dt>例外</dt><dd>
+  <table class="exception">
+    <tr><td class="paramname">引数が不正な場合例外</td><td><a class="el" href="classGenICam_1_1GenericException.html" title="GenICam&#39;s exception class">GenICam::GenericException</a> が発生します。 </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+</div><!-- contents -->
+<!-- HTML footer for doxygen 1.8.13-->
+<!-- start footer part -->
+<hr class="footer"/>
+	<address class="footer">
+		<small>
+2021年10月26日(火) 13時10分26秒作成 - Sentech SDK / 構成:  &#160;
+			<a href="http://www.sentech.co.jp/">
+				<img class="footer" src="string_omron_sentech.png" alt="OMRON SENTECH CO., LTD"/>
+			</a>
+			<!--
+				DoxyGen Version =  1.8.15
+			-->
+		</small>
+	</address>
+</body>
+</html>

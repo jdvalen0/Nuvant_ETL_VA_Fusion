@@ -1,0 +1,463 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "https://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=9"/>
+<meta name="generator" content="Doxygen 1.8.15"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>Sentech SDK: StApi::IStSystemInfo インタフェース</title>
+<link href="tabs.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="jquery.js"></script>
+<script type="text/javascript" src="dynsections.js"></script>
+<link href="doxygen.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+<div id="top"><!-- do not remove this div, it is closed by doxygen! -->
+<div id="titlearea">
+<table cellspacing="0" cellpadding="0">
+ <tbody>
+ <tr style="height: 56px;">
+  <td id="projectalign" style="padding-left: 0.5em;">
+   <div id="projectname">Sentech SDK
+   </div>
+  </td>
+ </tr>
+ </tbody>
+</table>
+</div>
+<!-- end header part -->
+<!-- 構築: Doxygen 1.8.15 -->
+<script type="text/javascript" src="menudata.js"></script>
+<script type="text/javascript" src="menu.js"></script>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:cf05388f2679ee054f2beb29a391d25f4e673ac3&amp;dn=gpl-2.0.txt GPL-v2 */
+$(function() {
+  initMenu('',false,false,'search.php','検索');
+});
+/* @license-end */</script>
+<div id="main-nav"></div>
+<div id="nav-path" class="navpath">
+  <ul>
+<li class="navelem"><b>StApi</b></li><li class="navelem"><a class="el" href="structStApi_1_1IStSystemInfo.html">IStSystemInfo</a></li>  </ul>
+</div>
+</div><!-- top -->
+<div class="header">
+  <div class="summary">
+<a href="#pub-methods">公開メンバ関数</a> &#124;
+<a href="structStApi_1_1IStSystemInfo-members.html">全メンバ一覧</a>  </div>
+  <div class="headertitle">
+<div class="title">StApi::IStSystemInfo インタフェース<span class="mlabels"><span class="mlabel">abstract</span></span><div class="ingroups"><a class="el" href="group__StApiTL__PublicInterface.html">StApi トランスポート層モジュール抽象インターフェース</a></div></div>  </div>
+</div><!--header-->
+<div class="contents">
+
+<p>システム情報用インターフェース  
+ <a href="structStApi_1_1IStSystemInfo.html#details">[詳解]</a></p>
+<table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-methods"></a>
+公開メンバ関数</h2></td></tr>
+<tr class="memitem:a3ffce58155515db7467c3b05679496b0"><td class="memItemLeft" align="right" valign="top">virtual <a class="el" href="classGenICam_1_1gcstring.html">GenICam::gcstring</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structStApi_1_1IStSystemInfo.html#a3ffce58155515db7467c3b05679496b0">GetID</a> () const =0</td></tr>
+<tr class="memdesc:a3ffce58155515db7467c3b05679496b0"><td class="mdescLeft">&#160;</td><td class="mdescRight">GenTL::TLInfo() を使用して GenTL::TL_INFO_ID の情報を取得します。  <a href="#a3ffce58155515db7467c3b05679496b0">[詳解]</a><br /></td></tr>
+<tr class="separator:a3ffce58155515db7467c3b05679496b0"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aeee902197215e42f2b0a0204ed52e047"><td class="memItemLeft" align="right" valign="top">virtual <a class="el" href="classGenICam_1_1gcstring.html">GenICam::gcstring</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structStApi_1_1IStSystemInfo.html#aeee902197215e42f2b0a0204ed52e047">GetVendor</a> () const =0</td></tr>
+<tr class="memdesc:aeee902197215e42f2b0a0204ed52e047"><td class="mdescLeft">&#160;</td><td class="mdescRight">GenTL::TLInfo() を使用して GenTL::TL_INFO_VENDOR の情報を取得します。  <a href="#aeee902197215e42f2b0a0204ed52e047">[詳解]</a><br /></td></tr>
+<tr class="separator:aeee902197215e42f2b0a0204ed52e047"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a17f1c5a7955cd49d688a42e120565a95"><td class="memItemLeft" align="right" valign="top">virtual <a class="el" href="classGenICam_1_1gcstring.html">GenICam::gcstring</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structStApi_1_1IStSystemInfo.html#a17f1c5a7955cd49d688a42e120565a95">GetModel</a> () const =0</td></tr>
+<tr class="memdesc:a17f1c5a7955cd49d688a42e120565a95"><td class="mdescLeft">&#160;</td><td class="mdescRight">GenTL::TLInfo() を使用して GenTL::TL_INFO_MODEL の情報を取得します。  <a href="#a17f1c5a7955cd49d688a42e120565a95">[詳解]</a><br /></td></tr>
+<tr class="separator:a17f1c5a7955cd49d688a42e120565a95"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a20ddd30275e9e7b733fcb8ef1184a021"><td class="memItemLeft" align="right" valign="top">virtual <a class="el" href="classGenICam_1_1gcstring.html">GenICam::gcstring</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structStApi_1_1IStSystemInfo.html#a20ddd30275e9e7b733fcb8ef1184a021">GetVersion</a> () const =0</td></tr>
+<tr class="memdesc:a20ddd30275e9e7b733fcb8ef1184a021"><td class="mdescLeft">&#160;</td><td class="mdescRight">GenTL::TLInfo() を使用して GenTL::TL_INFO_VERSION の情報を取得します。  <a href="#a20ddd30275e9e7b733fcb8ef1184a021">[詳解]</a><br /></td></tr>
+<tr class="separator:a20ddd30275e9e7b733fcb8ef1184a021"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a96e3f758844dbcc029bcca9b4ce64430"><td class="memItemLeft" align="right" valign="top">virtual <a class="el" href="classGenICam_1_1gcstring.html">GenICam::gcstring</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structStApi_1_1IStSystemInfo.html#a96e3f758844dbcc029bcca9b4ce64430">GetTLType</a> () const =0</td></tr>
+<tr class="memdesc:a96e3f758844dbcc029bcca9b4ce64430"><td class="mdescLeft">&#160;</td><td class="mdescRight">GenTL::TLInfo() を使用して GenTL::TL_INFO_TLTYPE の情報を取得します。  <a href="#a96e3f758844dbcc029bcca9b4ce64430">[詳解]</a><br /></td></tr>
+<tr class="separator:a96e3f758844dbcc029bcca9b4ce64430"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:af90f0f8c6da7e2e87a4d9a39f347b2c8"><td class="memItemLeft" align="right" valign="top">virtual <a class="el" href="classGenICam_1_1gcstring.html">GenICam::gcstring</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structStApi_1_1IStSystemInfo.html#af90f0f8c6da7e2e87a4d9a39f347b2c8">GetName</a> () const =0</td></tr>
+<tr class="memdesc:af90f0f8c6da7e2e87a4d9a39f347b2c8"><td class="mdescLeft">&#160;</td><td class="mdescRight">GenTL::TLInfo() を使用して GenTL::TL_INFO_NAME の情報を取得します。  <a href="#af90f0f8c6da7e2e87a4d9a39f347b2c8">[詳解]</a><br /></td></tr>
+<tr class="separator:af90f0f8c6da7e2e87a4d9a39f347b2c8"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a7fe0fe197bc7ad1c3f45ad8895e4fcbe"><td class="memItemLeft" align="right" valign="top">virtual <a class="el" href="classGenICam_1_1gcstring.html">GenICam::gcstring</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structStApi_1_1IStSystemInfo.html#a7fe0fe197bc7ad1c3f45ad8895e4fcbe">GetPathName</a> () const =0</td></tr>
+<tr class="memdesc:a7fe0fe197bc7ad1c3f45ad8895e4fcbe"><td class="mdescLeft">&#160;</td><td class="mdescRight">GenTL::TLInfo() を使用して GenTL::TL_INFO_PATHNAME の情報を取得します。  <a href="#a7fe0fe197bc7ad1c3f45ad8895e4fcbe">[詳解]</a><br /></td></tr>
+<tr class="separator:a7fe0fe197bc7ad1c3f45ad8895e4fcbe"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:afea084df235f4be2afcc9f452dd3eec3"><td class="memItemLeft" align="right" valign="top">virtual <a class="el" href="classGenICam_1_1gcstring.html">GenICam::gcstring</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structStApi_1_1IStSystemInfo.html#afea084df235f4be2afcc9f452dd3eec3">GetDisplayName</a> () const =0</td></tr>
+<tr class="memdesc:afea084df235f4be2afcc9f452dd3eec3"><td class="mdescLeft">&#160;</td><td class="mdescRight">GenTL::TLInfo() を使用して GenTL::TL_INFO_DISPLAYNAME の情報を取得します。  <a href="#afea084df235f4be2afcc9f452dd3eec3">[詳解]</a><br /></td></tr>
+<tr class="separator:afea084df235f4be2afcc9f452dd3eec3"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a477979a2410d96df0fbb0a6d18741834"><td class="memItemLeft" align="right" valign="top">virtual int32_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structStApi_1_1IStSystemInfo.html#a477979a2410d96df0fbb0a6d18741834">GetCharEncoding</a> () const =0</td></tr>
+<tr class="memdesc:a477979a2410d96df0fbb0a6d18741834"><td class="mdescLeft">&#160;</td><td class="mdescRight">GenTL::TLInfo() を使用して GenTL::TL_INFO_CHAR_ENCODING の情報を取得します。  <a href="#a477979a2410d96df0fbb0a6d18741834">[詳解]</a><br /></td></tr>
+<tr class="separator:a477979a2410d96df0fbb0a6d18741834"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a129f8e9ac9ee1eb025ba3929c0908e1c"><td class="memItemLeft" align="right" valign="top">virtual uint32_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structStApi_1_1IStSystemInfo.html#a129f8e9ac9ee1eb025ba3929c0908e1c">GetGenTLVersionMajor</a> () const =0</td></tr>
+<tr class="memdesc:a129f8e9ac9ee1eb025ba3929c0908e1c"><td class="mdescLeft">&#160;</td><td class="mdescRight">GenTL::TLInfo() を使用して GenTL::TL_INFO_GENTL_VER_MAJOR の情報を取得します。  <a href="#a129f8e9ac9ee1eb025ba3929c0908e1c">[詳解]</a><br /></td></tr>
+<tr class="separator:a129f8e9ac9ee1eb025ba3929c0908e1c"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:adf14209aa132d641d2391a39cace6278"><td class="memItemLeft" align="right" valign="top">virtual uint32_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structStApi_1_1IStSystemInfo.html#adf14209aa132d641d2391a39cace6278">GetGenTLVersionMinor</a> () const =0</td></tr>
+<tr class="memdesc:adf14209aa132d641d2391a39cace6278"><td class="mdescLeft">&#160;</td><td class="mdescRight">GenTL::TLInfo() を使用して GenTL::TL_INFO_GENTL_VER_MINOR の情報を取得します。  <a href="#adf14209aa132d641d2391a39cace6278">[詳解]</a><br /></td></tr>
+<tr class="separator:adf14209aa132d641d2391a39cace6278"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table>
+<a name="details" id="details"></a><h2 class="groupheader">詳解</h2>
+<div class="textblock"><p>システム情報用インターフェース </p>
+</div><h2 class="groupheader">関数詳解</h2>
+<a id="a3ffce58155515db7467c3b05679496b0"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a3ffce58155515db7467c3b05679496b0">&#9670;&nbsp;</a></span>GetID()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">virtual <a class="el" href="classGenICam_1_1gcstring.html">GenICam::gcstring</a> StApi::IStSystemInfo::GetID </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">pure virtual</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+<p>GenTL::TLInfo() を使用して GenTL::TL_INFO_ID の情報を取得します。 </p><dl class="section return"><dt>戻り値</dt><dd>TL_INFO_ID データ </dd></dl>
+<dl class="exception"><dt>例外</dt><dd>
+  <table class="exception">
+    <tr><td class="paramname">メモリー確保に失敗した場合や</td><td>GenTL::TLInfo() がエラーを返した場合は、例外 <a class="el" href="classGenICam_1_1GenericException.html" title="GenICam&#39;s exception class">GenICam::GenericException</a> が発生します。 </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a id="aeee902197215e42f2b0a0204ed52e047"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aeee902197215e42f2b0a0204ed52e047">&#9670;&nbsp;</a></span>GetVendor()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">virtual <a class="el" href="classGenICam_1_1gcstring.html">GenICam::gcstring</a> StApi::IStSystemInfo::GetVendor </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">pure virtual</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+<p>GenTL::TLInfo() を使用して GenTL::TL_INFO_VENDOR の情報を取得します。 </p><dl class="section return"><dt>戻り値</dt><dd>TL_INFO_VENDOR データ </dd></dl>
+<dl class="exception"><dt>例外</dt><dd>
+  <table class="exception">
+    <tr><td class="paramname">メモリー確保に失敗した場合や</td><td>GenTL::TLInfo() がエラーを返した場合は、例外 <a class="el" href="classGenICam_1_1GenericException.html" title="GenICam&#39;s exception class">GenICam::GenericException</a> が発生します。 </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a id="a17f1c5a7955cd49d688a42e120565a95"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a17f1c5a7955cd49d688a42e120565a95">&#9670;&nbsp;</a></span>GetModel()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">virtual <a class="el" href="classGenICam_1_1gcstring.html">GenICam::gcstring</a> StApi::IStSystemInfo::GetModel </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">pure virtual</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+<p>GenTL::TLInfo() を使用して GenTL::TL_INFO_MODEL の情報を取得します。 </p><dl class="section return"><dt>戻り値</dt><dd>TL_INFO_MODEL データ </dd></dl>
+<dl class="exception"><dt>例外</dt><dd>
+  <table class="exception">
+    <tr><td class="paramname">メモリー確保に失敗した場合や</td><td>GenTL::TLInfo() がエラーを返した場合は、例外 <a class="el" href="classGenICam_1_1GenericException.html" title="GenICam&#39;s exception class">GenICam::GenericException</a> が発生します。 </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a id="a20ddd30275e9e7b733fcb8ef1184a021"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a20ddd30275e9e7b733fcb8ef1184a021">&#9670;&nbsp;</a></span>GetVersion()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">virtual <a class="el" href="classGenICam_1_1gcstring.html">GenICam::gcstring</a> StApi::IStSystemInfo::GetVersion </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">pure virtual</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+<p>GenTL::TLInfo() を使用して GenTL::TL_INFO_VERSION の情報を取得します。 </p><dl class="section return"><dt>戻り値</dt><dd>TL_INFO_VERSION データ </dd></dl>
+<dl class="exception"><dt>例外</dt><dd>
+  <table class="exception">
+    <tr><td class="paramname">メモリー確保に失敗した場合や</td><td>GenTL::TLInfo() がエラーを返した場合は、例外 <a class="el" href="classGenICam_1_1GenericException.html" title="GenICam&#39;s exception class">GenICam::GenericException</a> が発生します。 </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a id="a96e3f758844dbcc029bcca9b4ce64430"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a96e3f758844dbcc029bcca9b4ce64430">&#9670;&nbsp;</a></span>GetTLType()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">virtual <a class="el" href="classGenICam_1_1gcstring.html">GenICam::gcstring</a> StApi::IStSystemInfo::GetTLType </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">pure virtual</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+<p>GenTL::TLInfo() を使用して GenTL::TL_INFO_TLTYPE の情報を取得します。 </p><dl class="section return"><dt>戻り値</dt><dd>TL_INFO_TLTYPE データ </dd></dl>
+<dl class="exception"><dt>例外</dt><dd>
+  <table class="exception">
+    <tr><td class="paramname">メモリー確保に失敗した場合や</td><td>GenTL::TLInfo() がエラーを返した場合は、例外 <a class="el" href="classGenICam_1_1GenericException.html" title="GenICam&#39;s exception class">GenICam::GenericException</a> が発生します。 </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a id="af90f0f8c6da7e2e87a4d9a39f347b2c8"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#af90f0f8c6da7e2e87a4d9a39f347b2c8">&#9670;&nbsp;</a></span>GetName()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">virtual <a class="el" href="classGenICam_1_1gcstring.html">GenICam::gcstring</a> StApi::IStSystemInfo::GetName </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">pure virtual</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+<p>GenTL::TLInfo() を使用して GenTL::TL_INFO_NAME の情報を取得します。 </p><dl class="section return"><dt>戻り値</dt><dd>TL_INFO_NAME データ </dd></dl>
+<dl class="exception"><dt>例外</dt><dd>
+  <table class="exception">
+    <tr><td class="paramname">メモリー確保に失敗した場合や</td><td>GenTL::TLInfo() がエラーを返した場合は、例外 <a class="el" href="classGenICam_1_1GenericException.html" title="GenICam&#39;s exception class">GenICam::GenericException</a> が発生します。 </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a id="a7fe0fe197bc7ad1c3f45ad8895e4fcbe"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a7fe0fe197bc7ad1c3f45ad8895e4fcbe">&#9670;&nbsp;</a></span>GetPathName()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">virtual <a class="el" href="classGenICam_1_1gcstring.html">GenICam::gcstring</a> StApi::IStSystemInfo::GetPathName </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">pure virtual</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+<p>GenTL::TLInfo() を使用して GenTL::TL_INFO_PATHNAME の情報を取得します。 </p><dl class="section return"><dt>戻り値</dt><dd>TL_INFO_PATHNAME データ </dd></dl>
+<dl class="exception"><dt>例外</dt><dd>
+  <table class="exception">
+    <tr><td class="paramname">メモリー確保に失敗した場合や</td><td>GenTL::TLInfo() がエラーを返した場合は、例外 <a class="el" href="classGenICam_1_1GenericException.html" title="GenICam&#39;s exception class">GenICam::GenericException</a> が発生します。 </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a id="afea084df235f4be2afcc9f452dd3eec3"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#afea084df235f4be2afcc9f452dd3eec3">&#9670;&nbsp;</a></span>GetDisplayName()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">virtual <a class="el" href="classGenICam_1_1gcstring.html">GenICam::gcstring</a> StApi::IStSystemInfo::GetDisplayName </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">pure virtual</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+<p>GenTL::TLInfo() を使用して GenTL::TL_INFO_DISPLAYNAME の情報を取得します。 </p><dl class="section return"><dt>戻り値</dt><dd>TL_INFO_DISPLAYNAME データ </dd></dl>
+<dl class="exception"><dt>例外</dt><dd>
+  <table class="exception">
+    <tr><td class="paramname">メモリー確保に失敗した場合や</td><td>GenTL::TLInfo() がエラーを返した場合は、例外 <a class="el" href="classGenICam_1_1GenericException.html" title="GenICam&#39;s exception class">GenICam::GenericException</a> が発生します。 </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a id="a477979a2410d96df0fbb0a6d18741834"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a477979a2410d96df0fbb0a6d18741834">&#9670;&nbsp;</a></span>GetCharEncoding()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">virtual int32_t StApi::IStSystemInfo::GetCharEncoding </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">pure virtual</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+<p>GenTL::TLInfo() を使用して GenTL::TL_INFO_CHAR_ENCODING の情報を取得します。 </p><dl class="section return"><dt>戻り値</dt><dd>TL_INFO_CHAR_ENCODING データ </dd></dl>
+<dl class="exception"><dt>例外</dt><dd>
+  <table class="exception">
+    <tr><td class="paramname">メモリー確保に失敗した場合や</td><td>GenTL::TLInfo() がエラーを返した場合は、例外 <a class="el" href="classGenICam_1_1GenericException.html" title="GenICam&#39;s exception class">GenICam::GenericException</a> が発生します。 </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a id="a129f8e9ac9ee1eb025ba3929c0908e1c"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a129f8e9ac9ee1eb025ba3929c0908e1c">&#9670;&nbsp;</a></span>GetGenTLVersionMajor()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">virtual uint32_t StApi::IStSystemInfo::GetGenTLVersionMajor </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">pure virtual</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+<p>GenTL::TLInfo() を使用して GenTL::TL_INFO_GENTL_VER_MAJOR の情報を取得します。 </p><dl class="section return"><dt>戻り値</dt><dd>TL_INFO_GENTL_VER_MAJOR データ </dd></dl>
+<dl class="exception"><dt>例外</dt><dd>
+  <table class="exception">
+    <tr><td class="paramname">メモリー確保に失敗した場合や</td><td>GenTL::TLInfo() がエラーを返した場合は、例外 <a class="el" href="classGenICam_1_1GenericException.html" title="GenICam&#39;s exception class">GenICam::GenericException</a> が発生します。 </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a id="adf14209aa132d641d2391a39cace6278"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#adf14209aa132d641d2391a39cace6278">&#9670;&nbsp;</a></span>GetGenTLVersionMinor()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">virtual uint32_t StApi::IStSystemInfo::GetGenTLVersionMinor </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">pure virtual</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+<p>GenTL::TLInfo() を使用して GenTL::TL_INFO_GENTL_VER_MINOR の情報を取得します。 </p><dl class="section return"><dt>戻り値</dt><dd>TL_INFO_GENTL_VER_MINOR データ </dd></dl>
+<dl class="exception"><dt>例外</dt><dd>
+  <table class="exception">
+    <tr><td class="paramname">メモリー確保に失敗した場合や</td><td>GenTL::TLInfo() がエラーを返した場合は、例外 <a class="el" href="classGenICam_1_1GenericException.html" title="GenICam&#39;s exception class">GenICam::GenericException</a> が発生します。 </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+</div><!-- contents -->
+<!-- HTML footer for doxygen 1.8.13-->
+<!-- start footer part -->
+<hr class="footer"/>
+	<address class="footer">
+		<small>
+2021年10月26日(火) 13時10分26秒作成 - Sentech SDK / 構成:  &#160;
+			<a href="http://www.sentech.co.jp/">
+				<img class="footer" src="string_omron_sentech.png" alt="OMRON SENTECH CO., LTD"/>
+			</a>
+			<!--
+				DoxyGen Version =  1.8.15
+			-->
+		</small>
+	</address>
+</body>
+</html>

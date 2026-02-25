@@ -1,0 +1,42 @@
+********************************************************************************
+
+Attention:
+--------------------------------------------------------------------------------
+USE OF THE SOFTWARE IS SUBJECT TO THE OMRON SENTECH CO., LTD. (OMRON SENTECH) SOFWARE LICENSE TERMS SET FORTH HEREIN. USING THE SOFTWARE INDICATES YOUR ACCEPTANCE OF THESE LICENSE TERMS. IF YOU DO NOT ACCEPT THESE LICENSE TERMS, YOU COULD NOT USE THE SOFTWARE.
+
+OMRON SENTECH SOFTWARE LICENSE TERMS:
+--------------------------------------------------------------------------------
+The following License Terms govern your use of the accompanying Software unless you have a separate written agreement with OMRON SENTECH.
+
+Third-party software
+--------------------
+This software contains 3rd party software which come with their own license. Notwithstanding the terms and conditions of this Agreement, the terms and conditions of use of the software of the third party shall be subject to the terms and conditions of their own license. You can find the list of the 3rd party software in file "/opt/sentech/share/thirdparties/readme-license.txt" (if the installation destination is /opt/sentech).
+
+License Grant
+-------------
+OMRON SENTECH grants you a license to Use a copy of the Software. "Use" means storing, installing, loading and/or executing the Software. 
+
+Ownership
+---------
+The software is owned and copyrighted by OMRON SENTECH or the third party. Your license confers no title or ownership in the Software and is not a sale of any rights in the Software. 
+
+Restriction on Reverse Engineering
+----------------------------------
+You may not modify, reverse engineering, decompile or disassemble the Software unless you have a separate written agreement with OMRON SENTECH except as otherwise provided in this Agreement.
+
+Transfer
+--------
+Your license will automatically terminate upon any transfer of the Software. Upon transfer, you must deliver the Software including any copies and related documentation, to the transferee. The transferee must accept these License Terms as a condition to the transfer.
+
+Termination
+-----------
+OMRON SENTECH may terminate your license upon notice for failure to comply with any of these License Terms. Upon termination, you must immediately destroy the Software, together with all copies, adaptations and merged portions in any form.
+
+US Government Restricted Rights
+-------------------------------
+The Software and documentation have been developed entirely at private expense and are provided as "Commercial Computer Software" or "restricted computer software". They are delivered and licensed as "commercial computer software" as defined in DFARS 252.227-7013 (Oct 1988), DFARS 252.211-7015 (May 1991) or DFARS 252.227-7014 (Jun 1995), as a "commercial item" as defined in FAR 2.101 (a), or as "Restricted computer software" as defined in FAR 52.227-19 (June 1987) (or any equivalent agency regulation or contract clause), whichever is applicable. You have only those rights, provided for such Software and Documentation by the applicable FAR or DFARS clause or the OMRON SENTECH standard software agreement for the product.
+
+THIS SOFTWARE IS PROVIDED BY OMRON SENTECH, THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS" AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE DISCLAIMED. IN NO EVENT SHALL OMRON SENTECH, THE COPYRIGHT OWNER OR CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE. 
+
+
+********************************************************************************

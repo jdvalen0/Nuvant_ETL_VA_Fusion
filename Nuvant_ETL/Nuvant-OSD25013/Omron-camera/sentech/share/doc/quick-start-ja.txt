@@ -1,0 +1,222 @@
+******************************************************************************
+SentechSDK Linux version 1.1.2-Update5
+(C) 2021 OMRON SENTECH CO., LTD.
+
+クイックスタート
+目次：
+* 概要
+* インストール手順とビューワーアプリケーションの実行
+* インストール結果
+* アンインストール手順
+* サンプルコードのビルドおよび実行
+* 注意項目
+
+詳細情報はSDKのドキュメントをご参照ください：
+	/インストールパス/share/doc/manual-ja/main.html
+
+******************************************************************************
+
+
+******************************************************************************
+* 概要
+******************************************************************************
+ファイル：
+- SentechSDK-1.1.2-Update5-Ubuntu1804-aarch64.tgz:
+  動作確認済みOS: Ubuntu 18.04 (NVidia Jetson Nano Tegra Aarch64)
+
+******************************************************************************
+* インストール手順とビューワーアプリケーションの実行
+******************************************************************************
+ご注意：既に旧バージョンのSentechSDKがインストールされている場合には、
+　　　予め旧バージョンのアンインストールスクリプトを実行してください。
+      $ sudo bash -c /opt/sentech/bin/stuninstall.sh
+
+1. tgzファイルを解凍します：
+  $ tar xf SentechSDK-1.1.2-Update5-Ubuntu1804-aarch64.tgz
+  $ cd SentechSDK-1.1.2-Update5-Ubuntu1804-aarch64
+ 
+2. インストーラを実行します（スーパーユーザーのパスワードが必要）。デフォルトのインストールパスは/opt/sentechです。
+  $ ./SentechSDK-1.1.2-Update5-Ubuntu1804-aarch64-install.run <Parameters>
+
+<Parameters>はオプションです。 
+  --accept :ソフトウェア利用許諾契約に対して自動で同意します。
+  -- "-y"                 : インストール中の全ての質問に対して自動的に「はい」で回答します。
+  -- "-p /install/path"   : インストールパスを/install/pathに設定します。
+  -- "-y -p /install/path" : -y, -p 両方を指定する場合
+
+デフォルトインストールコマンド例：
+  $ ./SentechSDK-1.1.2-Update5-Ubuntu1804-aarch64-install.run
+
+全ての質問に自動的に「はい」で回答し、インストールパスを/opt/my-install-pathに設定する場合：
+  $ ./SentechSDK-1.1.2-Update5-Ubuntu1804-aarch64-install.run --accept -- "-y -p /opt/my-install-path"
+
+3. 環境変数の設定（STAPI_ROOT_PATH, GENICAM_GENTL64_PATHなど):
+  $ source /opt/sentech/.stprofile
+
+※上記コマンドをログインスクリプト(例：$HOME/.bashrcなど)に追加することを推奨します。
+※グローバルで全てのユーザーに適用したい場合はスーパーユーザーで/opt/sentech/.stprofileを/etc/profile.d/stprofile.sh へ、
+  /opt/sentech/stldlib.conf を/etc/ld.so.conf.d/へコピーして下さい。
+　$ sudo cp /opt/sentech/.stprofile /etc/profile.d/stprofile.sh
+　$ sudo cp /opt/sentech/stldlib.conf /etc/ld.so.conf.d/
+　$ sudo ldconfig
+
+※サンプルコードのビルド時および実行時(ビューワー含む)に、
+  STAPI_ROOT_PATHやGENICAM_GENTL64_PATHの環境変数が必要となります。
+  STAPI_ROOT_PATHはSentechSDKのインストールパスで、デフォルトでは/opt/sentechになります。
+  GENICAM_GENTL64_PATHはGenTLのctiファイルのディレクトリで、デフォルトは$STAPI_ROOT_PATH/libになります。
+  32bit環境では、GENICAM_GENTL32_PATHになります。
+
+4. OSパラメータチューニング(ネットワーク：MTU、戻り経路フィルタ、ソケットバッファ。USB: USBバッファ）：
+ネットワーク(GigEVisionカメラ使用時に必要)：
+$ /opt/sentech/bin/setnetwork.sh 
+又はネットワークインタフェース名が既知の場合：
+$ /opt/sentech/bin/setnetwork.sh　＜インタフェース名＞
+
+USB(USB3Visionカメラ使用時に必要):
+$ /opt/sentech/bin/setusb.sh
+
+※OSパラメータチューニングは再起動後無効になります。
+※OSパラメータチューニングの詳細につきましては、トラブルシューティング(troubleshoot-ja.txt)をご参照ください。
+
+5. ビューワーアプリケーションを実行します
+$ /opt/sentech/bin/StViewer
+※環境変数を必ず設定してください。
+
+
+******************************************************************************
+* インストール結果
+******************************************************************************
+以下の構成で必要なファイルがインストールされます。
+/etc/
+    |-./udev/rules.d/30-stcam.rules                                 udevの設定
+
+${STAPI_ROOT_PATH}/
+                  |-./.stprofile                                    環境変数の設定
+                  |-./stdlib.conf                                   ロードライブラリパスシステム設定
+                  |-./bin/
+                  |      |-./setnetwork.sh                          ネットワークパラメーターチューニング
+                  |      |-./setusb.sh                              USBパラメーターチューニング
+                  |      |-./stuninstall.sh                         アンインストールスクリプト
+                  |      |-./StViewer                               ビューワーアプリケーション
+                  |      |-./StFWUpdater                            GigEカメラのファームウェアアプデート
+                  |      |-./GigECameraIPConfig                     GigEカメラのIP設定ツール
+                  | 
+                  |-./lib/
+                  |      |-./GenICam/*.so                           GenICamライブラリ
+                  |      |-./libStApi_C.*                           StApiのC言語ライブラリ
+                  |      |-./libStApi_TL.*                          StApiのTLライブラリ
+                  |      |-./libStApi_IP.*                          StApiの画像処理ライブラリ
+                  |      |-./libStApi_GUI_qt.*                      StApiのQtベースのGUIライブラリ
+                  |      |-./libstgentl*                            OMRON SENTECH GenTLのctiファイル
+                  |      |-./libusb*                                usbライブラリ
+                  |
+                  |-./include/
+                  |          |-./GenICam/*                          開発用GenICamのインクルードファイル
+                  |          |-./StApi/*                            開発用StApiのインクルードファイル
+                  |
+                  |-./share/
+                           |-./doc/*                                クイックガイド、トラブルシュート、SDKのドキュメント
+                           |-./sample/C++/*                         C++言語サンプルコード
+                           |-./sample/C/*                           C言語サンプルコード
+                           |-./thirdparties/*                       サードパティー関連ライセンス情報
+                  
+
+******************************************************************************
+* アンインストール手順
+******************************************************************************
+- .stprofileに記載されている環境変数を手動でログインスクリプトなどに追加した場合は、手動で削除してください。
+- アンインストールスクリプトを実行するとインストールパスの中の全てのファイルやディレクトリが削除されます。
+  /etc/udev/rules.d/30-stcam.rulesも削除されます。
+  アンインストールスクリプトの実行方法：
+   $ sudo bash -c /opt/sentech/bin/stuninstall.sh
+   
+******************************************************************************
+* サンプルコードのビルドおよび実行
+******************************************************************************
+サンプルコードをビルドする際は、必ず環境変数を設定してください。
+設定方法は上記のインストール手順3をご参照ください。
+サンプルコードをビルドするために、GNU gcc-c++やmakeなどの開発ツールが必要となります。
+Linux OSをインストールする際に標準的なパケージを設定している場合は、別途インストールする必要はありません。
+インストールする場合は以下を実行してください：
+- Ubuntu: $ sudo apt-get install build-essential
+
+※OpenCVが必要なサンプルコードが含まれています。
+  OpenCVが見つからない場合、該当サンプルコードのビルドがスキップされます。
+  OpenCVのインストール方法：
+   - Ubuntu：$ sudo apt-get install libopencv-dev
+   OpenCVにつきましては、http://www.opencv.orgをご参照ください
+
+※QtのSDKが必要なサンプルコードが含まれています。
+  Qtウェブサイト(推奨)またはLinuxのパッケージレポジトリからダウンロードし、
+  Qtをインストールしてください。
+  Linuxのパッケージレポジトリを使用する場合、下記のコマンドを実行します。
+   - Ubuntu: $ sudo apt-get install qt5-default qtcreator
+  Qtにつきましては、http://doc.qt.io/qt-5/linux.htmlをご参照ください。
+
+サンプルコードのビルド方法:
+・Make経由
+・CMake経由(CMake 3.2以降)
+・qmake (QtのSDKを必要とするサンプルコードのみ)
+※ビルド中にトラブルなどが発生した場合はtroubleshoot-ja.txtをご参照ください。
+
+---------------------------------------------------------
+・Make経由：
+---------------------------------------------------------
+1. ビルド先のフォルダを作成します：
+$ mkdir ~/samplebuild
+$ cd ~/samplebuild
+
+2. Makeを実行します（QtのSDKを必要としないサンプルコードを全てビルドする場合）：
+$ make --file=$STAPI_ROOT_PATH/share/sample/C++/Makefile
+※1つのサンプルコードのみビルドする場合(例:Grab)： 
+   $ make Grab --file=$STAPI_ROOT_PATH/share/sample/C++/Makefile
+
+3. 実行：
+実行ファイルはビルド先フォルダ内に生成されます(例:~/samplebuild/)
+
+---------------------------------------------------------
+・CMake 3.2以降経由：
+---------------------------------------------------------
+1. ビルド先フォルダを作成します：
+$ mkdir ~/samplebuild
+$ cd ~/samplebuild
+
+2. CMakeを実行します（QtのSDKを必要としないサンプルコードを全てビルドする場合）：
+$ cmake $STAPI_ROOT_PATH/share/sample/C++
+又はLinux OSにより
+$ cmake3 $STAPI_ROOT_PATH/share/sample/C++
+※1つのサンプルコードのみビルドする例： $ cmake $STAPI_ROOT_PATH/share/sample/C++/Grab
+
+3. Makeを実行します：
+$ make
+
+4. 実行：
+実行ファイルはビルド先フォルダ内のサブフォルダの中に生成されます(例:~/samplebuild/Grab)。
+※1つのサンプルコードのみビルドした場合、実行ファイルはビルド先フォルダに生成されます。
+
+---------------------------------------------------------
+・qmake (QtのSDKを必要とするサンプルコードのみ)
+---------------------------------------------------------
+Qt Creatorで*.proファイルを開き、ビルドしてください。
+コンソールでビルドする場合は、qmakeを利用します。
+例：
+$ mkdir ~/StViewer
+$ cd ~/StViewer
+ディストリビューションにより
+$ qmake $STAPI_ROOT_PATH/share/sample/C++/StViewerQt/StViewer
+或いは
+$ qmake-qt5 $STAPI_ROOT_PATH/share/sample/C++/StViewerQt/StViewer
+
+$ make
+
+実行：
+$ ./StViewer
+
+******************************************************************************
+* 注意項目
+******************************************************************************
+・USB3Visionカメラ：
+　- 弊社のV4L2のドライバがインストールされている場合は、
+    V4L2をアンインストールするか、
+    そのモジュールをアンロードすることが必要となります。
+    V4L2のモジュールがロードされている場合、画像を取得することができません。

@@ -1,0 +1,193 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "https://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=9"/>
+<meta name="generator" content="Doxygen 1.8.15"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>Sentech SDK: StApi::IStSNMeasurementResult インタフェース</title>
+<link href="tabs.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="jquery.js"></script>
+<script type="text/javascript" src="dynsections.js"></script>
+<link href="doxygen.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+<div id="top"><!-- do not remove this div, it is closed by doxygen! -->
+<div id="titlearea">
+<table cellspacing="0" cellpadding="0">
+ <tbody>
+ <tr style="height: 56px;">
+  <td id="projectalign" style="padding-left: 0.5em;">
+   <div id="projectname">Sentech SDK
+   </div>
+  </td>
+ </tr>
+ </tbody>
+</table>
+</div>
+<!-- end header part -->
+<!-- 構築: Doxygen 1.8.15 -->
+<script type="text/javascript" src="menudata.js"></script>
+<script type="text/javascript" src="menu.js"></script>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:cf05388f2679ee054f2beb29a391d25f4e673ac3&amp;dn=gpl-2.0.txt GPL-v2 */
+$(function() {
+  initMenu('',false,false,'search.php','検索');
+});
+/* @license-end */</script>
+<div id="main-nav"></div>
+<div id="nav-path" class="navpath">
+  <ul>
+<li class="navelem"><b>StApi</b></li><li class="navelem"><a class="el" href="structStApi_1_1IStSNMeasurementResult.html">IStSNMeasurementResult</a></li>  </ul>
+</div>
+</div><!-- top -->
+<div class="header">
+  <div class="summary">
+<a href="#pub-methods">公開メンバ関数</a> &#124;
+<a href="structStApi_1_1IStSNMeasurementResult-members.html">全メンバ一覧</a>  </div>
+  <div class="headertitle">
+<div class="title">StApi::IStSNMeasurementResult インタフェース<span class="mlabels"><span class="mlabel">abstract</span></span><div class="ingroups"><a class="el" href="group__StApiIP__PublicInterface.html">StApi 画像処理モジュール抽象インターフェース</a></div></div>  </div>
+</div><!--header-->
+<div class="contents">
+
+<p>SN測定結果用インターフェース  
+ <a href="structStApi_1_1IStSNMeasurementResult.html#details">[詳解]</a></p>
+<table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-methods"></a>
+公開メンバ関数</h2></td></tr>
+<tr class="memitem:a86424fdcabe8a08f7eb6fca707035c5d"><td class="memItemLeft" align="right" valign="top">virtual size_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structStApi_1_1IStSNMeasurementResult.html#a86424fdcabe8a08f7eb6fca707035c5d">GetComponentCount</a> () const =0</td></tr>
+<tr class="memdesc:a86424fdcabe8a08f7eb6fca707035c5d"><td class="mdescLeft">&#160;</td><td class="mdescRight">構成要素の数を取得します。  <a href="#a86424fdcabe8a08f7eb6fca707035c5d">[詳解]</a><br /></td></tr>
+<tr class="separator:a86424fdcabe8a08f7eb6fca707035c5d"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a0efa3cf2c9a76e2e66caefcb9525070d"><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structStApi_1_1IStSNMeasurementResult.html#a0efa3cf2c9a76e2e66caefcb9525070d">GetSNMeasurementValue</a> (size_t nIndex, <a class="el" href="group__StApiTL__PublicImpl.html#ga722b6a45a0e1728f5e882853d0a51703">EStPixelComponent_t</a> *pePC, size_t *pnPixelCount, double *pdblAverage, double *pdblTemporalStandardDeviation, double *pdblFrameStandardDeviation) const =0</td></tr>
+<tr class="memdesc:a0efa3cf2c9a76e2e66caefcb9525070d"><td class="mdescLeft">&#160;</td><td class="mdescRight">指定した構成要素の情報を取得します。  <a href="#a0efa3cf2c9a76e2e66caefcb9525070d">[詳解]</a><br /></td></tr>
+<tr class="separator:a0efa3cf2c9a76e2e66caefcb9525070d"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table>
+<a name="details" id="details"></a><h2 class="groupheader">詳解</h2>
+<div class="textblock"><p>SN測定結果用インターフェース </p>
+</div><h2 class="groupheader">関数詳解</h2>
+<a id="a86424fdcabe8a08f7eb6fca707035c5d"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a86424fdcabe8a08f7eb6fca707035c5d">&#9670;&nbsp;</a></span>GetComponentCount()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">virtual size_t StApi::IStSNMeasurementResult::GetComponentCount </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">pure virtual</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+<p>構成要素の数を取得します。 </p><dl class="section return"><dt>戻り値</dt><dd>構成要素の数 </dd></dl>
+<dl class="exception"><dt>例外</dt><dd>
+  <table class="exception">
+    <tr><td class="paramname">なし</td><td></td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a id="a0efa3cf2c9a76e2e66caefcb9525070d"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a0efa3cf2c9a76e2e66caefcb9525070d">&#9670;&nbsp;</a></span>GetSNMeasurementValue()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">virtual void StApi::IStSNMeasurementResult::GetSNMeasurementValue </td>
+          <td>(</td>
+          <td class="paramtype">size_t&#160;</td>
+          <td class="paramname"><em>nIndex</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="group__StApiTL__PublicImpl.html#ga722b6a45a0e1728f5e882853d0a51703">EStPixelComponent_t</a> *&#160;</td>
+          <td class="paramname"><em>pePC</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">size_t *&#160;</td>
+          <td class="paramname"><em>pnPixelCount</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">double *&#160;</td>
+          <td class="paramname"><em>pdblAverage</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">double *&#160;</td>
+          <td class="paramname"><em>pdblTemporalStandardDeviation</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">double *&#160;</td>
+          <td class="paramname"><em>pdblFrameStandardDeviation</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td> const</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">pure virtual</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+<p>指定した構成要素の情報を取得します。 </p><dl class="params"><dt>引数</dt><dd>
+  <table class="params">
+    <tr><td class="paramdir">[in]</td><td class="paramname">nIndex</td><td>構成要素を指定します。0から <a class="el" href="structStApi_1_1IStSNMeasurementResult.html#a86424fdcabe8a08f7eb6fca707035c5d" title="構成要素の数を取得します。">GetComponentCount()</a> - 1 の値を指定します。 </td></tr>
+    <tr><td class="paramdir">[out]</td><td class="paramname">pePC</td><td>ピクセル構成要素タイプ </td></tr>
+    <tr><td class="paramdir">[out]</td><td class="paramname">pnPixelCount</td><td>ピクセル数 </td></tr>
+    <tr><td class="paramdir">[out]</td><td class="paramname">pdblAverage</td><td>平均値 </td></tr>
+    <tr><td class="paramdir">[out]</td><td class="paramname">pdblTemporalStandardDeviation</td><td>同じ位置の画素の標準偏差を平均値。同じ位置の画素値が安定していると小さな値になります。 </td></tr>
+    <tr><td class="paramdir">[out]</td><td class="paramname">pdblFrameStandardDeviation</td><td>1フレーム内の画素の標準偏差の平均値。均一な被写体を撮像した際に取得された画像が均一になっていると小さな値になります。 </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="exception"><dt>例外</dt><dd>
+  <table class="exception">
+    <tr><td class="paramname">不正な引数が指定された場合は、例外</td><td><a class="el" href="classGenICam_1_1GenericException.html" title="GenICam&#39;s exception class">GenICam::GenericException</a> が発生します。 </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+</div><!-- contents -->
+<!-- HTML footer for doxygen 1.8.13-->
+<!-- start footer part -->
+<hr class="footer"/>
+	<address class="footer">
+		<small>
+2021年10月26日(火) 13時10分26秒作成 - Sentech SDK / 構成:  &#160;
+			<a href="http://www.sentech.co.jp/">
+				<img class="footer" src="string_omron_sentech.png" alt="OMRON SENTECH CO., LTD"/>
+			</a>
+			<!--
+				DoxyGen Version =  1.8.15
+			-->
+		</small>
+	</address>
+</body>
+</html>

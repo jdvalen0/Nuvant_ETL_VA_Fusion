@@ -1,0 +1,613 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "https://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=9"/>
+<meta name="generator" content="Doxygen 1.8.15"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>Sentech SDK: StApi::IStInterface インタフェース</title>
+<link href="tabs.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="jquery.js"></script>
+<script type="text/javascript" src="dynsections.js"></script>
+<link href="doxygen.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+<div id="top"><!-- do not remove this div, it is closed by doxygen! -->
+<div id="titlearea">
+<table cellspacing="0" cellpadding="0">
+ <tbody>
+ <tr style="height: 56px;">
+  <td id="projectalign" style="padding-left: 0.5em;">
+   <div id="projectname">Sentech SDK
+   </div>
+  </td>
+ </tr>
+ </tbody>
+</table>
+</div>
+<!-- end header part -->
+<!-- 構築: Doxygen 1.8.15 -->
+<script type="text/javascript" src="menudata.js"></script>
+<script type="text/javascript" src="menu.js"></script>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:cf05388f2679ee054f2beb29a391d25f4e673ac3&amp;dn=gpl-2.0.txt GPL-v2 */
+$(function() {
+  initMenu('',false,false,'search.php','検索');
+});
+/* @license-end */</script>
+<div id="main-nav"></div>
+<div id="nav-path" class="navpath">
+  <ul>
+<li class="navelem"><b>StApi</b></li><li class="navelem"><a class="el" href="structStApi_1_1IStInterface.html">IStInterface</a></li>  </ul>
+</div>
+</div><!-- top -->
+<div class="header">
+  <div class="summary">
+<a href="#pub-methods">公開メンバ関数</a> &#124;
+<a href="structStApi_1_1IStInterface-members.html">全メンバ一覧</a>  </div>
+  <div class="headertitle">
+<div class="title">StApi::IStInterface インタフェース<span class="mlabels"><span class="mlabel">abstract</span></span><div class="ingroups"><a class="el" href="group__StApiTL__PublicInterface.html">StApi トランスポート層モジュール抽象インターフェース</a></div></div>  </div>
+</div><!--header-->
+<div class="contents">
+
+<p>インターフェース用インターフェース  
+ <a href="structStApi_1_1IStInterface.html#details">[詳解]</a></p>
+<div id="dynsection-0" onclick="return toggleVisibility(this)" class="dynheader closed" style="cursor:pointer;">
+  <img id="dynsection-0-trigger" src="closed.png" alt="+"/> StApi::IStInterface の継承関係図</div>
+<div id="dynsection-0-summary" class="dynsummary" style="display:block;">
+</div>
+<div id="dynsection-0-content" class="dyncontent" style="display:none;">
+<div class="center"><img src="structStApi_1_1IStInterface__inherit__graph.png" border="0" usemap="#StApi_1_1IStInterface_inherit__map" alt="Inheritance graph"/></div>
+<map name="StApi_1_1IStInterface_inherit__map" id="StApi_1_1IStInterface_inherit__map">
+<area shape="rect"  title="ã¤ã³ã¿ã¼ãã§ã¼ã¹ç¨ã¤ã³ã¿ã¼ãã§ã¼ã¹" alt="" coords="126,80,265,107"/>
+<area shape="rect"  href="structStApi_1_1IStRegisterCallback.html" title="StApiã³ã¼ã«ããã¯é¢æ°ã®ç»é²ããã³ç»é²è§£é¤ã«ä½¿ç¨ãããã¤ã³ã¿ã¼ãã§ã¼ã¹" alt="" coords="5,5,196,32"/>
+<area shape="rect"  href="structStApi_1_1IStEventCtrl.html" title="ã¤ãã³ãæ©è½å¶å¾¡ç¨ã¤ã³ã¿ã¼ãã§ã¼ã¹" alt="" coords="221,5,362,32"/>
+</map>
+<center><span class="legend">[<a href="graph_legend.html">凡例</a>]</span></center></div>
+<div id="dynsection-1" onclick="return toggleVisibility(this)" class="dynheader closed" style="cursor:pointer;">
+  <img id="dynsection-1-trigger" src="closed.png" alt="+"/> StApi::IStInterface 連携図</div>
+<div id="dynsection-1-summary" class="dynsummary" style="display:block;">
+</div>
+<div id="dynsection-1-content" class="dyncontent" style="display:none;">
+<div class="center"><img src="structStApi_1_1IStInterface__coll__graph.png" border="0" usemap="#StApi_1_1IStInterface_coll__map" alt="Collaboration graph"/></div>
+<map name="StApi_1_1IStInterface_coll__map" id="StApi_1_1IStInterface_coll__map">
+<area shape="rect"  title="ã¤ã³ã¿ã¼ãã§ã¼ã¹ç¨ã¤ã³ã¿ã¼ãã§ã¼ã¹" alt="" coords="126,80,265,107"/>
+<area shape="rect"  href="structStApi_1_1IStRegisterCallback.html" title="StApiã³ã¼ã«ããã¯é¢æ°ã®ç»é²ããã³ç»é²è§£é¤ã«ä½¿ç¨ãããã¤ã³ã¿ã¼ãã§ã¼ã¹" alt="" coords="5,5,196,32"/>
+<area shape="rect"  href="structStApi_1_1IStEventCtrl.html" title="ã¤ãã³ãæ©è½å¶å¾¡ç¨ã¤ã³ã¿ã¼ãã§ã¼ã¹" alt="" coords="221,5,362,32"/>
+</map>
+<center><span class="legend">[<a href="graph_legend.html">凡例</a>]</span></center></div>
+<table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-methods"></a>
+公開メンバ関数</h2></td></tr>
+<tr class="memitem:a369ffdd135f11b0fd4045612516b351f"><td class="memItemLeft" align="right" valign="top">virtual <a class="el" href="structStApi_1_1IStSystem.html">IStSystem</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structStApi_1_1IStInterface.html#a369ffdd135f11b0fd4045612516b351f">GetIStSystem</a> ()=0</td></tr>
+<tr class="memdesc:a369ffdd135f11b0fd4045612516b351f"><td class="mdescLeft">&#160;</td><td class="mdescRight"><a class="el" href="structStApi_1_1IStSystem.html" title="システムモジュール用インターフェース">IStSystem</a> インターフェースポインターを取得します。  <a href="#a369ffdd135f11b0fd4045612516b351f">[詳解]</a><br /></td></tr>
+<tr class="separator:a369ffdd135f11b0fd4045612516b351f"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:adbc0b81f7059d11e2f07be067962077c"><td class="memItemLeft" align="right" valign="top">virtual <a class="el" href="structStApi_1_1IStPort.html">IStPort</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structStApi_1_1IStInterface.html#adbc0b81f7059d11e2f07be067962077c">GetIStPort</a> ()=0</td></tr>
+<tr class="memdesc:adbc0b81f7059d11e2f07be067962077c"><td class="mdescLeft">&#160;</td><td class="mdescRight"><a class="el" href="structStApi_1_1IStPort.html" title="ポート用インターフェース">IStPort</a> インターフェースポインターを取得します。  <a href="#adbc0b81f7059d11e2f07be067962077c">[詳解]</a><br /></td></tr>
+<tr class="separator:adbc0b81f7059d11e2f07be067962077c"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ac5f9171072f182f82a8857bcc7ef47e1"><td class="memItemLeft" align="right" valign="top">virtual const <a class="el" href="structStApi_1_1IStInterfaceInfo.html">IStInterfaceInfo</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structStApi_1_1IStInterface.html#ac5f9171072f182f82a8857bcc7ef47e1">GetIStInterfaceInfo</a> () const =0</td></tr>
+<tr class="memdesc:ac5f9171072f182f82a8857bcc7ef47e1"><td class="mdescLeft">&#160;</td><td class="mdescRight"><a class="el" href="structStApi_1_1IStInterfaceInfo.html" title="インターフェース情報用インターフェース">IStInterfaceInfo</a> インターフェースポインターを取得します。  <a href="#ac5f9171072f182f82a8857bcc7ef47e1">[詳解]</a><br /></td></tr>
+<tr class="separator:ac5f9171072f182f82a8857bcc7ef47e1"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a701d6d53ba9bce36b83037e08be9141f"><td class="memItemLeft" align="right" valign="top">virtual bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structStApi_1_1IStInterface.html#a701d6d53ba9bce36b83037e08be9141f">UpdateDeviceList</a> ()=0</td></tr>
+<tr class="memdesc:a701d6d53ba9bce36b83037e08be9141f"><td class="mdescLeft">&#160;</td><td class="mdescRight">接続されているデバイス(カメラ)を検出し、デバイス(カメラ)リストを更新します。  <a href="#a701d6d53ba9bce36b83037e08be9141f">[詳解]</a><br /></td></tr>
+<tr class="separator:a701d6d53ba9bce36b83037e08be9141f"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aae330d421e976e8217059817e5154364"><td class="memItemLeft" align="right" valign="top">virtual uint64_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structStApi_1_1IStInterface.html#aae330d421e976e8217059817e5154364">GetUpdateDeviceListTimeout</a> () const =0</td></tr>
+<tr class="memdesc:aae330d421e976e8217059817e5154364"><td class="mdescLeft">&#160;</td><td class="mdescRight">デバイス(カメラ)リスト更新時のタイムアウト時間を取得します。  <a href="#aae330d421e976e8217059817e5154364">[詳解]</a><br /></td></tr>
+<tr class="separator:aae330d421e976e8217059817e5154364"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ab7880ee03fc5c0f0987eb0c050368561"><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structStApi_1_1IStInterface.html#ab7880ee03fc5c0f0987eb0c050368561">SetUpdateDeviceListTimeout</a> (uint64_t iTimeout)=0</td></tr>
+<tr class="memdesc:ab7880ee03fc5c0f0987eb0c050368561"><td class="mdescLeft">&#160;</td><td class="mdescRight">デバイス(カメラ)リスト更新時のタイムアウト時間を設定します。  <a href="#ab7880ee03fc5c0f0987eb0c050368561">[詳解]</a><br /></td></tr>
+<tr class="separator:ab7880ee03fc5c0f0987eb0c050368561"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a77a0378c1b6e1bed09a93e0715008a28"><td class="memItemLeft" align="right" valign="top">virtual uint32_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structStApi_1_1IStInterface.html#a77a0378c1b6e1bed09a93e0715008a28">GetDeviceCount</a> () const =0</td></tr>
+<tr class="memdesc:a77a0378c1b6e1bed09a93e0715008a28"><td class="mdescLeft">&#160;</td><td class="mdescRight">認識されているデバイスの数を取得します。接続されたデバイスを認識させるには <a class="el" href="structStApi_1_1IStInterface.html#a701d6d53ba9bce36b83037e08be9141f" title="接続されているデバイス(カメラ)を検出し、デバイス(カメラ)リストを更新します。">UpdateDeviceList()</a> を呼び出します。  <a href="#a77a0378c1b6e1bed09a93e0715008a28">[詳解]</a><br /></td></tr>
+<tr class="separator:a77a0378c1b6e1bed09a93e0715008a28"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aafaedee0ffc9d69227921990de7db1d5"><td class="memItemLeft" align="right" valign="top">virtual const <a class="el" href="structStApi_1_1IStDeviceInfo.html">IStDeviceInfo</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structStApi_1_1IStInterface.html#aafaedee0ffc9d69227921990de7db1d5">GetIStDeviceInfo</a> (size_t nIndex) const =0</td></tr>
+<tr class="memdesc:aafaedee0ffc9d69227921990de7db1d5"><td class="mdescLeft">&#160;</td><td class="mdescRight">指定したデバイスの <a class="el" href="structStApi_1_1IStDeviceInfo.html" title="デバイス情報用インターフェース">IStDeviceInfo</a> インターフェースポインターを取得します。  <a href="#aafaedee0ffc9d69227921990de7db1d5">[詳解]</a><br /></td></tr>
+<tr class="separator:aafaedee0ffc9d69227921990de7db1d5"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aaa2dfea3b57f6705d490d98ce245ca59"><td class="memItemLeft" align="right" valign="top">virtual bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structStApi_1_1IStInterface.html#aaa2dfea3b57f6705d490d98ce245ca59">IsDeviceAvailable</a> (size_t nIndex, <a class="el" href="group__GenTL__PublicImple.html#gae7c7803162de516830a5631afa23bf91">GenTL::DEVICE_ACCESS_FLAGS</a> eDeviceAccessFlags)=0</td></tr>
+<tr class="memdesc:aaa2dfea3b57f6705d490d98ce245ca59"><td class="mdescLeft">&#160;</td><td class="mdescRight">指定したデバイス(カメラ)が利用可能かどうか確認します。  <a href="#aaa2dfea3b57f6705d490d98ce245ca59">[詳解]</a><br /></td></tr>
+<tr class="separator:aaa2dfea3b57f6705d490d98ce245ca59"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a337af85cc5eb92a7113b34b917255a1d"><td class="memItemLeft" align="right" valign="top">virtual <a class="el" href="structStApi_1_1IStDeviceReleasable.html">IStDeviceReleasable</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structStApi_1_1IStInterface.html#a337af85cc5eb92a7113b34b917255a1d">CreateIStDevice</a> (size_t nIndex, <a class="el" href="group__GenTL__PublicImple.html#gae7c7803162de516830a5631afa23bf91">GenTL::DEVICE_ACCESS_FLAGS</a> eDeviceAccessFlags=GenTL::DEVICE_ACCESS_CONTROL)=0</td></tr>
+<tr class="memdesc:a337af85cc5eb92a7113b34b917255a1d"><td class="mdescLeft">&#160;</td><td class="mdescRight">指定したデバイス(カメラ)をオープンし <a class="el" href="structStApi_1_1IStDeviceReleasable.html" title="解放可能なデバイス用インターフェース">IStDeviceReleasable</a> インターフェースポインターを取得します。  <a href="#a337af85cc5eb92a7113b34b917255a1d">[詳解]</a><br /></td></tr>
+<tr class="separator:a337af85cc5eb92a7113b34b917255a1d"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:adedff1a54ce3d6c588e50afa1ad65e27"><td class="memItemLeft" align="right" valign="top">virtual <a class="el" href="structStApi_1_1IStDeviceReleasable.html">IStDeviceReleasable</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structStApi_1_1IStInterface.html#adedff1a54ce3d6c588e50afa1ad65e27">CreateIStDevice</a> (const <a class="el" href="classGenICam_1_1gcstring.html">GenICam::gcstring</a> &amp;strID, <a class="el" href="group__GenTL__PublicImple.html#gae7c7803162de516830a5631afa23bf91">GenTL::DEVICE_ACCESS_FLAGS</a> eDeviceAccessFlags=GenTL::DEVICE_ACCESS_CONTROL)=0</td></tr>
+<tr class="memdesc:adedff1a54ce3d6c588e50afa1ad65e27"><td class="mdescLeft">&#160;</td><td class="mdescRight">指定したデバイス(カメラ)をオープンし <a class="el" href="structStApi_1_1IStDeviceReleasable.html" title="解放可能なデバイス用インターフェース">IStDeviceReleasable</a> インターフェースポインターを取得します。  <a href="#adedff1a54ce3d6c588e50afa1ad65e27">[詳解]</a><br /></td></tr>
+<tr class="separator:adedff1a54ce3d6c588e50afa1ad65e27"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ad5ab12851cee77a6a35f5cfede31bfe1"><td class="memItemLeft" align="right" valign="top">virtual <a class="el" href="structStApi_1_1IStDeviceReleasable.html">IStDeviceReleasable</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structStApi_1_1IStInterface.html#ad5ab12851cee77a6a35f5cfede31bfe1">CreateFirstIStDevice</a> (<a class="el" href="group__GenTL__PublicImple.html#gae7c7803162de516830a5631afa23bf91">GenTL::DEVICE_ACCESS_FLAGS</a> eDeviceAccessFlags=GenTL::DEVICE_ACCESS_CONTROL)=0</td></tr>
+<tr class="memdesc:ad5ab12851cee77a6a35f5cfede31bfe1"><td class="mdescLeft">&#160;</td><td class="mdescRight">最初に見つかったデバイス(カメラ)をオープンし <a class="el" href="structStApi_1_1IStDeviceReleasable.html" title="解放可能なデバイス用インターフェース">IStDeviceReleasable</a> インターフェースポインターを取得します。  <a href="#ad5ab12851cee77a6a35f5cfede31bfe1">[詳解]</a><br /></td></tr>
+<tr class="separator:ad5ab12851cee77a6a35f5cfede31bfe1"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="inherit_header pub_methods_structStApi_1_1IStRegisterCallback"><td colspan="2" onclick="javascript:toggleInherit('pub_methods_structStApi_1_1IStRegisterCallback')"><img src="closed.png" alt="-"/>&#160;基底クラス <a class="el" href="structStApi_1_1IStRegisterCallback.html">StApi::IStRegisterCallback</a> に属する継承公開メンバ関数</td></tr>
+<tr class="memitem:a3e9da3d4173d22f96664cd8be00c9c70 inherit pub_methods_structStApi_1_1IStRegisterCallback"><td class="memItemLeft" align="right" valign="top">virtual <a class="el" href="group__StApiTL__PublicImpl.html#ga50382bf603d23086b9a3887988985273">StApiCallbackHandle_t</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structStApi_1_1IStRegisterCallback.html#a3e9da3d4173d22f96664cd8be00c9c70">RegisterCallback</a> (<a class="el" href="structStApi_1_1IStCallback.html">IStCallback</a> *pIStCallback)=0</td></tr>
+<tr class="memdesc:a3e9da3d4173d22f96664cd8be00c9c70 inherit pub_methods_structStApi_1_1IStRegisterCallback"><td class="mdescLeft">&#160;</td><td class="mdescRight">コールバック関数を登録します。  <a href="structStApi_1_1IStRegisterCallback.html#a3e9da3d4173d22f96664cd8be00c9c70">[詳解]</a><br /></td></tr>
+<tr class="separator:a3e9da3d4173d22f96664cd8be00c9c70 inherit pub_methods_structStApi_1_1IStRegisterCallback"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a642e9d0ae0e64dafa24fd5db03c20fea inherit pub_methods_structStApi_1_1IStRegisterCallback"><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structStApi_1_1IStRegisterCallback.html#a642e9d0ae0e64dafa24fd5db03c20fea">DeregisterCallback</a> (<a class="el" href="group__StApiTL__PublicImpl.html#ga50382bf603d23086b9a3887988985273">StApiCallbackHandle_t</a> hCallback)=0</td></tr>
+<tr class="memdesc:a642e9d0ae0e64dafa24fd5db03c20fea inherit pub_methods_structStApi_1_1IStRegisterCallback"><td class="mdescLeft">&#160;</td><td class="mdescRight">コールバック関数の登録を解除します。  <a href="structStApi_1_1IStRegisterCallback.html#a642e9d0ae0e64dafa24fd5db03c20fea">[詳解]</a><br /></td></tr>
+<tr class="separator:a642e9d0ae0e64dafa24fd5db03c20fea inherit pub_methods_structStApi_1_1IStRegisterCallback"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="inherit_header pub_methods_structStApi_1_1IStEventCtrl"><td colspan="2" onclick="javascript:toggleInherit('pub_methods_structStApi_1_1IStEventCtrl')"><img src="closed.png" alt="-"/>&#160;基底クラス <a class="el" href="structStApi_1_1IStEventCtrl.html">StApi::IStEventCtrl</a> に属する継承公開メンバ関数</td></tr>
+<tr class="memitem:a447a4ca3e3ac6f0257f19781608bcb00 inherit pub_methods_structStApi_1_1IStEventCtrl"><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structStApi_1_1IStEventCtrl.html#a447a4ca3e3ac6f0257f19781608bcb00">StartEventAcquisitionThread</a> ()=0</td></tr>
+<tr class="memdesc:a447a4ca3e3ac6f0257f19781608bcb00 inherit pub_methods_structStApi_1_1IStEventCtrl"><td class="mdescLeft">&#160;</td><td class="mdescRight">イベント取得用スレッドを起動します。  <a href="structStApi_1_1IStEventCtrl.html#a447a4ca3e3ac6f0257f19781608bcb00">[詳解]</a><br /></td></tr>
+<tr class="separator:a447a4ca3e3ac6f0257f19781608bcb00 inherit pub_methods_structStApi_1_1IStEventCtrl"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ac533e0871f79d5996f856e520e31e735 inherit pub_methods_structStApi_1_1IStEventCtrl"><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structStApi_1_1IStEventCtrl.html#ac533e0871f79d5996f856e520e31e735">StopEventAcquisitionThread</a> ()=0</td></tr>
+<tr class="memdesc:ac533e0871f79d5996f856e520e31e735 inherit pub_methods_structStApi_1_1IStEventCtrl"><td class="mdescLeft">&#160;</td><td class="mdescRight">イベント取得用スレッドを停止します。  <a href="structStApi_1_1IStEventCtrl.html#ac533e0871f79d5996f856e520e31e735">[詳解]</a><br /></td></tr>
+<tr class="separator:ac533e0871f79d5996f856e520e31e735 inherit pub_methods_structStApi_1_1IStEventCtrl"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table>
+<a name="details" id="details"></a><h2 class="groupheader">詳解</h2>
+<div class="textblock"><p>インターフェース用インターフェース </p>
+</div><h2 class="groupheader">関数詳解</h2>
+<a id="a369ffdd135f11b0fd4045612516b351f"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a369ffdd135f11b0fd4045612516b351f">&#9670;&nbsp;</a></span>GetIStSystem()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">virtual <a class="el" href="structStApi_1_1IStSystem.html">IStSystem</a>* StApi::IStInterface::GetIStSystem </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">pure virtual</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+<p><a class="el" href="structStApi_1_1IStSystem.html" title="システムモジュール用インターフェース">IStSystem</a> インターフェースポインターを取得します。 </p><dl class="section return"><dt>戻り値</dt><dd><a class="el" href="structStApi_1_1IStSystem.html" title="システムモジュール用インターフェース">IStSystem</a> インターフェースポインター </dd></dl>
+<dl class="exception"><dt>例外</dt><dd>
+  <table class="exception">
+    <tr><td class="paramname">なし</td><td></td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a id="adbc0b81f7059d11e2f07be067962077c"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#adbc0b81f7059d11e2f07be067962077c">&#9670;&nbsp;</a></span>GetIStPort()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">virtual <a class="el" href="structStApi_1_1IStPort.html">IStPort</a>* StApi::IStInterface::GetIStPort </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">pure virtual</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+<p><a class="el" href="structStApi_1_1IStPort.html" title="ポート用インターフェース">IStPort</a> インターフェースポインターを取得します。 </p><dl class="section return"><dt>戻り値</dt><dd><a class="el" href="structStApi_1_1IStPort.html" title="ポート用インターフェース">IStPort</a> インターフェースポインター </dd></dl>
+<dl class="exception"><dt>例外</dt><dd>
+  <table class="exception">
+    <tr><td class="paramname">なし</td><td></td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a id="ac5f9171072f182f82a8857bcc7ef47e1"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ac5f9171072f182f82a8857bcc7ef47e1">&#9670;&nbsp;</a></span>GetIStInterfaceInfo()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">virtual const <a class="el" href="structStApi_1_1IStInterfaceInfo.html">IStInterfaceInfo</a>* StApi::IStInterface::GetIStInterfaceInfo </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">pure virtual</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+<p><a class="el" href="structStApi_1_1IStInterfaceInfo.html" title="インターフェース情報用インターフェース">IStInterfaceInfo</a> インターフェースポインターを取得します。 </p><dl class="section return"><dt>戻り値</dt><dd><a class="el" href="structStApi_1_1IStInterfaceInfo.html" title="インターフェース情報用インターフェース">IStInterfaceInfo</a> インターフェースポインター </dd></dl>
+<dl class="exception"><dt>例外</dt><dd>
+  <table class="exception">
+    <tr><td class="paramname">なし</td><td></td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a id="a701d6d53ba9bce36b83037e08be9141f"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a701d6d53ba9bce36b83037e08be9141f">&#9670;&nbsp;</a></span>UpdateDeviceList()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">virtual bool StApi::IStInterface::UpdateDeviceList </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">pure virtual</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+<p>接続されているデバイス(カメラ)を検出し、デバイス(カメラ)リストを更新します。 </p><dl class="section return"><dt>戻り値</dt><dd>デバイス(カメラ)リストが変更された場合 true が返されます。 </dd></dl>
+<dl class="exception"><dt>例外</dt><dd>
+  <table class="exception">
+    <tr><td class="paramname">メモリー確保に失敗した場合や</td><td><a class="el" href="group__GenTL__PublicImple.html#ga63c16c73c2ac0e4b23b71609f071594e" title="Updates the internal list of available devices.">GenTL::IFUpdateDeviceList()</a> がエラーを返した場合は、例外 <a class="el" href="classGenICam_1_1GenericException.html" title="GenICam&#39;s exception class">GenICam::GenericException</a> が発生します。 </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a id="aae330d421e976e8217059817e5154364"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aae330d421e976e8217059817e5154364">&#9670;&nbsp;</a></span>GetUpdateDeviceListTimeout()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">virtual uint64_t StApi::IStInterface::GetUpdateDeviceListTimeout </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">pure virtual</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+<p>デバイス(カメラ)リスト更新時のタイムアウト時間を取得します。 </p><dl class="section return"><dt>戻り値</dt><dd>デバイス(カメラ)リスト更新時のタイムアウト時間[ms] </dd></dl>
+<dl class="exception"><dt>例外</dt><dd>
+  <table class="exception">
+    <tr><td class="paramname">なし</td><td></td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a id="ab7880ee03fc5c0f0987eb0c050368561"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ab7880ee03fc5c0f0987eb0c050368561">&#9670;&nbsp;</a></span>SetUpdateDeviceListTimeout()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">virtual void StApi::IStInterface::SetUpdateDeviceListTimeout </td>
+          <td>(</td>
+          <td class="paramtype">uint64_t&#160;</td>
+          <td class="paramname"><em>iTimeout</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">pure virtual</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+<p>デバイス(カメラ)リスト更新時のタイムアウト時間を設定します。 </p><dl class="params"><dt>引数</dt><dd>
+  <table class="params">
+    <tr><td class="paramdir">[in]</td><td class="paramname">iTimeout</td><td>デバイス(カメラ)リスト更新時のタイムアウト時間[ms] </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="exception"><dt>例外</dt><dd>
+  <table class="exception">
+    <tr><td class="paramname">なし</td><td></td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a id="a77a0378c1b6e1bed09a93e0715008a28"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a77a0378c1b6e1bed09a93e0715008a28">&#9670;&nbsp;</a></span>GetDeviceCount()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">virtual uint32_t StApi::IStInterface::GetDeviceCount </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">pure virtual</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+<p>認識されているデバイスの数を取得します。接続されたデバイスを認識させるには <a class="el" href="structStApi_1_1IStInterface.html#a701d6d53ba9bce36b83037e08be9141f" title="接続されているデバイス(カメラ)を検出し、デバイス(カメラ)リストを更新します。">UpdateDeviceList()</a> を呼び出します。 </p><dl class="section return"><dt>戻り値</dt><dd>認識されているデバイスの数 </dd></dl>
+<dl class="exception"><dt>例外</dt><dd>
+  <table class="exception">
+    <tr><td class="paramname">なし</td><td></td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a id="aafaedee0ffc9d69227921990de7db1d5"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aafaedee0ffc9d69227921990de7db1d5">&#9670;&nbsp;</a></span>GetIStDeviceInfo()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">virtual const <a class="el" href="structStApi_1_1IStDeviceInfo.html">IStDeviceInfo</a>* StApi::IStInterface::GetIStDeviceInfo </td>
+          <td>(</td>
+          <td class="paramtype">size_t&#160;</td>
+          <td class="paramname"><em>nIndex</em></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">pure virtual</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+<p>指定したデバイスの <a class="el" href="structStApi_1_1IStDeviceInfo.html" title="デバイス情報用インターフェース">IStDeviceInfo</a> インターフェースポインターを取得します。 </p><dl class="params"><dt>引数</dt><dd>
+  <table class="params">
+    <tr><td class="paramdir">[in]</td><td class="paramname">nIndex</td><td>0から <a class="el" href="structStApi_1_1IStInterface.html#a77a0378c1b6e1bed09a93e0715008a28" title="認識されているデバイスの数を取得します。接続されたデバイスを認識させるには UpdateDeviceList() を呼び出します。">GetDeviceCount()</a> 未満の値でデバイスを指定します。 </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>戻り値</dt><dd><a class="el" href="structStApi_1_1IStDeviceInfo.html" title="デバイス情報用インターフェース">IStDeviceInfo</a> インターフェースポインター </dd></dl>
+<dl class="exception"><dt>例外</dt><dd>
+  <table class="exception">
+    <tr><td class="paramname">引数が不正な場合例外</td><td><a class="el" href="classGenICam_1_1GenericException.html" title="GenICam&#39;s exception class">GenICam::GenericException</a> が発生します。 </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a id="aaa2dfea3b57f6705d490d98ce245ca59"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aaa2dfea3b57f6705d490d98ce245ca59">&#9670;&nbsp;</a></span>IsDeviceAvailable()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">virtual bool StApi::IStInterface::IsDeviceAvailable </td>
+          <td>(</td>
+          <td class="paramtype">size_t&#160;</td>
+          <td class="paramname"><em>nIndex</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="group__GenTL__PublicImple.html#gae7c7803162de516830a5631afa23bf91">GenTL::DEVICE_ACCESS_FLAGS</a>&#160;</td>
+          <td class="paramname"><em>eDeviceAccessFlags</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">pure virtual</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+<p>指定したデバイス(カメラ)が利用可能かどうか確認します。 </p><dl class="params"><dt>引数</dt><dd>
+  <table class="params">
+    <tr><td class="paramdir">[in]</td><td class="paramname">nIndex</td><td>0から <a class="el" href="structStApi_1_1IStInterface.html#a77a0378c1b6e1bed09a93e0715008a28" title="認識されているデバイスの数を取得します。接続されたデバイスを認識させるには UpdateDeviceList() を呼び出します。">GetDeviceCount()</a> 未満の値でデバイスを指定します。 </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">eDeviceAccessFlags</td><td>デバイスアクセスフラグ </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>戻り値</dt><dd>デバイス(カメラ)が利用可能な場合 true が返されます。 </dd></dl>
+<dl class="exception"><dt>例外</dt><dd>
+  <table class="exception">
+    <tr><td class="paramname">引数が不正な場合例外</td><td><a class="el" href="classGenICam_1_1GenericException.html" title="GenICam&#39;s exception class">GenICam::GenericException</a> が発生します。 </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a id="a337af85cc5eb92a7113b34b917255a1d"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a337af85cc5eb92a7113b34b917255a1d">&#9670;&nbsp;</a></span>CreateIStDevice() <span class="overload">[1/2]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">virtual <a class="el" href="structStApi_1_1IStDeviceReleasable.html">IStDeviceReleasable</a>* StApi::IStInterface::CreateIStDevice </td>
+          <td>(</td>
+          <td class="paramtype">size_t&#160;</td>
+          <td class="paramname"><em>nIndex</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="group__GenTL__PublicImple.html#gae7c7803162de516830a5631afa23bf91">GenTL::DEVICE_ACCESS_FLAGS</a>&#160;</td>
+          <td class="paramname"><em>eDeviceAccessFlags</em> = <code>GenTL::DEVICE_ACCESS_CONTROL</code>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">pure virtual</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+<p>指定したデバイス(カメラ)をオープンし <a class="el" href="structStApi_1_1IStDeviceReleasable.html" title="解放可能なデバイス用インターフェース">IStDeviceReleasable</a> インターフェースポインターを取得します。 </p><dl class="section attention"><dt>注意</dt><dd>取得された <a class="el" href="structStApi_1_1IStDeviceReleasable.html" title="解放可能なデバイス用インターフェース">IStDeviceReleasable</a> インターフェースが不要になったら、 <a class="el" href="structStApi_1_1IStReleasable.html#a9859a952fe7d65899b3b70bd65a4d487" title="解放します。">IStDeviceReleasable::Release()</a> を呼び出して解放してください。 </dd></dl>
+<dl class="params"><dt>引数</dt><dd>
+  <table class="params">
+    <tr><td class="paramdir">[in]</td><td class="paramname">nIndex</td><td>0から <a class="el" href="structStApi_1_1IStInterface.html#a77a0378c1b6e1bed09a93e0715008a28" title="認識されているデバイスの数を取得します。接続されたデバイスを認識させるには UpdateDeviceList() を呼び出します。">GetDeviceCount()</a> 未満の値でデバイスを指定します。 </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">eDeviceAccessFlags</td><td>デバイスアクセスフラグ </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>戻り値</dt><dd><a class="el" href="structStApi_1_1IStDeviceReleasable.html" title="解放可能なデバイス用インターフェース">IStDeviceReleasable</a> インターフェースポインター </dd></dl>
+<dl class="exception"><dt>例外</dt><dd>
+  <table class="exception">
+    <tr><td class="paramname">メモリー確保に失敗した場合、不正な引数が指定された場合や</td><td>GenTL 関数がエラーを返した場合は、例外 <a class="el" href="classGenICam_1_1GenericException.html" title="GenICam&#39;s exception class">GenICam::GenericException</a> が発生します。 </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a id="adedff1a54ce3d6c588e50afa1ad65e27"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#adedff1a54ce3d6c588e50afa1ad65e27">&#9670;&nbsp;</a></span>CreateIStDevice() <span class="overload">[2/2]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">virtual <a class="el" href="structStApi_1_1IStDeviceReleasable.html">IStDeviceReleasable</a>* StApi::IStInterface::CreateIStDevice </td>
+          <td>(</td>
+          <td class="paramtype">const <a class="el" href="classGenICam_1_1gcstring.html">GenICam::gcstring</a> &amp;&#160;</td>
+          <td class="paramname"><em>strID</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="group__GenTL__PublicImple.html#gae7c7803162de516830a5631afa23bf91">GenTL::DEVICE_ACCESS_FLAGS</a>&#160;</td>
+          <td class="paramname"><em>eDeviceAccessFlags</em> = <code>GenTL::DEVICE_ACCESS_CONTROL</code>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">pure virtual</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+<p>指定したデバイス(カメラ)をオープンし <a class="el" href="structStApi_1_1IStDeviceReleasable.html" title="解放可能なデバイス用インターフェース">IStDeviceReleasable</a> インターフェースポインターを取得します。 </p><dl class="section attention"><dt>注意</dt><dd>取得された <a class="el" href="structStApi_1_1IStDeviceReleasable.html" title="解放可能なデバイス用インターフェース">IStDeviceReleasable</a> インターフェースが不要になったら、 <a class="el" href="structStApi_1_1IStReleasable.html#a9859a952fe7d65899b3b70bd65a4d487" title="解放します。">IStDeviceReleasable::Release()</a> を呼び出して解放してください。 </dd></dl>
+<dl class="params"><dt>引数</dt><dd>
+  <table class="params">
+    <tr><td class="paramdir">[in]</td><td class="paramname">strID</td><td>デバイスIDを指定します。 </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">eDeviceAccessFlags</td><td>デバイスアクセスフラグ </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>戻り値</dt><dd><a class="el" href="structStApi_1_1IStDeviceReleasable.html" title="解放可能なデバイス用インターフェース">IStDeviceReleasable</a> インターフェースポインター </dd></dl>
+<dl class="exception"><dt>例外</dt><dd>
+  <table class="exception">
+    <tr><td class="paramname">メモリー確保に失敗した場合、不正な引数が指定された場合や</td><td>GenTL 関数がエラーを返した場合は、例外 <a class="el" href="classGenICam_1_1GenericException.html" title="GenICam&#39;s exception class">GenICam::GenericException</a> が発生します。 </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a id="ad5ab12851cee77a6a35f5cfede31bfe1"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ad5ab12851cee77a6a35f5cfede31bfe1">&#9670;&nbsp;</a></span>CreateFirstIStDevice()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">virtual <a class="el" href="structStApi_1_1IStDeviceReleasable.html">IStDeviceReleasable</a>* StApi::IStInterface::CreateFirstIStDevice </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="group__GenTL__PublicImple.html#gae7c7803162de516830a5631afa23bf91">GenTL::DEVICE_ACCESS_FLAGS</a>&#160;</td>
+          <td class="paramname"><em>eDeviceAccessFlags</em> = <code>GenTL::DEVICE_ACCESS_CONTROL</code></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">pure virtual</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+<p>最初に見つかったデバイス(カメラ)をオープンし <a class="el" href="structStApi_1_1IStDeviceReleasable.html" title="解放可能なデバイス用インターフェース">IStDeviceReleasable</a> インターフェースポインターを取得します。 </p><dl class="section attention"><dt>注意</dt><dd>取得された <a class="el" href="structStApi_1_1IStDeviceReleasable.html" title="解放可能なデバイス用インターフェース">IStDeviceReleasable</a> インターフェースが不要になったら、 <a class="el" href="structStApi_1_1IStReleasable.html#a9859a952fe7d65899b3b70bd65a4d487" title="解放します。">IStDeviceReleasable::Release()</a> を呼び出して解放してください。 </dd></dl>
+<dl class="params"><dt>引数</dt><dd>
+  <table class="params">
+    <tr><td class="paramdir">[in]</td><td class="paramname">eDeviceAccessFlags</td><td>デバイスアクセスフラグ </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>戻り値</dt><dd><a class="el" href="structStApi_1_1IStDeviceReleasable.html" title="解放可能なデバイス用インターフェース">IStDeviceReleasable</a> インターフェースポインター </dd></dl>
+<dl class="exception"><dt>例外</dt><dd>
+  <table class="exception">
+    <tr><td class="paramname">メモリー確保に失敗した場合、不正な引数が指定された場合、GenTL</td><td>関数がエラーを返した場合や利用可能なカメラが見つからない場合には、例外 <a class="el" href="classGenICam_1_1GenericException.html" title="GenICam&#39;s exception class">GenICam::GenericException</a> が発生します。 </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+</div><!-- contents -->
+<!-- HTML footer for doxygen 1.8.13-->
+<!-- start footer part -->
+<hr class="footer"/>
+	<address class="footer">
+		<small>
+2021年10月26日(火) 13時10分26秒作成 - Sentech SDK / 構成:  &#160;
+			<a href="http://www.sentech.co.jp/">
+				<img class="footer" src="string_omron_sentech.png" alt="OMRON SENTECH CO., LTD"/>
+			</a>
+			<!--
+				DoxyGen Version =  1.8.15
+			-->
+		</small>
+	</address>
+</body>
+</html>

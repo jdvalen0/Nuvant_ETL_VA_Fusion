@@ -1,0 +1,27 @@
+# Git
+.git
+.gitignore
+
+# Python
+__pycache__
+*.pyc
+venv
+.env
+
+# Data & Logs
+local_storage
+backend/db/*.db
+backend/data/*
+scripts/
+tests/
+logs/
+
+# Docs & Temp
+docs/
+*.md
+LICENSE
+*.log
+
+# IDE
+.vscode
+.idea

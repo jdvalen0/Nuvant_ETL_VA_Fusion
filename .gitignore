@@ -1,0 +1,35 @@
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+env/
+venv/
+.venv/
+
+# Docker
+.docker/
+*docker-compose.override.yml
+
+# Nuvant VA Data (Persistencia local)
+**/local_storage/
+**/db/*.db
+**/logs/*.log
+**/simulate_images/
+fabric_audit_report.json
+
+# Pero Permitimos los modelos LFS (se rastrean en .gitattributes)
+# Si deseas ignorar modelos pesados, descomenta la siguiente línea:
+# *.pkl
+
+# IDEs y OS
+.vscode/
+.idea/
+.DS_Store
+Thumbs.db
+*.swp
+
+# Gemini / Antigravity
+.gemini/
+brain/

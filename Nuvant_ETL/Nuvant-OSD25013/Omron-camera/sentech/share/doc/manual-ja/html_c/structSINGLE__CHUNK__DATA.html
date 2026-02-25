@@ -1,0 +1,94 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "https://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=9"/>
+<meta name="generator" content="Doxygen 1.8.15"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>Sentech SDK C: PSINGLE_CHUNK_DATA 構造体</title>
+<link href="tabs.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="jquery.js"></script>
+<script type="text/javascript" src="dynsections.js"></script>
+<link href="doxygen.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+<div id="top"><!-- do not remove this div, it is closed by doxygen! -->
+<div id="titlearea">
+<table cellspacing="0" cellpadding="0">
+ <tbody>
+ <tr style="height: 56px;">
+  <td id="projectalign" style="padding-left: 0.5em;">
+   <div id="projectname">Sentech SDK C
+   </div>
+  </td>
+ </tr>
+ </tbody>
+</table>
+</div>
+<!-- end header part -->
+<!-- 構築: Doxygen 1.8.15 -->
+<script type="text/javascript" src="menudata.js"></script>
+<script type="text/javascript" src="menu.js"></script>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:cf05388f2679ee054f2beb29a391d25f4e673ac3&amp;dn=gpl-2.0.txt GPL-v2 */
+$(function() {
+  initMenu('',false,false,'search.php','検索');
+});
+/* @license-end */</script>
+<div id="main-nav"></div>
+</div><!-- top -->
+<div class="header">
+  <div class="summary">
+<a href="#pub-attribs">フィールド</a>  </div>
+  <div class="headertitle">
+<div class="title">PSINGLE_CHUNK_DATA 構造体<div class="ingroups"><a class="el" href="group__GenTL__PublicImple.html">GenTLモジュール実装部</a></div></div>  </div>
+</div><!--header-->
+<div class="contents">
+<div id="dynsection-0" onclick="return toggleVisibility(this)" class="dynheader closed" style="cursor:pointer;">
+  <img id="dynsection-0-trigger" src="closed.png" alt="+"/> PSINGLE_CHUNK_DATA 連携図</div>
+<div id="dynsection-0-summary" class="dynsummary" style="display:block;">
+</div>
+<div id="dynsection-0-content" class="dyncontent" style="display:none;">
+<div class="center"><img src="structSINGLE__CHUNK__DATA__coll__graph.png" border="0" usemap="#PSINGLE__CHUNK__DATA_coll__map" alt="Collaboration graph"/></div>
+<map name="PSINGLE__CHUNK__DATA_coll__map" id="PSINGLE__CHUNK__DATA_coll__map">
+<area shape="rect"  title=" " alt="" coords="55,95,228,121"/>
+<area shape="rect"  title=" " alt="" coords="5,5,80,32"/>
+<area shape="rect"  title=" " alt="" coords="105,5,178,32"/>
+<area shape="rect"  title=" " alt="" coords="227,5,287,32"/>
+</map>
+<center><span class="legend">[<a href="graph_legend.html">凡例</a>]</span></center></div>
+<table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-attribs"></a>
+フィールド</h2></td></tr>
+<tr class="memitem:a65356f5c24c3ee8b90442058ba6ea6d7"><td class="memItemLeft" align="right" valign="top"><a id="a65356f5c24c3ee8b90442058ba6ea6d7"></a>
+uint64_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structSINGLE__CHUNK__DATA.html#a65356f5c24c3ee8b90442058ba6ea6d7">ChunkID</a></td></tr>
+<tr class="memdesc:a65356f5c24c3ee8b90442058ba6ea6d7"><td class="mdescLeft">&#160;</td><td class="mdescRight">Numeric representation of the chunk's ChunkID. <br /></td></tr>
+<tr class="separator:a65356f5c24c3ee8b90442058ba6ea6d7"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a86fd4a26680d1697e8e7c7f89882ffea"><td class="memItemLeft" align="right" valign="top"><a id="a86fd4a26680d1697e8e7c7f89882ffea"></a>
+ptrdiff_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structSINGLE__CHUNK__DATA.html#a86fd4a26680d1697e8e7c7f89882ffea">ChunkOffset</a></td></tr>
+<tr class="memdesc:a86fd4a26680d1697e8e7c7f89882ffea"><td class="mdescLeft">&#160;</td><td class="mdescRight">Offset of the chunk's data from the start of the buffer(in bytes). <br /></td></tr>
+<tr class="separator:a86fd4a26680d1697e8e7c7f89882ffea"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a766fb05bad9e07ab4b43dd2170484c7a"><td class="memItemLeft" align="right" valign="top"><a id="a766fb05bad9e07ab4b43dd2170484c7a"></a>
+size_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structSINGLE__CHUNK__DATA.html#a766fb05bad9e07ab4b43dd2170484c7a">ChunkLength</a></td></tr>
+<tr class="memdesc:a766fb05bad9e07ab4b43dd2170484c7a"><td class="mdescLeft">&#160;</td><td class="mdescRight">Size of the given chunk data (in bytes). <br /></td></tr>
+<tr class="separator:a766fb05bad9e07ab4b43dd2170484c7a"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table>
+<a name="details" id="details"></a><h2 class="groupheader">詳解</h2>
+<div class="textblock"><p>Layout of the array elements being used in the function DSGetBufferChunkData to carry information about individual chunks present in the buffer. </p>
+</div></div><!-- contents -->
+<!-- HTML footer for doxygen 1.8.13-->
+<!-- start footer part -->
+<hr class="footer"/>
+	<address class="footer">
+		<small>
+2021年10月26日(火) 13時17分13秒作成 - Sentech SDK C / 構成:  &#160;
+			<a href="http://www.sentech.co.jp/">
+				<img class="footer" src="string_omron_sentech.png" alt="OMRON SENTECH CO., LTD"/>
+			</a>
+			<!--
+				DoxyGen Version =  1.8.15
+			-->
+		</small>
+	</address>
+</body>
+</html>
