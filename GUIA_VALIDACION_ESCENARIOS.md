@@ -1,10 +1,10 @@
-# Guía de Pruebas y Validación: Nuvant Vision System 🏭
+# Guía de Pruebas y Validación: Nuvant Vision System 
 
 Este documento describe los pasos exactos para validar el sistema en sus dos modalidades operativas. Ambos escenarios utilizan el núcleo de IA **PatchCore (V32)** y deben entregar resultados consistentes bajo las mismas condiciones ópticas.
 
 ---
 
-## Escenario A: Validación Estática (Simulación por Archivos) 📁
+## Escenario A: Validación Estática (Simulación por Archivos) 
 *Ideal para pruebas de oficina, desarrollo de lógica y validación de datasets previos sin hardware.*
 
 ### Fase 1: Entrenamiento Estático
@@ -12,7 +12,7 @@ Este documento describe los pasos exactos para validar el sistema en sus dos mod
 2.  **Cargar Imágenes**: Haz clic en **"Seleccionar Imágenes para Entrenar"** y elige al menos 10 fotos **totalmente limpias** (sin defectos) de tu disco duro.
 3.  **Subir**: Haz clic en el botón azul **"1. Subir al Servidor"**.
 4.  **Procesar**: Haz clic en el botón verde **"2. Iniciar Entrenamiento"**.
-    - *Resultado*: Al finalizar, la referencia aparecerá con un `✅ Listo`.
+    - *Resultado*: Al finalizar, la referencia aparecerá con un ` Listo`.
 
 ### Fase 2: Inferencia (Drag-and-Drop)
 1.  **NO** actives el botón de inspección (este modo está reservado exclusivamente para la cámara en vivo).
@@ -23,7 +23,7 @@ Este documento describe los pasos exactos para validar el sistema en sus dos mod
 
 ---
 
-## Escenario B: Validación Dinámica (Cámara en Vivo) 📷
+## Escenario B: Validación Dinámica (Cámara en Vivo) 
 *Escenario real de producción. Requiere cámara Sentech conectada o Webcam configurada en el bridge.*
 
 ### Fase 1: Entrenamiento Dinámico (Captura en Caliente)
@@ -40,7 +40,7 @@ Este documento describe los pasos exactos para validar el sistema en sus dos mod
 
 ---
 
-## Diferencias y Recomendaciones Críticas ⚠️
+## Diferencias y Recomendaciones Críticas 
 
 | Característica | Escenario Estático | Escenario Dinámico |
 | :--- | :--- | :--- |

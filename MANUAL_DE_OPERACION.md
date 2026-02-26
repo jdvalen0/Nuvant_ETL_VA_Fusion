@@ -1,4 +1,4 @@
-# Manual de Operación: Nuvant Vision System 🚀
+# Manual de Operación: Nuvant Vision System 
 
 Este manual guía al usuario e ingenieros en el uso diario y despliegue del sistema de inspección de calidad textil.
 
