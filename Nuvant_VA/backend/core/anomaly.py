@@ -101,18 +101,10 @@ class AnomalyDetector:
         threshold = self.gold_limit * sens_p
         is_anomaly = worst_dist > threshold
         
-        # 4. Quality Score [UI Standard] - CORREGIDO: Evita valores negativos
-        # 100 = Muy cerca del centro estadístico. 0 = En el límite.
-        # Usar relación inversa: mayor distancia = menor score
-        if worst_dist <= threshold:
-            # Dentro del límite: score positivo basado en distancia relativa
-            quality_score = 100.0 * (1.0 - (worst_dist / (threshold + 1e-9)))
-        else:
-            # Fuera del límite: score negativo (defecto detectado)
-            quality_score = -100.0 * ((worst_dist - threshold) / (threshold + 1e-9))
-        
-        # Normalizar a rango [0, 100] para UI (defectos muestran score bajo)
-        quality_score_ui = max(0.0, min(100.0, 100.0 + quality_score))
+        # 4. Quality Score [UI Standard] - 50 = Threshold, 100 = Perfect, 0 = Bad
+        # Align with PatchCore (V32) logic: score = 100 - (max_dist / threshold * 50)
+        anomaly_score = min(100.0, (worst_dist / (threshold + 1e-9)) * 50.0)
+        quality_score_ui = max(0.0, 100.0 - anomaly_score)
         
         return is_anomaly, float(quality_score_ui)
         
@@ -122,7 +114,8 @@ class AnomalyDetector:
             "mean_v": self.mean_v,
             "precision_v": self.precision_v,
             "gold_limit": self.gold_limit,
-            "gold_median": self.gold_median
+            "gold_median": self.gold_median,
+            "version": "V31_Mahalanobis"
         }
         joblib.dump(state, path)
         

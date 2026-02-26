@@ -202,9 +202,9 @@
                         <p class="text-xs">(Simulación de Cámara)</p>
                     </div>
 
-                    <!-- Capa de Mapa de Calor (More visible!) -->
+                    <!-- Capa de Mapa de Calor (Optimizado para visibilidad industrial V32.4) -->
                     <img id="heatmapOverlay"
-                        class="absolute inset-0 w-full h-full object-contain pointer-events-none opacity-60 hidden mix-blend-overlay" />
+                        class="absolute inset-0 w-full h-full object-contain pointer-events-none opacity-60 hidden" />
 
                     <!-- Indicador de Resultado (Reubicado para no tapar defectos) -->
                     <div id="resultBadge"
@@ -289,9 +289,11 @@
         let cameraMode = 'NONE';   // 'NONE' | 'TRAIN' | 'INSPECT'
         let framesCaptured = 0;
 
-        // Fase 1: Hardcoded a Línea 1, Punto 1 (Arquitectura modular)
-        const DEFAULT_LINE_ID = 1;
-        const DEFAULT_POINT_ID = 1;
+        // ── Configuración Dinámica (Modular) ───────────────────────────────────
+        // Lee parámetros de la URL: ?line=1&point=1
+        const urlParams = new URLSearchParams(window.location.search);
+        const DEFAULT_LINE_ID = parseInt(urlParams.get('line')) || 1;
+        const DEFAULT_POINT_ID = parseInt(urlParams.get('point')) || 1;
 
         function initChart() {
             const ctx = document.getElementById('scoreChart').getContext('2d');
@@ -328,7 +330,7 @@
                             },
                             title: {
                                 display: true,
-                                text: 'Puntaje de Anomalía (0-100 pts)',
+                                text: 'Puntaje de Calidad (100 = Perfecto)',
                                 color: '#94a3b8',
                                 font: { size: 11 }
                             }
@@ -365,26 +367,53 @@
         }
 
         async function createReference() {
-            const name = document.getElementById('refName').value;
+            const nameEl = document.getElementById('refName');
+            const btn = document.querySelector('button[onclick="createReference()"]');
+            const name = nameEl.value;
             if (!name) return;
-            const res = await fetch(`${API}/references/?name=${encodeURIComponent(name)}`, { method: 'POST' });
-            if (res.ok) {
-                document.getElementById('refName').value = '';
-                refreshRefs();
-            } else { alert("Error al crear referencia"); }
+
+            btn.disabled = true;
+            try {
+                const res = await fetch(`${API}/references/?name=${encodeURIComponent(name)}`, { method: 'POST' });
+                if (res.ok) {
+                    nameEl.value = '';
+                    refreshRefs();
+                } else { alert("Error al crear referencia"); }
+            } finally {
+                btn.disabled = false;
+            }
         }
 
         async function uploadImages() {
             const refId = document.getElementById('refSelect').value;
             if (!refId) return alert("Seleccione una referencia primero");
-            const files = document.getElementById('trainingFiles').files;
+            const filesEl = document.getElementById('trainingFiles');
+            const files = filesEl.files;
             if (files.length === 0) return alert("Seleccione archivos");
 
-            const fd = new FormData();
-            for (let f of files) fd.append('files', f);
+            const btn = document.querySelector('button[onclick="uploadImages()"]');
+            const originalText = btn.textContent;
+            btn.disabled = true;
+            btn.textContent = "⏳ Subiendo...";
 
-            const res = await fetch(`${API}/references/${refId}/upload_samples`, { method: 'POST', body: fd });
-            if (res.ok) { alert("¡Imágenes subidas!"); document.getElementById('trainingFiles').value = ""; }
+            try {
+                const fd = new FormData();
+                for (let f of files) fd.append('files', f);
+
+                const res = await fetch(`${API}/references/${refId}/upload_samples`, { method: 'POST', body: fd });
+                if (res.ok) {
+                    alert("✅ ¡Imágenes subidas correctamente!");
+                    filesEl.value = "";
+                    document.getElementById('selectedFilesInfo').textContent = "";
+                } else {
+                    alert("❌ Error al subir imágenes");
+                }
+            } catch (err) {
+                alert("❌ Error de comunicación");
+            } finally {
+                btn.disabled = false;
+                btn.textContent = originalText;
+            }
         }
 
         async function trainModel() {
@@ -471,6 +500,7 @@
             activeWs = new WebSocket(`${WS_INFER}/${refId}`);
 
             activeWs.onopen = () => {
+                clearUI();
                 const status = document.getElementById('connectionStatus');
                 const recBtn = document.getElementById('reconnectBtn');
                 if (status) {
@@ -487,7 +517,7 @@
             activeWs.onmessage = (event) => updateUI(JSON.parse(event.data));
 
             activeWs.onclose = (e) => {
-                console.log("WebSocket cerrado:", e);
+                console.log("WebSocket Estático cerrado:", e);
                 const status = document.getElementById('connectionStatus');
                 const recBtn = document.getElementById('reconnectBtn');
                 if (status) {
@@ -525,7 +555,10 @@
             };
 
             liveWs.onclose = () => {
-                console.log('[Live WS] Cerrado');
+                console.warn('[Live WS] Cámara no detectada o desconectada');
+                // IMPORTANTE: NO llamar a clearUI() aquí. 
+                // Esto evitara que se borren los badges de los análisis estáticos (archivos)
+                // si la cámara industrial no está conectada.
                 updateCameraBanner('NONE');
                 enableCameraButtons(false);
             };
@@ -536,6 +569,8 @@
             const t = data.type;
 
             if (t === 'train_progress') {
+                // Solo limpiar UI si realmente estamos en flujo de cámara
+                if (cameraMode === 'TRAIN') clearUI();
                 framesCaptured = data.frames_captured;
                 document.getElementById('frameCount').textContent = framesCaptured;
                 // Habilitar Entrenar si tenemos suficientes frames
@@ -568,14 +603,36 @@
             }
 
             if (t === 'error') {
-                console.warn('[Live] Error del servidor:', data.message);
+                console.warn('[Live] Info del servidor:', data.message);
+                // No limpiar UI en errores menores de red/cámara para no romper flujo estático
                 return;
+            }
+
+            if (t === 'mode_changed' && data.mode === 'TRAIN') {
+                clearUI();
             }
 
             // Resultado de inferencia (source: 'camera')
             if (data.source === 'camera') {
                 updateUI(data);
             }
+        }
+
+        function clearUI() {
+            const badge = document.getElementById('resultBadge');
+            const scoreEl = document.getElementById('scoreVal');
+            const fpsEl = document.getElementById('fpsVal');
+            const heatmapOverlay = document.getElementById('heatmapOverlay');
+
+            if (badge) badge.classList.add('hidden');
+            if (scoreEl) scoreEl.textContent = "0.0000";
+            if (fpsEl) fpsEl.textContent = "0 fps";
+            if (heatmapOverlay) {
+                heatmapOverlay.classList.add('hidden');
+                heatmapOverlay.src = "";
+            }
+            lastDefectData = null;
+            hasProcessedImage = false;
         }
 
         // ── Control de modos del bridge ────────────────────────────────────────
@@ -750,15 +807,16 @@
                                     "Problema técnico de captura";
                         badge.innerHTML = `⚠️ ERROR DE CAPTURA<br/><span class="text-xs opacity-90">${reason} - No se pudo analizar</span>`;
                     }
-                } else if (data.is_defect) {
+                } else if (data.is_defect || (hasValidScore && data.score < 50)) {
                     // Defecto detectado en la TELA (rojo)
+                    // NEW: Basado en is_defect O score < 50 (Calidad)
                     badge.textContent = "DEFECTO DETECTADO";
                     badge.className = "absolute bottom-4 right-4 px-4 py-2 rounded-lg font-bold text-xl shadow-xl backdrop-blur bg-red-600 text-white animate-pulse";
                     if (data.recognition && data.recognition.label) {
                         badge.innerHTML = `DEFECTO DETECTADO<br/><span class="text-xs opacity-90">Tipo: ${data.recognition.label} (${Math.round(data.recognition.confidence * 100)}%)</span>`;
                     }
                 } else if (hasValidScore) {
-                    // ✅ Tela sin defectos (verde) - SOLO si hay score válido Y se procesó imagen
+                    // ✅ Tela sin defectos (verde) - Calidad > 50
                     badge.textContent = "CALIDAD OK";
                     badge.className = "absolute bottom-4 right-4 px-4 py-2 rounded-lg font-bold text-xl shadow-xl backdrop-blur bg-green-600 text-white";
                 }

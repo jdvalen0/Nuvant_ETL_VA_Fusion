@@ -1,6 +1,9 @@
-# Manual Técnico: Arquitectura Nuvant V2 (Modular) 🏗️
+# Manual Técnico: Arquitectura Nuvant V2 (Modular)
 
 Este documento describe la arquitectura interna, el stack tecnológico y las decisiones de diseño del sistema **Nuvant Vision System**.
+
+> [!NOTE]
+> Para una explicación teórica profunda, algoritmos detallados y justificación del comportamiento paramétrico de los contenedores a nivel avanzado , consulta el documento: [Arquitectura Profunda y Teoría](file:///home/juan-david-valencia/Escritorio/Nuvant_ETL_VA_Fusion/ARQUITECTURA_Y_TEORIA_PHD.md).
 
 ## 1. Stack Tecnológico
 
@@ -20,9 +23,9 @@ El sistema está diseñado bajo una arquitectura de **microservicios dockerizado
 
 ```mermaid
 graph LR
-    A["📷 Cámara Sentech"] -- GigE/USB --> B["🌉 Camera Bridge (Py 3.7)"]
-    B -- "WebSocket (JPEG + JSON)" --> C["🧠 Backend VA (Py 3.11)"]
-    C -- "Inferencia PatchCore" --> D["📊 Base de Datos / UI"]
+    A["Cámara Sentech"] -- GigE/USB --> B["Camera Bridge (Py 3.7)"]
+    B -- "WebSocket (JPEG + JSON)" --> C["Backend VA (Py 3.11)"]
+    C -- "Inferencia PatchCore" --> D["Base de Datos / UI"]
     D -- "Feedback Operario" --> C
 ```
 
@@ -52,7 +55,7 @@ Para soportar el crecimiento a múltiples cámaras en una misma planta, se imple
 3.  **Resiliencia**: El Bridge implementa **backoff exponencial** para reconexión automática; si el backend cae, la cámara sigue intentando conectar sin detener el proceso de planta.
 4.  **Healthcheck**: Docker monitorea la salud del backend mediante validaciones internas de `urllib`, reiniciando servicios solo si es estrictamente necesario.
 
-## 5. Filosofía de Almacenamiento: "Zero-Storage" 📉
+## 5. Filosofía de Almacenamiento: "Zero-Storage"
 
 El sistema está optimizado para dispositivos IoT con recursos de almacenamiento limitados (SD, eMMC, SSDs pequeños).
 
@@ -63,7 +66,25 @@ El sistema está optimizado para dispositivos IoT con recursos de almacenamiento
 
 ---
 
-## 6. Escenario de Falla: Modo Live sin Cámara
+## 6. Despliegue en Hardware IoT (NVIDIA Jetson / ARM64) 
+
+Para garantizar el rendimiento en arquitectura ARM, considera estos puntos críticos:
+
+### A. Drivers Sentech (stapipy) en ARM
+El Dockerfile del Bridge está preparado para detectar la arquitectura. Sin embargo, debido a restricciones de licencia, **debes colocar el archivo `.whl` de ARM64** en la carpeta `camera_bridge/wheels/` antes de construir. El sistema te avisará con un `WARNING` si falta, pero el modo real fallará sin él.
+
+### B. PyTorch en ARM/Jetson
+En el backend, el `requirements.txt` usa versiones CPU por defecto. En una Jetson:
+1.  **NO** uses la versión `+cpu` de PyTorch si quieres aceleración por GPU.
+2.  Instala el `torch` y `torchvision` proporcionado por NVIDIA (archivos `.whl` específicos para JetPack).
+3.  El Dockerfile del Backend (`Nuvant_VA/docker/Dockerfile`) es compatible con bases `l4t-pytorch` si se requiere máxima optimización.
+
+### C. Visualización Industrial
+El Heatmap (V32.5) ha sido optimizado con **mezcla normal de opacidad al 60%** (eliminando modos 'screen' conflictivos) para ser visible incluso bajo luces intensas de planta, y su color métrico está sincronizado matemáticamente con el umbral dinámico estricto para no perderse en telas azules, oscuras o de patrones geométricos complejos.
+
+---
+
+## 7. Escenario de Falla: Modo Live sin Cámara
 
 Si ejecutas `CAMERA_MODE=live` pero la cámara no está conectada fisicamente:
 - El contenedor `bridge-linea1-final` entrará en estado **Exited (1)**.

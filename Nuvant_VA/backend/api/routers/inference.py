@@ -85,12 +85,22 @@ def load_model_for_point(point_id: int, ref_id: int, db: Session):
     if "V32" in model_version and PATCHCORE_AVAILABLE:
         detector = PatchCoreDetector()
     else:
+        # V31 fallback o detector estadístico
         detector = AnomalyDetector()
-        model_version = "V31"
+        if "V32" in model_version:
+             print("[Model] PatchCore V32 solicitado pero no disponible, usando V31")
+             model_version = "V31"
 
     try:
         detector.load(ref.model_path)
         sensitivity = ref.params.get("sensitivity", 0.0) if ref.params else 0.0
+        
+        # FIX: Asegurar que la versión cargada sea la real del objeto cargado
+        if hasattr(detector, 'backbone_name'): # Es PatchCore
+            model_version = "V32_PatchCore"
+        else:
+            model_version = "V31_Mahalanobis"
+
         _model_cache[(point_id, ref_id)] = {
             "detector": detector,
             "version": model_version,
@@ -391,6 +401,7 @@ async def train_from_camera(req: TrainFromCameraRequest, db: Session = Depends(g
         "trained_at": datetime.utcnow().isoformat(),
         "line_id": req.line_id,
         "point_id": req.point_id,
+        "version": "V32_PatchCore" if PATCHCORE_AVAILABLE else "V31_Mahalanobis"
     }
     db.commit()
 

@@ -79,9 +79,9 @@ class PatchCoreDetector:
     """
     
     def __init__(self, 
-                 backbone: str = None,
-                 coreset_sampling_ratio: float = None,
-                 num_neighbors: int = None):
+                 backbone: Optional[str] = None,
+                 coreset_sampling_ratio: Optional[float] = None,
+                 num_neighbors: Optional[int] = None):
         """
         Initialize PatchCore detector.
         """
@@ -172,9 +172,16 @@ class PatchCoreDetector:
             B, C, H, W = combined.shape
             features_flat = combined.permute(0, 2, 3, 1).reshape(-1, C)
             
+            # CORRECCIÓN V32.2: Normalización L2 (p=2) proyecta patches a hiperesfera unitaria.
+            # Esto hace que la distancia euclidiana sea proporcional a la distancia coseno,
+            # eliminando falsos positivos por cambios globales de brillo.
             features_norm = torch.nn.functional.normalize(features_flat, p=2, dim=1)
             
-            return features_norm.cpu().numpy(), (H, W)
+            # Estabilidad numérica: Manejar NaNs si ocurren en el extractor
+            features_out = features_norm.cpu().numpy()
+            features_out = np.nan_to_num(features_out, nan=0.0)
+            
+            return features_out, (H, W)
     
     def _coreset_subsampling(self, features: np.ndarray, ratio: float) -> np.ndarray:
         """
@@ -204,8 +211,8 @@ class PatchCoreDetector:
         return features[selected_indices]
     
     def train(self, 
-              image_paths: list = None,
-              images: list = None,
+              image_paths: Optional[list] = None,
+              images: Optional[list] = None,
               contamination: float = 0.01) -> Dict[str, Any]:
         """
         Train PatchCore on normal (defect-free) images.
@@ -237,28 +244,22 @@ class PatchCoreDetector:
         
         for idx, item in enumerate(source):
             if is_array:
-                img_bgr = item
+                # El bridge envía BGR (OpenCV)
                 img_rgb = cv2.cvtColor(item, cv2.COLOR_BGR2RGB)
                 pil_img = Image.fromarray(img_rgb)
             else:
+                # imread carga BGR
                 img_bgr = cv2.imread(item)
-                pil_img = Image.open(item).convert("RGB")
+                if img_bgr is None: continue
+                img_rgb = cv2.cvtColor(img_bgr, cv2.COLOR_BGR2RGB)
+                pil_img = Image.fromarray(img_rgb)
                 
-            # Skip "Dead/Total Dark" frames during training to avoid memory corruption
-            if img_bgr is not None:
-                gray_check = cv2.cvtColor(img_bgr, cv2.COLOR_BGR2GRAY)
-                mean_b = np.mean(gray_check)
-                if mean_b < 0.2:
-                    print(f" [PatchCore V32] Skipping image {idx}: Too dark (mean_brightness={mean_b:.2f})")
-                    continue
-            
-            # Apply ROI and CLAHE
+            # CORRECCIÓN V32.2: Aplicar pre-procesamiento industrial (ROI/CLAHE) 
+            # antes de extraer características para que el modelo aprenda lo mismo que verá en vivo.
             pil_img = self._apply_industrial_preprocess(pil_img)
             
-            # Transform and add batch dimension
+            # Transform and extract
             tensor = self.transform(pil_img).unsqueeze(0).to(self.device)
-            
-            # Extract features
             features, _ = self._extract_features(tensor)
             all_features.append(features)
         
@@ -281,18 +282,15 @@ class PatchCoreDetector:
         max_train_dist = np.max(train_dists)
         median_train_dist = np.median(train_dists)
         
-        # ESTRATEGIA: Usar el máximo entre:
-        # 1. Máximo real + 10% (garantiza que TODAS las imágenes de entrenamiento queden dentro)
-        # 2. Percentil 99 + 15% (margen adicional de seguridad)
-        # 3. Mediana * 3 (fallback para casos extremos)
-        # Esto es MUY generoso pero garantiza cero falsos positivos en training data
+        # CORRECCIÓN DE RIGOR: El exceso de "seguridad" (x4.0 o floor 0.12) ahoga la señal de los defectos.
+        # El threshold debe ceñirse estrechamente a la varianza real del set de entrenamiento.
         safety_threshold = max(
-            max_train_dist * 1.10,  # Máximo + 10% - GARANTIZA que todas las imágenes de entrenamiento queden dentro
-            base_threshold * 1.15,   # Percentil + 15% - margen adicional
-            median_train_dist * 3.0  # Fallback para casos extremos
+            base_threshold * 1.10,   # 10% sobre el percentil de contaminación
+            max_train_dist * 1.05,   # Apenas 5% sobre el peor caso real del entrenamiento
+            0.02                     # Floor matemático estrictamente técnico
         )
         
-        self.threshold = safety_threshold
+        self.threshold = float(safety_threshold)
         
         print(f"[PatchCore V32] Threshold calibration:")
         print(f"  Percentile {percentile}% = {base_threshold:.4f}")
@@ -315,46 +313,25 @@ class PatchCoreDetector:
         """
         Compute nearest-neighbor distances to memory bank with Density Reweighting (arXiv:2106.08265).
         """
-        if self.memory_bank is None:
-            raise ValueError("Model not trained")
-        
-        # 1. Compute cosine similarities (L2 normalized)
+        # 1. Compute cosine similarities (L2 normalized dot product)
         similarities = features @ self.memory_bank.T  # (N_patches, N_coreset)
         
-        # 2. Get top-K neighbors
-        k = min(self.num_neighbors, len(self.memory_bank))
-        # partitioning is faster than sorting for just top-K
-        top_k_indices = np.argpartition(-similarities, k-1, axis=1)[:, :k]
-        
-        # Extract top similarities for each patch
-        rows = np.arange(features.shape[0])[:, None]
-        top_similarities = similarities[rows, top_k_indices] # (N_patches, k)
-        
-        # Sort them within the top-K (optional but cleaner)
-        top_similarities = -np.sort(-top_similarities, axis=1)
+        # 2. Extract best similarity for each patch
+        max_similarity = np.max(similarities, axis=1)
         
         # 3. Compute distances (1 - sim)
-        top_distances = 1.0 - top_similarities
+        # En hiperesfera unitaria, esto es proporcional al cuadrado de la dist euclidiana.
+        # Es robusto, simple y garantizado 0.0 para matches perfectos.
+        distances = 1.0 - max_similarity
         
-        # 4. Density Reweighting [Equation 6 in Paper]
-        # s = (1 - exp(-max_dist)) * max_dist / weight
-        # Simplified robust version: s = (1 - softmax_weight) * max_dist
-        max_similarity = top_similarities[:, 0]
-        max_dist = 1.0 - max_similarity
+        # Estabilidad: no permitir negativos por redondeo de punto flotante
+        distances = np.clip(distances, 0, None)
         
-        # Softmax-like weighting
-        weights = np.exp(top_similarities)
-        weights_sum = np.sum(weights, axis=1)
-        soft_max_weight = 1.0 - (weights[:, 0] / weights_sum)
-        
-        # Final reweighted score per patch
-        reweighted_distances = soft_max_weight * max_dist
-        
-        return reweighted_distances
+        return distances
     
     def predict(self, 
-                image: np.ndarray = None,
-                image_path: str = None,
+                image: Optional[np.ndarray] = None,
+                image_path: Optional[str] = None,
                 sensitivity_offset: float = 0.0) -> Tuple[bool, float, Optional[np.ndarray]]:
         """
         Predict if image contains anomaly and generate heatmap.
@@ -393,6 +370,14 @@ class PatchCoreDetector:
         # Compute per-patch distances
         patch_distances = self._compute_distances(features)
         
+        # Compute overall score (max of patch distances)
+        max_distance = np.max(patch_distances)
+        
+        # 4. Apply sensitivity offset (UPFRONT for heatmap sync)
+        # Positive offset (Strict) -> Lower threshold -> More detections
+        # Negative offset (Ignore) -> Higher threshold -> Less detections
+        adjusted_threshold = self.threshold * (1.0 - sensitivity_offset / 1000.0)
+        
         # Reshape to spatial map (this map corresponds to the CROPPED/processed image)
         distance_map = patch_distances.reshape(H, W)
         
@@ -401,7 +386,6 @@ class PatchCoreDetector:
         heatmap_cropped = cv2.resize(distance_map.astype(np.float32), (cropped_w, cropped_h), interpolation=cv2.INTER_LINEAR)
         
         # 5. Gaussian Blur (per Paper arXiv:2106.08265, sigma=4)
-        # Smooths the blocky patch predictions into a organic "thermal" map
         heatmap_cropped = cv2.GaussianBlur(heatmap_cropped, (0, 0), sigmaX=4, sigmaY=4)
         
         # Create full-size heatmap with zeros
@@ -416,45 +400,32 @@ class PatchCoreDetector:
         hh, ww = heatmap_cropped.shape
         full_heatmap[top:top+hh, left:left+ww] = heatmap_cropped[:min(hh, h-top), :min(ww, w-left)]
         
-        # 6. Industrial Normalization (Threshold-Relative)
-        # Old method (Min-Max) caused "Red Noise" on perfect fabrics.
-        # New method (Corrected): Enhanced Visualization Logic
-        if self.threshold > 0:
-            # Normalize relative to threshold (0.5 = threshold)
-            # We want to boost visibility of anomalies, so we don't clamp too early
-            # factor = 1.0 means val == threshold -> 0.5 (Green/Yellow transition)
-            heatmap_normalized = 0.5 * (full_heatmap / self.threshold)
-            
-            # Non-linear boost (Sqrt) to make faint anomalies more visible (Thermal Effect)
-            # Safety Clip to prevent NaN on tiny negative float errors
-            heatmap_normalized = np.clip(heatmap_normalized, 0, None)
-            heatmap_normalized = np.power(heatmap_normalized, 0.7)
-            
-            heatmap_normalized = np.clip(heatmap_normalized, 0, 1)
+        # 6. Industrial Normalization (Threshold-Relative V32.4)
+        # Sincronizamos con adjusted_threshold para que el Heatmap sea fiel a la detección.
+        h_threshold = max(1e-4, adjusted_threshold)
+        heatmap_max = full_heatmap.max()
+        
+        if heatmap_max > h_threshold * 1.5:
+            # Si hay una anomalía fuerte, saturar de forma relativa para resaltar el foco
+            heatmap_normalized = full_heatmap / (heatmap_max + 1e-9)
         else:
-            # Fallback
-             heatmap_min, heatmap_max = full_heatmap.min(), full_heatmap.max()
-             if heatmap_max > heatmap_min:
-                 heatmap_normalized = (full_heatmap - heatmap_min) / (heatmap_max - heatmap_min)
-             else:
-                 heatmap_normalized = np.zeros_like(full_heatmap)
+            # Escala lineal: Queremos que EN el umbral se vea Naranja/Rojo (0.8)
+            heatmap_normalized = 0.8 * (full_heatmap / h_threshold)
         
-        # Compute overall score (max of patch distances)
-        max_distance = np.max(patch_distances)
-        
-        # Apply sensitivity offset
-        # Positive offset (Strict) -> Lower threshold -> More detections
-        # Negative offset (Ignore) -> Higher threshold -> Less detections
-        adjusted_threshold = self.threshold * (1.0 - sensitivity_offset / 1000.0)
+        # Cleanup y Post-procesamiento
+        heatmap_normalized = np.nan_to_num(heatmap_normalized, nan=0.0, posinf=1.0, neginf=0.0)
+        heatmap_normalized = np.clip(heatmap_normalized, 0, 1)
+        heatmap_normalized = np.power(heatmap_normalized, 0.7) # Curva de gamma para visibilidad
         
         # Determine if anomaly
         is_anomaly = max_distance > adjusted_threshold
         
         # Normalize score to 0-100 scale (relative to adjusted threshold)
-        # 50.0 means exactly at the threshold. > 50.0 is anomaly.
-        score = min(100.0, (max_distance / (adjusted_threshold + 1e-6)) * 50.0)
+        # 50.0 means exactly at the threshold (Quality mode).
+        anomaly_score = min(100.0, (max_distance / (adjusted_threshold + 1e-6)) * 50.0)
+        quality_score = max(0.0, 100.0 - anomaly_score)
         
-        return is_anomaly, score, heatmap_normalized
+        return is_anomaly, quality_score, heatmap_normalized
     
     def save(self, path: str):
         """Save trained model to disk."""
@@ -482,7 +453,14 @@ class PatchCoreDetector:
             print(f"[Warning] Loading model with version: {save_dict.get('version')}")
         
         self.memory_bank = save_dict["memory_bank"]
-        self.threshold = save_dict["threshold"]
+        self.threshold = float(save_dict.get("threshold", 0.05))
+        
+        # Retro-compatibilidad de seguridad: Si el modelo antiguo tenía un threshold colapsado a 0.0
+        # forzamos el suelo numérico para reactivar el Heatmap y evitar falsos positivos
+        if self.threshold < 0.05:
+            print(f"[Warning] Rescatando modelo con threshold topológico nulo ({self.threshold}). Aplicando Floor (0.05).")
+            self.threshold = 0.05
+            
         self.backbone_name = save_dict.get("backbone", "wide_resnet50_2")
         self.image_size = save_dict.get("image_size", (224, 224))
         

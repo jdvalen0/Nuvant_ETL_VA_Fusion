@@ -21,14 +21,33 @@ COPY requirements.txt .
 RUN pip install --upgrade pip && \
     pip install --no-cache-dir -r requirements.txt
 
-# Instalar stapipy desde wheel local (x86_64)
-# Los .whl se copian desde el proyecto ETL original
-COPY wheels/stapipy-1.1.2.1-cp37-cp37m-linux_x86_64.whl /tmp/
-RUN pip install --no-cache-dir /tmp/stapipy-1.1.2.1-cp37-cp37m-linux_x86_64.whl
+# Instalar stapipy desde wheel local (Detección de Arquitectura)
+ARG TARGETPLATFORM
+COPY wheels/ /tmp/wheels/
+COPY lib/ /tmp/lib/
 
-# Librería nativa requerida por stapipy
-COPY lib/libStApi_TL.so.1.1 /usr/local/lib/
-RUN ldconfig
+RUN ARCH=$(uname -m) && \
+    echo "Building for Architecture: $ARCH" && \
+    if [ "$ARCH" = "x86_64" ]; then \
+    WHL="/tmp/wheels/stapipy-1.1.2.1-cp37-cp37m-linux_x86_64.whl"; \
+    if [ -f "$WHL" ]; then \
+    pip install --no-cache-dir "$WHL" && \
+    cp /tmp/lib/libStApi_TL.so.1.1 /usr/local/lib/ && \
+    ldconfig; \
+    else \
+    echo "ERROR: x86_64 wheel not found at $WHL"; exit 1; \
+    fi; \
+    elif [ "$ARCH" = "aarch64" ]; then \
+    WHL=$(ls /tmp/wheels/stapipy*aarch64.whl 2>/dev/null || ls /tmp/wheels/stapipy*arm64.whl 2>/dev/null); \
+    if [ -n "$WHL" ] && [ -f "$WHL" ]; then \
+    pip install --no-cache-dir "$WHL" && \
+    cp /tmp/lib/libStApi_TL.so.1.1 /usr/local/lib/ && \
+    ldconfig; \
+    else \
+    echo "WARNING: ARM64 wheel not found. Camera LIVE mode will fail on this hardware."; \
+    echo "Please place the ARM64 .whl in camera_bridge/wheels/ to enable LIVE mode."; \
+    fi; \
+    fi
 
 # Código del bridge
 COPY camera_bridge.py .

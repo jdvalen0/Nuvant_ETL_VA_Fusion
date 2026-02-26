@@ -19,13 +19,13 @@ Para desplegar este sistema en un nuevo entorno (ej. Dispositivo IoT en planta):
 
 ## 2. Elementos de la Interfaz Gráfica (GUI)
 
-### 🔴 Panel de Control de Cámara
+### Panel de Control de Cámara
 Ubicado en la parte superior. Controla el estado del **Bridge**.
-- **🎥 Iniciar Captura**: Comienza a recibir video de la cámara. Los frames se guardan temporalmente en el servidor para entrenar.
-- **🧠 Entrenar Modelo**: Toma los frames capturados y genera la "huella digital" de la tela.
-- **🔍 Iniciar Inspección**: Activa el motor de IA para buscar defectos en vivo.
+- **Iniciar Captura**: Comienza a recibir video de la cámara. Los frames se guardan temporalmente en el servidor para entrenar. La cámara tomará imágenes indefinidamente (alimentando la memoria RAM) mientras este modo esté activo.
+- **Entrenar Modelo**: Detiene inmediatamente la captura de imágenes y toma el volumen total de frames acumulados para generar la "huella digital" de la tela. (Recomendado: presionar este botón después de haber capturado entre 30 y 100 imágenes, visible en el contador de la pantalla).
+- **Iniciar Inspección**: Activa el motor de IA para buscar defectos en vivo.
 
-### 🎚️ Parámetros de Inteligencia Artificial
+### Parámetros de Inteligencia Artificial
 Nuvant usa **PatchCore V32**, que califica cada milímetro de la tela.
 
 1.  **Rigor / Contaminación (0.001 - 0.05)**:
@@ -35,10 +35,11 @@ Nuvant usa **PatchCore V32**, que califica cada milímetro de la tela.
     *   Controla qué tan detallada es la observación del modelo.
     *   *Uso*: 0.95 es el estándar de oro para textiles.
 3.  **Ajuste de Umbral en Caliente (Offset)**:
-    *   **Hacia "ESTRICTO" (+)**: El sistema reportará defectos ante la más mínima variación (útil para telas premium).
-    *   **Hacia "IGNORAR" (-)**: El sistema perdonará variaciones leves de color o textura.
+    *   *Nota Técnica (V32.5)*: El motor base es estrictamente riguroso por defecto, anclado a solo el 1.05x de la desviación topológica máxima vista en la sesión de entrenamiento.
+    *   **Hacia "ESTRICTO" (+)**: El sistema escala la hipersensibilidad, reportando anomalías geométricas microscópicas.
+    *   **Hacia "IGNORAR" (-)**: Incrementa el margen algorítmico de seguridad para que el motor tolere variaciones leves o reflejos parásitos (sin corromper la exactitud del heatmap en tiempo real).
 
-### 📊 Métricas y Tendencia
+### Métricas y Tendencia
 - **Puntaje de Anomalía**: Una calificación de **0 a 100**. 
     *   0-20: Tela Perfecta.
     *   20-50: Variación leve (Alerta).
