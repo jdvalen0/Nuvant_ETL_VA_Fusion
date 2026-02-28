@@ -24,6 +24,15 @@ Para profundizar en el uso y la ingeniería del proyecto:
 *   [Documentación Técnica](file:///home/juan-david-valencia/Escritorio/Nuvant_ETL_VA_Fusion/DOCUMENTACION_TECNICA.md): Arquitectura de microservicios, stack tecnológico y despliegue.
 *   [Teoría y Algoritmos](file:///home/juan-david-valencia/Escritorio/Nuvant_ETL_VA_Fusion/ARQUITECTURA_Y_TEORIA_PHD.md): Fundamentación matemática de PatchCore y normalización de distancias.
 
+## Cómo Clonar en un Nuevo Equipo (VS Code)
+
+1.  Abra **VS Code**.
+2.  Presione `Ctrl + Shift + P` y escriba `Git: Clone`.
+3.  Pegue la URL SSH del repositorio: `git@github.com:tu-usuario/Nuvant_ETL_VA_Fusion.git`
+4.  Seleccione la carpeta de destino (ej. `~/Escritorio`).
+5.  Cuando finalice, haga clic en **Abrir** (Open).
+6.  Abra una terminal integrada en VS Code (`Ctrl + ñ` o `` Ctrl + ` ``) y siga los pasos de **Arranque Rápido**.
+
 ## Arranque Rápido
 
 Asegúrese de tener Docker instalado y ejecute la inicialización agnóstica antes de levantar los contenedores:
