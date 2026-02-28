@@ -20,8 +20,7 @@ Maximizar la rentabilidad operativa mediante la digitalización del control de c
 
 Para profundizar en el uso y la ingeniería del proyecto:
 
-*   [Guía de Inicio Rápido](file:///home/juan-david-valencia/Escritorio/Nuvant_ETL_VA_Fusion/MANUAL_DE_OPERACION.md): Manual paso a paso para operarios e ingenieros de planta.
-*   [Protocolos de Validación](file:///home/juan-david-valencia/Escritorio/Nuvant_ETL_VA_Fusion/GUIA_VALIDACION_ESCENARIOS.md): Cómo probar el sistema con archivos o cámara en vivo.
+*   [Operación Servidor Remoto](file:///home/juan-david-valencia/Escritorio/Nuvant_ETL_VA_Fusion/OPERACION_SERVIDOR_REMOTO.md): Guía paso a paso para configurar el equipo como servidor y acceder vía red.
 *   [Documentación Técnica](file:///home/juan-david-valencia/Escritorio/Nuvant_ETL_VA_Fusion/DOCUMENTACION_TECNICA.md): Arquitectura de microservicios, stack tecnológico y despliegue.
 *   [Teoría y Algoritmos](file:///home/juan-david-valencia/Escritorio/Nuvant_ETL_VA_Fusion/ARQUITECTURA_Y_TEORIA_PHD.md): Fundamentación matemática de PatchCore y normalización de distancias.
 
