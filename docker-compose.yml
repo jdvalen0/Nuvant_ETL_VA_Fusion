@@ -19,9 +19,9 @@ services:
     ports:
       - "8000:8000"
     volumes:
-      - storage_data:/app/local_storage
-      - db_data:/app/db
-      - log_data:/app/logs
+      - ./Nuvant_VA/backend/local_storage:/app/local_storage
+      - ./Nuvant_VA/backend/db:/app/db
+      - ./Nuvant_VA/backend/logs:/app/logs
     environment:
       - ENV=production
       - PYTHONUNBUFFERED=1
@@ -104,11 +104,7 @@ services:
   #     CAMERA_ID:       "cam-l2-final"
 
 
+
 networks:
   nuvant-net:
     driver: bridge
-
-volumes:
-  storage_data:
-  db_data:
-  log_data:

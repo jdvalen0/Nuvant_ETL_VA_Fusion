@@ -55,14 +55,19 @@ Para soportar el crecimiento a múltiples cámaras en una misma planta, se imple
 3.  **Resiliencia**: El Bridge implementa **backoff exponencial** para reconexión automática; si el backend cae, la cámara sigue intentando conectar sin detener el proceso de planta.
 4.  **Healthcheck**: Docker monitorea la salud del backend mediante validaciones internas de `urllib`, reiniciando servicios solo si es estrictamente necesario.
 
-## 5. Filosofía de Almacenamiento: "Zero-Storage"
+## 5. Gestión de Persistencia y "Zero-Storage"
 
-El sistema está optimizado para dispositivos IoT con recursos de almacenamiento limitados (SD, eMMC, SSDs pequeños).
+El sistema está optimizado para garantizar la integridad de los datos sin saturar el almacenamiento, utilizando una jerarquía consolidada en `Nuvant_VA/backend/`:
 
-1.  **Procesamiento en RAM**: Los frames capturados durante el entrenamiento se almacenan en un buffer de memoria volátil. Nunca tocan el disco en su estado crudo.
-2.  **Extracción y Descarte**: Una vez generado el modelo (`model.pkl`), las imágenes originales se eliminan de la RAM. El modelo resultante es ~1000 veces más pequeño que las fotos originales.
-3.  **Inferencia en Tiempo Real**: En modo producción, cada frame se procesa, se califica y se descarta inmediatamente. No existe un proceso de "grabación" de video, lo que evita el desgaste de las celdas de memoria del hardware.
-4.  **Escalabilidad a Futuro**: La arquitectura permite habilitar un "Logging de Defectos" que guarde capturas específicas si el cliente lo requiere, pero por defecto opera bajo impacto cero en disco.
+1.  **Estructura Consolidada**: 
+    - `db/`: Almacena `nuvant.db` (SQLite). Centralizado para evitar redundancias.
+    - `local_storage/`: Almacena los modelos PatchCore comprimidos.
+    - `logs/`: Registros de auditoría y errores del motor de IA.
+2.  **Bind Mounts Agnosticismo**: Se eliminaron los volúmenes nominales de Docker en favor de montajes directos. Esto permite:
+    - Backup manual sencillo copiando las carpetas del host.
+    - Auditoría de logs en tiempo real sin herramientas de Docker.
+    - Persistencia garantizada incluso tras eliminar los contenedores.
+3.  **Procesamiento en RAM**: Los frames crudos de entrenamiento se mantienen en memoria volátil y se descartan tras generar el modelo, respetando la filosofía de bajo impacto en disco.
 
 ---
 

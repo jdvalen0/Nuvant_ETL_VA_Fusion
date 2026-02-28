@@ -4,16 +4,32 @@ Este manual guía al usuario e ingenieros en el uso diario y despliegue del sist
 
 ---
 
-## 1. Guía de Inicio Rápido (Despliegue)
+## 1. Guía de Inicio Rápido (Despliegue Profesional)
 
-Para desplegar este sistema en un nuevo entorno (ej. Dispositivo IoT en planta):
+Para desplegar este sistema en un nuevo entorno Ubuntu/Linux garantizando que las bases de datos y configuraciones funcionen al primer intento:
 
 1.  **Requisitos**: Docker y Docker Compose instalados.
-2.  **Clonación**: Copiar la carpeta `Nuvant_ETL_VA_Fusion` al dispositivo.
-3.  **Encendido**:
+2.  **Preparación Agnostica**: Copia la carpeta `Nuvant_ETL_VA_Fusion` y ejecuta el script de inicialización:
+    ```bash
+    chmod +x init_deploy.sh
+    ./init_deploy.sh
+    ```
+    *Este comando crea los directorios de persistencia con los permisos correctos, evitando bloqueos de Docker.*
+3.  **Encendido (Modo Industrial)**:
     *   **Modo Simulación (Pruebas)**: `docker compose up -d`
     *   **Modo Real (Producción)**: `CAMERA_MODE=live docker compose up -d`
-4.  **Acceso**: Abrir `http://<IP-DEL-IOT>:8000/static/index.html`.
+    *   *Nota: El flag `-d` es CRÍTICO. Permite que el sistema siga corriendo aunque cierres la terminal o te desconectes del equipo.*
+4.  **Acceso**: Abrir `http://localhost:8000/static/index.html`.
+
+---
+
+## 2. Gestión de Persistencia (Transparencia Total)
+
+A diferencia de versiones anteriores, el sistema ahora utiliza **Bind Mounts**. Esto significa que puedes ver e investigar los archivos del sistema directamente en tu equipo sin entrar al contenedor:
+
+- **Bases de Datos**: Ubicadas en `Nuvant_VA/backend/db/`
+- **Registros (Logs)**: Ubicados en `Nuvant_VA/backend/logs/`
+- **Modelos Entrenados**: Ubicados en `Nuvant_VA/backend/local_storage/`
 
 ---
 

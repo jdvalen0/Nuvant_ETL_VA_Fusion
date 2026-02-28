@@ -27,9 +27,14 @@ Para profundizar en el uso y la ingeniería del proyecto:
 
 ## Arranque Rápido
 
-Asegúrese de tener Docker instalado y ejecute en la raíz del proyecto:
+Asegúrese de tener Docker instalado y ejecute la inicialización agnóstica antes de levantar los contenedores:
 
 ```bash
+# 1. Preparar entorno (Directorios y Permisos)
+chmod +x init_deploy.sh
+./init_deploy.sh
+
+# 2. Levantar el sistema
 # Modo Producción (Cámara en vivo)
 CAMERA_MODE=live docker compose up -d
 

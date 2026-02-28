@@ -74,4 +74,4 @@ La arquitectura dictaminó un estándar absoluto de UX y matemáticas de decisi�
 
 ## Conclusión de Auditoría
 
-La arquitectura híbrida Bridge-Backend, acoplada a la reducción tensorial por Coreset Subsampling (PatchCore) y la normalización matemática de hiper-vectores a una escala Euclidiana 0-100, posiciona al Sistema Nuvant como una solución resiliente, matemáticamente trazable y optimizada para operar en el Edge (Hardware IoT ARM64/Jetson) en regimen 24/7 sin degradación de la media de vida útil de almacenamiento.
+La arquitectura híbrida Bridge-Backend, acoplada a la reducción tensorial por Coreset Subsampling (PatchCore) y la normalización matemática de hiper-vectores, se complementa en la versión **V33.1** con un saneamiento estructural profundo. La consolidación de la persistencia mediante Bind Mounts y la automatización de inicialización aseguran que el Sistema Vision System sea una solución resiliente, matemáticamente trazable y profesionalmente transportable entre entornos Linux/Ubuntu sin degradación operativa.
