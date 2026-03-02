@@ -1,5 +1,13 @@
 # 🚀 Project Handoff: Nuvant Vision System
 
+> [!WARNING]
+> Documento historico (enero 2026). No usar como guia operativa de despliegue actual.
+> Para estado vigente usar:
+> - `README.md` (raiz)
+> - `DOCUMENTACION_TECNICA.md`
+> - `OPERACION_SERVIDOR_REMOTO.md`
+> - `GUIA_AJUSTES_PRODUCCION.md`
+
 **Date**: 2026-01-26
 **Status**: Functional Prototype (Phase 3/4)
 **Core Tech**: Deep Learning (MobileNetV2 Embeddings) + Statistical Anomaly Detection (Mahalanobis)

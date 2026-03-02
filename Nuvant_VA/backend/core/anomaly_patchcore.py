@@ -453,13 +453,9 @@ class PatchCoreDetector:
             print(f"[Warning] Loading model with version: {save_dict.get('version')}")
         
         self.memory_bank = save_dict["memory_bank"]
-        self.threshold = float(save_dict.get("threshold", 0.05))
-        
-        # Retro-compatibilidad de seguridad: Si el modelo antiguo tenía un threshold colapsado a 0.0
-        # forzamos el suelo numérico para reactivar el Heatmap y evitar falsos positivos
-        if self.threshold < 0.05:
-            print(f"[Warning] Rescatando modelo con threshold topológico nulo ({self.threshold}). Aplicando Floor (0.05).")
-            self.threshold = 0.05
+        if "threshold" not in save_dict:
+            raise ValueError("Model file missing required 'threshold'. Retrain the reference model.")
+        self.threshold = float(save_dict["threshold"])
             
         self.backbone_name = save_dict.get("backbone", "wide_resnet50_2")
         self.image_size = save_dict.get("image_size", (224, 224))

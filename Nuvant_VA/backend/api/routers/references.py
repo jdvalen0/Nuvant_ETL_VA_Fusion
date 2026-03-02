@@ -73,61 +73,101 @@ async def upload_samples(ref_id: int, files: list[UploadFile] = File(...), db: S
         
     return {"message": f"Uploaded {len(saved_files)} images", "paths": saved_files}
 
+def _train_task(ref_id: int, cont: float, pca_v: float, sens: float, db_session_factory):
+    """Tarea de fondo para realizar el entrenamiento sin bloquear la API."""
+    db = db_session_factory()
+    try:
+        ref = db.query(Reference).filter(Reference.id == ref_id).first()
+        if not ref:
+            return
+
+        ref_dir = get_storage_path(ref_id) / "samples"
+        image_paths = [os.path.join(ref_dir, f) for f in os.listdir(ref_dir) if f.lower().endswith(('.png', '.jpg', '.jpeg'))]
+        
+        images = []
+        for path in image_paths:
+            img = cv2.imread(path)
+            if img is not None:
+                images.append(img)
+
+        if not images:
+            print(f"[BackgroundTask] Error: No se pudieron cargar imágenes para ref {ref_id}")
+            return
+
+        try:
+            from backend.core.anomaly_patchcore import AnomalyDetectorV32
+            detector = AnomalyDetectorV32()
+            print(f"[BackgroundTask] Usando PatchCore V32 para ref {ref_id}")
+        except ImportError:
+            from backend.core.anomaly import AnomalyDetector
+            detector = AnomalyDetector()
+            print(f"[BackgroundTask] Usando Mahalanobis V31 fallback para ref {ref_id}")
+
+        print(f"[BackgroundTask] Iniciando entrenamiento para ref {ref_id} con {len(images)} imágenes...")
+        detector.train(images=images, contamination=cont)
+
+        # Save model
+        model_path = get_storage_path(ref_id) / "model.pkl"
+        detector.save(str(model_path))
+
+        ref.model_path = str(model_path)
+        ref.params = {
+            "contamination": cont,
+            "pca_variance": pca_v,
+            "sensitivity": sens,
+            "status": "trained"
+        }
+        db.commit()
+
+        # Clear cache
+        from backend.api.routers.inference import clear_model_cache
+        clear_model_cache(ref_id)
+        print(f"[BackgroundTask] Entrenamiento completado para ref {ref_id}")
+
+    except Exception as e:
+        print(f"[BackgroundTask] Error durante el entrenamiento: {e}")
+        try:
+            ref = db.query(Reference).filter(Reference.id == ref_id).first()
+            if ref:
+                params = ref.params or {}
+                params["status"] = "error"
+                params["error_msg"] = str(e)
+                ref.params = params
+                db.commit()
+        except:
+            pass
+    finally:
+        db.close()
+
 @router.post("/{ref_id}/train")
-async def train_reference(ref_id: int, req: TrainRequest = None, db: Session = Depends(get_db)):
+async def train_reference(ref_id: int, background_tasks: BackgroundTasks, req: TrainRequest = None, db: Session = Depends(get_db)):
     ref = db.query(Reference).filter(Reference.id == ref_id).first()
     if not ref:
         raise HTTPException(404, "Reference not found")
     
     ref_dir = get_storage_path(ref_id) / "samples"
-    if not os.path.exists(ref_dir):
+    if not os.path.exists(ref_dir) or not os.listdir(ref_dir):
         raise HTTPException(400, "No samples uploaded yet")
-        
-    # Background training logic (simplified - running sync for now for safety)
-    try:
-        from backend.core.anomaly_patchcore import AnomalyDetectorV32
-        detector = AnomalyDetectorV32()
-        print("Using PatchCore V32 for training.")
-    except ImportError:
-        from backend.core.anomaly import AnomalyDetector
-        detector = AnomalyDetector()
-        print("Using Mahalanobis V31 fallback for training.")
     
     # Use request params if provided, else defaults
     cont = req.contamination if req else 0.01
     pca_v = req.pca_variance if req else 0.95
     sens = req.sensitivity if req else 0.0
-    
-    image_paths = [os.path.join(ref_dir, f) for f in os.listdir(ref_dir) if f.lower().endswith(('.png', '.jpg', '.jpeg'))]
-    if len(image_paths) < 2:
-        raise HTTPException(400, "Need at least 2 images to train")
-        
-    # PatchCore V32 trains directly on images for better accuracy
-    images = []
-    for path in image_paths:
-        img = cv2.imread(path)
-        if img is not None:
-            images.append(img)
-    
-    detector.train(images=images, contamination=cont)
-    
-    # Save model
-    model_path = get_storage_path(ref_id) / "model.pkl"
-    detector.save(str(model_path))
-    
-    ref.model_path = str(model_path)
-    ref.params = {
-        "contamination": cont,
-        "pca_variance": pca_v,
-        "sensitivity": sens
-    }
+
+    # Marcar como "entrenando" para que la UI sepa
+    params = ref.params or {}
+    params["status"] = "training"
+    ref.params = params
     db.commit()
 
-    # CRITICAL: Clear cache so new model/params are loaded
-    from backend.api.routers.inference import clear_model_cache
-    clear_model_cache(ref_id)
+    # Encolar la tarea
+    background_tasks.add_task(_train_task, ref_id, cont, pca_v, sens, SessionLocal)
     
-    return {"status": "trained", "model_path": str(model_path), "samples_used": len(images)}
+    return {
+        "status": "training_started", 
+        "message": "El entrenamiento se ha iniciado en segundo plano. La interfaz se actualizará al finalizar.",
+        "ref_id": ref_id
+    }
 
 @router.delete("/{ref_id}")
 def delete_reference(ref_id: int, db: Session = Depends(get_db)):

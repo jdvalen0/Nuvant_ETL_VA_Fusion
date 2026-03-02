@@ -42,6 +42,8 @@ router = APIRouter()
 _model_cache: Dict[tuple, Dict[str, Any]] = {}
 _cache_lock = asyncio.Lock()
 _shared_extractor = FeatureExtractor()
+_bridge_connections: Dict[tuple, WebSocket] = {}
+_bridge_lock = asyncio.Lock()
 
 
 def get_db():
@@ -124,6 +126,36 @@ def clear_model_cache(ref_id: int, point_id: int = None):
         print(f"[Model] Cache limpiada: punto={k[0]} ref={ref_id}")
 
 
+async def _register_bridge(line_id: int, point_id: int, ws: WebSocket):
+    async with _bridge_lock:
+        _bridge_connections[(line_id, point_id)] = ws
+        print(f"[Bridge] Registrado L{line_id}P{point_id}. Total: {len(_bridge_connections)}")
+
+
+async def _unregister_bridge(ws: WebSocket):
+    async with _bridge_lock:
+        dead_keys = [k for k, v in _bridge_connections.items() if v is ws]
+        for k in dead_keys:
+            _bridge_connections.pop(k, None)
+
+
+async def _send_to_bridge(line_id: int, point_id: int, payload: dict) -> bool:
+    key = (line_id, point_id)
+    async with _bridge_lock:
+        ws = _bridge_connections.get(key)
+    if ws is None:
+        print(f"[Bridge] Error: No hay conexión para L{line_id}P{point_id}")
+        return False
+    try:
+        await ws.send_text(json.dumps(payload))
+        print(f"[Bridge] Comando enviado a L{line_id}P{point_id}: {payload.get('type')} -> {payload.get('mode')}")
+        return True
+    except Exception as e:
+        print(f"[Bridge] Fallo al enviar a L{line_id}P{point_id}: {e}")
+        await _unregister_bridge(ws)
+        return False
+
+
 # ══════════════════════════════════════════════════════════════════════════════
 # WS FRONTED — drag-and-drop (mantiene compatibilidad con flujo anterior)
 # ══════════════════════════════════════════════════════════════════════════════
@@ -139,11 +171,11 @@ async def websocket_endpoint(websocket: WebSocket, ref_id: int):
 
         detector, sensitivity, model_version = load_model_for_point(point_id, ref_id, db)
         if not detector:
-            await websocket.send_json({"error": "Model not ready or reference not found"})
-            await websocket.close()
-            return
-
-        is_patchcore = model_version and "V32" in model_version
+            print(f"[WS] Modelo no listo para ref {ref_id}. Manteniendo conexión.")
+            await websocket.send_json({"type": "info", "message": "Model not ready. Please train first."})
+            # No cerramos, dejamos que el usuario suba imágenes o espere.
+        
+        is_patchcore = model_version and "V32" in model_version if detector else False
 
         while True:
             message = await websocket.receive()
@@ -159,6 +191,13 @@ async def websocket_endpoint(websocket: WebSocket, ref_id: int):
                 continue
 
             if "bytes" not in message:
+                continue
+
+            if not detector:
+                # Si no hay detector, solo permitimos recibir comandos (como set_sensitivity)
+                # pero no procesamos frames locales (bytes)
+                if "bytes" in message:
+                     await websocket.send_json({"type": "error", "message": "No model loaded for processing"})
                 continue
 
             result = await _process_frame(
@@ -185,127 +224,240 @@ async def websocket_endpoint(websocket: WebSocket, ref_id: int):
 
 @router.websocket("/camera_feed")
 async def camera_feed(websocket: WebSocket):
-    """
-    WebSocket exclusivo para el Camera Bridge.
-
-    Protocolo (2 mensajes por frame):
-      1. JSON: { "type": "frame_meta", "mode": "TRAIN|INSPECT",
-                 "line_id": int, "point_id": int, "ref_id": int }
-      2. Bytes: JPEG del frame
-    """
     from backend.api.main import manager, train_buffer, train_buffer_lock
 
     await websocket.accept()
     print("[CameraFeed] Bridge conectado.")
 
-    # Defaults: línea 1, punto 1
+    # Defaults
     current_line_id  = 1
     current_point_id = 1
     current_ref_id   = None
-    current_mode     = "INSPECT"
+    current_mode     = "PAUSE"
     expecting_bytes  = False
+    current_frame_ts = 0.0
+    train_limit = int(os.getenv("TRAIN_CAPTURE_LIMIT", "50"))
+    train_limit_notified = set()
+    await _register_bridge(current_line_id, current_point_id, websocket)
 
-    db = SessionLocal()
+    async def _safe_receive():
+        try:
+            return await websocket.receive()
+        except:
+            return {"type": "websocket.disconnect"}
 
     try:
         while True:
-            message = await websocket.receive()
+            message = await _safe_receive()
+            if message["type"] == "websocket.disconnect":
+                break
 
-            # ── JSON (meta o comando) ──────────────────────────────────────
             if "text" in message:
                 try:
                     data = json.loads(message["text"])
                     t = data.get("type")
-
                     if t == "frame_meta":
-                        current_line_id  = int(data.get("line_id",  current_line_id))
+                        prev_key = (current_line_id, current_point_id)
+                        prev_mode = current_mode
+                        current_line_id  = int(data.get("line_id", current_line_id))
                         current_point_id = int(data.get("point_id", current_point_id))
                         current_ref_id   = data.get("ref_id", current_ref_id)
                         current_mode     = data.get("mode", current_mode)
+                        current_frame_ts = data.get("timestamp", time.time())
                         expecting_bytes  = True
-
+                        if current_mode == "TRAIN" and prev_mode != "TRAIN":
+                            async with train_buffer_lock:
+                                train_buffer[(current_line_id, current_point_id)] = []
+                            train_limit_notified.discard((current_line_id, current_point_id))
+                            print(f"[CameraFeed] Buffer RESET for L{current_line_id}P{current_point_id}")
+                        if (current_line_id, current_point_id) != prev_key:
+                            await _register_bridge(current_line_id, current_point_id, websocket)
                     elif t == "set_mode":
-                        current_mode     = data.get("mode", current_mode)
-                        current_line_id  = int(data.get("line_id",  current_line_id))
+                        new_mode = data.get("mode", current_mode)
+                        if new_mode == "TRAIN" and current_mode != "TRAIN":
+                            # Reset buffer when starting a new training session
+                            async with train_buffer_lock:
+                                train_buffer[(current_line_id, current_point_id)] = []
+                                print(f"[CameraFeed] Buffer RESET for L{current_line_id}P{current_point_id}")
+                            train_limit_notified.discard((current_line_id, current_point_id))
+                        current_mode     = new_mode
+                        current_line_id  = int(data.get("line_id", current_line_id))
                         current_point_id = int(data.get("point_id", current_point_id))
                         current_ref_id   = data.get("ref_id", current_ref_id)
-                        print(f"[CameraFeed] Modo → {current_mode} L{current_line_id}P{current_point_id}")
-
                     elif t == "ping":
                         await websocket.send_text(json.dumps({"type": "pong"}))
-
-                except Exception as e:
-                    print(f"[CameraFeed] Error meta: {e}")
+                except: continue
                 continue
 
-            # ── Bytes (frame JPEG) ─────────────────────────────────────────
             if "bytes" in message and expecting_bytes:
                 expecting_bytes = False
                 jpeg_bytes = message["bytes"]
                 buf_key = (current_line_id, current_point_id)
 
-                # TRAIN: acumular
+                # LAG PREVENTION: si el frame es muy viejo (>0.5s), lo saltamos en INSPECT
+                if current_mode == "INSPECT":
+                    delay = time.time() - current_frame_ts
+                    if delay > 0.5:
+                        # print(f"[CameraFeed] Lag detectado ({delay:.2f}s). Saltando frame.")
+                        continue
+
                 if current_mode == "TRAIN":
                     async with train_buffer_lock:
-                        if buf_key not in train_buffer:
-                            train_buffer[buf_key] = []
-                        train_buffer[buf_key].append(jpeg_bytes)
+                        if buf_key not in train_buffer: train_buffer[buf_key] = []
+                        # Cap de captura para acelerar entrenamiento y evitar buffer excesivo.
+                        is_new_frame = False
+                        if len(train_buffer[buf_key]) < train_limit:
+                            train_buffer[buf_key].append(jpeg_bytes)
+                            is_new_frame = True
                         count = len(train_buffer[buf_key])
-
                     await manager.broadcast(current_line_id, current_point_id, {
-                        "type": "train_progress",
-                        "line_id": current_line_id,
-                        "point_id": current_point_id,
-                        "frames_captured": count,
+                        "type": "train_progress", "line_id": current_line_id,
+                        "point_id": current_point_id, "frames_captured": count, "mode": "TRAIN",
+                        "capture_limit": train_limit
+                    })
+                    
+                    # Enviar también el frame al UI para que el usuario vea qué se captura
+                    img_b64 = base64.b64encode(jpeg_bytes).decode("utf-8")
+                    await manager.broadcast(current_line_id, current_point_id, {
+                        "type": "live_frame",
+                        "image": img_b64,
                         "mode": "TRAIN",
+                        "frames_captured": count,
+                        "source": "camera",
+                        "ref_id": current_ref_id
+                    })
+                    if count >= train_limit and buf_key not in train_limit_notified:
+                        train_limit_notified.add(buf_key)
+                        await manager.broadcast(current_line_id, current_point_id, {
+                            "type": "train_capture_complete",
+                            "line_id": current_line_id,
+                            "point_id": current_point_id,
+                            "mode": "TRAIN",
+                            "frames_captured": count,
+                            "capture_limit": train_limit,
+                            "message": f"Captura completada con {count} imágenes.",
+                        })
+                        # Al completar la captura, pausar automáticamente la cámara para evitar ruido extra.
+                        await _send_to_bridge(current_line_id, current_point_id, {
+                            "type": "set_mode",
+                            "mode": "PAUSE",
+                            "line_id": current_line_id,
+                            "point_id": current_point_id,
+                            "ref_id": current_ref_id,
+                        })
+                        current_mode = "PAUSE"
+                        await manager.broadcast(current_line_id, current_point_id, {
+                            "type": "mode_changed",
+                            "mode": "PAUSE",
+                            "line_id": current_line_id,
+                            "point_id": current_point_id,
+                            "ref_id": current_ref_id,
+                        })
+                    if is_new_frame and count % 10 == 0:
+                        print(f"[CameraFeed] Broadcast frame TRAIN (L{current_line_id}P{current_point_id}, frames={count})")
+                    continue
+
+                if current_mode == "CALIBRATE":
+                    img_b64 = base64.b64encode(jpeg_bytes).decode("utf-8")
+                    await manager.broadcast(current_line_id, current_point_id, {
+                        "type": "live_frame",
+                        "image": img_b64,
+                        "mode": "CALIBRATE",
+                        "source": "camera",
+                        "ref_id": current_ref_id
                     })
                     continue
 
-                # INSPECT: inferencia
                 if current_mode == "INSPECT":
-                    # Si ref_id no viene del bridge, usar la más reciente del punto
-                    ref_id_to_use = current_ref_id
-                    if ref_id_to_use is None:
-                        ref = _resolve_active_ref(current_point_id, db)
-                        ref_id_to_use = ref.id if ref else None
+                    # Usar una sesión de DB fresca para cada frame para evitar problemas de hilos/deadlocks
+                    with SessionLocal() as db_session:
+                        ref_id_to_use = current_ref_id
+                        if ref_id_to_use is None:
+                            ref = _resolve_active_ref(current_point_id, db_session)
+                            ref_id_to_use = ref.id if ref else None
 
-                    if ref_id_to_use is None:
-                        await manager.broadcast(current_line_id, current_point_id, {
-                            "type": "error",
-                            "message": f"Sin referencia entrenada para punto {current_point_id}",
+                        if ref_id_to_use is None:
+                            await manager.broadcast(current_line_id, current_point_id, {"type":"error","message":"No ref"})
+                            continue
+
+                        detector, sensitivity, model_version = load_model_for_point(current_point_id, ref_id_to_use, db_session)
+                        if not detector: continue
+
+                        is_patchcore = model_version and "V32" in model_version
+                        
+                        # ALTA CPU -> Mover a executor
+                        loop = asyncio.get_event_loop()
+                        result = await loop.run_in_executor(
+                            None, 
+                            lambda: _sync_process_frame(
+                                jpeg_bytes, detector, _shared_extractor, 
+                                sensitivity, model_version, is_patchcore, 
+                                ref_id_to_use
+                            )
+                        )
+
+                        # AGREGAR IMAGEN BASE64 PARA EL UI (Indispensable para ver video)
+                        img_b64 = base64.b64encode(jpeg_bytes).decode("utf-8")
+                        result.update({
+                            "type": "live_frame", # El frontend espera este tipo para actualizar el feed
+                            "image": img_b64,
+                            "ref_id": ref_id_to_use, "line_id": current_line_id,
+                            "point_id": current_point_id, "source": "camera"
                         })
-                        continue
-
-                    detector, sensitivity, model_version = load_model_for_point(
-                        current_point_id, ref_id_to_use, db
-                    )
-                    if not detector:
-                        await manager.broadcast(current_line_id, current_point_id, {
-                            "type": "error",
-                            "message": "Modelo no listo",
-                        })
-                        continue
-
-                    is_patchcore = model_version and "V32" in model_version
-                    result = await _process_frame(
-                        jpeg_bytes, detector, _shared_extractor,
-                        sensitivity, model_version, is_patchcore,
-                        db, ref_id_to_use
-                    )
-                    result.update({
-                        "ref_id": ref_id_to_use,
-                        "line_id": current_line_id,
-                        "point_id": current_point_id,
-                        "source": "camera",
-                    })
-                    await manager.broadcast(current_line_id, current_point_id, result)
-
-    except WebSocketDisconnect:
-        print("[CameraFeed] Bridge desconectado.")
+                        await manager.broadcast(current_line_id, current_point_id, result)
     except Exception as e:
         print(f"[CameraFeed] Error: {e}")
     finally:
-        db.close()
+        await _unregister_bridge(websocket)
+        print("[CameraFeed] Bridge desconectado.")
+
+
+def _sync_process_frame(jpeg_bytes, detector, extractor, sensitivity, 
+                       model_version, is_patchcore, ref_id):
+    """Versión sincrónica para ejecutar en ThreadPoolExecutor y no bloquear el event loop."""
+    import time, base64
+    start = time.time()
+    nparr = np.frombuffer(jpeg_bytes, np.uint8)
+    img = cv2.imdecode(nparr, cv2.IMREAD_COLOR)
+    if img is None: return {"is_defect": False, "score": 0.0, "fps": 0, "error": "decode_failed"}
+
+    try:
+        features = extractor.extract(img)
+    except Exception as e:
+        return {"is_defect": False, "score": 0.0, "fps": 0, "frame_rejected": True, "error": str(e)}
+
+    heatmap_b64 = None
+    if is_patchcore:
+        is_anomaly, score, heatmap = detector.predict(image=img, sensitivity_offset=sensitivity)
+        if heatmap is not None:
+            heatmap_colored = cv2.applyColorMap((heatmap * 255).astype(np.uint8), cv2.COLORMAP_JET)
+            _, buf = cv2.imencode(".png", heatmap_colored)
+            heatmap_b64 = base64.b64encode(buf).decode("utf-8")
+    else:
+        is_anomaly, score = detector.predict(features, sensitivity_offset=sensitivity)
+
+    proc_ms = (time.time() - start) * 1000
+    
+    # RECONOCIMIENTO (Sincrónico)
+    # Nota: _recognize_defect necesita DB. Para simplificar, lo llamamos fuera o pasamos sesión.
+    # Pero para inferencia rápida, a menudo se omite o se cachea.
+    # Aquí abrimos una mini-sesión si es necesario o lo dejamos para después.
+    recognition = None
+    with SessionLocal() as db:
+        recognition = _recognize_defect(db, ref_id, features) if is_anomaly else None
+
+    return {
+        "is_defect": bool(is_anomaly),
+        "score": float(score),
+        "fps": round(1000.0 / (proc_ms + 1e-1), 1),
+        "timestamp": time.time(),
+        "embedding": features.tolist() if is_anomaly else None,
+        "recognition": recognition,
+        "heatmap": heatmap_b64,
+        "model_version": model_version,
+        "frame_rejected": False,
+    }
+
 
 
 # ══════════════════════════════════════════════════════════════════════════════
@@ -316,18 +468,34 @@ async def camera_feed(websocket: WebSocket):
 async def live_results(websocket: WebSocket, line_id: int, point_id: int):
     """Frontend se suscribe aquí para recibir resultados de la cámara en tiempo real."""
     from backend.api.main import manager
+
     await manager.connect(line_id, point_id, websocket)
     try:
         while True:
-            msg = await websocket.receive()
-            if "text" in msg:
+            # Mantener conexión abierta
+            message = await websocket.receive()
+            if message["type"] == "websocket.disconnect":
+                break
+            
+            if "text" in message:
                 try:
-                    print(f"[Live L{line_id}P{point_id}] Comando: {msg['text']}")
+                    cmd = json.loads(message["text"])
+                    if cmd.get("type") == "set_mode" or cmd.get("type") == "mode_changed":
+                        # Reenviar al bridge
+                        await _send_to_bridge(line_id, point_id, {
+                            "type": "set_mode",
+                            "mode": cmd.get("mode", "INSPECT"),
+                            "line_id": line_id,
+                            "point_id": point_id,
+                            "ref_id": cmd.get("ref_id")
+                        })
                 except Exception:
                     pass
     except WebSocketDisconnect:
         manager.disconnect(line_id, point_id, websocket)
     except Exception:
+        manager.disconnect(line_id, point_id, websocket)
+    finally:
         manager.disconnect(line_id, point_id, websocket)
 
 
@@ -339,7 +507,7 @@ class TrainFromCameraRequest(BaseModel):
     line_id: int = 1
     point_id: int = 1
     ref_id: int
-    contamination: float = 0.01
+    contamination: float = 0.03
 
 
 @router.post("/train_from_camera")
@@ -351,6 +519,13 @@ async def train_from_camera(req: TrainFromCameraRequest, db: Session = Depends(g
 
     async with train_buffer_lock:
         frames_bytes = list(train_buffer.get(buf_key, []))
+    
+    # Submuestreo configurable: permite capturar más imágenes pero entrenar con un lote fijo.
+    train_sample_size = int(os.getenv("TRAIN_SAMPLE_SIZE", "50"))
+    if len(frames_bytes) > train_sample_size:
+        import random
+        frames_bytes = random.sample(frames_bytes, train_sample_size)
+        print(f"[TrainFromCamera] Sub-sampling: {len(frames_bytes)} images (Original: {len(train_buffer.get(buf_key, []))})")
 
     if len(frames_bytes) < 5:
         return {"status": "error", "message": f"Solo {len(frames_bytes)} frames. Necesita ≥5."}
@@ -410,6 +585,15 @@ async def train_from_camera(req: TrainFromCameraRequest, db: Session = Depends(g
 
     clear_model_cache(req.ref_id, req.point_id)
 
+    # Broadcast que el entrenamiento ha FINALIZADO para que el UI se actualice
+    await manager.broadcast(req.line_id, req.point_id, {
+        "type": "train_finished", 
+        "line_id": req.line_id, 
+        "point_id": req.point_id,
+        "ref_id": req.ref_id,
+        "status": "success"
+    })
+
     result_msg = {
         "type": "train_complete",
         "line_id": req.line_id,
@@ -431,12 +615,19 @@ class BridgeModeRequest(BaseModel):
     line_id: int = 1
     point_id: int = 1
     ref_id: int = None
-    mode: str  # "TRAIN" | "INSPECT"
+    mode: str  # "TRAIN" | "INSPECT" | "CALIBRATE" | "PAUSE"
 
 
 @router.post("/bridge/set_mode")
 async def set_bridge_mode(req: BridgeModeRequest):
     from backend.api.main import manager
+    delivered = await _send_to_bridge(req.line_id, req.point_id, {
+        "type": "set_mode",
+        "mode": req.mode,
+        "line_id": req.line_id,
+        "point_id": req.point_id,
+        "ref_id": req.ref_id,
+    })
     await manager.broadcast(req.line_id, req.point_id, {
         "type": "mode_changed",
         "mode": req.mode,
@@ -444,7 +635,14 @@ async def set_bridge_mode(req: BridgeModeRequest):
         "point_id": req.point_id,
         "ref_id": req.ref_id,
     })
-    return {"status": "ok", "mode": req.mode}
+    return {"status": "ok", "mode": req.mode, "bridge_delivered": delivered}
+
+
+@router.get("/bridge/status")
+async def get_bridge_status():
+    async with _bridge_lock:
+        conns = {str(k): "CONECTADO" for k in _bridge_connections}
+    return {"active_bridges": conns, "count": len(conns)}
 
 
 # ══════════════════════════════════════════════════════════════════════════════

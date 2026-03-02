@@ -1,5 +1,3 @@
-version: '3.8'
-
 # ══════════════════════════════════════════════════════════════════════════════
 # Nuvant Vision System — Multi-Línea (Modular)
 #
@@ -7,6 +5,22 @@ version: '3.8'
 # ESCALAR:    Duplicar el bloque bridge-l1-final, cambiar CAMERA_LINE_ID,
 #             CAMERA_POINT_ID y CAMERA_ID — sin cambios de código.
 # ══════════════════════════════════════════════════════════════════════════════
+
+# ── Definición base reutilizable (Extension) ──────────────────────────────
+x-bridge-base: &bridge-base
+  build:
+    context: ./camera_bridge
+    dockerfile: Dockerfile
+  depends_on:
+    nuvant-backend:
+      condition: service_healthy
+  # NOTA: network_mode host es recomendado para GigE Vision (UDP discovery/stream)
+  network_mode: host
+  restart: unless-stopped
+  environment: &bridge-env-base
+    VA_BACKEND_WS_URL: "ws://localhost:8000/api/inference/camera_feed"
+    SIMULATE_DIR: "/simulate_images"
+    JPEG_QUALITY: "80"
 
 services:
 
@@ -30,33 +44,18 @@ services:
       - PATCHCORE_CORESET_RATIO=0.1
       - PATCHCORE_NEIGHBORS=9
       - PATCHCORE_ROI_CROP=0.08
-      - PATCHCORE_USE_CLAHE=false
+      - PATCHCORE_USE_CLAHE=true
+      - TRAIN_CAPTURE_LIMIT=200
+      - TRAIN_SAMPLE_SIZE=50
     networks:
       - nuvant-net
     restart: unless-stopped
     healthcheck:
       test: [ "CMD", "python3", "-c", "import urllib.request; urllib.request.urlopen('http://localhost:8000/')" ]
-      interval: 10s
-      timeout: 5s
+      interval: 20s
+      timeout: 30s
       retries: 5
-      start_period: 120s
-
-  # ── Definición base reutilizable (anchor YAML) ────────────────────────────
-  # No se levanta directamente. Solo sirve para heredar configuración.
-  x-bridge-base: &bridge-base
-    build:
-      context: ./camera_bridge
-      dockerfile: Dockerfile
-    depends_on:
-      nuvant-backend:
-        condition: service_healthy
-    networks:
-      - nuvant-net
-    restart: unless-stopped
-    environment: &bridge-env-base
-      VA_BACKEND_WS_URL: "ws://nuvant-backend:8000/api/inference/camera_feed"
-      SIMULATE_DIR: "/simulate_images"
-      JPEG_QUALITY: "80"
+      start_period: 60s
 
   # ══════════════════════════════════════════════════════════════════════════
   # LÍNEA 1 — Punto: Final / Enrollado
@@ -66,15 +65,16 @@ services:
     <<: *bridge-base
     container_name: bridge-linea1-final
     volumes:
-      - ./simulate_images:/simulate_images:ro
+      - ./Nuvant_ETL/Nuvant-OSD25013/Omron-camera/scripts/captures:/camera_captures:ro
     environment:
       <<: *bridge-env-base
-      CAMERA_MODE: "${CAMERA_MODE:-simulate}"
+      CAMERA_MODE: "live"
+      SIMULATE_DIR: "/camera_captures"
       CAMERA_FPS: "${CAMERA_FPS:-5.0}"
       CAMERA_LINE_ID: "1"
       CAMERA_POINT_ID: "1"
       CAMERA_ID: "cam-l1-final"
-      CAMERA_IP: "${CAMERA_IP:-}"
+      CAMERA_IP: ""
   # ══════════════════════════════════════════════════════════════════════════
   # FUTURAS CÁMARAS (descomentar cuando estén disponibles)
   # ══════════════════════════════════════════════════════════════════════════

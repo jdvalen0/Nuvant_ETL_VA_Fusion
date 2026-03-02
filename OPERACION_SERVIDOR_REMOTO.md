@@ -1,77 +1,89 @@
-# Guía Maestra: Configuración de Servidor de Visión (Despliegue Total e IP Fija) 
+# Operación de Servidor Remoto (Producción)
 
-Esta guía proporciona los pasos exactos para transformar tu equipo Ubuntu en un **Servidor de Inspección Industrial** accesible desde cualquier otro dispositivo de la red local.
+Guía operativa para desplegar y operar el sistema desde red local.
 
----
+## 1) Preparación del host
 
-## FASE 1: Preparación del Hardware (Headless)
-
-El servidor debe estar encendido y procesando 24/7 sin interrumpirse.
-
-### 1. Desactivar Hibernación y Suspensión (Crítico)
-Ejecuta este comando para asegurar que el servidor NUNCA se "duerma", incluso si cierras la tapa o dejas de usarlo:
+### 1.1 Evitar suspensión
 ```bash
 sudo systemctl mask sleep.target suspend.target hibernate.target hybrid-sleep.target
 ```
 
-### 2. Configurar IP Fija (Infalible para Conectividad)
-Para que siempre puedas entrar desde otro equipo con el mismo número, configuraremos una IP estática en Ubuntu:
+### 1.2 Verificar IP operativa
+Ejemplo de IP fija usada en planta:
+- `169.254.75.179/24`
 
-1.  Abre **Configuración -> Red** (Network).
-2.  Haz clic en el engranaje (⚙️) de tu conexión actual (Cableada o Wi-Fi).
-3.  Ve a la pestaña **IPv4**.
-4.  Cambia de **Automático (DHCP)** a **Manual**.
-5.  **Dirección**: Ingresa `192.168.1.100` (o la que decidas).
-6.  **Máscara de red**: `255.255.255.0`
-7.  **Puerta de enlace**: `192.168.1.1` (generalmente es la IP de tu router).
-8.  Haz clic en **Aplicar**.
+Validación:
+```bash
+ip -4 addr show
+```
 
----
+## 2) Despliegue de servicios
 
-## FASE 2: Despliegue Total del Sistema (Docker & App)
+Desde la raíz del repositorio:
 
-Ejecuta estos comandos en la terminal desde la carpeta del proyecto para levantar **TODO** el ecosistema:
-
-### 1. Inicializar Estructura y Permisos
-Prepara los directorios persistentes y asegura que Git haya bajado las carpetas necesarias:
 ```bash
 chmod +x init_deploy.sh
 ./init_deploy.sh
+docker compose up -d --build
 ```
 
-### 2. Construir y Levantar Contenedores (Despliegue Total)
-Este comando descarga las imágenes, construye el software y levanta los servicios en segundo plano (`-d`):
-```bash
-# Para producción con cámara real (Levanta Backend + Bridge):
-CAMERA_MODE=live docker compose up --build -d
-```
-*Si solo quieres probar con imágenes simuladas, usa:* `docker compose up --build -d`
+Servicios esperados:
+- `nuvant-backend` (`healthy`)
+- `bridge-linea1-final` (`up`)
 
-### 3. Verificar que TODO esté "VIVO":
+Validación:
 ```bash
-# Ver el estado de salud de todos los servicios
 docker compose ps
+docker logs --tail=100 nuvant-backend
+docker logs --tail=100 bridge-linea1-final
 ```
-*Deberías ver `nuvant-backend` como `Up (healthy)` y `bridge-linea1-final` como `Up`.*
 
----
+## 3) Acceso desde otro equipo
 
-## FASE 3: Acceso Remoto (Desde otro equipo)
+Pruebas de conectividad:
+```bash
+curl http://<IP_SERVIDOR>:8000/
+curl http://<IP_SERVIDOR>:8000/static/
+```
 
-Ve a tu laptop, tablet u otra PC conectada a la misma red:
+UI:
+- `http://<IP_SERVIDOR>:8000/static/`
 
-1.  Abre un navegador (Chrome o Firefox).
-2.  Ingresa la dirección IP fija que configuraste en la Fase 1:
-    `http://192.168.1.100:8000/static/index.html`
+## 4) Flujo operativo recomendado
 
----
+1. Crear/seleccionar referencia.
+2. `CALIBRATE` (comprobar imagen en vivo).
+3. `TRAIN` (captura automática hasta límite configurado).
+4. `Entrenar Modelo`.
+5. `INSPECT`.
+6. `PAUSE` para detener inspección.
 
-## FASE 4: Blindaje (Seguridad del Know-How)
+## 5) Recuperación de fallos frecuentes
 
-Una vez que el sistema esté corriendo y verificado:
-1.  En el servidor físico, presiona las teclas `Super (Windows) + L`.
-2.  La pantalla se bloqueará pidiendo tu contraseña de Administrador.
+### 5.1 Error de build Docker por snapshots/caché
+```bash
+docker builder prune -af
+docker buildx prune -af
+sudo systemctl restart docker
+docker compose build --no-cache nuvant-backend bridge-l1-final
+docker compose up -d nuvant-backend bridge-l1-final
+```
 
+### 5.2 Bridge sin cámara
+- revisar cableado/alimentación/cámara.
+- reiniciar bridge:
+```bash
+docker compose restart bridge-l1-final
+```
 
----
-*Vision System V33.7 - Configuración de Alto Nivel para Planta Industrial.*
+### 5.3 Warning de `version` en compose
+Ya eliminado del `docker-compose.yml` principal.
+
+## 6) Seguridad operativa mínima
+
+- restringir acceso de red al puerto `8000` en entorno productivo.
+- mantener host bloqueado físicamente cuando no esté en operación.
+- respaldar periódicamente:
+  - `Nuvant_VA/backend/db/`
+  - `Nuvant_VA/backend/local_storage/`

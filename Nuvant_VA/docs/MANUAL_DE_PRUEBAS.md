@@ -1,5 +1,10 @@
 # 🧪 Manual de Pruebas Industrial (V10 - Atomic Gold Standard)
 
+> [!WARNING]
+> Documento historico de suite de pruebas offline/dataset.
+> No representa el flujo operativo dinamico actual de camara (`CALIBRATE -> TRAIN -> PAUSE -> INSPECT`).
+> Para operacion productiva usar `GUIA_AJUSTES_PRODUCCION.md` y `OPERACION_SERVIDOR_REMOTO.md`.
+
 ## 🏆 Certificado de Pureza Atómica
 
 Esta suite representa la verdad absoluta del dataset. Se ha abandonado el uso de "rangos de tiempo" (que causaron errores por saltos no lineales en el video) en favor de una **Lista Atómica** de archivos verificados visualmente uno por uno.

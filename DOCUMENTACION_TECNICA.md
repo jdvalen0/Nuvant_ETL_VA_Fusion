@@ -1,97 +1,90 @@
-# Manual Técnico: Arquitectura Nuvant V2 (Modular)
+# Documentación Técnica (Estado Operativo Actual)
 
-Este documento describe la arquitectura interna, el stack tecnológico y las decisiones de diseño del sistema **Nuvant Vision System**.
+Documento de arquitectura y operación técnica alineado con el estado actual del repositorio.
 
-> [!NOTE]
-> Para una explicación teórica profunda, algoritmos detallados y justificación del comportamiento paramétrico de los contenedores a nivel avanzado , consulta el documento: [Arquitectura Profunda y Teoría](file:///home/juan-david-valencia/Escritorio/Nuvant_ETL_VA_Fusion/ARQUITECTURA_Y_TEORIA_PHD.md).
+## 1) Topología real del sistema
 
-## 1. Stack Tecnológico
-
-El sistema está diseñado bajo una arquitectura de **microservicios dockerizados**, separando la adquisición física de la inteligencia computacional.
-
-| Capa | Tecnología | Razón |
+| Componente | Ruta | Función |
 |---|---|---|
-| **Acquisición (Bridge)** | Python 3.7 | Compatibilidad mandatoria con `stapipy` (drivers Omron/Sentech). |
-| **Cerebro (Backend)** | Python 3.11 + FastAPI | Alto rendimiento, manejo asíncrono y soporte para PyTorch moderno. |
-| **IA / ML** | PatchCore (Anomalib) | Algoritmo de vanguardia para detección de anomalías sin necesidad de datos de fallo. |
-| **Base de Datos** | SQLite + SQLAlchemy | Ligera, portable y embebida para despliegue en IoT. |
-| **Frontend** | Vanilla JS + WebSockets | Cero latencia en renderizado de frames y gráficas en tiempo real. |
+| Orquestación | `docker-compose.yml` | Levanta backend + bridge de cámara. |
+| Backend IA | `Nuvant_VA/backend` | API FastAPI, entrenamiento/inferencia, WS y persistencia. |
+| Bridge cámara | `camera_bridge/` | Captura con `stapipy`, empaqueta JPEG+meta y envía por WS. |
+| UI operativa | `Nuvant_VA/backend/api/static/index.html` | Operación en línea (calibrar/capturar/entrenar/inspeccionar). |
 
----
+## 2) Flujo operativo vigente
 
-## 2. Diagrama de Flujo (ETL Real-Time)
+Flujo recomendado en planta:
 
-```mermaid
-graph LR
-    A["Cámara Sentech"] -- GigE/USB --> B["Camera Bridge (Py 3.7)"]
-    B -- "WebSocket (JPEG + JSON)" --> C["Backend VA (Py 3.11)"]
-    C -- "Inferencia PatchCore" --> D["Base de Datos / UI"]
-    D -- "Feedback Operario" --> C
-```
+1. `CALIBRATE` (ajuste visual sin inferencia).
+2. `TRAIN` (captura limitada de frames normales).
+3. entrenamiento (`train_from_camera`) con submuestreo aleatorio.
+4. `PAUSE`.
+5. `INSPECT`.
 
-1.  **Extract**: El Bridge extrae frames crudos de la cámara usando el protocolo GenICam.
-2.  **Transform**: Codifica el frame a JPEG (ajustando calidad/FPS) y añade metadatos (Línea/Punto).
-3.  **Load**: Los envía vía WebSocket al backend para ser cargados en el buffer de entrenamiento o el detector de anomalías.
+Endpoints y sockets clave:
 
----
+- `POST /api/inference/bridge/set_mode`
+- `WS /api/inference/camera_feed` (bridge -> backend)
+- `WS /api/inference/live/{line_id}/{point_id}` (backend -> UI)
 
-## 3. Modelo de Datos Modular
+## 3) Parametrización productiva activa
 
-Para soportar el crecimiento a múltiples cámaras en una misma planta, se implementó una jerarquía de 3 niveles:
+Configurada en `docker-compose.yml` (servicio `nuvant-backend`):
 
-- **ProductionLine**: Representa un proceso físico (Ej: "Línea de Hilandería").
-- **InspectionPoint**: Representa una posición de cámara única vinculada a una línea.
-- **Reference**: Representa el modelo AI (la "huella digital" de la tela) entrenado para ese punto específico.
+- `PATCHCORE_USE_CLAHE=true`
+- `TRAIN_CAPTURE_LIMIT=200`
+- `TRAIN_SAMPLE_SIZE=50`
+- `PATCHCORE_CORESET_RATIO=0.1`
+- `PATCHCORE_NEIGHBORS=9`
+- `PATCHCORE_ROI_CROP=0.08`
 
-> [!IMPORTANT]
-> Esta estructura permite que una misma tela (Referencia) tenga comportamientos distintos según la cámara que la mire, aislando los ruidos visuales de cada punto de inspección.
+Bridge (`bridge-l1-final`):
 
----
+- `CAMERA_MODE=live`
+- `CAMERA_FPS=${CAMERA_FPS:-5.0}`
+- `VA_BACKEND_WS_URL=ws://localhost:8000/api/inference/camera_feed`
 
-## 4. Mejores Prácticas de Ingeniería
+## 4) Persistencia
 
-1.  **Aislamiento de Entorno**: El uso de Docker garantiza que los drivers de la cámara (muy estrictos con la versión de Python) no interfieran con las librerías de IA.
-2.  **Auto-Migración**: El sistema detecta cambios en el esquema de base de datos al arrancar y aplica los parches necesarios (como la adición de `point_id` a referencias legacy).
-3.  **Resiliencia**: El Bridge implementa **backoff exponencial** para reconexión automática; si el backend cae, la cámara sigue intentando conectar sin detener el proceso de planta.
-4.  **Healthcheck**: Docker monitorea la salud del backend mediante validaciones internas de `urllib`, reiniciando servicios solo si es estrictamente necesario.
+Bind mounts activos:
 
-## 5. Gestión de Persistencia y "Zero-Storage"
+- `./Nuvant_VA/backend/local_storage:/app/local_storage`
+- `./Nuvant_VA/backend/db:/app/db`
+- `./Nuvant_VA/backend/logs:/app/logs`
 
-El sistema está optimizado para garantizar la integridad de los datos sin saturar el almacenamiento, utilizando una jerarquía consolidada en `Nuvant_VA/backend/`:
+Esto conserva modelos y base SQLite entre recreaciones de contenedor.
 
-1.  **Estructura Consolidada**: 
-    - `db/`: Almacena `nuvant.db` (SQLite). Centralizado para evitar redundancias.
-    - `local_storage/`: Almacena los modelos PatchCore comprimidos.
-    - `logs/`: Registros de auditoría y errores del motor de IA.
-2.  **Bind Mounts Agnosticismo**: Se eliminaron los volúmenes nominales de Docker en favor de montajes directos. Esto permite:
-    - Backup manual sencillo copiando las carpetas del host.
-    - Auditoría de logs en tiempo real sin herramientas de Docker.
-    - Persistencia garantizada incluso tras eliminar los contenedores.
-3.  **Procesamiento en RAM**: Los frames crudos de entrenamiento se mantienen en memoria volátil y se descartan tras generar el modelo, respetando la filosofía de bajo impacto en disco.
+## 5) Salud, red y acceso remoto
 
----
+- backend expuesto en `0.0.0.0:8000`
+- acceso local: `http://localhost:8000/static/`
+- acceso remoto: `http://<IP_SERVIDOR>:8000/static/`
 
-## 6. Despliegue en Hardware IoT (NVIDIA Jetson / ARM64) 
+## 6) Donde ajustar comportamiento (mapa rapido)
 
-Para garantizar el rendimiento en arquitectura ARM, considera estos puntos críticos:
+- Captura de entrenamiento:
+  - `TRAIN_CAPTURE_LIMIT` en `docker-compose.yml`
+  - consumo en `Nuvant_VA/backend/api/routers/inference.py`
+- Muestra de entrenamiento (aleatoria):
+  - `TRAIN_SAMPLE_SIZE` en `docker-compose.yml`
+  - aplicado en `train_from_camera` de `inference.py`
+- Rigidez del modelo:
+  - `contamination` en UI (`index.html`, slider `contRange`)
+  - default API en `TrainFromCameraRequest` (`inference.py`)
+  - sensibilidad en caliente `sensOffset` (`index.html`)
+- Normalización fotométrica:
+  - `PATCHCORE_USE_CLAHE` en `docker-compose.yml`
 
-### A. Drivers Sentech (stapipy) en ARM
-El Dockerfile del Bridge está preparado para detectar la arquitectura. Sin embargo, debido a restricciones de licencia, **debes colocar el archivo `.whl` de ARM64** en la carpeta `camera_bridge/wheels/` antes de construir. El sistema te avisará con un `WARNING` si falta, pero el modo real fallará sin él.
+## 7) Riesgos operativos observados y control
 
-### B. PyTorch en ARM/Jetson
-En el backend, el `requirements.txt` usa versiones CPU por defecto. En una Jetson:
-1.  **NO** uses la versión `+cpu` de PyTorch si quieres aceleración por GPU.
-2.  Instala el `torch` y `torchvision` proporcionado por NVIDIA (archivos `.whl` específicos para JetPack).
-3.  El Dockerfile del Backend (`Nuvant_VA/docker/Dockerfile`) es compatible con bases `l4t-pytorch` si se requiere máxima optimización.
+- Deriva de iluminación/exposición puede producir falsos positivos.
+- Mantener setup físico estable entre entrenamiento e inspección.
+- Usar `CALIBRATE` antes de `TRAIN` e `INSPECT`.
+- Evitar mezclar referencias antiguas con condiciones de cámara distintas.
+- La carga de PatchCore usa el umbral exacto guardado en el modelo. Si falta ese campo en un modelo legado, se requiere reentrenar la referencia.
 
-### C. Visualización Industrial
-El Heatmap (V32.5) ha sido optimizado con **mezcla normal de opacidad al 60%** (eliminando modos 'screen' conflictivos) para ser visible incluso bajo luces intensas de planta, y su color métrico está sincronizado matemáticamente con el umbral dinámico estricto para no perderse en telas azules, oscuras o de patrones geométricos complejos.
+## 8) Referencias documentales
 
----
-
-## 7. Escenario de Falla: Modo Live sin Cámara
-
-Si ejecutas `CAMERA_MODE=live` pero la cámara no está conectada fisicamente:
-- El contenedor `bridge-linea1-final` entrará en estado **Exited (1)**.
-- El log mostrará: `[Bridge] ERROR conectando cámara: Cámara no encontrada`.
-- **Solución**: Conecta la cámara y ejecuta `docker compose restart bridge-linea1-final`. El sistema no necesita ser reinstalado.
+- Operación de despliegue: `OPERACION_SERVIDOR_REMOTO.md`
+- Ajustes finos y tuning: `GUIA_AJUSTES_PRODUCCION.md`
+- Teoría avanzada: `ARQUITECTURA_Y_TEORIA_PHD.md`

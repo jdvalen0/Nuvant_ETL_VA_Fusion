@@ -22,6 +22,7 @@ import sys
 import time
 import asyncio
 import json
+import ipaddress
 import cv2
 import numpy as np
 
@@ -88,22 +89,59 @@ class LiveCamera:
         self._ds = None
 
     def connect(self):
+        import stapipy as st
         self._st.initialize()
-        sys = self._st.create_system()
+        # Filtrar por GigEVision para mayor velocidad y precisión
+        sys = self._st.create_system(st.EStSystemVendor.Default, st.EStInterfaceType.GigEVision)
 
-        if CAMERA_IP:
-            # Buscar por IP si se especificó
-            devices = sys.detect()
-            target = None
-            for d in devices:
-                if CAMERA_IP in d.display_name:
-                    target = d
+        target_device = None
+        detected_names = []
+
+        # Forzar descubrimiento en todas las interfaces
+        for i in range(sys.interface_count):
+            iface = sys.get_interface(i)
+            iface.update_device_list()
+            for j in range(iface.device_count):
+                dev_info = iface.get_device_info(j)
+                detected_names.append(dev_info.display_name)
+                
+                # GIGEVISION FORCE IP: Intentar liberar sesión colgada antes de abrir
+                # Usando el Nodemap de la interfaz como en gige_configurations.py
+                if not CAMERA_IP or CAMERA_IP in dev_info.display_name:
+                    try:
+                        print(f"[Bridge] Forzando IP en interfaz a 169.254.75.178...")
+                        iface_nm = iface.port.nodemap
+                        # Seleccionar dispositivo en la interfaz
+                        iface_nm.get_node("DeviceSelector").value = j
+                        # Configurar Force IP
+                        iface_nm.get_node("GevDeviceForceIPAddress").value = int(ipaddress.ip_address("169.254.75.178"))
+                        iface_nm.get_node("GevDeviceForceSubnetMask").value = int(ipaddress.ip_address("255.255.255.0"))
+                        # IMPORTANTE: .get() es necesario para acceder a la funcionalidad del nodo comando
+                        force_ip_node = iface_nm.get_node("GevDeviceForceIP")
+                        if hasattr(force_ip_node, 'get'):
+                            force_ip_node.get().execute()
+                        else:
+                            force_ip_node.execute()
+                        time.sleep(2)
+                    except Exception as e:
+                        print(f"[Bridge] Error en Force IP (continuando): {e}")
+
+                if CAMERA_IP:
+                    if CAMERA_IP in dev_info.display_name:
+                        target_device = iface.create_device_by_index(j)
+                        break
+                else:
+                    # Sin IP, tomar el primero
+                    target_device = iface.create_device_by_index(j)
                     break
-            if target is None:
-                raise RuntimeError("Cámara con IP {} no encontrada".format(CAMERA_IP))
-            self._dev = target.create_device()
-        else:
-            self._dev = sys.create_first_device()
+            if target_device: break
+
+        if target_device is None:
+            print("[Bridge] Cámaras detectadas: {}".format(detected_names))
+            err_msg = "Cámara con IP {} no encontrada".format(CAMERA_IP) if CAMERA_IP else "No se encontraron cámaras disponibles"
+            raise RuntimeError(err_msg)
+
+        self._dev = target_device
 
         print("[Bridge] Conectado a: {}".format(self._dev.info.display_name))
 
@@ -176,7 +214,7 @@ class SimulateCamera:
 
 class BridgeState:
     """Estado mutable del bridge."""
-    mode:     str = "INSPECT"   # "TRAIN" | "INSPECT"
+    mode:     str = "PAUSE"   # "TRAIN" | "INSPECT" | "PAUSE"
     ref_id:   int = None
     line_id:  int = CAMERA_LINE_ID
     point_id: int = CAMERA_POINT_ID
@@ -222,8 +260,10 @@ async def bridge_loop():
                             cmd_type = cmd.get("type")
 
                             if cmd_type == "set_mode":
-                                state.mode = cmd.get("mode", "INSPECT")
-                                state.ref_id = int(cmd.get("ref_id", state.ref_id))
+                                state.mode = cmd.get("mode", "PAUSE")
+                                raw_ref_id = cmd.get("ref_id", state.ref_id)
+                                if raw_ref_id is not None:
+                                    state.ref_id = int(raw_ref_id)
                                 print("[Bridge] Modo → {} | ref_id={}".format(state.mode, state.ref_id))
 
                             elif cmd_type == "ping":
@@ -236,8 +276,12 @@ async def bridge_loop():
 
                 # ── Loop de captura y envío ────────────────────────────────
                 try:
+                    frame_count = 0
                     while state.running:
                         t0 = time.time()
+                        if state.mode == "PAUSE":
+                            await asyncio.sleep(0.1)
+                            continue
 
                         frame = camera.grab()
                         if frame is None:
@@ -262,7 +306,13 @@ async def bridge_loop():
                         if not ret:
                             print("[Bridge] ERROR codificando JPEG")
                             continue
-                        await ws.send(buf.tobytes())
+                        
+                        jpeg_bytes = buf.tobytes()
+                        await ws.send(jpeg_bytes)
+                        
+                        frame_count += 1
+                        if frame_count % 10 == 0:
+                            print("[Bridge] {} frames enviados. Modo: {}".format(frame_count, state.mode))
 
                         # Control de FPS
                         elapsed = time.time() - t0

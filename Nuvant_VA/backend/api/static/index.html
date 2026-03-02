@@ -35,6 +35,11 @@
                 <div id="connectionStatus" class="px-3 py-1 bg-red-900 rounded-full text-xs animate-pulse font-bold">
                     Desconectado</div>
             </div>
+            <!-- Telemetría de diagnóstico (Invisible por defecto, se activa en debug) -->
+            <div id="telemetryPanel"
+                class="text-[10px] font-mono text-slate-500 bg-black/30 p-2 rounded border border-slate-700 hidden">
+                Frames: <span id="telFrames">0</span> | LP: <span id="telLast">--</span>
+            </div>
         </header>
 
         <!-- ═══ PANEL CÁMARA EN VIVO ════════════════════════════════════════════ -->
@@ -50,6 +55,11 @@
                 </div>
             </div>
             <div class="flex gap-2">
+                <button id="btnStartCalibrate" onclick="startCalibration()"
+                    class="bg-indigo-700 hover:bg-indigo-600 text-white px-4 py-2 rounded font-semibold text-sm transition disabled:opacity-40 disabled:cursor-not-allowed"
+                    disabled>
+                    🎛️ Calibrar Cámara
+                </button>
                 <button id="btnStartCapture" onclick="startTrainCapture()"
                     class="bg-yellow-700 hover:bg-yellow-600 text-white px-4 py-2 rounded font-semibold text-sm transition disabled:opacity-40 disabled:cursor-not-allowed"
                     disabled>
@@ -86,7 +96,7 @@
                         <input type="text" id="refName"
                             class="flex-1 bg-slate-900 border border-slate-600 rounded p-2 focus:border-cyan-400 outline-none"
                             placeholder="ej. Mezclilla-Lote-001">
-                        <button onclick="createReference()"
+                        <button id="btnCreateRef" onclick="createReference()"
                             class="bg-cyan-600 hover:bg-cyan-500 px-4 py-2 rounded font-medium transition">Crear</button>
                     </div>
                 </div>
@@ -97,11 +107,14 @@
                     <div class="flex gap-2">
                         <select id="refSelect" onchange="loadRefDetails()"
                             class="w-full bg-slate-900 border border-slate-600 rounded p-2"></select>
-                        <button id="reconnectBtn" onclick="loadRefDetails()"
+                        <button id="btnReconnect" onclick="loadRefDetails()"
                             class="hidden bg-cyan-700 hover:bg-cyan-600 px-3 rounded text-white font-bold transition flex items-center justify-center"
                             title="Reconectar Cámara">🔄</button>
                         <button id="deleteRefBtn" onclick="deleteReference()" disabled
                             class="bg-red-700 hover:bg-red-600 px-3 rounded text-white font-bold transition opacity-50 cursor-not-allowed">🗑️</button>
+                        <button id="btnStopInspection" onclick="stopInspection()"
+                            class="bg-orange-700 hover:bg-orange-600 px-3 rounded text-white text-[10px] font-bold transition"
+                            title="Detener Inspección">Detener 🛑</button>
                     </div>
                 </div>
 
@@ -159,9 +172,9 @@
                     <div class="mt-3 p-3 bg-slate-800 rounded border border-slate-700 text-xs text-slate-400">
                         <label class="flex justify-between mb-1">
                             <span>Rigor / Contaminación (0.01 = 1% fallos):</span>
-                            <span id="contVal" class="font-mono text-cyan-300">0.010</span>
+                            <span id="contVal" class="font-mono text-cyan-300">0.030</span>
                         </label>
-                        <input type="range" id="contRange" min="0.001" max="0.05" step="0.001" value="0.01"
+                        <input type="range" id="contRange" min="0.001" max="0.05" step="0.001" value="0.03"
                             oninput="document.getElementById('contVal').textContent = parseFloat(this.value).toFixed(3)"
                             class="w-full h-1 bg-slate-600 rounded-lg appearance-none cursor-pointer accent-cyan-500 mb-2">
 
@@ -204,7 +217,8 @@
 
                     <!-- Capa de Mapa de Calor (Optimizado para visibilidad industrial V32.4) -->
                     <img id="heatmapOverlay"
-                        class="absolute inset-0 w-full h-full object-contain pointer-events-none opacity-60 hidden" />
+                        class="absolute inset-0 w-full h-full object-contain pointer-events-none opacity-60 hidden"
+                        onerror="console.error('Heatmap load error')" />
 
                     <!-- Indicador de Resultado (Reubicado para no tapar defectos) -->
                     <div id="resultBadge"
@@ -259,13 +273,13 @@
                     <p class="text-xs font-semibold text-slate-400 mb-2 uppercase">Ajuste de Umbral en Caliente</p>
                     <div class="flex items-center gap-4">
                         <span class="text-[10px] text-slate-500">IGNORAR</span>
-                        <input type="range" id="sensOffset" min="-1000" max="1000" step="5" value="0"
+                        <input type="range" id="sensOffset" min="-1000" max="1000" step="5" value="-100"
                             class="flex-1 h-2 bg-slate-700 rounded-lg appearance-none cursor-pointer accent-orange-500"
                             oninput="updateSensLevel(this.value); document.getElementById('currentSensVal').textContent = (this.value > 0 ? '+' : '') + this.value">
                         <span class="text-[10px] text-slate-500">ESTRICTO</span>
                     </div>
                     <div class="text-center mt-1">
-                        <span id="currentSensVal" class="text-xs font-mono text-orange-400">0</span>
+                        <span id="currentSensVal" class="text-xs font-mono text-orange-400">-100</span>
                     </div>
                     <p class="text-[10px] text-slate-500 mt-1 text-center italic">Derecha: Mas estricto (Detecta fallos
                         leves). Izquierda: Menos estricto.</p>
@@ -275,6 +289,7 @@
     </div>
 
     <script>
+        console.log("🚀 Nuvant VA UI v1.0.5 - Ready");
         const API = `${window.location.origin}/api`;
         const WS_INFER = `${window.location.protocol === 'https:' ? 'wss:' : 'ws:'}//${window.location.host}/api/inference/ws`;
         const WS_LIVE_BASE = `${window.location.protocol === 'https:' ? 'wss:' : 'ws:'}//${window.location.host}/api/inference/live`;
@@ -286,8 +301,11 @@
         let chartData = Array(maxDataPoints).fill(0);
         let chartLabels = Array(maxDataPoints).fill('');
         let hasProcessedImage = false;
-        let cameraMode = 'NONE';   // 'NONE' | 'TRAIN' | 'INSPECT'
+        let cameraMode = 'NONE';   // 'NONE' | 'CALIBRATE' | 'TRAIN' | 'INSPECT' | 'PAUSE'
+        let captureLimitNotified = false;
         let framesCaptured = 0;
+        let framesReceivedByBrowser = 0;
+        let lastPacketReceived = 0;
 
         // ── Configuración Dinámica (Modular) ───────────────────────────────────
         // Lee parámetros de la URL: ?line=1&point=1
@@ -368,19 +386,26 @@
 
         async function createReference() {
             const nameEl = document.getElementById('refName');
-            const btn = document.querySelector('button[onclick="createReference()"]');
+            const btn = document.getElementById('btnCreateRef');
             const name = nameEl.value;
             if (!name) return;
 
-            btn.disabled = true;
+            if (btn) btn.disabled = true;
             try {
+                console.log(`[UI] Creando referencia: ${name}`);
                 const res = await fetch(`${API}/references/?name=${encodeURIComponent(name)}`, { method: 'POST' });
                 if (res.ok) {
                     nameEl.value = '';
-                    refreshRefs();
-                } else { alert("Error al crear referencia"); }
+                    await refreshRefs();
+                } else {
+                    const data = await res.json();
+                    alert("Error al crear referencia: " + (data.detail || "Error desconocido"));
+                }
+            } catch (err) {
+                console.error("[UI] Error en createReference:", err);
+                alert("Error de conexión al crear referencia");
             } finally {
-                btn.disabled = false;
+                if (btn) btn.disabled = false;
             }
         }
 
@@ -391,10 +416,12 @@
             const files = filesEl.files;
             if (files.length === 0) return alert("Seleccione archivos");
 
-            const btn = document.querySelector('button[onclick="uploadImages()"]');
-            const originalText = btn.textContent;
-            btn.disabled = true;
-            btn.textContent = "⏳ Subiendo...";
+            const btn = document.getElementById('btnUploadImages');
+            const originalText = btn ? btn.textContent : "Subiendo...";
+            if (btn) {
+                btn.disabled = true;
+                btn.textContent = "⏳ Subiendo...";
+            }
 
             try {
                 const fd = new FormData();
@@ -409,10 +436,13 @@
                     alert("❌ Error al subir imágenes");
                 }
             } catch (err) {
+                console.error("[UI] Error en uploadImages:", err);
                 alert("❌ Error de comunicación");
             } finally {
-                btn.disabled = false;
-                btn.textContent = originalText;
+                if (btn) {
+                    btn.disabled = false;
+                    btn.textContent = originalText;
+                }
             }
         }
 
@@ -502,7 +532,7 @@
             activeWs.onopen = () => {
                 clearUI();
                 const status = document.getElementById('connectionStatus');
-                const recBtn = document.getElementById('reconnectBtn');
+                const recBtn = document.getElementById('btnReconnect');
                 if (status) {
                     status.textContent = "Conectado";
                     status.className = "px-3 py-1 bg-green-600 rounded-full text-xs font-bold";
@@ -519,7 +549,7 @@
             activeWs.onclose = (e) => {
                 console.log("WebSocket Estático cerrado:", e);
                 const status = document.getElementById('connectionStatus');
-                const recBtn = document.getElementById('reconnectBtn');
+                const recBtn = document.getElementById('btnReconnect');
                 if (status) {
                     status.textContent = "Desconectado";
                     status.className = "px-3 py-1 bg-red-900 rounded-full text-xs animate-pulse font-bold";
@@ -532,7 +562,7 @@
 
             activeWs.onerror = (err) => {
                 console.error("WS Error:", err);
-                const recBtn = document.getElementById('reconnectBtn');
+                const recBtn = document.getElementById('btnReconnect');
                 if (recBtn && document.getElementById('refSelect').value) {
                     recBtn.className = "bg-orange-700 hover:bg-orange-600 px-3 rounded text-white font-bold transition flex items-center justify-center animate-pulse";
                 }
@@ -545,7 +575,7 @@
 
             liveWs.onopen = () => {
                 console.log(`[Live WS] Conectado a L${DEFAULT_LINE_ID}P${DEFAULT_POINT_ID}`);
-                updateCameraBanner('NONE');
+                updateCameraBanner('PAUSE');
                 enableCameraButtons(true);
             };
 
@@ -568,14 +598,22 @@
         function handleLiveMessage(data) {
             const t = data.type;
 
+            if (t === 'live_frame' && data.image) {
+                renderLiveFrame(data.image);
+            }
+
             if (t === 'train_progress') {
-                // Solo limpiar UI si realmente estamos en flujo de cámara
                 if (cameraMode === 'TRAIN') clearUI();
                 framesCaptured = data.frames_captured;
                 document.getElementById('frameCount').textContent = framesCaptured;
-                // Habilitar Entrenar si tenemos suficientes frames
                 const btnTrain = document.getElementById('btnTrainFromCamera');
                 if (btnTrain) btnTrain.disabled = framesCaptured < 5;
+                const limit = data.capture_limit;
+                if (limit && framesCaptured >= limit && !captureLimitNotified) {
+                    captureLimitNotified = true;
+                    updateCameraBanner('PAUSE');
+                    alert(`✅ Captura completada: ${framesCaptured}/${limit} imágenes.`);
+                }
                 return;
             }
 
@@ -584,10 +622,18 @@
                 return;
             }
 
-            if (t === 'train_complete') {
-                updateCameraBanner('INSPECT');
-                alert(`✅ Entrenamiento completo\nFrames usados: ${data.frames_used}\nMemory bank: ${data.memory_bank_size}`);
+            if (t === 'train_complete' || t === 'train_finished') {
+                updateCameraBanner('PAUSE');
                 refreshRefs();
+                alert("✅ ¡Modelo Entrenado y Listo!");
+                return;
+            }
+            
+            if (t === 'train_capture_complete') {
+                framesCaptured = data.frames_captured || framesCaptured;
+                document.getElementById('frameCount').textContent = framesCaptured;
+                updateCameraBanner('PAUSE');
+                alert(`✅ Captura completada: ${framesCaptured}/${data.capture_limit} imágenes.`);
                 return;
             }
 
@@ -597,14 +643,13 @@
                 return;
             }
 
-            if (t === 'mode_changed') {
+            if (t === 'mode_changed' || t === 'set_mode') {
                 updateCameraBanner(data.mode);
                 return;
             }
 
             if (t === 'error') {
                 console.warn('[Live] Info del servidor:', data.message);
-                // No limpiar UI en errores menores de red/cámara para no romper flujo estático
                 return;
             }
 
@@ -613,8 +658,75 @@
             }
 
             // Resultado de inferencia (source: 'camera')
-            if (data.source === 'camera') {
+            if (data.source === 'camera' || data.type === 'live_frame') {
+                framesReceivedByBrowser++;
+                lastPacketReceived = Date.now();
+                const telPanel = document.getElementById('telemetryPanel');
+                if (telPanel) {
+                    telPanel.classList.remove('hidden');
+                    document.getElementById('telFrames').textContent = framesReceivedByBrowser;
+                    document.getElementById('telLast').textContent = new Date().toLocaleTimeString();
+                }
                 updateUI(data);
+            }
+        }
+
+        function renderLiveFrame(imageB64) {
+            const dropZone = document.getElementById('dropZone');
+            if (!dropZone) return;
+            dropZone.innerHTML = `<img src="data:image/jpeg;base64,${imageB64}" class="w-full h-full object-contain" />`;
+            dropZone.classList.remove('border-2', 'border-dashed');
+        }
+
+        async function stopInspection() {
+            cameraMode = 'PAUSE';
+            updateCameraBanner('PAUSE');
+            clearUI();
+            const refId = document.getElementById('refSelect').value;
+
+            await fetch(`${API}/inference/bridge/set_mode`, {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({
+                    line_id: DEFAULT_LINE_ID,
+                    point_id: DEFAULT_POINT_ID,
+                    ref_id: refId ? parseInt(refId) : null,
+                    mode: 'PAUSE'
+                })
+            });
+
+            if (liveWs && liveWs.readyState === WebSocket.OPEN) {
+                liveWs.send(JSON.stringify({
+                    type: "set_mode", mode: "PAUSE",
+                    line_id: DEFAULT_LINE_ID, point_id: DEFAULT_POINT_ID,
+                    ref_id: refId ? parseInt(refId) : null
+                }));
+            }
+            alert("🛑 Inspección detenida.");
+        }
+
+        async function startCalibration() {
+            const refId = document.getElementById('refSelect').value;
+            captureLimitNotified = false;
+            await fetch(`${API}/inference/bridge/set_mode`, {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({
+                    line_id: DEFAULT_LINE_ID,
+                    point_id: DEFAULT_POINT_ID,
+                    ref_id: refId ? parseInt(refId) : null,
+                    mode: 'CALIBRATE'
+                })
+            });
+            updateCameraBanner('CALIBRATE');
+            if (liveWs && liveWs.readyState === WebSocket.OPEN) {
+                liveWs.send(JSON.stringify({
+                    type: 'set_mode',
+                    mode: 'CALIBRATE',
+                    line_id: DEFAULT_LINE_ID,
+                    point_id: DEFAULT_POINT_ID,
+                    ref_id: refId ? parseInt(refId) : null
+                }));
             }
         }
 
@@ -634,11 +746,11 @@
             lastDefectData = null;
             hasProcessedImage = false;
         }
-
         // ── Control de modos del bridge ────────────────────────────────────────
         async function startTrainCapture() {
             const refId = document.getElementById('refSelect').value;
             if (!refId) return alert('Seleccione una referencia');
+            captureLimitNotified = false;
             framesCaptured = 0;
             document.getElementById('frameCount').textContent = '0';
             document.getElementById('trainFrameCounter').classList.remove('hidden');
@@ -727,9 +839,11 @@
 
             const cfg = {
                 'NONE': { badge: '🔴 SIN CÁMARA', cls: 'bg-slate-700 text-slate-400 border-slate-600', dot: 'bg-red-500', txt: 'SIN CÁMARA' },
+                'CALIBRATE': { badge: '🎛️ CALIBRANDO CÁMARA', cls: 'bg-indigo-900 text-indigo-300 border-indigo-700 animate-pulse', dot: 'bg-indigo-400 animate-pulse', txt: 'CALIBRACIÓN' },
                 'TRAIN': { badge: '🟡 CAPTURANDO TELA', cls: 'bg-yellow-900 text-yellow-300 border-yellow-700 animate-pulse', dot: 'bg-yellow-400 animate-pulse', txt: 'CAPTURANDO' },
                 'TRAINING_MODEL': { badge: '⚙️ ENTRENANDO MODELO...', cls: 'bg-purple-900 text-purple-300 border-purple-700 animate-pulse', dot: 'bg-purple-400 animate-pulse', txt: 'ENTRENANDO' },
                 'INSPECT': { badge: '🟢 INSPECCIONANDO', cls: 'bg-green-900 text-green-300 border-green-700', dot: 'bg-green-400', txt: 'EN PRODUCCIÓN' },
+                'PAUSE': { badge: '⏸ INSPECCIÓN DETENIDA', cls: 'bg-slate-700 text-slate-200 border-slate-500', dot: 'bg-slate-400', txt: 'DETENIDA' },
             }[mode] || { badge: mode, cls: '', dot: 'bg-slate-500', txt: mode };
 
             badge.textContent = cfg.badge;
@@ -740,7 +854,7 @@
         }
 
         function enableCameraButtons(enabled) {
-            ['btnStartCapture', 'btnStartInspect'].forEach(id => {
+            ['btnStartCalibrate', 'btnStartCapture', 'btnStartInspect'].forEach(id => {
                 const el = document.getElementById(id);
                 if (el) el.disabled = !enabled;
             });
@@ -790,6 +904,18 @@
             const heatmapOverlay = document.getElementById('heatmapOverlay');
             const modelVerEl = document.getElementById('modelVersion');
             const showHeatmap = document.getElementById('showHeatmap').checked;
+
+            // ACTUALIZAR IMAGEN EN VIVO (Misma área que el dropzone)
+            if (data.image) {
+                const dropZone = document.getElementById('dropZone');
+                if (dropZone) {
+                    // Solo inyectar si la imagen ha cambiado o el dropzone no tiene la imagen correcta
+                    dropZone.innerHTML = `<img src="data:image/jpeg;base64,${data.image}" 
+                                            class="w-full h-full object-contain" 
+                                            onerror="console.error('Live frame render error')"/>`;
+                    dropZone.classList.remove('border-2', 'border-dashed');
+                }
+            }
 
             // CRÍTICO: Solo mostrar badge si realmente se procesó una imagen
             if (badge && hasProcessedImage) {
@@ -925,7 +1051,7 @@
 
         async function loadRefDetails() {
             const refId = document.getElementById('refSelect').value;
-            const recBtn = document.getElementById('reconnectBtn');
+            const recBtn = document.getElementById('btnReconnect');
             const badge = document.getElementById('resultBadge');
             const dropZone = document.getElementById('dropZone');
             const scoreEl = document.getElementById('scoreVal');
@@ -955,6 +1081,27 @@
                     recBtn.className = "bg-blue-600 px-3 rounded text-white font-bold transition flex items-center justify-center animate-pulse";
                 }
                 connectWs(refId);
+                // Seguridad operativa: seleccionar referencia NO arranca inspección.
+                await fetch(`${API}/inference/bridge/set_mode`, {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({
+                        line_id: DEFAULT_LINE_ID,
+                        point_id: DEFAULT_POINT_ID,
+                        ref_id: parseInt(refId),
+                        mode: 'PAUSE'
+                    })
+                });
+                if (liveWs && liveWs.readyState === WebSocket.OPEN) {
+                    liveWs.send(JSON.stringify({
+                        type: 'set_mode',
+                        mode: 'PAUSE',
+                        line_id: DEFAULT_LINE_ID,
+                        point_id: DEFAULT_POINT_ID,
+                        ref_id: parseInt(refId)
+                    }));
+                }
+                updateCameraBanner('PAUSE');
                 const delBtn = document.getElementById('deleteRefBtn');
                 if (delBtn) {
                     delBtn.disabled = false;
