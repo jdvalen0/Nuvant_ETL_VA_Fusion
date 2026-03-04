@@ -1,5 +1,6 @@
 from fastapi import FastAPI, WebSocket
 from fastapi.middleware.cors import CORSMiddleware
+from fastapi.responses import RedirectResponse
 from fastapi.staticfiles import StaticFiles
 from pathlib import Path
 from typing import Dict, List
@@ -81,7 +82,7 @@ def on_startup():
 
 @app.get("/")
 def read_root():
-    return {"status": "ok", "system": "Nuvant Vision System V2", "version": "2.0.0"}
+    return RedirectResponse(url="/static/", status_code=302)
 
 
 @app.get("/favicon.ico", include_in_schema=False)

@@ -1,108 +1,97 @@
 # Guía de Ajustes en Producción (Tuning Operativo)
 
-Documento de referencia para ajustar el sistema durante despliegue sin modificar arquitectura.
+Guía de tuning sin modificar algoritmo.
 
-## 1) Parámetros clave y dónde se cambian
+## 1) Qué parámetro se usa, cuándo y para qué
 
-## Captura de entrenamiento (cantidad de frames)
+### 1.1 `TRAIN_CAPTURE_LIMIT` (captura)
 
-- Variable: `TRAIN_CAPTURE_LIMIT`
-- Archivo: `docker-compose.yml` (servicio `nuvant-backend`, `environment`)
-- Uso en código: `Nuvant_VA/backend/api/routers/inference.py` (`camera_feed`)
+- Dónde: `docker-compose.yml` / runtime UI (`Captura (frames)`).
+- Cuándo actúa: modo `TRAIN`.
+- Para qué sirve: limita cuántos frames totales se guardan en buffer.
 
-Efecto:
-- define cuántas imágenes máximas se capturan en modo `TRAIN`.
+### 1.2 `TRAIN_SAMPLE_SIZE` (muestra usada en entrenamiento)
 
-## Muestra de entrenamiento usada por el modelo
+- Dónde: `docker-compose.yml` / runtime UI (`Entrenar (frames)`).
+- Cuándo actúa: `train_from_camera`.
+- Para qué sirve: toma una muestra aleatoria de tamaño fijo desde lo capturado.
 
-- Variable: `TRAIN_SAMPLE_SIZE`
-- Archivo: `docker-compose.yml`
-- Uso en código: `Nuvant_VA/backend/api/routers/inference.py` (`train_from_camera`)
+### 1.3 `contamination` (rigor base del modelo)
 
-Efecto:
-- de las imágenes capturadas, toma `TRAIN_SAMPLE_SIZE` aleatorias para entrenar.
+- Dónde: UI (`Rigor / Contaminación`).
+- Cuándo actúa: entrenamiento (no inspección live).
+- Para qué sirve: calibrar el umbral base del modelo entrenado.
+- Sentido correcto:
+  - `contamination` mayor -> percentil menor -> umbral más bajo -> modelo más estricto.
+  - `contamination` menor -> percentil mayor -> umbral más alto -> modelo más tolerante.
 
-## Rigidez del detector (entrenamiento)
+### 1.4 `sensOffset` (sensibilidad en caliente)
 
-- Variable lógica: `contamination`
-- UI: `Nuvant_VA/backend/api/static/index.html` (`contRange`)
-- Backend default: `TrainFromCameraRequest.contamination` en `inference.py`
+- Dónde: UI (`Ajuste de Umbral en Caliente`, rango -1000..1000).
+- Cuándo actúa: inspección live.
+- Para qué sirve: mover umbral sin reentrenar.
+- Sentido:
+  - positivo -> más estricto.
+  - negativo -> más tolerante.
 
-Efecto:
-- menor `contamination` -> más estricto (más detecciones).
-- mayor `contamination` -> más tolerante (menos falsos positivos).
+### 1.5 `pca_variance` (compatibilidad)
 
-## Rigidez del detector (inspección en caliente)
+- Dónde: UI (`Sensibilidad Varianza PCA`).
+- Estado actual: relevante para flujo legacy V31; en flujo dinámico V32 no es control principal de decisión.
 
-- Control UI: `sensOffset`
-- Archivo: `Nuvant_VA/backend/api/static/index.html`
-- Envío WS: `set_sensitivity`
-- Aplicación en backend: `predict(... sensitivity_offset=...)`
+### 1.6 `pause_on_unknown_sec` (control operativo)
 
-Efecto:
-- `sensOffset` negativo -> menos estricto.
-- `sensOffset` positivo -> más estricto.
+- Dónde: UI (`Pausa defecto (s)`).
+- Cuándo actúa: inspección, cuando hay anomalía sin reconocimiento previo.
+- Para qué sirve: dar tiempo al operador para clasificar antes de reanudar.
 
-## Normalización fotométrica
+## 2) Rango inicial recomendado
 
-- Variable: `PATCHCORE_USE_CLAHE`
-- Archivo: `docker-compose.yml`
-- Valor recomendado de base: `true`
+- `capture_limit`: 100-300
+- `train_sample_size`: 30-100 (mínimo funcional: 5)
+- `contamination`: 0.01-0.03
+- `sensOffset`: iniciar en -100 y ajustar en operación
+- `pause_on_unknown_sec`: 5-15s según operación
 
-Efecto:
-- mejora robustez ante variación de iluminación.
+## 3) Estrategia de ajuste
 
-## Umbral cargado del modelo
+1. Fijar iluminación y posición de cámara.
+2. Ejecutar `CALIBRATE`.
+3. Capturar y entrenar con muestra representativa.
+4. Probar `INSPECT` mínimo 2-3 minutos en estático + eventos reales.
+5. Ajustar en este orden:
+   - primero `sensOffset` (rápido, sin reentrenar),
+   - después `contamination` (requiere reentrenar) si el slider queda en extremos.
 
-- Archivo: `Nuvant_VA/backend/core/anomaly_patchcore.py` (`load`)
-- Comportamiento actual: usa exactamente el `threshold` guardado en `model.pkl`.
-- Si falta `threshold` en un modelo antiguo/corrupto, lanza error y exige reentrenar.
+## 4) Matriz síntoma -> acción
 
-## 2) Valores base recomendados (arranque productivo)
+- Muchos falsos positivos:
+  - mover `sensOffset` más negativo,
+  - si persiste, reducir `contamination` y reentrenar.
 
-- `TRAIN_CAPTURE_LIMIT=200`
-- `TRAIN_SAMPLE_SIZE=50`
-- `PATCHCORE_USE_CLAHE=true`
-- `contamination` inicial: `0.03`
-- `sensOffset` inicial: `-100`
+- No detecta defectos reales:
+  - mover `sensOffset` hacia 0/positivo,
+  - si persiste, aumentar `contamination` y reentrenar.
 
-## 3) Cómo desplegar cambios de parámetros
+- Comportamiento inestable por lote/luz:
+  - repetir entrenamiento con muestra más representativa,
+  - verificar `PATCHCORE_USE_CLAHE=true`.
+
+## 5) Despliegue de cambios
+
+Cambios de código/config estática:
 
 ```bash
 docker compose up -d --build --force-recreate nuvant-backend bridge-l1-final
 ```
 
-Verificación rápida de UI:
-```bash
-curl -s http://localhost:8000/static/ | grep -E 'id="contVal"|id="contRange"|id="sensOffset"|id="currentSensVal"'
-```
+Cambios solo operativos en UI:
+- no requieren rebuild.
 
-## 4) Estrategia de ajuste sin romper operación
+## 6) Puntos de código
 
-1. Fijar setup de cámara/iluminación.
-2. Ejecutar `CALIBRATE`.
-3. Capturar `TRAIN` y entrenar.
-4. Probar `INSPECT` en estático 2-3 min.
-5. Si hay falsos positivos:
-   - primero bajar rigidez en caliente (`sensOffset` más negativo),
-   - luego subir `contamination` en próximo entrenamiento (ej. `0.03 -> 0.04`),
-   - mantener `TRAIN_CAPTURE_LIMIT` alto y `TRAIN_SAMPLE_SIZE` fijo.
-
-## 5) Matriz rápida de síntomas -> ajuste
-
-- Sintoma: "todo defecto en estático"
-  - bajar rigidez (`sensOffset` negativo), reentrenar con `contamination` mayor.
-
-- Sintoma: "no detecta fallos reales"
-  - subir rigidez (`sensOffset` hacia 0/positivo), reentrenar con `contamination` menor.
-
-- Sintoma: "inicia bien y deriva a defecto"
-  - revisar estabilidad de iluminación/exposición; mantener `CLAHE=true`.
-
-## 6) Rutas de código críticas para mantenimiento
-
-- Backend inferencia y entrenamiento: `Nuvant_VA/backend/api/routers/inference.py`
-- Frontend operación: `Nuvant_VA/backend/api/static/index.html`
-- Bridge de cámara: `camera_bridge/camera_bridge.py`
-- Orquestación de entorno: `docker-compose.yml`
+- `Nuvant_VA/backend/api/routers/inference.py`
+- `Nuvant_VA/backend/api/static/index.html`
+- `Nuvant_VA/backend/core/anomaly_patchcore.py`
+- `camera_bridge/camera_bridge.py`
 

@@ -278,6 +278,10 @@ async def bridge_loop():
                 try:
                     frame_count = 0
                     while state.running:
+                        # Si el canal de comandos se cerró, forzar reconexión del WS.
+                        if recv_task.done():
+                            raise ConnectionError("Canal de comandos cerrado por backend")
+
                         t0 = time.time()
                         if state.mode == "PAUSE":
                             await asyncio.sleep(0.1)

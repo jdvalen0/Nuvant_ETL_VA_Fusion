@@ -36,8 +36,9 @@ if [ ! -d "simulate_images" ]; then
 fi
 
 # 4. Ajustar permisos para Docker (Evitar creación como Root)
+# Si los dirs fueron escritos por contenedores (root), chmod puede fallar; no abortar.
 echo "🔐 Ajustando permisos de seguridad..."
-chmod -R 775 Nuvant_VA/backend/db Nuvant_VA/backend/logs Nuvant_VA/backend/local_storage
+chmod -R 775 Nuvant_VA/backend/db Nuvant_VA/backend/logs Nuvant_VA/backend/local_storage 2>/dev/null || true
 
 echo "✅ Entorno listo para el despliegue."
 echo "💡 Para iniciar el sistema ejecute:"

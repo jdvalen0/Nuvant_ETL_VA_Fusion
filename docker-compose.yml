@@ -31,7 +31,7 @@ services:
       dockerfile: docker/Dockerfile
     container_name: nuvant-backend
     ports:
-      - "8000:8000"
+      - "0.0.0.0:8000:8000"
     volumes:
       - ./Nuvant_VA/backend/local_storage:/app/local_storage
       - ./Nuvant_VA/backend/db:/app/db

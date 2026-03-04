@@ -8,8 +8,8 @@
     <meta http-equiv="Pragma" content="no-cache">
     <meta http-equiv="Expires" content="0">
     <title>Nuvant Vision - Auditoría de Calidad Textil</title>
-    <script src="https://cdn.tailwindcss.com"></script>
-    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="vendor/tailwind.js"></script>
+    <script src="vendor/chart.js"></script>
 </head>
 
 <body class="bg-slate-900 text-slate-100 font-sans min-h-screen">
@@ -185,6 +185,24 @@
                         <input type="range" id="pcaRange" min="0.50" max="0.99" step="0.01" value="0.95"
                             oninput="document.getElementById('pcaVal').textContent = parseFloat(this.value).toFixed(2)"
                             class="w-full h-1 bg-slate-600 rounded-lg appearance-none cursor-pointer accent-cyan-500 mb-2">
+
+                        <div class="grid grid-cols-3 gap-2 mt-3 text-[11px]">
+                            <label class="flex flex-col gap-1">
+                                <span>Captura (frames)</span>
+                                <input id="captureLimitInput" type="number" min="5" max="2000" value="200"
+                                    class="bg-slate-900 border border-slate-600 rounded p-1.5 text-slate-200">
+                            </label>
+                            <label class="flex flex-col gap-1">
+                                <span>Entrenar (frames)</span>
+                                <input id="trainSampleSizeInput" type="number" min="5" max="2000" value="50"
+                                    class="bg-slate-900 border border-slate-600 rounded p-1.5 text-slate-200">
+                            </label>
+                            <label class="flex flex-col gap-1">
+                                <span>Pausa defecto (s)</span>
+                                <input id="pauseOnUnknownInput" type="number" min="0" max="120" value="10"
+                                    class="bg-slate-900 border border-slate-600 rounded p-1.5 text-slate-200">
+                            </label>
+                        </div>
                     </div>
 
                     <div class="flex gap-2 mt-3">
@@ -199,6 +217,7 @@
                         class="mt-2 text-xs text-orange-400 opacity-0 transition-opacity text-center font-bold">
                         Procesando...
                     </p>
+
                 </div>
             </div>
 
@@ -348,7 +367,7 @@
                             },
                             title: {
                                 display: true,
-                                text: 'Puntaje de Calidad (100 = Perfecto)',
+                                text: 'Indice de Anomalia (0 = Normal, 100 = Critico)',
                                 color: '#94a3b8',
                                 font: { size: 11 }
                             }
@@ -359,6 +378,25 @@
                     }
                 }
             });
+        }
+
+        function pushTrendScore(rawScore, isDefect = false, explicitAnomalyIndex = undefined) {
+            if (!scoreChart) return;
+            const anomalyFromPayload = Number(explicitAnomalyIndex);
+            let anomalyIndex;
+            if (Number.isFinite(anomalyFromPayload)) {
+                anomalyIndex = anomalyFromPayload;
+            } else {
+                let quality = Number(rawScore);
+                if (!Number.isFinite(quality)) {
+                    quality = isDefect ? 0 : 100;
+                }
+                anomalyIndex = 100 - quality;
+            }
+            anomalyIndex = Math.max(0, Math.min(100, anomalyIndex));
+            chartData.push(anomalyIndex);
+            if (chartData.length > maxDataPoints) chartData.shift();
+            scoreChart.update();
         }
 
         async function refreshRefs() {
@@ -373,6 +411,27 @@
                 opt.textContent = `${r.name} (ID: ${r.id}) ${r.model_path ? '✅ Listo' : '⚠️ Sin Modelo'}`;
                 sel.appendChild(opt);
             });
+        }
+
+        async function setBridgeMode(payload, warnOnNoBridge = true) {
+            const res = await fetch(`${API}/inference/bridge/set_mode`, {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify(payload)
+            });
+            let data = {};
+            try {
+                data = await res.json();
+            } catch (_) {
+                data = {};
+            }
+            if (!res.ok) {
+                throw new Error(data.detail || data.message || 'Error al cambiar modo de bridge');
+            }
+            if (warnOnNoBridge && data.bridge_delivered === false) {
+                alert('Camara bridge desconectada (L1P1). Revise contenedor bridge-l1-final.');
+            }
+            return data;
         }
 
         function updateFileLabel(input) {
@@ -598,6 +657,11 @@
         function handleLiveMessage(data) {
             const t = data.type;
 
+            // Actualizar tendencia de forma robusta, independiente del render de UI.
+            if (data && (data.score !== undefined || data.is_defect !== undefined)) {
+                pushTrendScore(data.score, Boolean(data.is_defect), data.anomaly_index);
+            }
+
             if (t === 'live_frame' && data.image) {
                 renderLiveFrame(data.image);
             }
@@ -653,10 +717,6 @@
                 return;
             }
 
-            if (t === 'mode_changed' && data.mode === 'TRAIN') {
-                clearUI();
-            }
-
             // Resultado de inferencia (source: 'camera')
             if (data.source === 'camera' || data.type === 'live_frame') {
                 framesReceivedByBrowser++;
@@ -684,50 +744,25 @@
             clearUI();
             const refId = document.getElementById('refSelect').value;
 
-            await fetch(`${API}/inference/bridge/set_mode`, {
-                method: 'POST',
-                headers: { 'Content-Type': 'application/json' },
-                body: JSON.stringify({
-                    line_id: DEFAULT_LINE_ID,
-                    point_id: DEFAULT_POINT_ID,
-                    ref_id: refId ? parseInt(refId) : null,
-                    mode: 'PAUSE'
-                })
+            await setBridgeMode({
+                line_id: DEFAULT_LINE_ID,
+                point_id: DEFAULT_POINT_ID,
+                ref_id: refId ? parseInt(refId) : null,
+                mode: 'PAUSE'
             });
-
-            if (liveWs && liveWs.readyState === WebSocket.OPEN) {
-                liveWs.send(JSON.stringify({
-                    type: "set_mode", mode: "PAUSE",
-                    line_id: DEFAULT_LINE_ID, point_id: DEFAULT_POINT_ID,
-                    ref_id: refId ? parseInt(refId) : null
-                }));
-            }
             alert("🛑 Inspección detenida.");
         }
 
         async function startCalibration() {
             const refId = document.getElementById('refSelect').value;
             captureLimitNotified = false;
-            await fetch(`${API}/inference/bridge/set_mode`, {
-                method: 'POST',
-                headers: { 'Content-Type': 'application/json' },
-                body: JSON.stringify({
-                    line_id: DEFAULT_LINE_ID,
-                    point_id: DEFAULT_POINT_ID,
-                    ref_id: refId ? parseInt(refId) : null,
-                    mode: 'CALIBRATE'
-                })
+            await setBridgeMode({
+                line_id: DEFAULT_LINE_ID,
+                point_id: DEFAULT_POINT_ID,
+                ref_id: refId ? parseInt(refId) : null,
+                mode: 'CALIBRATE'
             });
             updateCameraBanner('CALIBRATE');
-            if (liveWs && liveWs.readyState === WebSocket.OPEN) {
-                liveWs.send(JSON.stringify({
-                    type: 'set_mode',
-                    mode: 'CALIBRATE',
-                    line_id: DEFAULT_LINE_ID,
-                    point_id: DEFAULT_POINT_ID,
-                    ref_id: refId ? parseInt(refId) : null
-                }));
-            }
         }
 
         function clearUI() {
@@ -750,40 +785,32 @@
         async function startTrainCapture() {
             const refId = document.getElementById('refSelect').value;
             if (!refId) return alert('Seleccione una referencia');
+            const captureLimit = parseInt(document.getElementById('captureLimitInput').value || '200');
+            const trainSampleSize = parseInt(document.getElementById('trainSampleSizeInput').value || '50');
+            const pauseOnUnknownSec = parseInt(document.getElementById('pauseOnUnknownInput').value || '10');
             captureLimitNotified = false;
             framesCaptured = 0;
             document.getElementById('frameCount').textContent = '0';
             document.getElementById('trainFrameCounter').classList.remove('hidden');
             document.getElementById('btnTrainFromCamera').disabled = true;
 
-            await fetch(`${API}/inference/bridge/set_mode`, {
-                method: 'POST',
-                headers: { 'Content-Type': 'application/json' },
-                body: JSON.stringify({
-                    line_id: DEFAULT_LINE_ID,
-                    point_id: DEFAULT_POINT_ID,
-                    ref_id: parseInt(refId),
-                    mode: 'TRAIN'
-                })
+            await setBridgeMode({
+                line_id: DEFAULT_LINE_ID,
+                point_id: DEFAULT_POINT_ID,
+                ref_id: parseInt(refId),
+                mode: 'TRAIN',
+                capture_limit: captureLimit,
+                train_sample_size: trainSampleSize,
+                pause_on_unknown_sec: pauseOnUnknownSec
             });
             updateCameraBanner('TRAIN');
-
-            // Enviar comando al bridge via liveWs
-            if (liveWs && liveWs.readyState === WebSocket.OPEN) {
-                liveWs.send(JSON.stringify({
-                    type: 'set_mode',
-                    mode: 'TRAIN',
-                    line_id: DEFAULT_LINE_ID,
-                    point_id: DEFAULT_POINT_ID,
-                    ref_id: parseInt(refId)
-                }));
-            }
         }
 
         async function trainFromCamera() {
             const refId = document.getElementById('refSelect').value;
             if (!refId) return;
             if (framesCaptured < 5) return alert('Capture al menos 5 frames primero');
+            const trainSampleSize = parseInt(document.getElementById('trainSampleSizeInput').value || '50');
 
             updateCameraBanner('TRAINING_MODEL');
             const res = await fetch(`${API}/inference/train_from_camera`, {
@@ -793,11 +820,12 @@
                     line_id: DEFAULT_LINE_ID,
                     point_id: DEFAULT_POINT_ID,
                     ref_id: parseInt(refId),
-                    contamination: parseFloat(document.getElementById('contRange').value)
+                    contamination: parseFloat(document.getElementById('contRange').value),
+                    sample_size: trainSampleSize
                 })
             });
             const data = await res.json();
-            if (!res.ok) {
+            if (!res.ok || data.status === 'error') {
                 alert('Error: ' + (data.message || data.detail));
                 updateCameraBanner('NONE');
             }
@@ -806,28 +834,16 @@
         async function startInspect() {
             const refId = document.getElementById('refSelect').value;
             if (!refId) return alert('Seleccione una referencia');
+            const pauseOnUnknownSec = parseInt(document.getElementById('pauseOnUnknownInput').value || '10');
 
-            await fetch(`${API}/inference/bridge/set_mode`, {
-                method: 'POST',
-                headers: { 'Content-Type': 'application/json' },
-                body: JSON.stringify({
-                    line_id: DEFAULT_LINE_ID,
-                    point_id: DEFAULT_POINT_ID,
-                    ref_id: parseInt(refId),
-                    mode: 'INSPECT'
-                })
+            await setBridgeMode({
+                line_id: DEFAULT_LINE_ID,
+                point_id: DEFAULT_POINT_ID,
+                ref_id: parseInt(refId),
+                mode: 'INSPECT',
+                pause_on_unknown_sec: pauseOnUnknownSec
             });
             updateCameraBanner('INSPECT');
-
-            if (liveWs && liveWs.readyState === WebSocket.OPEN) {
-                liveWs.send(JSON.stringify({
-                    type: 'set_mode',
-                    mode: 'INSPECT',
-                    line_id: DEFAULT_LINE_ID,
-                    point_id: DEFAULT_POINT_ID,
-                    ref_id: parseInt(refId)
-                }));
-            }
         }
 
         function updateCameraBanner(mode) {
@@ -866,8 +882,18 @@
         }
 
         function updateSensLevel(val) {
+            const payload = {
+                type: "set_sensitivity",
+                value: parseFloat(val),
+                ref_id: parseInt(document.getElementById('refSelect').value || "0")
+            };
+            // Preferir canal live para evitar doble envío y ruido de trazas.
+            if (liveWs && liveWs.readyState === WebSocket.OPEN && payload.ref_id > 0) {
+                liveWs.send(JSON.stringify(payload));
+                return;
+            }
             if (activeWs && activeWs.readyState === WebSocket.OPEN) {
-                activeWs.send(JSON.stringify({ type: "set_sensitivity", value: parseFloat(val) }));
+                activeWs.send(JSON.stringify(payload));
             }
         }
 
@@ -940,6 +966,8 @@
                     badge.className = "absolute bottom-4 right-4 px-4 py-2 rounded-lg font-bold text-xl shadow-xl backdrop-blur bg-red-600 text-white animate-pulse";
                     if (data.recognition && data.recognition.label) {
                         badge.innerHTML = `DEFECTO DETECTADO<br/><span class="text-xs opacity-90">Tipo: ${data.recognition.label} (${Math.round(data.recognition.confidence * 100)}%)</span>`;
+                    } else if (data.hold_for_labeling) {
+                        badge.innerHTML = `DEFECTO NO RECONOCIDO<br/><span class="text-xs opacity-90">PAUSA AUTO ${data.hold_seconds || 0}s PARA CATEGORIZAR</span>`;
                     }
                 } else if (hasValidScore) {
                     // ✅ Tela sin defectos (verde) - Calidad > 50
@@ -972,12 +1000,7 @@
                 fpsEl.textContent = Math.round(data.fps) + " fps";
             }
 
-            // Actualizar Chart (solo si hay score válido)
-            if (scoreChart && data.score !== undefined && typeof data.score === 'number') {
-                chartData.push(data.score);
-                if (chartData.length > maxDataPoints) chartData.shift();
-                scoreChart.update();
-            }
+            // Tendencia ya se actualiza en handleLiveMessage para evitar pérdidas por filtros de UI.
             if (data.model_version) {
                 modelVerEl.textContent = data.model_version;
                 const v32Warning = document.getElementById('v32Warning');
@@ -1082,25 +1105,12 @@
                 }
                 connectWs(refId);
                 // Seguridad operativa: seleccionar referencia NO arranca inspección.
-                await fetch(`${API}/inference/bridge/set_mode`, {
-                    method: 'POST',
-                    headers: { 'Content-Type': 'application/json' },
-                    body: JSON.stringify({
-                        line_id: DEFAULT_LINE_ID,
-                        point_id: DEFAULT_POINT_ID,
-                        ref_id: parseInt(refId),
-                        mode: 'PAUSE'
-                    })
+                await setBridgeMode({
+                    line_id: DEFAULT_LINE_ID,
+                    point_id: DEFAULT_POINT_ID,
+                    ref_id: parseInt(refId),
+                    mode: 'PAUSE'
                 });
-                if (liveWs && liveWs.readyState === WebSocket.OPEN) {
-                    liveWs.send(JSON.stringify({
-                        type: 'set_mode',
-                        mode: 'PAUSE',
-                        line_id: DEFAULT_LINE_ID,
-                        point_id: DEFAULT_POINT_ID,
-                        ref_id: parseInt(refId)
-                    }));
-                }
                 updateCameraBanner('PAUSE');
                 const delBtn = document.getElementById('deleteRefBtn');
                 if (delBtn) {

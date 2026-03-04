@@ -1,18 +1,19 @@
 # Nuvant Vision System
 
-Sistema de inspección industrial en tiempo real basado en detección de anomalías no supervisada (PatchCore V32), compuesto por backend de inferencia y bridge de cámara.
+Sistema de inspección industrial en tiempo real con detección de anomalías no supervisada (PatchCore V32), backend FastAPI y bridge de cámara GigE.
 
-## Estado operativo actual
+## Estado vigente
 
-- Flujo principal validado: `CALIBRATE -> TRAIN -> PAUSE -> INSPECT`.
-- Entrenamiento dinámico desde cámara: captura configurable y submuestreo aleatorio para entrenar.
-- Acceso remoto validado en red (backend expuesto en `:8000`).
+- Flujo productivo: `CALIBRATE -> TRAIN -> PAUSE -> INSPECT`.
+- Entrenamiento dinámico: captura desde cámara con límite configurable + submuestreo aleatorio configurable.
+- Ajuste en caliente: slider de sensibilidad (`sensOffset`) aplicado sobre umbral ya entrenado.
+- Persistencia: modelos y base de datos SQLite en volúmenes locales.
 
-## Arquitectura desplegada
+## Servicios activos
 
-- `nuvant-backend` (FastAPI + PatchCore + SQLite).
-- `bridge-l1-final` (captura Omron/Sentech `stapipy`, envío por WebSocket).
-- Orquestación principal: `docker-compose.yml` (raíz del repositorio).
+- `nuvant-backend`: API, entrenamiento, inferencia y UI.
+- `bridge-l1-final`: adquisición de cámara (`stapipy`) y envío WS a backend.
+- Orquestación: `docker-compose.yml` en la raíz.
 
 ## Arranque rápido
 
@@ -24,15 +25,15 @@ docker compose up -d --build
 
 UI:
 - `http://localhost:8000/static/`
-- `http://<IP_SERVIDOR>:8000/static/` (acceso remoto)
+- `http://<IP_SERVIDOR>:8000/static/`
 
-## Documentación operativa
+## Documentación canónica
 
-- `DOCUMENTACION_TECNICA.md` -> arquitectura real y mapa de componentes.
-- `OPERACION_SERVIDOR_REMOTO.md` -> despliegue y acceso desde otros equipos.
-- `GUIA_AJUSTES_PRODUCCION.md` -> parametros ajustables para rigidez/sensibilidad y entrenamiento.
-- `ARQUITECTURA_Y_TEORIA_PHD.md` -> teoria avanzada (referencia conceptual).
+- `DOCUMENTACION_TECNICA.md`: arquitectura, flujo funcional, frontend y parámetros.
+- `OPERACION_SERVIDOR_REMOTO.md`: despliegue/operación en servidor y recuperación de fallos.
+- `GUIA_AJUSTES_PRODUCCION.md`: metodología de tuning (`contamination`, `sensOffset`, captura/muestra).
+- `ARQUITECTURA_Y_TEORIA_PHD.md`: fundamento científico y traducción exacta al código.
 
-## Nota de versionado documental
+## Nota
 
-Algunos archivos en `Nuvant_VA/docs/` son historicos y no reflejan totalmente el flujo actual de operacion. Para despliegue productivo usar los tres documentos listados arriba.
+Documentos en `Nuvant_VA/docs/` se mantienen como históricos o de soporte; para operación actual usar los 4 documentos canónicos listados arriba.

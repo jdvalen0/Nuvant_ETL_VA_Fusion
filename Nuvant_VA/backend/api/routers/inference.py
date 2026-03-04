@@ -9,13 +9,14 @@ import asyncio
 import base64
 import json
 import os
+import random
 import time
 from datetime import datetime
-from typing import Dict, Any
+from typing import Dict, Any, Optional
 
 import cv2
 import numpy as np
-from fastapi import APIRouter, Depends, WebSocket, WebSocketDisconnect
+from fastapi import APIRouter, Depends, WebSocket, WebSocketDisconnect, HTTPException
 from pydantic import BaseModel
 from sqlalchemy.orm import Session
 
@@ -44,6 +45,9 @@ _cache_lock = asyncio.Lock()
 _shared_extractor = FeatureExtractor()
 _bridge_connections: Dict[tuple, WebSocket] = {}
 _bridge_lock = asyncio.Lock()
+_runtime_control: Dict[tuple, Dict[str, Any]] = {}
+_auto_resume_tasks: Dict[tuple, asyncio.Task] = {}
+_inspect_metrics_counter: Dict[tuple, int] = {}
 
 
 def get_db():
@@ -63,6 +67,86 @@ def _resolve_active_ref(point_id: int, db: Session):
         .first()
     )
     return ref
+
+
+def _get_runtime_control(line_id: int, point_id: int) -> Dict[str, Any]:
+    """Obtiene parámetros runtime por punto (sin tocar algoritmo)."""
+    key = (line_id, point_id)
+    if key not in _runtime_control:
+        _runtime_control[key] = {
+            "capture_limit": int(os.getenv("TRAIN_CAPTURE_LIMIT", "200")),
+            "train_sample_size": int(os.getenv("TRAIN_SAMPLE_SIZE", "50")),
+            "pause_on_unknown_sec": int(os.getenv("PAUSE_ON_UNKNOWN_SEC", "0")),
+        }
+    return _runtime_control[key]
+
+
+def _set_runtime_control(
+    line_id: int,
+    point_id: int,
+    capture_limit: Optional[int] = None,
+    train_sample_size: Optional[int] = None,
+    pause_on_unknown_sec: Optional[int] = None,
+) -> Dict[str, Any]:
+    ctrl = _get_runtime_control(line_id, point_id)
+    if capture_limit is not None:
+        ctrl["capture_limit"] = max(5, min(int(capture_limit), 2000))
+    if train_sample_size is not None:
+        ctrl["train_sample_size"] = max(5, min(int(train_sample_size), 2000))
+    if pause_on_unknown_sec is not None:
+        ctrl["pause_on_unknown_sec"] = max(0, min(int(pause_on_unknown_sec), 120))
+    return ctrl
+
+
+def _schedule_auto_resume(line_id: int, point_id: int, ref_id: int, seconds: int):
+    """Pausa temporal por defecto no reconocido y retoma inspección."""
+    if seconds <= 0:
+        return
+    key = (line_id, point_id)
+    prev = _auto_resume_tasks.get(key)
+    if prev and not prev.done():
+        prev.cancel()
+
+    async def _resume():
+        from backend.api.main import manager
+        try:
+            await asyncio.sleep(seconds)
+            await _send_to_bridge(line_id, point_id, {
+                "type": "set_mode",
+                "mode": "INSPECT",
+                "line_id": line_id,
+                "point_id": point_id,
+                "ref_id": ref_id,
+            })
+            await manager.broadcast(line_id, point_id, {
+                "type": "mode_changed",
+                "mode": "INSPECT",
+                "line_id": line_id,
+                "point_id": point_id,
+                "ref_id": ref_id,
+            })
+        except asyncio.CancelledError:
+            pass
+        finally:
+            if _auto_resume_tasks.get(key) is asyncio.current_task():
+                _auto_resume_tasks.pop(key, None)
+
+    _auto_resume_tasks[key] = asyncio.create_task(_resume())
+
+
+def _tick_inspect_counter(line_id: int, point_id: int) -> int:
+    key = (line_id, point_id)
+    _inspect_metrics_counter[key] = _inspect_metrics_counter.get(key, 0) + 1
+    return _inspect_metrics_counter[key]
+
+
+def _cancel_auto_resume(line_id: int, point_id: int):
+    """Cancela cualquier reanudación automática pendiente para este punto."""
+    key = (line_id, point_id)
+    task = _auto_resume_tasks.get(key)
+    if task and not task.done():
+        task.cancel()
+    _auto_resume_tasks.pop(key, None)
 
 
 def load_model_for_point(point_id: int, ref_id: int, db: Session):
@@ -167,7 +251,7 @@ async def websocket_endpoint(websocket: WebSocket, ref_id: int):
     db = SessionLocal()
     try:
         ref = db.query(Reference).filter(Reference.id == ref_id).first()
-        point_id = ref.point_id if ref else 1
+        point_id = (ref.point_id if (ref and ref.point_id is not None) else 1)
 
         detector, sensitivity, model_version = load_model_for_point(point_id, ref_id, db)
         if not detector:
@@ -179,13 +263,15 @@ async def websocket_endpoint(websocket: WebSocket, ref_id: int):
 
         while True:
             message = await websocket.receive()
+            if message.get("type") == "websocket.disconnect":
+                break
 
             if "text" in message:
                 try:
                     cmd = json.loads(message["text"])
                     if cmd.get("type") == "set_sensitivity":
                         sensitivity = float(cmd.get("value", 0.0))
-                        _persist_sensitivity(db, ref_id, sensitivity)
+                        _persist_sensitivity(db, ref_id, sensitivity, point_id=point_id)
                 except Exception as e:
                     print(f"[WS] Command error: {e}")
                 continue
@@ -236,16 +322,26 @@ async def camera_feed(websocket: WebSocket):
     current_mode     = "PAUSE"
     expecting_bytes  = False
     current_frame_ts = 0.0
-    train_limit = int(os.getenv("TRAIN_CAPTURE_LIMIT", "50"))
+    train_limit = int(os.getenv("TRAIN_CAPTURE_LIMIT", "200"))
     train_limit_notified = set()
     await _register_bridge(current_line_id, current_point_id, websocket)
 
     async def _safe_receive():
         try:
             return await websocket.receive()
-        except:
+        except Exception:
             return {"type": "websocket.disconnect"}
 
+    async def _ping_loop():
+        """Mantiene la conexión viva para evitar cierre por idle (count=0 visto desde fuera)."""
+        while True:
+            await asyncio.sleep(20)
+            try:
+                await websocket.send_text(json.dumps({"type": "ping"}))
+            except Exception:
+                break
+
+    ping_task = asyncio.create_task(_ping_loop())
     try:
         while True:
             message = await _safe_receive()
@@ -273,6 +369,10 @@ async def camera_feed(websocket: WebSocket):
                         if (current_line_id, current_point_id) != prev_key:
                             await _register_bridge(current_line_id, current_point_id, websocket)
                     elif t == "set_mode":
+                        _cancel_auto_resume(
+                            int(data.get("line_id", current_line_id)),
+                            int(data.get("point_id", current_point_id)),
+                        )
                         new_mode = data.get("mode", current_mode)
                         if new_mode == "TRAIN" and current_mode != "TRAIN":
                             # Reset buffer when starting a new training session
@@ -302,13 +402,17 @@ async def camera_feed(websocket: WebSocket):
                         continue
 
                 if current_mode == "TRAIN":
+                    runtime = _get_runtime_control(current_line_id, current_point_id)
+                    train_limit = runtime.get("capture_limit", train_limit)
                     async with train_buffer_lock:
                         if buf_key not in train_buffer: train_buffer[buf_key] = []
                         # Cap de captura para acelerar entrenamiento y evitar buffer excesivo.
                         is_new_frame = False
+                        frame_index = max(0, len(train_buffer[buf_key]) - 1)
                         if len(train_buffer[buf_key]) < train_limit:
                             train_buffer[buf_key].append(jpeg_bytes)
                             is_new_frame = True
+                            frame_index = len(train_buffer[buf_key]) - 1
                         count = len(train_buffer[buf_key])
                     await manager.broadcast(current_line_id, current_point_id, {
                         "type": "train_progress", "line_id": current_line_id,
@@ -322,6 +426,7 @@ async def camera_feed(websocket: WebSocket):
                         "type": "live_frame",
                         "image": img_b64,
                         "mode": "TRAIN",
+                        "frame_index": frame_index,
                         "frames_captured": count,
                         "source": "camera",
                         "ref_id": current_ref_id
@@ -404,10 +509,49 @@ async def camera_feed(websocket: WebSocket):
                             "ref_id": ref_id_to_use, "line_id": current_line_id,
                             "point_id": current_point_id, "source": "camera"
                         })
-                        await manager.broadcast(current_line_id, current_point_id, result)
+                        tick = _tick_inspect_counter(current_line_id, current_point_id)
+                        if tick % 20 == 0:
+                            print(
+                                "[InspectMetrics] "
+                                f"L{current_line_id}P{current_point_id} ref={ref_id_to_use} "
+                                f"score={result.get('score')} anomaly_index={result.get('anomaly_index')} "
+                                f"is_defect={result.get('is_defect')}"
+                            )
+                        runtime = _get_runtime_control(current_line_id, current_point_id)
+                        pause_sec = int(runtime.get("pause_on_unknown_sec", 0))
+                        is_unknown_defect = bool(result.get("is_defect")) and not result.get("recognition")
+                        if is_unknown_defect and pause_sec > 0:
+                            result["hold_for_labeling"] = True
+                            result["hold_seconds"] = pause_sec
+                            await manager.broadcast(current_line_id, current_point_id, result)
+                            await _send_to_bridge(current_line_id, current_point_id, {
+                                "type": "set_mode",
+                                "mode": "PAUSE",
+                                "line_id": current_line_id,
+                                "point_id": current_point_id,
+                                "ref_id": ref_id_to_use,
+                            })
+                            current_mode = "PAUSE"
+                            await manager.broadcast(current_line_id, current_point_id, {
+                                "type": "mode_changed",
+                                "mode": "PAUSE",
+                                "line_id": current_line_id,
+                                "point_id": current_point_id,
+                                "ref_id": ref_id_to_use,
+                                "reason": "unknown_defect_hold",
+                                "hold_seconds": pause_sec,
+                            })
+                            _schedule_auto_resume(current_line_id, current_point_id, ref_id_to_use, pause_sec)
+                        else:
+                            await manager.broadcast(current_line_id, current_point_id, result)
     except Exception as e:
         print(f"[CameraFeed] Error: {e}")
     finally:
+        ping_task.cancel()
+        try:
+            await ping_task
+        except asyncio.CancelledError:
+            pass
         await _unregister_bridge(websocket)
         print("[CameraFeed] Bridge desconectado.")
 
@@ -449,6 +593,7 @@ def _sync_process_frame(jpeg_bytes, detector, extractor, sensitivity,
     return {
         "is_defect": bool(is_anomaly),
         "score": float(score),
+        "anomaly_index": float(max(0.0, min(100.0, 100.0 - float(score)))),
         "fps": round(1000.0 / (proc_ms + 1e-1), 1),
         "timestamp": time.time(),
         "embedding": features.tolist() if is_anomaly else None,
@@ -480,7 +625,16 @@ async def live_results(websocket: WebSocket, line_id: int, point_id: int):
             if "text" in message:
                 try:
                     cmd = json.loads(message["text"])
-                    if cmd.get("type") == "set_mode" or cmd.get("type") == "mode_changed":
+                    cmd_type = cmd.get("type")
+                    if cmd_type == "set_mode" or cmd_type == "mode_changed":
+                        _cancel_auto_resume(line_id, point_id)
+                        _set_runtime_control(
+                            line_id,
+                            point_id,
+                            capture_limit=cmd.get("capture_limit"),
+                            train_sample_size=cmd.get("train_sample_size"),
+                            pause_on_unknown_sec=cmd.get("pause_on_unknown_sec"),
+                        )
                         # Reenviar al bridge
                         await _send_to_bridge(line_id, point_id, {
                             "type": "set_mode",
@@ -489,6 +643,14 @@ async def live_results(websocket: WebSocket, line_id: int, point_id: int):
                             "point_id": point_id,
                             "ref_id": cmd.get("ref_id")
                         })
+                    elif cmd_type == "set_sensitivity":
+                        # El pipeline de cámara usa sensibilidad desde cache (load_model_for_point);
+                        # persistimos y sincronizamos cache para efecto inmediato en inspección live.
+                        sensitivity = float(cmd.get("value", 0.0))
+                        ref_id = cmd.get("ref_id")
+                        if ref_id is not None:
+                            with SessionLocal() as db:
+                                _persist_sensitivity(db, int(ref_id), sensitivity, point_id=point_id)
                 except Exception:
                     pass
     except WebSocketDisconnect:
@@ -508,6 +670,7 @@ class TrainFromCameraRequest(BaseModel):
     point_id: int = 1
     ref_id: int
     contamination: float = 0.03
+    sample_size: Optional[int] = None
 
 
 @router.post("/train_from_camera")
@@ -518,17 +681,20 @@ async def train_from_camera(req: TrainFromCameraRequest, db: Session = Depends(g
     buf_key = (req.line_id, req.point_id)
 
     async with train_buffer_lock:
-        frames_bytes = list(train_buffer.get(buf_key, []))
-    
-    # Submuestreo configurable: permite capturar más imágenes pero entrenar con un lote fijo.
-    train_sample_size = int(os.getenv("TRAIN_SAMPLE_SIZE", "50"))
+        all_frames = list(train_buffer.get(buf_key, []))
+
+    frames_bytes = list(all_frames)
+    runtime = _get_runtime_control(req.line_id, req.point_id)
+    train_sample_size = req.sample_size or runtime.get("train_sample_size", int(os.getenv("TRAIN_SAMPLE_SIZE", "50")))
+    train_sample_size = max(5, min(int(train_sample_size), 2000))
+
     if len(frames_bytes) > train_sample_size:
-        import random
-        frames_bytes = random.sample(frames_bytes, train_sample_size)
-        print(f"[TrainFromCamera] Sub-sampling: {len(frames_bytes)} images (Original: {len(train_buffer.get(buf_key, []))})")
+        sampled_indices = sorted(random.sample(range(len(frames_bytes)), train_sample_size))
+        frames_bytes = [frames_bytes[i] for i in sampled_indices]
+        print(f"[TrainFromCamera] Sub-sampling: {len(frames_bytes)} images (Original: {len(all_frames)})")
 
     if len(frames_bytes) < 5:
-        return {"status": "error", "message": f"Solo {len(frames_bytes)} frames. Necesita ≥5."}
+        raise HTTPException(status_code=400, detail=f"Solo {len(frames_bytes)} frames. Necesita ≥5.")
 
     images = []
     for jpeg in frames_bytes:
@@ -538,7 +704,7 @@ async def train_from_camera(req: TrainFromCameraRequest, db: Session = Depends(g
             images.append(img)
 
     if len(images) < 5:
-        return {"status": "error", "message": "No se pudieron decodificar suficientes frames."}
+        raise HTTPException(status_code=400, detail="No se pudieron decodificar suficientes frames.")
 
     print(f"[TrainFromCamera] L{req.line_id}P{req.point_id} → {len(images)} imágenes")
     await manager.broadcast(req.line_id, req.point_id, {
@@ -554,11 +720,11 @@ async def train_from_camera(req: TrainFromCameraRequest, db: Session = Depends(g
         )
     except Exception as e:
         await manager.broadcast(req.line_id, req.point_id, {"type": "train_error", "message": str(e)})
-        return {"status": "error", "message": str(e)}
+        raise HTTPException(status_code=500, detail=str(e))
 
     ref = db.query(Reference).filter(Reference.id == req.ref_id).first()
     if not ref:
-        return {"status": "error", "message": "Referencia no encontrada"}
+        raise HTTPException(status_code=404, detail="Referencia no encontrada")
 
     # Asignar punto si no tiene
     if ref.point_id is None:
@@ -571,7 +737,9 @@ async def train_from_camera(req: TrainFromCameraRequest, db: Session = Depends(g
     ref.params = {
         "contamination": req.contamination,
         "trained_from": "camera",
+        "captured_frames": len(all_frames),
         "frame_count": len(images),
+        "train_sample_size": train_sample_size,
         "sensitivity": 0.0,
         "trained_at": datetime.utcnow().isoformat(),
         "line_id": req.line_id,
@@ -599,6 +767,7 @@ async def train_from_camera(req: TrainFromCameraRequest, db: Session = Depends(g
         "line_id": req.line_id,
         "point_id": req.point_id,
         "ref_id": req.ref_id,
+        "frames_captured": len(all_frames),
         "frames_used": len(images),
         "memory_bank_size": stats.get("memory_bank_size", 0),
         "threshold": round(stats.get("threshold", 0), 4),
@@ -616,11 +785,22 @@ class BridgeModeRequest(BaseModel):
     point_id: int = 1
     ref_id: int = None
     mode: str  # "TRAIN" | "INSPECT" | "CALIBRATE" | "PAUSE"
+    capture_limit: Optional[int] = None
+    train_sample_size: Optional[int] = None
+    pause_on_unknown_sec: Optional[int] = None
 
 
 @router.post("/bridge/set_mode")
 async def set_bridge_mode(req: BridgeModeRequest):
     from backend.api.main import manager
+    _cancel_auto_resume(req.line_id, req.point_id)
+    runtime = _set_runtime_control(
+        req.line_id,
+        req.point_id,
+        capture_limit=req.capture_limit,
+        train_sample_size=req.train_sample_size,
+        pause_on_unknown_sec=req.pause_on_unknown_sec,
+    )
     delivered = await _send_to_bridge(req.line_id, req.point_id, {
         "type": "set_mode",
         "mode": req.mode,
@@ -635,7 +815,12 @@ async def set_bridge_mode(req: BridgeModeRequest):
         "point_id": req.point_id,
         "ref_id": req.ref_id,
     })
-    return {"status": "ok", "mode": req.mode, "bridge_delivered": delivered}
+    return {
+        "status": "ok",
+        "mode": req.mode,
+        "bridge_delivered": delivered,
+        "runtime_control": runtime,
+    }
 
 
 @router.get("/bridge/status")
@@ -718,6 +903,7 @@ async def _process_frame(jpeg_bytes, detector, extractor, sensitivity,
     return {
         "is_defect": bool(is_anomaly),
         "score": float(score),
+        "anomaly_index": float(max(0.0, min(100.0, 100.0 - float(score)))),
         "fps": round(1000.0 / (proc_ms + 1e-1), 1),
         "timestamp": time.time(),
         "embedding": features.tolist() if is_anomaly else None,
@@ -759,13 +945,26 @@ def _recognize_defect(db, ref_id, features):
     return None
 
 
-def _persist_sensitivity(db, ref_id, sensitivity):
+def _set_cached_sensitivity(ref_id: int, sensitivity: float, point_id: int = None):
+    for key, value in _model_cache.items():
+        k_point_id, k_ref_id = key
+        if k_ref_id != ref_id:
+            continue
+        if point_id is not None and k_point_id != point_id:
+            continue
+        value["sensitivity"] = sensitivity
+
+
+def _persist_sensitivity(db, ref_id, sensitivity, point_id=None):
     try:
         ref = db.query(Reference).filter(Reference.id == ref_id).first()
         if ref:
-            params = ref.params or {}
+            # Forzar objeto nuevo: SQLAlchemy JSON no siempre detecta mutación in-place.
+            params = dict(ref.params or {})
             params["sensitivity"] = sensitivity
             ref.params = params
             db.commit()
+            _set_cached_sensitivity(ref_id, sensitivity, point_id=point_id)
+            print(f"[Sensitivity] ref={ref_id} point={point_id} -> {sensitivity}")
     except Exception as e:
         print(f"[Sensitivity] Error: {e}")

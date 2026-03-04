@@ -16,6 +16,7 @@ venv/
 **/local_storage/
 **/db/*.db
 **/logs/*.log
+logs_pruebas/
 **/simulate_images/
 fabric_audit_report.json
 
