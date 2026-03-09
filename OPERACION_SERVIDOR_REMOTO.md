@@ -89,7 +89,9 @@ UI:
 3. `TRAIN` para capturar frames de tela normal.
 4. `Entrenar Modelo` (`train_from_camera`).
 5. `INSPECT` para producción.
-6. `PAUSE` para detención controlada.
+6. `Detener` al finalizar el lote (cierra la inspección).
+7. Clasificar defectos (Cola clasificación).
+8. Generar informe: seleccionar inspección → Informe.
 
 ## 7) Recuperación de fallos
 

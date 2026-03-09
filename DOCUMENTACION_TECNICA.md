@@ -20,8 +20,10 @@ Documento canónico del comportamiento real de la solución en producción.
 5. `PAUSE` (post-entrenamiento).
 6. `INSPECT` (inferencia continua + score + defect flag + reconocimiento opcional + heatmap + señal PLC si está configurada).
 
+**Inspección por sesión:** Cada "Iniciar Inspección" crea un registro `Inspection`; "Detener" cierra la sesión. Los defectos se asocian a la inspección activa. El informe se genera por inspección (solo defectos de esa sesión).
+
 Transporte:
-- `WS /api/inference/camera_feed`: bridge -> backend (metadata+JPEG).
+- `WS /api/inference/camera_feed`: bridge -> backend (metadata+JPEG, incl. `inspection_id`).
 - `WS /api/inference/live/{line_id}/{point_id}`: backend -> UI (broadcast de estado y resultados).
 - `POST /api/inference/bridge/set_mode`: comando operativo hacia bridge.
 
@@ -86,7 +88,13 @@ Transporte:
 ### 3.6 Clasificación de defectos
 
 - `Guardar Defecto`: persiste tipo seleccionado + score + embedding para reconocimiento posterior.
-- si la anomalía no tiene coincidencia previa, puede activarse pausa temporal según configuración.
+- Si la anomalía no tiene coincidencia previa, puede activarse pausa temporal según configuración.
+- Tipo "Sin clasificar" existe en el catálogo; defectos nuevos se guardan con ese tipo.
+
+### 3.7 Informe por inspección
+
+- Desplegable **Inspección**: lista sesiones (Iniciar→Detener) de la referencia seleccionada.
+- **Informe**: genera HTML con defectos de la inspección elegida; borra solo imágenes de esa inspección.
 
 ## 4) Parámetros y dónde se aplican
 
@@ -113,7 +121,15 @@ Transporte:
 - `VA_BACKEND_WS_URL`: endpoint WS backend.
 - `CAMERA_LINE_ID`, `CAMERA_POINT_ID`, `CAMERA_ID`, `CAMERA_IP`: identificación y selección de dispositivo.
 
-## 5) Persistencia
+## 5) API de inspección
+
+| Endpoint | Descripción |
+|----------|-------------|
+| `GET /api/references/{ref_id}/inspections` | Lista inspecciones de una referencia. |
+| `GET /api/references/{ref_id}/inspections/{inspection_id}/report` | Informe HTML de una inspección (solo defectos de esa sesión). |
+| `GET /api/references/{ref_id}/report` | Informe legacy por referencia (todos los defectos, requiere clasificación completa). |
+
+## 6) Persistencia
 
 Volúmenes activos:
 - `./Nuvant_VA/backend/local_storage:/app/local_storage`
@@ -122,7 +138,7 @@ Volúmenes activos:
 
 Persisten modelos (`model.pkl`), base SQLite y logs al recrear contenedores.
 
-## 6) Comportamiento de detección y control
+## 7) Comportamiento de detección y control
 
 - Modelo principal para referencias nuevas: PatchCore V32.
 - V31 se mantiene solo para compatibilidad con modelos legacy.
@@ -131,7 +147,7 @@ Persisten modelos (`model.pkl`), base SQLite y logs al recrear contenedores.
 - `sensOffset` modifica el umbral base en caliente durante inspección.
 - `pause_on_unknown_sec` añade control operativo para clasificación humana antes de reanudar.
 
-## 7) Salud y diagnóstico operativo
+## 8) Salud y diagnóstico operativo
 
 Checks mínimos:
 - `docker compose ps`
@@ -144,14 +160,14 @@ Condición de video en calibración:
 - modo `CALIBRATE` entregado (`bridge_delivered=true`),
 - frames enviados por bridge.
 
-## 8) Riesgos controlados y límites
+## 9) Riesgos controlados y límites
 
 - Deriva de iluminación/exposición entre entrenamiento e inspección.
 - Set de entrenamiento pequeño (alto riesgo de sobreajuste al lote).
 - Configuraciones extremas de `sensOffset` pueden sesgar operación (mucho FP o FN).
 - Transiciones frecuentes `INSPECT/PAUSE` reducen continuidad visual de la tendencia.
 
-## 9) Documentos relacionados
+## 10) Documentos relacionados
 
 - `INSTRUCCIONES_OPERATIVAS.md`: comandos Docker, flujo operativo, **configuración y prueba de señal PLC**.
 - `OPERACION_SERVIDOR_REMOTO.md`

@@ -101,13 +101,16 @@ docker compose up -d
 
 ### Fase 4: Informe
 
-12. **Generar informe**  
-    - En la pantalla principal → **Informe**.
+12. **Generar informe**
+    - En la pantalla principal: seleccionar **inspección** en el desplegable (junto al botón Informe).
+    - Pulsar **Informe**.
 
 13. **Resultado**
-    - Se descarga un HTML con imágenes embebidas.
-    - Las imágenes se borran del disco.
+    - Se descarga un HTML con imágenes embebidas y clasificaciones.
+    - Solo se borran las imágenes de defectos de **esa inspección**.
     - El informe se guarda en `Nuvant_VA/backend/local_storage/reports/`.
+
+**Nota:** El desplegable de inspecciones se actualiza al cambiar de referencia y al detener una inspección. Si no aparece ninguna inspección, asegúrese de haber pulsado **Detener** tras una sesión de inspección.
 
 ---
 
@@ -317,8 +320,10 @@ docker compose logs -f bridge-l1-final
 
 | Mensaje | Acción |
 |---------|--------|
-| "Debe clasificar TODOS los defectos" | Abrir **Cola clasificación** y clasificar todos. |
+| "Seleccione una inspección para generar el informe" | Elegir una inspección en el desplegable antes de **Informe**. |
+| "Debe clasificar TODOS los defectos" | Abrir **Cola clasificación** y clasificar todos (incl. tipo "Sin clasificar"). |
 | "Seleccione un tipo de defecto" | Elegir un tipo en el desplegable antes de **Clasificar**. |
 | "Error de conexión" | Comprobar que el backend esté en marcha (`docker compose ps`). |
 | "Imagen no disponible" | El defecto se guardó sin imagen; se puede clasificar igual. |
+| Informe en blanco | Verificar que la inspección tenga defectos; si persiste, revisar rutas en `local_storage`. |
 | "Timeout captura" / RetrieveBuffer | La cámara no entrega frames. Verificar: (1) host y cámara en misma subred; (2) si usas Force IP, la interfaz del host debe estar en 169.254.x.x; (3) probar sin Force IP: `CAMERA_FORCE_IP=` en .env. |

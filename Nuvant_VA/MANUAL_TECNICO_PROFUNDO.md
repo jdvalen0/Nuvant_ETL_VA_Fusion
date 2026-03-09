@@ -58,6 +58,8 @@ Propósito:
   - `recognition`,
   - `heatmap`.
 
+**Inspección por sesión:** Cada "Iniciar Inspección" crea un registro `Inspection`; "Detener" cierra la sesión. Los defectos se asocian a la inspección activa (`inspection_id`). El informe se genera por inspección.
+
 Control operativo:
 - `pause_on_unknown_sec` puede pausar cuando hay anomalía sin reconocimiento.
 

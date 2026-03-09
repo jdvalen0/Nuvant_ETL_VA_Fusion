@@ -115,7 +115,14 @@
 
 ---
 
-## 7. Recomendaciones
+## 7. Fix informe en blanco (2025-03-01)
+
+| Problema | Solución |
+|----------|----------|
+| Informe sin imágenes ni clasificaciones | `_resolve_image_path()`: resuelve rutas relativas a STORAGE_DIR (host vs contenedor). |
+| Defectos no aparecen en informe | Fallback: si no hay defectos con `inspection_id`, se incluyen defectos con `inspection_id=NULL` de la misma ref. |
+
+## 8. Recomendaciones
 
 1. **Probar en Docker:** Ejecutar `docker-compose up` y verificar flujo completo.
 2. **DB existente:** La migración automática crea `inspections` y `inspection_id` si no existen.

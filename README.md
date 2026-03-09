@@ -5,9 +5,10 @@ Sistema de inspección industrial en tiempo real con detección de anomalías no
 ## Estado vigente
 
 - Flujo productivo: `CALIBRATE -> TRAIN -> PAUSE -> INSPECT`.
-- Entrenamiento dinámico: captura desde cámara con límite configurable + submuestreo aleatorio configurable.
+- **Inspección por sesión**: cada "Iniciar → Detener" crea una inspección; el informe se genera por inspección.
+- Entrenamiento dinámico: captura desde cámara con límite configurable + submuestreo aleatorio.
 - Ajuste en caliente: slider de sensibilidad (`sensOffset`) aplicado sobre umbral ya entrenado.
-- Persistencia: modelos y base de datos SQLite en volúmenes locales.
+- Persistencia: modelos, SQLite (referencias, inspecciones, defectos) en volúmenes locales.
 - Señal PLC S7 (opcional): bit de defecto en PLC Siemens vía snap7; configuración en `.env`.
 
 ## Servicios activos
@@ -32,10 +33,11 @@ UI:
 
 | Documento | Contenido |
 |-----------|-----------|
-| `INSTRUCCIONES_OPERATIVAS.md` | Comandos Docker, flujo operativo, PLC, cámara (IP actual y cambio futuro). |
+| `INSTRUCCIONES_OPERATIVAS.md` | Comandos Docker, flujo operativo completo, PLC, cámara. |
+| `DOCUMENTACION_TECNICA.md` | Arquitectura, API, frontend y parámetros. |
+| `AUDITORIA_CAMBIOS_INSPECCION.md` | Modelo inspección, informe por sesión, correcciones BUG-1 a BUG-6. |
 | `CAPTURA_LOGS_PRUEBAS.md` | Cómo capturar y guardar logs durante pruebas. |
-| `AUDITORIA_PRE_PRUEBAS.md` | Auditoría de cambios, cuándo reconstruir, checklist pre-pruebas. |
-| `DOCUMENTACION_TECNICA.md` | Arquitectura, flujo funcional, frontend y parámetros. |
-| `OPERACION_SERVIDOR_REMOTO.md` | Despliegue, operación en servidor y recuperación de fallos. |
-| `GUIA_AJUSTES_PRODUCCION.md` | Metodología de tuning (`contamination`, `sensOffset`, captura/muestra). |
-| `ARQUITECTURA_Y_TEORIA_PHD.md` | Fundamento científico y traducción al código. |
+| `OPERACION_SERVIDOR_REMOTO.md` | Despliegue, operación en servidor y recuperación. |
+| `GUIA_AJUSTES_PRODUCCION.md` | Metodología de tuning (`contamination`, `sensOffset`). |
+| `ARQUITECTURA_Y_TEORIA_PHD.md` | Fundamento científico PatchCore. |
+| `AUDITORIA_PRE_PRUEBAS.md` | Checklist pre-pruebas, cuándo reconstruir. |

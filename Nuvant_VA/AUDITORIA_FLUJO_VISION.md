@@ -12,12 +12,16 @@
 
 ## Estado de implementación
 
-### ✅ Reporte por lote
+### ✅ Reporte por inspección (principal)
+- **Endpoint**: `GET /api/references/{ref_id}/inspections/{inspection_id}/report`
+- Solo defectos de esa inspección (sesión Iniciar→Detener)
+- Borra solo imágenes de esa inspección
+- Desplegable de inspecciones + botón "📊 Informe" en UI
+
+### ✅ Reporte por referencia (legacy)
 - **Endpoint**: `GET /api/references/{ref_id}/report`
-- Incluye defectos clasificados (`defect_type_id` NOT NULL) y sin clasificar (`defect_type_id` NULL)
-- Clasificación: `DefectType.name` o "Sin clasificar"
-- Parámetros: `date_from`, `date_to`, `fmt` (json|csv), `delete_images`
-- Botón "📊 Reporte" en UI
+- Requiere TODOS los defectos clasificados
+- Parámetros: `date_from`, `date_to`
 
 ### ✅ Pausa en inspección
 - `pause_on_unknown_sec` en `_runtime_control`
@@ -38,7 +42,7 @@
 
 ### ✅ Guardado de defectos al detectar
 - `_save_defect_on_detect()` en inference.py
-- Defecto detectado → DefectLog con `defect_type_id=NULL`
+- Defecto detectado → DefectLog con tipo "Sin clasificar" y `inspection_id`
 - Imagen en `local_storage/line_N/point_M/ref_id/defects/`
 - `defect_log_id` enviado al frontend para clasificación posterior
 
@@ -48,9 +52,10 @@
 - Sin `defect_log_id` → crea nuevo (flujo manual/drag-drop)
 
 ### ✅ Informe con imágenes embebidas
-- **Solo tras clasificación**: requiere al menos un defecto clasificado
-- **Documento HTML** con imágenes embebidas (base64) visibles en el informe
-- **Tras generar**: borra imágenes del disco, conserva el informe (HTML en `local_storage/reports/`)
+- **Por inspección**: seleccionar inspección → Informe
+- **Documento HTML** con imágenes embebidas (base64) y clasificaciones
+- **Tras generar**: borra solo imágenes de defectos de esa inspección
+- Fallback: si no hay defectos con `inspection_id`, incluye defectos con `inspection_id=NULL`
 
 ---
 

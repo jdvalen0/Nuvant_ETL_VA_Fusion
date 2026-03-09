@@ -1,6 +1,6 @@
-# Auditoría pre-pruebas — Cambios realizados y verificación
+# Auditoría pre-pruebas — Checklist y verificación
 
-Documento de auditoría de los cambios implementados antes de ejecutar pruebas.
+Documento de auditoría y checklist antes de ejecutar pruebas. **Para cambios recientes (inspección por sesión, informe por inspección, BUG-1 a BUG-6):** ver `AUDITORIA_CAMBIOS_INSPECCION.md`.
 
 ---
 
@@ -13,7 +13,7 @@ Documento de auditoría de los cambios implementados antes de ejecutar pruebas.
 | `_sync_process_frame` | No | Algoritmo PatchCore/V31 intacto |
 | `detector.predict` | No | Lógica de anomalía sin cambios |
 | `FeatureExtractor`, `AnomalyDetector` | No | Extracción y predicción igual |
-| `_recognize_defect` | No | Reconocimiento por embedding igual |
+| `_recognize_defect` | Sí (limit) | `.limit(500)` para evitar OOM; lógica igual |
 | `train_from_camera` | No | Entrenamiento igual |
 | `load_model_for_point` | No | Carga de modelo igual |
 | Modos CALIBRATE, TRAIN, INSPECT, PAUSE | No | Flujo de modos igual |
@@ -50,18 +50,18 @@ Documento de auditoría de los cambios implementados antes de ejecutar pruebas.
 ## 2. Captura de defectos y clasificación en segundo plano
 
 ### Flujo implementado
-1. **Detección:** En modo INSPECT, cada frame con `is_defect=True` → `_save_defect_on_detect()`.
-2. **Guardado:** DefectLog con `defect_type_id=NULL`, imagen en `local_storage/line_1/point_1/{ref_id}/defects/`.
-3. **Cola:** `GET /api/references/{ref_id}/unclassified_defects` lista defectos sin clasificar.
+1. **Detección:** En modo INSPECT, cada frame con `is_defect=True` → `_save_defect_on_detect()` con `inspection_id`.
+2. **Guardado:** DefectLog con tipo "Sin clasificar", imagen en `local_storage/line_1/point_1/{ref_id}/defects/`.
+3. **Cola:** `GET /api/references/{ref_id}/unclassified_defects` lista defectos sin clasificar (NULL o tipo "Sin clasificar").
 4. **Clasificación:** `POST /api/inference/log_defect` con `defect_log_id` actualiza el defecto existente.
-5. **Informe:** Solo tras clasificar TODOS. Borra imágenes tras generar.
+5. **Informe:** Por inspección. Seleccionar inspección → Informe. Borra solo imágenes de esa inspección.
 
 ### Verificación
 - [x] `_save_defect_on_detect` usa `get_storage_path(ref_id, point_id, line_id)` — ruta modular correcta.
 - [x] `image_path` se guarda como ruta absoluta/relativa al storage.
-- [x] `unclassified_defects` filtra `defect_type_id IS NULL`.
+- [x] `unclassified_defects` filtra `defect_type_id IS NULL` o tipo "Sin clasificar".
 - [x] `log_defect` con `defect_log_id` actualiza en lugar de crear.
-- [x] Report exige `sin_clasificar == 0` antes de generar.
+- [x] Report por inspección: `GET /api/references/{ref_id}/inspections/{inspection_id}/report`.
 
 ### Posibles fallos silenciosos
 - **Imagen no encontrada:** Si `image_path` es incorrecto (p. ej. ruta host vs contenedor), `get_defect_image` devuelve 404. El frontend muestra "Sin imagen" y permite clasificar igual.
@@ -101,8 +101,8 @@ Documento de auditoría de los cambios implementados antes de ejecutar pruebas.
 ## 5. Eliminación de referencias (delete_reference)
 
 ### Corrección aplicada
-- Antes: solo se borraba `local_storage/{ref_id}/` (legacy).
-- Ahora: también se borra `local_storage/line_1/point_1/{ref_id}/` (modelo y defectos de flujo cámara).
+- Borra DefectLog, Inspection y Reference.
+- Borra `local_storage/{ref_id}/` (legacy) y `local_storage/line_1/point_1/{ref_id}/` (modular).
 - Evita carpetas huérfanas al eliminar referencias entrenadas por cámara.
 
 ---
@@ -138,7 +138,7 @@ Documento de auditoría de los cambios implementados antes de ejecutar pruebas.
 - [ ] `docker compose ps` muestra ambos servicios up.
 - [ ] `docker compose logs -f bridge-l1-final` muestra "Conectado a:".
 - [ ] Referencia creada, calibrada, entrenada.
-- [ ] Inspección probada; defectos guardados.
+- [ ] Inspección probada (Iniciar → Detener); defectos guardados.
 - [ ] Cola de clasificación probada; todos clasificados.
-- [ ] Informe generado correctamente.
+- [ ] Informe: seleccionar inspección → Informe; verificar imágenes y clasificaciones.
 - [ ] Si PLC: verificar bit en DB.
