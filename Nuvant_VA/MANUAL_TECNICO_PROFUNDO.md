@@ -61,6 +61,8 @@ Propósito:
 Control operativo:
 - `pause_on_unknown_sec` puede pausar cuando hay anomalía sin reconocimiento.
 
+**Señal PLC S7:** Si `PLC_IP` está definido en `.env`, el backend escribe un bit en el PLC por cada frame en INSPECT: 1 = defecto, 0 = sin defecto. Dirección `DB{PLC_DB}.DBX{PLC_BYTE}.{PLC_BIT}`. Implementación: `backend/core/plc_s7.py` (snap7). Configuración y pasos de prueba: `../INSTRUCCIONES_OPERATIVAS.md` sección 3.
+
 ## 4) Parámetros críticos
 
 ### 4.1 `contamination` (rigor de entrenamiento)

@@ -31,6 +31,9 @@ RUN pip install --upgrade pip && \
 # Copiar el resto del código
 COPY . .
 
+# Pre-descargar pesos (MobileNetV2, WideResNet50) durante build — evita gaierror en runtime sin internet
+RUN python docker/prefetch_weights.py
+
 # Crear directorios para almacenamiento persistente y base de datos
 RUN mkdir -p local_storage db logs
 

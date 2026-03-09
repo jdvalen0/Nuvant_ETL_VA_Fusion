@@ -10,9 +10,13 @@ STORAGE_DIR = Path(os.getenv("STORAGE_DIR", BASE_DIR / "local_storage"))
 # ── Base de datos ──────────────────────────────────────────────────────────
 DATABASE_URL = os.getenv("DATABASE_URL", f"sqlite:///{BASE_DIR}/db/nuvant.db")
 
+# ── Reportes (documentos con imágenes embebidas) ───────────────────────────
+REPORTS_DIR = STORAGE_DIR / "reports"
+
 # ── Garantizar directorios ─────────────────────────────────────────────────
 os.makedirs(STORAGE_DIR, exist_ok=True)
 os.makedirs(BASE_DIR / "db", exist_ok=True)
+os.makedirs(REPORTS_DIR, exist_ok=True)
 
 
 def get_storage_path(ref_id: int,

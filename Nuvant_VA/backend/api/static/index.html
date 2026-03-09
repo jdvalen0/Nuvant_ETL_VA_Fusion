@@ -115,6 +115,16 @@
                         <button id="btnStopInspection" onclick="stopInspection()"
                             class="bg-orange-700 hover:bg-orange-600 px-3 rounded text-white text-[10px] font-bold transition"
                             title="Detener Inspección">Detener 🛑</button>
+                        <select id="inspectionSelect" class="bg-slate-700 text-white text-[10px] rounded px-2 py-1 border border-slate-600 max-w-[140px]"
+                            title="Inspección para informe">
+                            <option value="">-- Inspección --</option>
+                        </select>
+                        <button id="btnReport" onclick="downloadReport()"
+                            class="bg-slate-600 hover:bg-slate-500 px-3 rounded text-white text-[10px] font-bold transition"
+                            title="Generar informe de la inspección seleccionada. Imágenes en documento, luego se borran.">📊 Informe</button>
+                        <a href="/static/classify.html" target="_blank"
+                            class="bg-amber-600 hover:bg-amber-500 px-3 rounded text-white text-[10px] font-bold transition inline-flex items-center"
+                            title="Abrir cola de defectos sin clasificar">📋 Cola clasificación</a>
                     </div>
                 </div>
 
@@ -197,10 +207,11 @@
                                 <input id="trainSampleSizeInput" type="number" min="5" max="2000" value="50"
                                     class="bg-slate-900 border border-slate-600 rounded p-1.5 text-slate-200">
                             </label>
-                            <label class="flex flex-col gap-1">
+                            <label class="flex flex-col gap-1" title="0 = no pausar, solo almacenar">
                                 <span>Pausa defecto (s)</span>
                                 <input id="pauseOnUnknownInput" type="number" min="0" max="120" value="10"
-                                    class="bg-slate-900 border border-slate-600 rounded p-1.5 text-slate-200">
+                                    class="bg-slate-900 border border-slate-600 rounded p-1.5 text-slate-200"
+                                    placeholder="0=no pausar">
                             </label>
                         </div>
                     </div>
@@ -750,6 +761,7 @@
                 ref_id: refId ? parseInt(refId) : null,
                 mode: 'PAUSE'
             });
+            loadInspections();
             alert("🛑 Inspección detenida.");
         }
 
@@ -1036,12 +1048,57 @@
             const refId = document.getElementById('refSelect').value;
             const defectType = document.getElementById('defectTypeSelect').value;
             if (!defectType || !lastDefectData) return alert("Seleccione tipo de defecto");
+            const payload = {
+                reference_id: parseInt(refId),
+                defect_type: defectType,
+                score: lastDefectData.score,
+                embedding: lastDefectData.embedding
+            };
+            if (lastDefectData.defect_log_id) payload.defect_log_id = lastDefectData.defect_log_id;
             const res = await fetch(`${API}/inference/log_defect`, {
                 method: 'POST',
                 headers: { 'Content-Type': 'application/json' },
-                body: JSON.stringify({ reference_id: parseInt(refId), defect_type: defectType, score: lastDefectData.score, embedding: lastDefectData.embedding })
+                body: JSON.stringify(payload)
             });
-            if (res.ok) { alert(`Defecto registrado: ${defectType}`); document.getElementById('defectTypeSelect').value = ""; }
+            if (res.ok) { alert(`Defecto registrado: ${defectType}`); document.getElementById('defectTypeSelect').value = ""; lastDefectData = null; }
+        }
+
+        async function loadInspections() {
+            const refId = document.getElementById('refSelect').value;
+            const sel = document.getElementById('inspectionSelect');
+            if (!sel) return;
+            sel.innerHTML = '<option value="">-- Inspección --</option>';
+            if (!refId) return;
+            const res = await fetch(`${API}/references/${refId}/inspections`);
+            if (!res.ok) return;
+            const inspections = await res.json();
+            inspections.forEach(i => {
+                const label = i.stopped_at
+                    ? `#${i.id} ${new Date(i.started_at).toLocaleString()} → ${new Date(i.stopped_at).toLocaleString()}`
+                    : `#${i.id} ${new Date(i.started_at).toLocaleString()} (en curso)`;
+                sel.appendChild(new Option(label, i.id));
+            });
+        }
+
+        async function downloadReport() {
+            const refId = document.getElementById('refSelect').value;
+            const inspectionId = document.getElementById('inspectionSelect')?.value;
+            if (!refId) return alert('Seleccione una referencia');
+            if (!inspectionId) return alert('Seleccione una inspección para generar el informe.');
+            const url = `${API}/references/${refId}/inspections/${inspectionId}/report`;
+            const res = await fetch(url);
+            if (!res.ok) {
+                const err = await res.json().catch(() => ({}));
+                return alert(err.detail || 'Error al generar informe.');
+            }
+            const blob = await res.blob();
+            const a = document.createElement('a');
+            a.href = URL.createObjectURL(blob);
+            a.download = res.headers.get('Content-Disposition')?.match(/filename="?([^";]+)"?/)?.[1] || `reporte_inspeccion_${inspectionId}.html`;
+            a.click();
+            URL.revokeObjectURL(a.href);
+            const delCount = res.headers.get('X-Images-Deleted');
+            if (delCount !== null) alert(`Informe generado. Imágenes borradas del disco: ${delCount}`);
         }
 
         async function deleteReference() {
@@ -1104,6 +1161,7 @@
                     recBtn.className = "bg-blue-600 px-3 rounded text-white font-bold transition flex items-center justify-center animate-pulse";
                 }
                 connectWs(refId);
+                loadInspections();
                 // Seguridad operativa: seleccionar referencia NO arranca inspección.
                 await setBridgeMode({
                     line_id: DEFAULT_LINE_ID,

@@ -18,7 +18,7 @@ Documento canónico del comportamiento real de la solución en producción.
 3. `TRAIN` (captura automática de frames hasta límite).
 4. `train_from_camera` (submuestreo aleatorio + entrenamiento PatchCore V32).
 5. `PAUSE` (post-entrenamiento).
-6. `INSPECT` (inferencia continua + score + defect flag + reconocimiento opcional + heatmap).
+6. `INSPECT` (inferencia continua + score + defect flag + reconocimiento opcional + heatmap + señal PLC si está configurada).
 
 Transporte:
 - `WS /api/inference/camera_feed`: bridge -> backend (metadata+JPEG).
@@ -99,6 +99,13 @@ Transporte:
 - `PATCHCORE_ROI_CROP`: recorte perimetral para eliminar borde no útil.
 - `PATCHCORE_USE_CLAHE`: normalización local de contraste para robustez lumínica.
 
+**PLC S7 (opcional, vía `.env`):**
+- `PLC_IP`: IP del PLC Siemens S7. Si no se define, el PLC queda deshabilitado.
+- `PLC_DB`, `PLC_BYTE`, `PLC_BIT`: dirección del bit (ej. DB1.DBX0.0).
+- `PLC_RACK`, `PLC_SLOT`: rack y slot S7.
+- La señal se escribe durante inspección: bit 1 = defecto, bit 0 = sin defecto.
+- Detalle completo: `INSTRUCCIONES_OPERATIVAS.md` sección 3.
+
 ### 4.2 Variables de entorno bridge
 
 - `CAMERA_MODE`: `live` o `simulate`.
@@ -146,6 +153,7 @@ Condición de video en calibración:
 
 ## 9) Documentos relacionados
 
+- `INSTRUCCIONES_OPERATIVAS.md`: comandos Docker, flujo operativo, **configuración y prueba de señal PLC**.
 - `OPERACION_SERVIDOR_REMOTO.md`
 - `GUIA_AJUSTES_PRODUCCION.md`
 - `ARQUITECTURA_Y_TEORIA_PHD.md`

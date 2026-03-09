@@ -1,3 +1,4 @@
+from contextlib import asynccontextmanager
 from fastapi import FastAPI, WebSocket
 from fastapi.middleware.cors import CORSMiddleware
 from fastapi.responses import RedirectResponse
@@ -9,7 +10,15 @@ import asyncio
 from backend.db.database import init_db
 from backend.api.routers import references, inference, lines
 
-app = FastAPI(title="Nuvant VA System", version="2.0.0")
+
+@asynccontextmanager
+async def lifespan(app: FastAPI):
+    init_db()
+    yield
+    # shutdown: cleanup si aplica
+
+
+app = FastAPI(title="Nuvant VA System", version="2.0.0", lifespan=lifespan)
 
 
 # ══════════════════════════════════════════════════════════════════════════════
@@ -73,11 +82,6 @@ app.add_middleware(
 
 STATIC_DIR = Path(__file__).parent / "static"
 app.mount("/static", StaticFiles(directory=str(STATIC_DIR), html=True), name="static")
-
-
-@app.on_event("startup")
-def on_startup():
-    init_db()
 
 
 @app.get("/")

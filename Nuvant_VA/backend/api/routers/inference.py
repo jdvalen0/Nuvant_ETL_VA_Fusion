@@ -21,9 +21,10 @@ from pydantic import BaseModel
 from sqlalchemy.orm import Session
 
 from backend.db.database import (
-    DefectLog, DefectType, Reference, InspectionPoint,
+    DefectLog, DefectType, Reference, Inspection, InspectionPoint,
     ProductionLine, SessionLocal
 )
+from backend.config import get_storage_path
 from backend.core.features import FeatureExtractor
 from backend.core.anomaly import AnomalyDetector
 
@@ -46,8 +47,10 @@ _shared_extractor = FeatureExtractor()
 _bridge_connections: Dict[tuple, WebSocket] = {}
 _bridge_lock = asyncio.Lock()
 _runtime_control: Dict[tuple, Dict[str, Any]] = {}
+_active_inspection: Dict[tuple, int] = {}  # (line_id, point_id) -> inspection_id
 _auto_resume_tasks: Dict[tuple, asyncio.Task] = {}
 _inspect_metrics_counter: Dict[tuple, int] = {}
+_last_plc_defect: Dict[tuple, bool] = {}
 
 
 def get_db():
@@ -111,13 +114,17 @@ def _schedule_auto_resume(line_id: int, point_id: int, ref_id: int, seconds: int
         from backend.api.main import manager
         try:
             await asyncio.sleep(seconds)
-            await _send_to_bridge(line_id, point_id, {
+            payload = {
                 "type": "set_mode",
                 "mode": "INSPECT",
                 "line_id": line_id,
                 "point_id": point_id,
                 "ref_id": ref_id,
-            })
+            }
+            insp_id = _active_inspection.get(key)
+            if insp_id is not None:
+                payload["inspection_id"] = insp_id
+            await _send_to_bridge(line_id, point_id, payload)
             await manager.broadcast(line_id, point_id, {
                 "type": "mode_changed",
                 "mode": "INSPECT",
@@ -147,6 +154,56 @@ def _cancel_auto_resume(line_id: int, point_id: int):
     if task and not task.done():
         task.cancel()
     _auto_resume_tasks.pop(key, None)
+
+
+def _save_defect_on_detect(
+    ref_id: int, line_id: int, point_id: int,
+    jpeg_bytes: bytes, score: float, embedding: Optional[list],
+    inspection_id: Optional[int] = None,
+) -> Optional[int]:
+    """Guarda defecto detectado (sin clasificar). Retorna defect_log_id."""
+    try:
+        storage = get_storage_path(ref_id, point_id, line_id)
+        defects_dir = storage / "defects"
+        defects_dir.mkdir(parents=True, exist_ok=True)
+        ts = datetime.utcnow().strftime("%Y%m%d_%H%M%S")
+        fname = f"defect_{ts}_{os.getpid()}.jpg"
+        img_path = defects_dir / fname
+        with open(img_path, "wb") as f:
+            f.write(jpeg_bytes)
+
+        with SessionLocal() as db:
+            sin_clasificar = db.query(DefectType).filter(DefectType.name == "Sin clasificar").first()
+            dtype_id = sin_clasificar.id if sin_clasificar else None
+            log = DefectLog(
+                reference_id=ref_id,
+                inspection_id=inspection_id,
+                anomaly_score=score,
+                is_defect=1,
+                defect_type_id=dtype_id,  # Sin clasificar (tipo en catálogo)
+                image_path=str(img_path),
+                embedding=embedding,
+            )
+            db.add(log)
+            db.commit()
+            db.refresh(log)
+            return log.id
+    except Exception as e:
+        print(f"[DefectLog] Error guardando defecto: {e}")
+        return None
+
+
+def _plc_write_defect_signal(line_id: int, point_id: int, value: bool):
+    """Escribe señal al PLC solo si cambió (evita escrituras innecesarias)."""
+    key = (line_id, point_id)
+    if _last_plc_defect.get(key) == value:
+        return
+    _last_plc_defect[key] = value
+    try:
+        from backend.core.plc_s7 import write_defect_signal
+        write_defect_signal(value)
+    except ImportError:
+        pass
 
 
 def load_model_for_point(point_id: int, ref_id: int, db: Session):
@@ -221,6 +278,8 @@ async def _unregister_bridge(ws: WebSocket):
         dead_keys = [k for k, v in _bridge_connections.items() if v is ws]
         for k in dead_keys:
             _bridge_connections.pop(k, None)
+    for line_id, point_id in dead_keys:
+        _close_inspection(line_id, point_id)
 
 
 async def _send_to_bridge(line_id: int, point_id: int, payload: dict) -> bool:
@@ -316,12 +375,13 @@ async def camera_feed(websocket: WebSocket):
     print("[CameraFeed] Bridge conectado.")
 
     # Defaults
-    current_line_id  = 1
-    current_point_id = 1
-    current_ref_id   = None
-    current_mode     = "PAUSE"
-    expecting_bytes  = False
-    current_frame_ts = 0.0
+    current_line_id      = 1
+    current_point_id     = 1
+    current_ref_id       = None
+    current_inspection_id = None
+    current_mode         = "PAUSE"
+    expecting_bytes      = False
+    current_frame_ts     = 0.0
     train_limit = int(os.getenv("TRAIN_CAPTURE_LIMIT", "200"))
     train_limit_notified = set()
     await _register_bridge(current_line_id, current_point_id, websocket)
@@ -355,11 +415,12 @@ async def camera_feed(websocket: WebSocket):
                     if t == "frame_meta":
                         prev_key = (current_line_id, current_point_id)
                         prev_mode = current_mode
-                        current_line_id  = int(data.get("line_id", current_line_id))
-                        current_point_id = int(data.get("point_id", current_point_id))
-                        current_ref_id   = data.get("ref_id", current_ref_id)
-                        current_mode     = data.get("mode", current_mode)
-                        current_frame_ts = data.get("timestamp", time.time())
+                        current_line_id       = int(data.get("line_id", current_line_id))
+                        current_point_id      = int(data.get("point_id", current_point_id))
+                        current_ref_id        = data.get("ref_id", current_ref_id)
+                        current_inspection_id = data.get("inspection_id", current_inspection_id)
+                        current_mode          = data.get("mode", current_mode)
+                        current_frame_ts      = data.get("timestamp", time.time())
                         expecting_bytes  = True
                         if current_mode == "TRAIN" and prev_mode != "TRAIN":
                             async with train_buffer_lock:
@@ -380,13 +441,15 @@ async def camera_feed(websocket: WebSocket):
                                 train_buffer[(current_line_id, current_point_id)] = []
                                 print(f"[CameraFeed] Buffer RESET for L{current_line_id}P{current_point_id}")
                             train_limit_notified.discard((current_line_id, current_point_id))
-                        current_mode     = new_mode
-                        current_line_id  = int(data.get("line_id", current_line_id))
-                        current_point_id = int(data.get("point_id", current_point_id))
-                        current_ref_id   = data.get("ref_id", current_ref_id)
+                        current_mode          = new_mode
+                        current_line_id       = int(data.get("line_id", current_line_id))
+                        current_point_id      = int(data.get("point_id", current_point_id))
+                        current_ref_id        = data.get("ref_id", current_ref_id)
+                        current_inspection_id = data.get("inspection_id", current_inspection_id)
                     elif t == "ping":
                         await websocket.send_text(json.dumps({"type": "pong"}))
-                except: continue
+                except Exception as ex:
+                    print(f"[CameraFeed] Error procesando mensaje text: {ex}")
                 continue
 
             if "bytes" in message and expecting_bytes:
@@ -509,6 +572,24 @@ async def camera_feed(websocket: WebSocket):
                             "ref_id": ref_id_to_use, "line_id": current_line_id,
                             "point_id": current_point_id, "source": "camera"
                         })
+                        # Guardar defecto al detectar (defect_type_id=NULL = sin clasificar)
+                        if result.get("is_defect"):
+                            defect_id = _save_defect_on_detect(
+                                ref_id_to_use, current_line_id, current_point_id,
+                                jpeg_bytes, result.get("score", 0.0), result.get("embedding"),
+                                inspection_id=current_inspection_id,
+                            )
+                            if defect_id:
+                                result["defect_log_id"] = defect_id
+                        # Señal PLC S7 (solo escribe si cambió)
+                        # Capturar valores en closure para evitar bug: lambda ejecuta async, variables pueden haber cambiado
+                        _lid, _pid = current_line_id, current_point_id
+                        _val = bool(result.get("is_defect", False))
+                        loop = asyncio.get_event_loop()
+                        loop.run_in_executor(
+                            None,
+                            lambda l=_lid, p=_pid, v=_val: _plc_write_defect_signal(l, p, v),
+                        )
                         tick = _tick_inspect_counter(current_line_id, current_point_id)
                         if tick % 20 == 0:
                             print(
@@ -783,11 +864,28 @@ async def train_from_camera(req: TrainFromCameraRequest, db: Session = Depends(g
 class BridgeModeRequest(BaseModel):
     line_id: int = 1
     point_id: int = 1
-    ref_id: int = None
+    ref_id: Optional[int] = None
     mode: str  # "TRAIN" | "INSPECT" | "CALIBRATE" | "PAUSE"
     capture_limit: Optional[int] = None
     train_sample_size: Optional[int] = None
     pause_on_unknown_sec: Optional[int] = None
+
+
+def _close_inspection(line_id: int, point_id: int):
+    """Cierra la inspección activa (stopped_at) y la quita de _active_inspection."""
+    key = (line_id, point_id)
+    insp_id = _active_inspection.pop(key, None)
+    if insp_id is None:
+        return
+    try:
+        with SessionLocal() as db:
+            insp = db.query(Inspection).filter(Inspection.id == insp_id).first()
+            if insp:
+                insp.stopped_at = datetime.utcnow()
+                db.commit()
+                print(f"[Inspection] Cerrada inspección {insp_id} L{line_id}P{point_id}")
+    except Exception as e:
+        print(f"[Inspection] Error cerrando {insp_id}: {e}")
 
 
 @router.post("/bridge/set_mode")
@@ -801,13 +899,29 @@ async def set_bridge_mode(req: BridgeModeRequest):
         train_sample_size=req.train_sample_size,
         pause_on_unknown_sec=req.pause_on_unknown_sec,
     )
-    delivered = await _send_to_bridge(req.line_id, req.point_id, {
+    payload = {
         "type": "set_mode",
         "mode": req.mode,
         "line_id": req.line_id,
         "point_id": req.point_id,
         "ref_id": req.ref_id,
-    })
+    }
+    key = (req.line_id, req.point_id)
+    if req.mode == "INSPECT":
+        with SessionLocal() as db:
+            insp = Inspection(reference_id=req.ref_id)  # nullable si ref no seleccionada
+            db.add(insp)
+            db.commit()
+            db.refresh(insp)
+            payload["inspection_id"] = insp.id
+            _active_inspection[key] = insp.id
+            print(f"[Inspection] Nueva inspección {insp.id} ref={req.ref_id} L{req.line_id}P{req.point_id}")
+    elif req.mode == "PAUSE":
+        _close_inspection(req.line_id, req.point_id)
+    elif req.mode in ("TRAIN", "CALIBRATE"):
+        # Al cambiar a TRAIN/CALIBRATE sin detener explícitamente, cerrar inspección abierta
+        _close_inspection(req.line_id, req.point_id)
+    delivered = await _send_to_bridge(req.line_id, req.point_id, payload)
     await manager.broadcast(req.line_id, req.point_id, {
         "type": "mode_changed",
         "mode": req.mode,
@@ -837,8 +951,9 @@ async def get_bridge_status():
 class DefectLogRequest(BaseModel):
     reference_id: int
     defect_type: str
-    score: float
-    embedding: list = None
+    score: Optional[float] = 0.0
+    embedding: Optional[list] = None
+    defect_log_id: Optional[int] = None  # Si existe, actualiza clasificación del defecto ya guardado
 
 
 @router.post("/log_defect")
@@ -851,9 +966,21 @@ def log_defect(item: DefectLogRequest, db: Session = Depends(get_db)):
         db.refresh(dtype)
         print(f"[DefectLog] Nuevo tipo creado: '{item.defect_type}'")
 
+    if item.defect_log_id:
+        # Clasificar defecto ya guardado (sin clasificar → clasificado)
+        log = db.query(DefectLog).filter(
+            DefectLog.id == item.defect_log_id,
+            DefectLog.reference_id == item.reference_id,
+        ).first()
+        if log:
+            log.defect_type_id = dtype.id
+            db.commit()
+            return {"status": "classified", "id": log.id, "defect_type": item.defect_type}
+        raise HTTPException(404, "DefectLog no encontrado o referencia no coincide")
+
     log = DefectLog(
         reference_id=item.reference_id,
-        anomaly_score=item.score,
+        anomaly_score=float(item.score or 0.0),
         is_defect=1,
         defect_type_id=dtype.id,
         image_path="",
@@ -915,11 +1042,18 @@ async def _process_frame(jpeg_bytes, detector, extractor, sensitivity,
 
 
 def _recognize_defect(db, ref_id, features):
+    """Compara features con embeddings previos. Limita a 500 más recientes para evitar OOM."""
     try:
-        prev_logs = db.query(DefectLog).filter(
-            DefectLog.reference_id == ref_id,
-            DefectLog.embedding.isnot(None),
-        ).all()
+        prev_logs = (
+            db.query(DefectLog)
+            .filter(
+                DefectLog.reference_id == ref_id,
+                DefectLog.embedding.isnot(None),
+            )
+            .order_by(DefectLog.timestamp.desc())
+            .limit(500)
+            .all()
+        )
         if not prev_logs:
             return None
 

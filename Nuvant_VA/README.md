@@ -22,6 +22,7 @@ UI:
 
 ## Documentos de referencia
 
+- `../INSTRUCCIONES_OPERATIVAS.md` — operación, Docker, **señal PLC**
 - `../DOCUMENTACION_TECNICA.md`
 - `../OPERACION_SERVIDOR_REMOTO.md`
 - `../GUIA_AJUSTES_PRODUCCION.md`

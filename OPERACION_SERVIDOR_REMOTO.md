@@ -26,6 +26,8 @@ chmod +x init_deploy.sh
 docker compose up -d --build
 ```
 
+**Señal PLC (opcional):** Si se usa PLC Siemens S7, crear `.env` en la raíz con `PLC_IP`, `PLC_DB`, `PLC_BYTE`, `PLC_BIT` antes de `docker compose up`. Ver `INSTRUCCIONES_OPERATIVAS.md` sección 3.
+
 Servicios esperados:
 - `nuvant-backend` (`healthy`)
 - `bridge-l1-final` (`up`)
@@ -57,6 +59,9 @@ Los datos en `db`, `local_storage` y `logs` se conservan por volúmenes bind.
 
 ## 4) Captura de logs de pruebas
 
+Ver `CAPTURA_LOGS_PRUEBAS.md` para la guía completa.
+
+Resumen:
 ```bash
 ./save_test_logs.sh
 ./save_test_logs.sh <sufijo>

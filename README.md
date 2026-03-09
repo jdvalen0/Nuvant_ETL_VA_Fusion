@@ -8,6 +8,7 @@ Sistema de inspección industrial en tiempo real con detección de anomalías no
 - Entrenamiento dinámico: captura desde cámara con límite configurable + submuestreo aleatorio configurable.
 - Ajuste en caliente: slider de sensibilidad (`sensOffset`) aplicado sobre umbral ya entrenado.
 - Persistencia: modelos y base de datos SQLite en volúmenes locales.
+- Señal PLC S7 (opcional): bit de defecto en PLC Siemens vía snap7; configuración en `.env`.
 
 ## Servicios activos
 
@@ -29,11 +30,12 @@ UI:
 
 ## Documentación canónica
 
-- `DOCUMENTACION_TECNICA.md`: arquitectura, flujo funcional, frontend y parámetros.
-- `OPERACION_SERVIDOR_REMOTO.md`: despliegue/operación en servidor y recuperación de fallos.
-- `GUIA_AJUSTES_PRODUCCION.md`: metodología de tuning (`contamination`, `sensOffset`, captura/muestra).
-- `ARQUITECTURA_Y_TEORIA_PHD.md`: fundamento científico y traducción exacta al código.
-
-## Nota
-
-Documentos en `Nuvant_VA/docs/` se mantienen como históricos o de soporte; para operación actual usar los 4 documentos canónicos listados arriba.
+| Documento | Contenido |
+|-----------|-----------|
+| `INSTRUCCIONES_OPERATIVAS.md` | Comandos Docker, flujo operativo, PLC, cámara (IP actual y cambio futuro). |
+| `CAPTURA_LOGS_PRUEBAS.md` | Cómo capturar y guardar logs durante pruebas. |
+| `AUDITORIA_PRE_PRUEBAS.md` | Auditoría de cambios, cuándo reconstruir, checklist pre-pruebas. |
+| `DOCUMENTACION_TECNICA.md` | Arquitectura, flujo funcional, frontend y parámetros. |
+| `OPERACION_SERVIDOR_REMOTO.md` | Despliegue, operación en servidor y recuperación de fallos. |
+| `GUIA_AJUSTES_PRODUCCION.md` | Metodología de tuning (`contamination`, `sensOffset`, captura/muestra). |
+| `ARQUITECTURA_Y_TEORIA_PHD.md` | Fundamento científico y traducción al código. |

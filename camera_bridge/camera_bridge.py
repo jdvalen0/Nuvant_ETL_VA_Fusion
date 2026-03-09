@@ -33,6 +33,7 @@ import websockets  # websockets 10.x compatible con Python 3.7
 CAMERA_MODE       = os.environ.get("CAMERA_MODE", "live").lower()
 CAMERA_FPS        = float(os.environ.get("CAMERA_FPS", "5.0"))
 CAMERA_IP         = os.environ.get("CAMERA_IP", "")  # vacío = primer dispositivo
+CAMERA_FORCE_IP   = os.environ.get("CAMERA_FORCE_IP", "169.254.75.178")  # IP a forzar en cámara GigE (vacío = no forzar)
 VA_BACKEND_WS_URL = os.environ.get(
     "VA_BACKEND_WS_URL",
     "ws://nuvant-backend:8000/api/inference/camera_feed"
@@ -96,45 +97,60 @@ class LiveCamera:
 
         target_device = None
         detected_names = []
+        target_ip_int = int(ipaddress.ip_address(CAMERA_IP)) if CAMERA_IP else None
 
         # Forzar descubrimiento en todas las interfaces
         for i in range(sys.interface_count):
             iface = sys.get_interface(i)
             iface.update_device_list()
+            iface_nm = iface.port.nodemap
+            dev_selector = iface_nm.get_node("DeviceSelector")
+            try:
+                gev_ip_node = iface_nm.get_node("GevDeviceIPAddress")
+            except Exception:
+                gev_ip_node = None
+
             for j in range(iface.device_count):
+                try:
+                    dev_selector.value = j
+                except Exception:
+                    continue
                 dev_info = iface.get_device_info(j)
                 detected_names.append(dev_info.display_name)
-                
-                # GIGEVISION FORCE IP: Intentar liberar sesión colgada antes de abrir
-                # Usando el Nodemap de la interfaz como en gige_configurations.py
-                if not CAMERA_IP or CAMERA_IP in dev_info.display_name:
+
+                # Obtener IP del dispositivo (GevDeviceIPAddress es fiable; display_name puede variar)
+                dev_ip_int = None
+                if gev_ip_node:
                     try:
-                        print(f"[Bridge] Forzando IP en interfaz a 169.254.75.178...")
-                        iface_nm = iface.port.nodemap
-                        # Seleccionar dispositivo en la interfaz
-                        iface_nm.get_node("DeviceSelector").value = j
-                        # Configurar Force IP
-                        iface_nm.get_node("GevDeviceForceIPAddress").value = int(ipaddress.ip_address("169.254.75.178"))
+                        dev_ip_int = gev_ip_node.value
+                    except Exception:
+                        pass
+
+                # GIGEVISION FORCE IP: configurar cámara a IP deseada antes de conectar
+                if CAMERA_FORCE_IP and (not CAMERA_IP or dev_ip_int == target_ip_int or CAMERA_IP in dev_info.display_name):
+                    try:
+                        print(f"[Bridge] Forzando IP a {CAMERA_FORCE_IP}...")
+                        iface_nm.get_node("GevDeviceForceIPAddress").value = int(ipaddress.ip_address(CAMERA_FORCE_IP))
                         iface_nm.get_node("GevDeviceForceSubnetMask").value = int(ipaddress.ip_address("255.255.255.0"))
-                        # IMPORTANTE: .get() es necesario para acceder a la funcionalidad del nodo comando
                         force_ip_node = iface_nm.get_node("GevDeviceForceIP")
-                        if hasattr(force_ip_node, 'get'):
-                            force_ip_node.get().execute()
-                        else:
-                            force_ip_node.execute()
+                        (force_ip_node.get() if hasattr(force_ip_node, 'get') else force_ip_node).execute()
                         time.sleep(2)
                     except Exception as e:
                         print(f"[Bridge] Error en Force IP (continuando): {e}")
 
+                # Selección: por IP (GevDeviceIPAddress) o display_name, o primer dispositivo
                 if CAMERA_IP:
+                    if dev_ip_int is not None and dev_ip_int == target_ip_int:
+                        target_device = iface.create_device_by_index(j)
+                        break
                     if CAMERA_IP in dev_info.display_name:
                         target_device = iface.create_device_by_index(j)
                         break
                 else:
-                    # Sin IP, tomar el primero
                     target_device = iface.create_device_by_index(j)
                     break
-            if target_device: break
+            if target_device:
+                break
 
         if target_device is None:
             print("[Bridge] Cámaras detectadas: {}".format(detected_names))
@@ -166,7 +182,7 @@ class LiveCamera:
 
     def grab(self):
         """Retorna numpy BGR o None."""
-        return _grab_one_frame(self._ds, timeout_ms=3000, max_tries=20)
+        return _grab_one_frame(self._ds, timeout_ms=8000, max_tries=15)
 
     def disconnect(self):
         try:
@@ -214,11 +230,14 @@ class SimulateCamera:
 
 class BridgeState:
     """Estado mutable del bridge."""
-    mode:     str = "PAUSE"   # "TRAIN" | "INSPECT" | "PAUSE"
-    ref_id:   int = None
-    line_id:  int = CAMERA_LINE_ID
-    point_id: int = CAMERA_POINT_ID
-    running:  bool = True
+
+    def __init__(self):
+        self.mode = "PAUSE"
+        self.ref_id = None
+        self.inspection_id = None
+        self.line_id = CAMERA_LINE_ID
+        self.point_id = CAMERA_POINT_ID
+        self.running = True
 
 
 state = BridgeState()
@@ -264,7 +283,10 @@ async def bridge_loop():
                                 raw_ref_id = cmd.get("ref_id", state.ref_id)
                                 if raw_ref_id is not None:
                                     state.ref_id = int(raw_ref_id)
-                                print("[Bridge] Modo → {} | ref_id={}".format(state.mode, state.ref_id))
+                                raw_insp_id = cmd.get("inspection_id")
+                                state.inspection_id = int(raw_insp_id) if raw_insp_id is not None else None
+                                print("[Bridge] Modo → {} | ref_id={} | inspection_id={}".format(
+                                    state.mode, state.ref_id, state.inspection_id))
 
                             elif cmd_type == "ping":
                                 await ws.send(json.dumps({"type": "pong"}))
@@ -287,7 +309,15 @@ async def bridge_loop():
                             await asyncio.sleep(0.1)
                             continue
 
-                        frame = camera.grab()
+                        try:
+                            frame = camera.grab()
+                        except Exception as grab_err:
+                            err_str = str(grab_err).lower()
+                            if "timeout" in err_str or "retrievebuffer" in err_str:
+                                print("[Bridge] Timeout captura (reintentando): {}".format(grab_err)[:80])
+                                await asyncio.sleep(0.5)
+                                continue
+                            raise
                         if frame is None:
                             print("[Bridge] Frame vacío, reintentando...")
                             await asyncio.sleep(0.1)
@@ -295,13 +325,14 @@ async def bridge_loop():
 
                         # Metadata como primer mensaje (JSON)
                         meta = json.dumps({
-                            "type":      "frame_meta",
-                            "mode":      state.mode,
-                            "line_id":   state.line_id,
-                            "point_id":  state.point_id,
-                            "ref_id":    state.ref_id,
-                            "camera_id": CAMERA_ID,
-                            "timestamp": time.time()
+                            "type":          "frame_meta",
+                            "mode":          state.mode,
+                            "line_id":       state.line_id,
+                            "point_id":      state.point_id,
+                            "ref_id":        state.ref_id,
+                            "inspection_id": state.inspection_id,
+                            "camera_id":     CAMERA_ID,
+                            "timestamp":     time.time()
                         })
                         await ws.send(meta)
 

@@ -45,6 +45,13 @@ Guía de tuning sin modificar algoritmo.
 - Cuándo actúa: inspección, cuando hay anomalía sin reconocimiento previo.
 - Para qué sirve: dar tiempo al operador para clasificar antes de reanudar.
 
+### 1.7 PLC S7 (señal externa, opcional)
+
+- Dónde: `.env` en raíz del proyecto (`PLC_IP`, `PLC_DB`, `PLC_BYTE`, `PLC_BIT`).
+- Cuándo actúa: durante inspección, por cada frame procesado.
+- Para qué sirve: escribir un bit en el PLC: 1 = defecto, 0 = sin defecto. Permite integrar con línea (parada, señalización, etc.).
+- Configuración y pasos de prueba: `INSTRUCCIONES_OPERATIVAS.md` sección 3.
+
 ## 2) Rango inicial recomendado
 
 - `capture_limit`: 100-300

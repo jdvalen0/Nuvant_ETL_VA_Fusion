@@ -47,6 +47,13 @@ services:
       - PATCHCORE_USE_CLAHE=true
       - TRAIN_CAPTURE_LIMIT=200
       - TRAIN_SAMPLE_SIZE=50
+      # PLC S7: definir PLC_IP en .env para activar (ej. PLC_IP=192.168.1.10)
+      - PLC_IP=${PLC_IP:-}
+      - PLC_DB=${PLC_DB:-1}
+      - PLC_BYTE=${PLC_BYTE:-0}
+      - PLC_BIT=${PLC_BIT:-0}
+      - PLC_RACK=${PLC_RACK:-0}
+      - PLC_SLOT=${PLC_SLOT:-1}
     networks:
       - nuvant-net
     restart: unless-stopped
@@ -74,7 +81,8 @@ services:
       CAMERA_LINE_ID: "1"
       CAMERA_POINT_ID: "1"
       CAMERA_ID: "cam-l1-final"
-      CAMERA_IP: ""
+      CAMERA_IP: "${CAMERA_IP:-}"
+      CAMERA_FORCE_IP: "${CAMERA_FORCE_IP:-169.254.75.178}"
   # ══════════════════════════════════════════════════════════════════════════
   # FUTURAS CÁMARAS (descomentar cuando estén disponibles)
   # ══════════════════════════════════════════════════════════════════════════

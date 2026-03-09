@@ -1,0 +1,399 @@
+/app/backend/api/routers/references.py:254: FastAPIDeprecationWarning: `regex` has been deprecated, please use `pattern` instead
+  fmt: str = Query("json", regex="^(json|csv)$"),
+INFO:     Started server process [1]
+============================================================
+INFO:     Waiting for application startup.
+[DB] Línea por defecto ya existe.
+INFO:     Application startup complete.
+INFO:     Uvicorn running on http://0.0.0.0:8000 (Press CTRL+C to quit)
+INFO:     127.0.0.1:33974 - "GET / HTTP/1.1" 302 Found
+INFO:     127.0.0.1:33982 - "GET /static/ HTTP/1.1" 200 OK
+INFO:     172.18.0.1:40472 - "WebSocket /api/inference/camera_feed" [accepted]
+[CameraFeed] Bridge conectado.
+[Bridge] Registrado L1P1. Total: 1
+INFO:     connection open
+INFO:     127.0.0.1:60982 - "GET / HTTP/1.1" 302 Found
+INFO:     127.0.0.1:60984 - "GET /static/ HTTP/1.1" 200 OK
+INFO:     127.0.0.1:37642 - "GET / HTTP/1.1" 302 Found
+INFO:     127.0.0.1:37650 - "GET /static/ HTTP/1.1" 200 OK
+INFO:     127.0.0.1:54380 - "GET / HTTP/1.1" 302 Found
+  Nuvant Camera Bridge v1.0
+  Modo: live  |  FPS: 5.0  |  ref_id: None
+  Backend: ws://localhost:8000/api/inference/camera_feed
+INFO:     127.0.0.1:54388 - "GET /static/ HTTP/1.1" 200 OK
+INFO:     127.0.0.1:47362 - "GET / HTTP/1.1" 302 Found
+INFO:     127.0.0.1:47368 - "GET /static/ HTTP/1.1" 200 OK
+INFO:     127.0.0.1:34702 - "GET / HTTP/1.1" 302 Found
+INFO:     127.0.0.1:34718 - "GET /static/ HTTP/1.1" 200 OK
+INFO:     127.0.0.1:59186 - "GET / HTTP/1.1" 302 Found
+INFO:     127.0.0.1:59200 - "GET /static/ HTTP/1.1" 200 OK
+INFO:     127.0.0.1:55910 - "GET / HTTP/1.1" 302 Found
+INFO:     127.0.0.1:55922 - "GET /static/ HTTP/1.1" 200 OK
+INFO:     127.0.0.1:53750 - "GET / HTTP/1.1" 302 Found
+INFO:     127.0.0.1:53754 - "GET /static/ HTTP/1.1" 200 OK
+INFO:     127.0.0.1:56152 - "GET / HTTP/1.1" 302 Found
+INFO:     127.0.0.1:56154 - "GET /static/ HTTP/1.1" 200 OK
+INFO:     127.0.0.1:45906 - "GET / HTTP/1.1" 302 Found
+INFO:     127.0.0.1:45914 - "GET /static/ HTTP/1.1" 200 OK
+INFO:     127.0.0.1:51216 - "GET / HTTP/1.1" 302 Found
+INFO:     127.0.0.1:51222 - "GET /static/ HTTP/1.1" 200 OK
+INFO:     169.254.75.180:41070 - "GET /static/ HTTP/1.1" 200 OK
+INFO:     169.254.75.180:41070 - "GET /static/vendor/tailwind.js HTTP/1.1" 304 Not Modified
+INFO:     169.254.75.180:41086 - "GET /static/vendor/chart.js HTTP/1.1" 304 Not Modified
+INFO:     169.254.75.180:41086 - "GET /api/references/defect_types HTTP/1.1" 200 OK
+INFO:     169.254.75.180:41070 - "GET /api/references/ HTTP/1.1" 200 OK
+INFO:     169.254.75.180:41070 - "GET /favicon.ico HTTP/1.1" 204 No Content
+INFO:     169.254.75.180:41070 - "GET /static/ HTTP/1.1" 304 Not Modified
+INFO:     169.254.75.180:41086 - "GET /api/references/defect_types HTTP/1.1" 200 OK
+INFO:     169.254.75.180:41070 - "GET /api/references/ HTTP/1.1" 200 OK
+INFO:     169.254.75.180:39596 - "GET /static/ HTTP/1.1" 304 Not Modified
+INFO:     169.254.75.180:39596 - "GET /api/references/ HTTP/1.1" 200 OK
+INFO:     169.254.75.180:39602 - "GET /api/references/defect_types HTTP/1.1" 200 OK
+INFO:     127.0.0.1:41458 - "GET / HTTP/1.1" 302 Found
+INFO:     127.0.0.1:41464 - "GET /static/ HTTP/1.1" 200 OK
+[Bridge] Comando enviado a L1P1: set_mode -> PAUSE
+INFO:     169.254.75.180:39618 - "POST /api/inference/bridge/set_mode HTTP/1.1" 200 OK
+INFO:     169.254.75.180:39620 - "WebSocket /api/inference/ws/15" [accepted]
+[WS] Modelo no listo para ref 15. Manteniendo conexión.
+INFO:     connection open
+INFO:     169.254.75.180:39628 - "WebSocket /api/inference/live/1/1" [accepted]
+INFO:     connection open
+[Sensitivity] ref=15 point=1 -> -100.0
+============================================================
+[Bridge] Comando enviado a L1P1: set_mode -> CALIBRATE
+INFO:     169.254.75.180:39618 - "POST /api/inference/bridge/set_mode HTTP/1.1" 200 OK
+INFO:     127.0.0.1:48334 - "GET / HTTP/1.1" 302 Found
+INFO:     127.0.0.1:48350 - "GET /static/ HTTP/1.1" 200 OK
+INFO:     127.0.0.1:42156 - "GET / HTTP/1.1" 302 Found
+INFO:     127.0.0.1:42160 - "GET /static/ HTTP/1.1" 200 OK
+INFO:     127.0.0.1:55954 - "GET / HTTP/1.1" 302 Found
+INFO:     127.0.0.1:55964 - "GET /static/ HTTP/1.1" 200 OK
+INFO:     127.0.0.1:50238 - "GET / HTTP/1.1" 302 Found
+INFO:     127.0.0.1:50252 - "GET /static/ HTTP/1.1" 200 OK
+INFO:     127.0.0.1:45384 - "GET / HTTP/1.1" 302 Found
+INFO:     127.0.0.1:45394 - "GET /static/ HTTP/1.1" 200 OK
+INFO:     127.0.0.1:44904 - "GET / HTTP/1.1" 302 Found
+INFO:     127.0.0.1:44906 - "GET /static/ HTTP/1.1" 200 OK
+INFO:     127.0.0.1:33306 - "GET / HTTP/1.1" 302 Found
+INFO:     127.0.0.1:33308 - "GET /static/ HTTP/1.1" 200 OK
+INFO:     127.0.0.1:41564 - "GET / HTTP/1.1" 302 Found
+INFO:     127.0.0.1:41568 - "GET /static/ HTTP/1.1" 200 OK
+INFO:     127.0.0.1:47592 - "GET / HTTP/1.1" 302 Found
+INFO:     127.0.0.1:47600 - "GET /static/ HTTP/1.1" 200 OK
+[Bridge] Forzando IP en interfaz a 169.254.75.178...
+[Bridge] Conectado a: STC-MCS202POE(22J1076)
+[Bridge] Streaming iniciado a 5.0 FPS
+[Bridge] Conectando a: ws://localhost:8000/api/inference/camera_feed
+[Bridge] WebSocket conectado al backend VA.
+[Bridge] Modo → PAUSE | ref_id=15
+[Bridge] Modo → CALIBRATE | ref_id=15
+[Bridge] 10 frames enviados. Modo: CALIBRATE
+[Bridge] 20 frames enviados. Modo: CALIBRATE
+[Bridge] 30 frames enviados. Modo: CALIBRATE
+[Bridge] 40 frames enviados. Modo: CALIBRATE
+[Bridge] 50 frames enviados. Modo: CALIBRATE
+[Bridge] 60 frames enviados. Modo: CALIBRATE
+[Bridge] 70 frames enviados. Modo: CALIBRATE
+[Bridge] 80 frames enviados. Modo: CALIBRATE
+[Bridge] 90 frames enviados. Modo: CALIBRATE
+[Bridge] 100 frames enviados. Modo: CALIBRATE
+[Bridge] 110 frames enviados. Modo: CALIBRATE
+[Bridge] 120 frames enviados. Modo: CALIBRATE
+[Bridge] 130 frames enviados. Modo: CALIBRATE
+[Bridge] 140 frames enviados. Modo: CALIBRATE
+[Bridge] 150 frames enviados. Modo: CALIBRATE
+[Bridge] 160 frames enviados. Modo: CALIBRATE
+[Bridge] 170 frames enviados. Modo: CALIBRATE
+[Bridge] 180 frames enviados. Modo: CALIBRATE
+[Bridge] 190 frames enviados. Modo: CALIBRATE
+[Bridge] 200 frames enviados. Modo: CALIBRATE
+[Bridge] 210 frames enviados. Modo: CALIBRATE
+[Bridge] 220 frames enviados. Modo: CALIBRATE
+[Bridge] 230 frames enviados. Modo: CALIBRATE
+[Bridge] 240 frames enviados. Modo: CALIBRATE
+INFO:     127.0.0.1:45202 - "GET / HTTP/1.1" 302 Found
+INFO:     127.0.0.1:45216 - "GET /static/ HTTP/1.1" 200 OK
+INFO:     127.0.0.1:41736 - "GET / HTTP/1.1" 302 Found
+INFO:     127.0.0.1:41752 - "GET /static/ HTTP/1.1" 200 OK
+INFO:     127.0.0.1:42860 - "GET / HTTP/1.1" 302 Found
+INFO:     127.0.0.1:42864 - "GET /static/ HTTP/1.1" 200 OK
+INFO:     127.0.0.1:38598 - "GET / HTTP/1.1" 302 Found
+INFO:     127.0.0.1:38608 - "GET /static/ HTTP/1.1" 200 OK
+INFO:     127.0.0.1:52150 - "GET / HTTP/1.1" 302 Found
+INFO:     127.0.0.1:52154 - "GET /static/ HTTP/1.1" 200 OK
+INFO:     127.0.0.1:40578 - "GET / HTTP/1.1" 302 Found
+INFO:     127.0.0.1:40582 - "GET /static/ HTTP/1.1" 200 OK
+INFO:     127.0.0.1:43508 - "GET / HTTP/1.1" 302 Found
+INFO:     127.0.0.1:43510 - "GET /static/ HTTP/1.1" 200 OK
+[Bridge] Comando enviado a L1P1: set_mode -> TRAIN
+INFO:     169.254.75.180:53704 - "POST /api/inference/bridge/set_mode HTTP/1.1" 200 OK
+[CameraFeed] Buffer RESET for L1P1
+[CameraFeed] Broadcast frame TRAIN (L1P1, frames=10)
+[CameraFeed] Broadcast frame TRAIN (L1P1, frames=20)
+[CameraFeed] Broadcast frame TRAIN (L1P1, frames=30)
+[Bridge] 250 frames enviados. Modo: CALIBRATE
+[Bridge] 260 frames enviados. Modo: CALIBRATE
+[Bridge] 270 frames enviados. Modo: CALIBRATE
+[Bridge] 280 frames enviados. Modo: CALIBRATE
+[Bridge] 290 frames enviados. Modo: CALIBRATE
+[Bridge] 300 frames enviados. Modo: CALIBRATE
+[Bridge] 310 frames enviados. Modo: CALIBRATE
+[Bridge] 320 frames enviados. Modo: CALIBRATE
+[Bridge] 330 frames enviados. Modo: CALIBRATE
+[Bridge] 340 frames enviados. Modo: CALIBRATE
+[Bridge] 350 frames enviados. Modo: CALIBRATE
+[Bridge] 360 frames enviados. Modo: CALIBRATE
+[Bridge] 370 frames enviados. Modo: CALIBRATE
+[CameraFeed] Broadcast frame TRAIN (L1P1, frames=40)
+[CameraFeed] Broadcast frame TRAIN (L1P1, frames=50)
+INFO:     127.0.0.1:50506 - "GET / HTTP/1.1" 302 Found
+INFO:     127.0.0.1:50518 - "GET /static/ HTTP/1.1" 200 OK
+[CameraFeed] Broadcast frame TRAIN (L1P1, frames=60)
+[CameraFeed] Broadcast frame TRAIN (L1P1, frames=70)
+[CameraFeed] Broadcast frame TRAIN (L1P1, frames=80)
+[CameraFeed] Broadcast frame TRAIN (L1P1, frames=90)
+[CameraFeed] Broadcast frame TRAIN (L1P1, frames=100)
+[CameraFeed] Broadcast frame TRAIN (L1P1, frames=110)
+[CameraFeed] Broadcast frame TRAIN (L1P1, frames=120)
+[CameraFeed] Broadcast frame TRAIN (L1P1, frames=130)
+[CameraFeed] Broadcast frame TRAIN (L1P1, frames=140)
+[CameraFeed] Broadcast frame TRAIN (L1P1, frames=150)
+INFO:     127.0.0.1:44500 - "GET / HTTP/1.1" 302 Found
+INFO:     127.0.0.1:44516 - "GET /static/ HTTP/1.1" 200 OK
+[CameraFeed] Broadcast frame TRAIN (L1P1, frames=160)
+[CameraFeed] Broadcast frame TRAIN (L1P1, frames=170)
+[CameraFeed] Broadcast frame TRAIN (L1P1, frames=180)
+[Bridge] 380 frames enviados. Modo: CALIBRATE
+[Bridge] 390 frames enviados. Modo: CALIBRATE
+[CameraFeed] Broadcast frame TRAIN (L1P1, frames=190)
+[Bridge] Comando enviado a L1P1: set_mode -> PAUSE
+[CameraFeed] Broadcast frame TRAIN (L1P1, frames=200)
+[TrainFromCamera] Sub-sampling: 50 images (Original: 200)
+[TrainFromCamera] L1P1 → 50 imágenes
+[PatchCore V32] Training...
+[PatchCore V32] Processing 50 training images...
+INFO:     127.0.0.1:56386 - "GET / HTTP/1.1" 302 Found
+INFO:     127.0.0.1:56390 - "GET /static/ HTTP/1.1" 200 OK
+[PatchCore V32] Total features: (39200, 1536)
+INFO:     127.0.0.1:47090 - "GET / HTTP/1.1" 302 Found
+INFO:     127.0.0.1:47096 - "GET /static/ HTTP/1.1" 200 OK
+INFO:     127.0.0.1:52252 - "GET / HTTP/1.1" 302 Found
+INFO:     127.0.0.1:52268 - "GET /static/ HTTP/1.1" 200 OK
+INFO:     127.0.0.1:36134 - "GET / HTTP/1.1" 302 Found
+INFO:     127.0.0.1:36138 - "GET /static/ HTTP/1.1" 200 OK
+INFO:     127.0.0.1:52630 - "GET / HTTP/1.1" 302 Found
+INFO:     127.0.0.1:52646 - "GET /static/ HTTP/1.1" 200 OK
+INFO:     127.0.0.1:47640 - "GET / HTTP/1.1" 302 Found
+INFO:     127.0.0.1:47654 - "GET /static/ HTTP/1.1" 200 OK
+INFO:     127.0.0.1:54198 - "GET / HTTP/1.1" 302 Found
+INFO:     127.0.0.1:54212 - "GET /static/ HTTP/1.1" 200 OK
+INFO:     127.0.0.1:45252 - "GET / HTTP/1.1" 302 Found
+INFO:     127.0.0.1:45254 - "GET /static/ HTTP/1.1" 200 OK
+INFO:     127.0.0.1:37512 - "GET / HTTP/1.1" 302 Found
+INFO:     127.0.0.1:37520 - "GET /static/ HTTP/1.1" 200 OK
+INFO:     127.0.0.1:44942 - "GET / HTTP/1.1" 302 Found
+INFO:     127.0.0.1:44954 - "GET /static/ HTTP/1.1" 200 OK
+INFO:     127.0.0.1:54846 - "GET / HTTP/1.1" 302 Found
+INFO:     127.0.0.1:54848 - "GET /static/ HTTP/1.1" 200 OK
+INFO:     127.0.0.1:57056 - "GET / HTTP/1.1" 302 Found
+INFO:     127.0.0.1:57072 - "GET /static/ HTTP/1.1" 200 OK
+INFO:     127.0.0.1:33110 - "GET / HTTP/1.1" 302 Found
+INFO:     127.0.0.1:33122 - "GET /static/ HTTP/1.1" 200 OK
+INFO:     127.0.0.1:38894 - "GET / HTTP/1.1" 302 Found
+INFO:     127.0.0.1:38902 - "GET /static/ HTTP/1.1" 200 OK
+INFO:     127.0.0.1:58304 - "GET / HTTP/1.1" 302 Found
+INFO:     127.0.0.1:58320 - "GET /static/ HTTP/1.1" 200 OK
+[PatchCore V32] Coreset size: (3920, 1536)
+[Bridge] 400 frames enviados. Modo: CALIBRATE
+[Bridge] 410 frames enviados. Modo: CALIBRATE
+[Bridge] 420 frames enviados. Modo: CALIBRATE
+[Bridge] 430 frames enviados. Modo: CALIBRATE
+[Bridge] 440 frames enviados. Modo: CALIBRATE
+[Bridge] 450 frames enviados. Modo: CALIBRATE
+[Bridge] 460 frames enviados. Modo: CALIBRATE
+[Bridge] 470 frames enviados. Modo: CALIBRATE
+[Bridge] 480 frames enviados. Modo: CALIBRATE
+[Bridge] 490 frames enviados. Modo: CALIBRATE
+[Bridge] 500 frames enviados. Modo: CALIBRATE
+[Bridge] 510 frames enviados. Modo: CALIBRATE
+[Bridge] 520 frames enviados. Modo: CALIBRATE
+[Bridge] 530 frames enviados. Modo: CALIBRATE
+[Bridge] 540 frames enviados. Modo: CALIBRATE
+[PatchCore V32] Threshold calibration:
+  Percentile 97.0% = 0.0257
+  Max training dist = 0.0282
+  Median = 0.0141
+  Final threshold = 0.0296 (Max*1.10=0.0310)
+  Margin over max = 5.0%
+[PatchCore V32] Trained. Threshold: 0.0296
+[PatchCore V32] Model saved to /app/local_storage/line_1/point_1/15/model.pkl
+INFO:     169.254.75.180:60494 - "POST /api/inference/train_from_camera HTTP/1.1" 200 OK
+INFO:     169.254.75.180:60494 - "GET /api/references/ HTTP/1.1" 200 OK
+INFO:     169.254.75.180:60494 - "GET /api/references/ HTTP/1.1" 200 OK
+INFO:     127.0.0.1:51292 - "GET / HTTP/1.1" 302 Found
+INFO:     127.0.0.1:51306 - "GET /static/ HTTP/1.1" 200 OK
+INFO:     127.0.0.1:54170 - "GET / HTTP/1.1" 302 Found
+INFO:     127.0.0.1:54172 - "GET /static/ HTTP/1.1" 200 OK
+INFO:     127.0.0.1:57640 - "GET / HTTP/1.1" 302 Found
+INFO:     127.0.0.1:57654 - "GET /static/ HTTP/1.1" 200 OK
+INFO:     127.0.0.1:47474 - "GET / HTTP/1.1" 302 Found
+INFO:     127.0.0.1:47482 - "GET /static/ HTTP/1.1" 200 OK
+INFO:     127.0.0.1:50526 - "GET / HTTP/1.1" 302 Found
+INFO:     127.0.0.1:50532 - "GET /static/ HTTP/1.1" 200 OK
+INFO:     127.0.0.1:56358 - "GET / HTTP/1.1" 302 Found
+INFO:     127.0.0.1:56368 - "GET /static/ HTTP/1.1" 200 OK
+INFO:     127.0.0.1:58626 - "GET / HTTP/1.1" 302 Found
+INFO:     127.0.0.1:58642 - "GET /static/ HTTP/1.1" 200 OK
+INFO:     127.0.0.1:44468 - "GET / HTTP/1.1" 302 Found
+INFO:     127.0.0.1:44476 - "GET /static/ HTTP/1.1" 200 OK
+INFO:     127.0.0.1:43660 - "GET / HTTP/1.1" 302 Found
+INFO:     127.0.0.1:43674 - "GET /static/ HTTP/1.1" 200 OK
+INFO:     127.0.0.1:35510 - "GET / HTTP/1.1" 302 Found
+INFO:     127.0.0.1:35512 - "GET /static/ HTTP/1.1" 200 OK
+INFO:     127.0.0.1:52326 - "GET / HTTP/1.1" 302 Found
+INFO:     127.0.0.1:52328 - "GET /static/ HTTP/1.1" 200 OK
+INFO:     127.0.0.1:41902 - "GET / HTTP/1.1" 302 Found
+INFO:     127.0.0.1:41910 - "GET /static/ HTTP/1.1" 200 OK
+INFO:     127.0.0.1:46702 - "GET / HTTP/1.1" 302 Found
+INFO:     127.0.0.1:46704 - "GET /static/ HTTP/1.1" 200 OK
+INFO:     127.0.0.1:52240 - "GET / HTTP/1.1" 302 Found
+INFO:     127.0.0.1:52254 - "GET /static/ HTTP/1.1" 200 OK
+INFO:     127.0.0.1:42252 - "GET / HTTP/1.1" 302 Found
+[Bridge] 550 frames enviados. Modo: CALIBRATE
+[Bridge] 560 frames enviados. Modo: CALIBRATE
+[Bridge] 570 frames enviados. Modo: CALIBRATE
+[Bridge] 580 frames enviados. Modo: CALIBRATE
+[Bridge] 590 frames enviados. Modo: CALIBRATE
+[Bridge] 600 frames enviados. Modo: CALIBRATE
+[Bridge] 610 frames enviados. Modo: CALIBRATE
+[Bridge] 620 frames enviados. Modo: CALIBRATE
+[Bridge] 630 frames enviados. Modo: CALIBRATE
+[Bridge] 640 frames enviados. Modo: CALIBRATE
+[Bridge] 650 frames enviados. Modo: CALIBRATE
+[Bridge] 660 frames enviados. Modo: CALIBRATE
+INFO:     127.0.0.1:42264 - "GET /static/ HTTP/1.1" 200 OK
+INFO:     127.0.0.1:50148 - "GET / HTTP/1.1" 302 Found
+INFO:     127.0.0.1:50154 - "GET /static/ HTTP/1.1" 200 OK
+INFO:     127.0.0.1:57092 - "GET / HTTP/1.1" 302 Found
+INFO:     127.0.0.1:57096 - "GET /static/ HTTP/1.1" 200 OK
+INFO:     127.0.0.1:47372 - "GET / HTTP/1.1" 302 Found
+INFO:     127.0.0.1:47374 - "GET /static/ HTTP/1.1" 200 OK
+[Bridge] 670 frames enviados. Modo: CALIBRATE
+[Bridge] 680 frames enviados. Modo: CALIBRATE
+[Bridge] 690 frames enviados. Modo: CALIBRATE
+[Bridge] 700 frames enviados. Modo: CALIBRATE
+[Bridge] 710 frames enviados. Modo: CALIBRATE
+[Bridge] 720 frames enviados. Modo: CALIBRATE
+[Bridge] 730 frames enviados. Modo: CALIBRATE
+[Bridge] 740 frames enviados. Modo: CALIBRATE
+[Bridge] 750 frames enviados. Modo: CALIBRATE
+[Bridge] 760 frames enviados. Modo: CALIBRATE
+[Bridge] 770 frames enviados. Modo: CALIBRATE
+[Bridge] 780 frames enviados. Modo: CALIBRATE
+[Bridge] 790 frames enviados. Modo: CALIBRATE
+[Bridge] 800 frames enviados. Modo: CALIBRATE
+[Bridge] 810 frames enviados. Modo: CALIBRATE
+[Bridge] 820 frames enviados. Modo: CALIBRATE
+[Bridge] 830 frames enviados. Modo: CALIBRATE
+[Bridge] 840 frames enviados. Modo: CALIBRATE
+[Bridge] 850 frames enviados. Modo: CALIBRATE
+[Bridge] 860 frames enviados. Modo: CALIBRATE
+[Bridge] 870 frames enviados. Modo: CALIBRATE
+[Bridge] 880 frames enviados. Modo: CALIBRATE
+[Bridge] 890 frames enviados. Modo: CALIBRATE
+[Bridge] 900 frames enviados. Modo: CALIBRATE
+[Bridge] 910 frames enviados. Modo: CALIBRATE
+[Bridge] 920 frames enviados. Modo: CALIBRATE
+[Bridge] 930 frames enviados. Modo: CALIBRATE
+[Bridge] 940 frames enviados. Modo: CALIBRATE
+[Bridge] 950 frames enviados. Modo: CALIBRATE
+[Bridge] 960 frames enviados. Modo: CALIBRATE
+[Bridge] 970 frames enviados. Modo: CALIBRATE
+[Bridge] 980 frames enviados. Modo: CALIBRATE
+[Bridge] 990 frames enviados. Modo: CALIBRATE
+[Bridge] 1000 frames enviados. Modo: CALIBRATE
+[Bridge] 1010 frames enviados. Modo: CALIBRATE
+[Bridge] 1020 frames enviados. Modo: CALIBRATE
+[Bridge] 1030 frames enviados. Modo: CALIBRATE
+[Bridge] 1040 frames enviados. Modo: CALIBRATE
+[Bridge] 1050 frames enviados. Modo: CALIBRATE
+[Bridge] 1060 frames enviados. Modo: CALIBRATE
+[Bridge] 1070 frames enviados. Modo: CALIBRATE
+[Bridge] 1080 frames enviados. Modo: CALIBRATE
+[Bridge] 1090 frames enviados. Modo: CALIBRATE
+[Bridge] 1100 frames enviados. Modo: CALIBRATE
+[Bridge] 1110 frames enviados. Modo: CALIBRATE
+[Bridge] 1120 frames enviados. Modo: CALIBRATE
+[Bridge] 1130 frames enviados. Modo: CALIBRATE
+[Bridge] 1140 frames enviados. Modo: CALIBRATE
+[Bridge] 1150 frames enviados. Modo: CALIBRATE
+[Bridge] 1160 frames enviados. Modo: CALIBRATE
+[Bridge] 1170 frames enviados. Modo: CALIBRATE
+[Bridge] 1180 frames enviados. Modo: CALIBRATE
+[Bridge] 1190 frames enviados. Modo: CALIBRATE
+[Bridge] 1200 frames enviados. Modo: CALIBRATE
+[Bridge] 1210 frames enviados. Modo: CALIBRATE
+[Bridge] 1220 frames enviados. Modo: CALIBRATE
+[Bridge] 1230 frames enviados. Modo: CALIBRATE
+[Bridge] 1240 frames enviados. Modo: CALIBRATE
+[Bridge] 1250 frames enviados. Modo: CALIBRATE
+[Bridge] 1260 frames enviados. Modo: CALIBRATE
+[Bridge] 1270 frames enviados. Modo: CALIBRATE
+[Bridge] 1280 frames enviados. Modo: CALIBRATE
+[Bridge] 1290 frames enviados. Modo: CALIBRATE
+[Bridge] 1300 frames enviados. Modo: CALIBRATE
+[Bridge] 1310 frames enviados. Modo: CALIBRATE
+[Bridge] 1320 frames enviados. Modo: CALIBRATE
+[Bridge] 1330 frames enviados. Modo: CALIBRATE
+[Bridge] 1340 frames enviados. Modo: CALIBRATE
+[Bridge] 1350 frames enviados. Modo: CALIBRATE
+[Bridge] 1360 frames enviados. Modo: CALIBRATE
+[Bridge] 1370 frames enviados. Modo: CALIBRATE
+[Bridge] 1380 frames enviados. Modo: CALIBRATE
+[Bridge] 1390 frames enviados. Modo: CALIBRATE
+[Bridge] 1400 frames enviados. Modo: CALIBRATE
+[Bridge] 1410 frames enviados. Modo: CALIBRATE
+[Bridge] 1420 frames enviados. Modo: CALIBRATE
+[Bridge] 1430 frames enviados. Modo: CALIBRATE
+[Bridge] 1440 frames enviados. Modo: CALIBRATE
+[Bridge] 1450 frames enviados. Modo: CALIBRATE
+[Bridge] 1460 frames enviados. Modo: CALIBRATE
+[Bridge] 1470 frames enviados. Modo: CALIBRATE
+[Bridge] 1480 frames enviados. Modo: CALIBRATE
+[Bridge] 1490 frames enviados. Modo: CALIBRATE
+[Bridge] 1500 frames enviados. Modo: CALIBRATE
+[Bridge] 1510 frames enviados. Modo: CALIBRATE
+[Bridge] 1520 frames enviados. Modo: CALIBRATE
+[Bridge] 1530 frames enviados. Modo: CALIBRATE
+[Bridge] 1540 frames enviados. Modo: CALIBRATE
+[Bridge] 1550 frames enviados. Modo: CALIBRATE
+[Bridge] 1560 frames enviados. Modo: CALIBRATE
+[Bridge] 1570 frames enviados. Modo: CALIBRATE
+[Bridge] 1580 frames enviados. Modo: CALIBRATE
+[Bridge] 1590 frames enviados. Modo: CALIBRATE
+[Bridge] 1600 frames enviados. Modo: CALIBRATE
+[Bridge] 1610 frames enviados. Modo: CALIBRATE
+[Bridge] 1620 frames enviados. Modo: CALIBRATE
+[Bridge] 1630 frames enviados. Modo: CALIBRATE
+[Bridge] Modo → TRAIN | ref_id=15
+[Bridge] 1640 frames enviados. Modo: TRAIN
+[Bridge] 1650 frames enviados. Modo: TRAIN
+[Bridge] 1660 frames enviados. Modo: TRAIN
+[Bridge] 1670 frames enviados. Modo: TRAIN
+[Bridge] 1680 frames enviados. Modo: TRAIN
+[Bridge] 1690 frames enviados. Modo: TRAIN
+[Bridge] 1700 frames enviados. Modo: TRAIN
+[Bridge] 1710 frames enviados. Modo: TRAIN
+[Bridge] 1720 frames enviados. Modo: TRAIN
+[Bridge] 1730 frames enviados. Modo: TRAIN
+[Bridge] 1740 frames enviados. Modo: TRAIN
+[Bridge] 1750 frames enviados. Modo: TRAIN
+[Bridge] 1760 frames enviados. Modo: TRAIN
+[Bridge] 1770 frames enviados. Modo: TRAIN
+[Bridge] 1780 frames enviados. Modo: TRAIN
+[Bridge] 1790 frames enviados. Modo: TRAIN
+[Bridge] 1800 frames enviados. Modo: TRAIN
+[Bridge] 1810 frames enviados. Modo: TRAIN
+[Bridge] 1820 frames enviados. Modo: TRAIN
+[Bridge] 1830 frames enviados. Modo: TRAIN
+[Bridge] Modo → PAUSE | ref_id=15

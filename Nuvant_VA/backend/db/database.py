@@ -69,9 +69,28 @@ class Reference(Base):
     params         = Column(JSON, default=None)
     thumbnail_path = Column(String, nullable=True)
 
-    point = relationship("InspectionPoint", back_populates="references")
-    logs  = relationship("DefectLog", back_populates="reference",
-                         cascade="all, delete-orphan")
+    point       = relationship("InspectionPoint", back_populates="references")
+    logs        = relationship("DefectLog", back_populates="reference",
+                               cascade="all, delete-orphan")
+    inspections = relationship("Inspection", back_populates="reference",
+                                cascade="all, delete-orphan")
+
+
+# ══════════════════════════════════════════════════════════════════════════════
+# NIVEL 3.5: Inspección (sesión Iniciar → Detener)
+# ══════════════════════════════════════════════════════════════════════════════
+class Inspection(Base):
+    """Sesión de inspección: desde Iniciar hasta Detener. Independiente de referencia."""
+    __tablename__ = "inspections"
+
+    id           = Column(Integer, primary_key=True, index=True)
+    reference_id = Column(Integer, ForeignKey("references.id"), nullable=True)
+    started_at   = Column(DateTime, default=datetime.utcnow)
+    stopped_at   = Column(DateTime, nullable=True)
+
+    reference = relationship("Reference", back_populates="inspections")
+    logs      = relationship("DefectLog", back_populates="inspection",
+                            foreign_keys="DefectLog.inspection_id")
 
 
 # ══════════════════════════════════════════════════════════════════════════════
@@ -80,9 +99,10 @@ class Reference(Base):
 class DefectLog(Base):
     __tablename__ = "defect_logs"
 
-    id           = Column(Integer, primary_key=True, index=True)
-    reference_id = Column(Integer, ForeignKey("references.id"))
-    timestamp    = Column(DateTime, default=datetime.utcnow)
+    id            = Column(Integer, primary_key=True, index=True)
+    reference_id  = Column(Integer, ForeignKey("references.id"))
+    inspection_id = Column(Integer, ForeignKey("inspections.id"), nullable=True)
+    timestamp     = Column(DateTime, default=datetime.utcnow)
 
     anomaly_score   = Column(Float)
     is_defect       = Column(Integer)   # 0 | 1
@@ -91,6 +111,8 @@ class DefectLog(Base):
     embedding       = Column(JSON, nullable=True)
 
     reference   = relationship("Reference", back_populates="logs")
+    inspection  = relationship("Inspection", back_populates="logs",
+                               foreign_keys=[inspection_id])
     defect_type = relationship("DefectType", back_populates="logs")
 
 
@@ -125,6 +147,7 @@ def init_db():
         # 2. Poblar datos base
         _seed_default_line_and_point(session)
         _seed_default_defect_types(session)
+        _ensure_sin_clasificar_exists(session)
 
         # 3. Migrar datos legacy
         _migrate_legacy_references(session)
@@ -135,7 +158,7 @@ def init_db():
 def _ensure_columns_exist():
     """
     SQLAlchemy's create_all no añade columnas a tablas existentes.
-    Este helper asegura que 'point_id' exista en 'references'.
+    Este helper asegura columnas nuevas (point_id, inspection_id, tabla inspections).
     """
     import sqlite3
     db_path = DATABASE_URL.replace("sqlite:///", "")
@@ -143,15 +166,42 @@ def _ensure_columns_exist():
         conn = sqlite3.connect(db_path)
         cursor = conn.cursor()
 
-        # Verificar si 'point_id' existe en 'references'
+        # point_id en references
         cursor.execute("PRAGMA table_info(\"references\")")
-        columns = [row[1] for row in cursor.fetchall()]
-
-        if 'point_id' not in columns:
+        ref_cols = [row[1] for row in cursor.fetchall()]
+        if 'point_id' not in ref_cols:
             print("[DB] 🛠️ Añadiendo columna 'point_id' a tabla 'references'...")
             cursor.execute("ALTER TABLE \"references\" ADD COLUMN point_id INTEGER REFERENCES inspection_points(id)")
             conn.commit()
-            print("[DB] ✅ Columna añadida correctamente.")
+            print("[DB] ✅ Columna point_id añadida.")
+
+        # Tabla inspections
+        cursor.execute(
+            "SELECT name FROM sqlite_master WHERE type='table' AND name='inspections'"
+        )
+        if not cursor.fetchone():
+            print("[DB] 🛠️ Creando tabla 'inspections'...")
+            cursor.execute("""
+                CREATE TABLE inspections (
+                    id INTEGER PRIMARY KEY,
+                    reference_id INTEGER REFERENCES "references"(id),
+                    started_at DATETIME,
+                    stopped_at DATETIME
+                )
+            """)
+            conn.commit()
+            print("[DB] ✅ Tabla inspections creada.")
+
+        # inspection_id en defect_logs
+        cursor.execute("PRAGMA table_info(\"defect_logs\")")
+        dl_cols = [row[1] for row in cursor.fetchall()]
+        if 'inspection_id' not in dl_cols:
+            print("[DB] 🛠️ Añadiendo columna 'inspection_id' a defect_logs...")
+            cursor.execute(
+                "ALTER TABLE defect_logs ADD COLUMN inspection_id INTEGER REFERENCES inspections(id)"
+            )
+            conn.commit()
+            print("[DB] ✅ Columna inspection_id añadida.")
 
         conn.close()
     except Exception as e:
@@ -185,13 +235,21 @@ def _seed_default_defect_types(session):
     """Inserta tipos de defecto comunes si la tabla está vacía."""
     if session.query(DefectType).count() == 0:
         defaults = [
-            "Mancha de Aceite", "Rotura de Trama",
+            "Sin clasificar", "Mancha de Aceite", "Rotura de Trama",
             "Destonificado", "Suciedad", "Otro"
         ]
         for name in defaults:
             session.add(DefectType(name=name))
         session.commit()
         print(f"[DB] ✅ {len(defaults)} tipos de defecto inicializados.")
+
+
+def _ensure_sin_clasificar_exists(session):
+    """Garantiza que exista el tipo 'Sin clasificar' (para DBs existentes)."""
+    if not session.query(DefectType).filter(DefectType.name == "Sin clasificar").first():
+        session.add(DefectType(name="Sin clasificar"))
+        session.commit()
+        print("[DB] ✅ Tipo 'Sin clasificar' añadido.")
 
 
 def _migrate_legacy_references(session):
