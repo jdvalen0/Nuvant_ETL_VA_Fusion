@@ -314,6 +314,26 @@ docker compose logs -f bridge-l1-final
 ```
    Debe mostrar "Conectado a: ..." con la cámara.
 
+### Velocidad de captura (FPS) — defectos que pasan por velocidad
+
+A mayor velocidad de línea, el defecto cruza el campo de visión más rápido. Si capturas a 5 FPS (200 ms entre frames), un defecto que pasa en 150 ms puede no aparecer en ningún frame.
+
+**Solución:** Aumentar `CAMERA_FPS` para capturar más frames por segundo.
+
+| Variable | Default | Efecto |
+|----------|---------|--------|
+| `CAMERA_FPS` | 10.0 | Frames/seg. 10 = 100 ms entre frames; 20 = 50 ms. |
+
+**Dónde cambiar:** En `.env`:
+```
+CAMERA_FPS=15
+```
+O en `docker-compose.yml` (bridge-l1-final, environment).
+
+**Límite:** El backend procesa ~5–10 frames/seg (PatchCore). Si `CAMERA_FPS` > capacidad de inferencia, se acumulan frames. Probar 10 primero; subir a 15–20 si la cámara y la red GigE aguantan.
+
+**Reiniciar:** `docker compose down` + `docker compose up -d` (no requiere rebuild).
+
 ---
 
 ## 6. Errores frecuentes

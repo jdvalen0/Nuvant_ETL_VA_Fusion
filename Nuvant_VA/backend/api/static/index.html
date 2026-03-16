@@ -971,16 +971,22 @@
                                     "Problema técnico de captura";
                         badge.innerHTML = `⚠️ ERROR DE CAPTURA<br/><span class="text-xs opacity-90">${reason} - No se pudo analizar</span>`;
                     }
-                } else if (data.is_defect || (hasValidScore && data.score < 50)) {
-                    // Defecto detectado en la TELA (rojo)
-                    // NEW: Basado en is_defect O score < 50 (Calidad)
+                } else if (data.is_defect && data.debounce_confirmed) {
+                    // Defecto confirmado: N frames consecutivos anomalous verificados
                     badge.textContent = "DEFECTO DETECTADO";
                     badge.className = "absolute bottom-4 right-4 px-4 py-2 rounded-lg font-bold text-xl shadow-xl backdrop-blur bg-red-600 text-white animate-pulse";
                     if (data.recognition && data.recognition.label) {
                         badge.innerHTML = `DEFECTO DETECTADO<br/><span class="text-xs opacity-90">Tipo: ${data.recognition.label} (${Math.round(data.recognition.confidence * 100)}%)</span>`;
                     } else if (data.hold_for_labeling) {
                         badge.innerHTML = `DEFECTO NO RECONOCIDO<br/><span class="text-xs opacity-90">PAUSA AUTO ${data.hold_seconds || 0}s PARA CATEGORIZAR</span>`;
+                    } else if (data.defect_log_id) {
+                        badge.innerHTML = `DEFECTO CONFIRMADO<br/><span class="text-xs opacity-90">ID #${data.defect_log_id} guardado</span>`;
                     }
+                } else if (data.is_defect && !data.debounce_confirmed) {
+                    // Anomalía detectada por PatchCore pero pendiente de confirmación por debounce
+                    const n = data.debounce_count || 1;
+                    badge.textContent = `⚠️ POSIBLE DEFECTO (${n} frames)`;
+                    badge.className = "absolute bottom-4 right-4 px-4 py-2 rounded-lg font-bold text-sm shadow-xl backdrop-blur bg-amber-600 text-white";
                 } else if (hasValidScore) {
                     // ✅ Tela sin defectos (verde) - Calidad > 50
                     badge.textContent = "CALIDAD OK";
@@ -1033,14 +1039,22 @@
 
             const defectSelect = document.getElementById('defectTypeSelect');
             const saveBtn = document.getElementById('saveDefectBtn');
+            // Solo habilitar clasificación manual cuando el defecto está CONFIRMADO (debounce + guardado en DB)
+            const isConfirmed = data.is_defect && data.debounce_confirmed && data.defect_log_id;
             if (data.is_defect) {
                 lastDefectData = data;
-                if (defectSelect) { defectSelect.disabled = false; defectSelect.classList.remove('opacity-50'); }
-                if (saveBtn) { saveBtn.disabled = false; saveBtn.classList.remove('opacity-50'); }
             } else {
                 lastDefectData = null;
+            }
+            if (isConfirmed) {
+                if (defectSelect) { defectSelect.disabled = false; defectSelect.classList.remove('opacity-50'); }
+                if (saveBtn) { saveBtn.disabled = false; saveBtn.classList.remove('opacity-50'); saveBtn.title = `Clasificar defecto #${data.defect_log_id}`; }
+            } else {
                 if (defectSelect) { defectSelect.disabled = true; defectSelect.classList.add('opacity-50'); }
-                if (saveBtn) { saveBtn.disabled = true; saveBtn.classList.add('opacity-50'); }
+                if (saveBtn) {
+                    saveBtn.disabled = true; saveBtn.classList.add('opacity-50');
+                    saveBtn.title = data.is_defect ? 'Esperando confirmación del defecto...' : 'Sin defecto activo';
+                }
             }
         }
 
@@ -1048,19 +1062,23 @@
             const refId = document.getElementById('refSelect').value;
             const defectType = document.getElementById('defectTypeSelect').value;
             if (!defectType || !lastDefectData) return alert("Seleccione tipo de defecto");
+            // Guardia: solo clasificar si el defecto fue confirmado y tiene ID en DB
+            if (!lastDefectData.defect_log_id) {
+                return alert("El sistema aún no confirmó el defecto (se requieren " + (window._debounceN || 3) + " frames consecutivos). Espere el badge 'DEFECTO CONFIRMADO' antes de clasificar.");
+            }
             const payload = {
                 reference_id: parseInt(refId),
                 defect_type: defectType,
                 score: lastDefectData.score,
-                embedding: lastDefectData.embedding
+                embedding: lastDefectData.embedding,
+                defect_log_id: lastDefectData.defect_log_id
             };
-            if (lastDefectData.defect_log_id) payload.defect_log_id = lastDefectData.defect_log_id;
             const res = await fetch(`${API}/inference/log_defect`, {
                 method: 'POST',
                 headers: { 'Content-Type': 'application/json' },
                 body: JSON.stringify(payload)
             });
-            if (res.ok) { alert(`Defecto registrado: ${defectType}`); document.getElementById('defectTypeSelect').value = ""; lastDefectData = null; }
+            if (res.ok) { alert(`Defecto #${lastDefectData.defect_log_id} clasificado como: ${defectType}`); document.getElementById('defectTypeSelect').value = ""; lastDefectData = null; }
         }
 
         async function loadInspections() {

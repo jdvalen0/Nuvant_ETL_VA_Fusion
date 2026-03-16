@@ -122,8 +122,24 @@
 | Informe sin imágenes ni clasificaciones | `_resolve_image_path()`: resuelve rutas relativas a STORAGE_DIR (host vs contenedor). |
 | Defectos no aparecen en informe | Fallback: si no hay defectos con `inspection_id`, se incluyen defectos con `inspection_id=NULL` de la misma ref. |
 
-## 8. Recomendaciones
+## 9. Fix Bridge RetrieveBuffer timeout (2025-03-01)
+
+| Problema | Solución |
+|----------|----------|
+| `IStDataStream::RetrieveBuffer(3000, 1)` timeout provocaba desconexión y no reconexión estable | `_grab_one_frame`: try/except en `retrieve_buffer`, reintentos con sleep 0.1s; excepciones timeout no propagan. |
+| Bridge loop: excepción no capturada → "Error inesperado" → ciclo desconectar/reconectar | Inner catch: `timeout`, `retrievebuffer`, `retrieve_buffer`, `istdatastream` → `continue` (sin desconectar). Outer catch: siempre reintenta conexión, backoff 1.5x hasta 30s. |
+
+**Flujo verificado:**
+1. Timeout en `retrieve_buffer` → `_grab_one_frame` reintenta hasta 15 veces (LiveCamera).
+2. Si agota reintentos → raise → bridge loop inner catch coincide → `continue` (no desconecta).
+3. Excepción no timeout (ej. `_convert_to_numpy` ValueError) → raise → outer catch → sleep + reconexión.
+4. `time.sleep(0.1)` bloquea event loop; StApiPy no es thread-safe → no usar executor.
+
+---
+
+## 10. Recomendaciones
 
 1. **Probar en Docker:** Ejecutar `docker-compose up` y verificar flujo completo.
 2. **DB existente:** La migración automática crea `inspections` y `inspection_id` si no existen.
 3. **Reporte legacy:** `report_by_reference` sigue disponible; el informe principal es por inspección.
+4. **Timeouts de cámara:** IP estática en servidor (misma subred que cámara); ver INSTRUCCIONES_OPERATIVAS.

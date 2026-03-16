@@ -45,8 +45,17 @@ services:
       - PATCHCORE_NEIGHBORS=9
       - PATCHCORE_ROI_CROP=0.08
       - PATCHCORE_USE_CLAHE=true
+      # Margen de threshold al cargar modelos legacy (per-patch calibration).
+      # 3.0 = threshold efectivo = 3× el calibrado durante entrenamiento.
+      # Reduce falsos positivos en tela buena en producción.
+      # Con modelos retrenados (V32.5 per-image-max), este valor no se aplica.
+      - PATCHCORE_THRESHOLD_MARGIN=3.0
+      # Debounce: N frames consecutivos anómalos para confirmar y guardar un defecto.
+      # N=1: guarda en el primer frame anómalo (recomendado con tela en movimiento a 5 FPS).
+      # N>1: requiere N×200ms de defecto ininterrumpido — demasiado para defectos transitorios.
+      - INSPECT_DEBOUNCE_FRAMES=1
       - TRAIN_CAPTURE_LIMIT=200
-      - TRAIN_SAMPLE_SIZE=50
+      - TRAIN_SAMPLE_SIZE=150
       # PLC S7: definir PLC_IP en .env para activar (ej. PLC_IP=192.168.1.10)
       - PLC_IP=${PLC_IP:-}
       - PLC_DB=${PLC_DB:-1}
@@ -77,7 +86,9 @@ services:
       <<: *bridge-env-base
       CAMERA_MODE: "live"
       SIMULATE_DIR: "/camera_captures"
-      CAMERA_FPS: "${CAMERA_FPS:-5.0}"
+      # Mayor FPS = más frames/seg = mayor probabilidad de capturar defectos a alta velocidad de línea.
+      # 10 FPS recomendado; 15-20 si la cámara y el backend aguantan (inferencia ~100-200ms/frame).
+      CAMERA_FPS: "${CAMERA_FPS:-10.0}"
       CAMERA_LINE_ID: "1"
       CAMERA_POINT_ID: "1"
       CAMERA_ID: "cam-l1-final"

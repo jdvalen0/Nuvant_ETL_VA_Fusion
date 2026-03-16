@@ -5,174 +5,533 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Cola de Clasificación — Nuvant Vision</title>
     <script src="vendor/tailwind.js"></script>
+    <style>
+        /* Lightbox */
+        #lightbox {
+            display: none;
+            position: fixed;
+            inset: 0;
+            background: rgba(0, 0, 0, .92);
+            z-index: 9999;
+            align-items: center;
+            justify-content: center;
+        }
+        #lightbox.open { display: flex; }
+        #lb-container {
+            position: relative;
+            background: #1e293b;
+            border-radius: 14px;
+            padding: 20px;
+            max-width: 92vw;
+            max-height: 92vh;
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+        }
+        #lb-close {
+            position: absolute;
+            top: -14px;
+            right: -14px;
+            background: #ef4444;
+            color: #fff;
+            border: none;
+            border-radius: 50%;
+            width: 32px;
+            height: 32px;
+            font-size: 1.1rem;
+            cursor: pointer;
+            font-weight: bold;
+        }
+        #lb-img-wrap {
+            position: relative;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            overflow: hidden;
+            border-radius: 8px;
+        }
+        #lb-img {
+            max-width: 80vw;
+            max-height: 65vh;
+            object-fit: contain;
+            display: block;
+            border-radius: 8px;
+        }
+        #lb-heatmap {
+            position: absolute;
+            inset: 0;
+            width: 100%;
+            height: 100%;
+            object-fit: contain;
+            border-radius: 8px;
+            opacity: 0.55;
+            display: none;
+        }
+        .defect-thumb {
+            width: 100%;
+            height: 180px;
+            object-fit: cover;
+            cursor: zoom-in;
+            border-radius: 6px;
+            display: block;
+        }
+        .heatmap-badge { animation: pulse 2s infinite; }
+        @keyframes pulse { 0%,100%{opacity:1} 50%{opacity:0.5} }
+        .card-classified { border-color: #065f46 !important; }
+    </style>
 </head>
 <body class="bg-slate-900 text-slate-100 font-sans min-h-screen">
-    <div class="container mx-auto p-6">
-        <header class="mb-6 border-b border-slate-700 pb-4">
-            <h1 class="text-2xl font-bold text-cyan-300">Cola de Clasificación de Defectos</h1>
-            <p class="text-slate-400 text-sm mt-1">Clasifique todos los defectos antes de generar el informe.</p>
-        </header>
 
-        <div class="mb-6 flex gap-4 items-center">
-            <label class="text-slate-400">Referencia:</label>
-            <select id="refSelect" class="bg-slate-800 border border-slate-600 rounded px-4 py-2">
+<!-- LIGHTBOX -->
+<div id="lightbox" onclick="closeLightbox()">
+    <div id="lb-container" onclick="event.stopPropagation()">
+        <button id="lb-close" onclick="closeLightbox()">✕</button>
+        <div class="flex items-center gap-3 text-sm">
+            <span id="lb-meta" class="text-slate-400 flex-1"></span>
+            <label class="flex items-center gap-2 cursor-pointer">
+                <input type="checkbox" id="lb-heat-toggle" onchange="toggleLbHeatmap(this.checked)" class="accent-orange-400">
+                <span class="text-orange-300 text-xs font-bold">🌡️ Heatmap</span>
+            </label>
+            <span id="lb-heat-na" class="text-slate-600 text-xs hidden">Sin heatmap</span>
+        </div>
+        <div id="lb-img-wrap">
+            <img id="lb-img" src="" alt="defecto"/>
+            <img id="lb-heatmap" src="" alt="heatmap"/>
+        </div>
+        <div class="flex gap-2 mt-1">
+            <select id="lb-defect-type" class="flex-1 bg-slate-700 border border-slate-600 rounded p-2 text-sm">
+                <option value="">-- Clasificar desde aquí --</option>
+            </select>
+            <button onclick="classifyFromLightbox()" class="bg-orange-600 hover:bg-orange-500 px-4 py-2 rounded text-sm font-bold">Clasificar</button>
+            <button onclick="closeLightbox()" class="bg-slate-600 hover:bg-slate-500 px-4 py-2 rounded text-sm">Cerrar</button>
+        </div>
+    </div>
+</div>
+
+<div class="container mx-auto p-6 max-w-7xl">
+    <header class="mb-6 border-b border-slate-700 pb-4 flex justify-between items-center flex-wrap gap-3">
+        <div>
+            <h1 class="text-2xl font-bold text-cyan-300">Cola de Clasificación de Defectos</h1>
+            <p class="text-slate-400 text-sm mt-1">Revise y clasifique cada defecto. Haga clic en la imagen para ampliarla y ver el heatmap.</p>
+        </div>
+        <a href="/static/" class="text-cyan-400 hover:underline text-sm">← Volver a inspección</a>
+    </header>
+
+    <!-- Controles superiores -->
+    <div class="flex flex-wrap gap-3 items-center mb-6 bg-slate-800 p-4 rounded-xl border border-slate-700">
+        <div class="flex items-center gap-2">
+            <label class="text-slate-400 text-sm">Referencia:</label>
+            <select id="refSelect" onchange="onRefChange()" class="bg-slate-900 border border-slate-600 rounded px-3 py-2 text-sm min-w-[220px]">
                 <option value="">Seleccione...</option>
             </select>
-            <button onclick="loadQueue()" class="bg-cyan-600 hover:bg-cyan-500 px-4 py-2 rounded font-semibold">
-                Cargar cola
+        </div>
+        <button onclick="loadQueue()" class="bg-cyan-600 hover:bg-cyan-500 px-4 py-2 rounded text-sm font-semibold">
+            🔄 Actualizar
+        </button>
+        <div id="stats-bar" class="flex gap-3 hidden text-sm">
+            <span class="bg-orange-900/50 text-orange-300 px-3 py-1 rounded-full border border-orange-800">
+                Pendientes: <b id="stat-pending">0</b>
+            </span>
+            <span class="bg-green-900/50 text-green-300 px-3 py-1 rounded-full border border-green-800">
+                Clasificados: <b id="stat-classified">0</b>
+            </span>
+        </div>
+        <div class="ml-auto flex gap-2">
+            <button onclick="classifyAllAs()" id="btn-classify-all"
+                class="bg-amber-700 hover:bg-amber-600 px-4 py-2 rounded text-sm font-semibold hidden">
+                Clasificar todos como...
             </button>
-            <a href="/static/" class="text-cyan-400 hover:underline text-sm">← Volver a inspección</a>
-        </div>
-
-        <div id="queueStatus" class="mb-4 p-4 rounded bg-slate-800 border border-slate-700 hidden">
-            <span id="queueCount" class="font-bold text-orange-400">0</span> defectos sin clasificar
-        </div>
-
-        <div id="emptyState" class="p-8 text-center text-slate-500 rounded bg-slate-800 border border-slate-700">
-            Seleccione una referencia y pulse "Cargar cola".
-        </div>
-
-        <div id="queueGrid" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 hidden">
-            <!-- Cards de defectos se insertan aquí -->
-        </div>
-
-        <div id="allDone" class="p-8 text-center text-green-400 rounded bg-green-900/30 border border-green-800 hidden">
-            ✓ Todos los defectos clasificados. Puede generar el informe desde la pantalla principal.
-        </div>
-
-        <div id="toast" class="fixed bottom-4 right-4 px-4 py-2 rounded bg-green-700 text-white text-sm font-bold hidden z-50">
-            ✓ Clasificado
         </div>
     </div>
 
-    <script>
-        const API = `${window.location.origin}/api`;
-        let defectTypes = [];
+    <!-- Tabs -->
+    <div class="flex gap-1 mb-4">
+        <button id="tab-pending" onclick="switchTab('pending')"
+            class="px-5 py-2 rounded-t-lg text-sm font-bold bg-orange-700 text-white border-b-2 border-orange-500">
+            Por Clasificar
+        </button>
+        <button id="tab-classified" onclick="switchTab('classified')"
+            class="px-5 py-2 rounded-t-lg text-sm font-bold bg-slate-700 text-slate-400 border-b-2 border-transparent hover:bg-slate-600">
+            Ya Clasificados
+        </button>
+    </div>
 
-        async function loadRefs() {
-            const res = await fetch(`${API}/references/`);
-            const refs = await res.json();
-            const sel = document.getElementById('refSelect');
-            sel.innerHTML = '<option value="">Seleccione...</option>';
-            refs.forEach(r => {
-                const opt = document.createElement('option');
-                opt.value = r.id;
-                opt.textContent = `${r.name} (ID: ${r.id})`;
-                sel.appendChild(opt);
-            });
+    <!-- Pestaña: Por clasificar -->
+    <div id="panel-pending">
+        <div id="empty-pending" class="p-8 text-center text-slate-500 rounded bg-slate-800 border border-slate-700">
+            Seleccione una referencia para cargar la cola.
+        </div>
+        <div id="all-done" class="p-8 text-center text-green-400 rounded bg-green-900/30 border border-green-800 hidden">
+            ✅ Todos los defectos están clasificados. Puede generar el informe.
+        </div>
+        <div id="queue-grid" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4 hidden"></div>
+    </div>
+
+    <!-- Pestaña: Ya clasificados -->
+    <div id="panel-classified" class="hidden">
+        <div id="empty-classified" class="p-8 text-center text-slate-500 rounded bg-slate-800 border border-slate-700">
+            Sin defectos clasificados aún.
+        </div>
+        <div id="classified-grid" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4 hidden"></div>
+    </div>
+</div>
+
+<!-- Toast -->
+<div id="toast" class="fixed bottom-5 right-5 px-5 py-3 rounded-lg bg-green-700 text-white text-sm font-bold shadow-xl hidden z-50 transition-all"></div>
+
+<script>
+    const API = `${window.location.origin}/api`;
+    let defectTypes = [];
+    let currentRefId = null;
+    let lbCurrentId = null;
+    let lbHasHeatmap = false;
+    let activeTab = 'pending';
+
+    // ── Init ─────────────────────────────────────────────────────────────────
+    document.addEventListener('DOMContentLoaded', async () => {
+        await Promise.all([loadDefectTypes(), loadRefs()]);
+        // Auto-select from URL param or localStorage
+        const savedRef = localStorage.getItem('nuvant_classify_ref');
+        if (savedRef) {
+            document.getElementById('refSelect').value = savedRef;
+            onRefChange();
+        }
+    });
+
+    async function loadRefs() {
+        const res = await fetch(`${API}/references/`);
+        const refs = await res.json();
+        const sel = document.getElementById('refSelect');
+        sel.innerHTML = '<option value="">Seleccione...</option>';
+        refs.forEach(r => {
+            const opt = new Option(`${r.name}`, r.id);
+            sel.appendChild(opt);
+        });
+    }
+
+    async function loadDefectTypes() {
+        const res = await fetch(`${API}/references/defect_types`);
+        defectTypes = (await res.json()).filter(t => t.name !== 'Sin clasificar');
+    }
+
+    function onRefChange() {
+        const refId = document.getElementById('refSelect').value;
+        currentRefId = refId;
+        if (refId) {
+            localStorage.setItem('nuvant_classify_ref', refId);
+            loadQueue();
+        }
+    }
+
+    // ── Load queues ───────────────────────────────────────────────────────────
+    async function loadQueue() {
+        if (!currentRefId) return;
+        await Promise.all([loadPending(), loadClassified()]);
+    }
+
+    async function loadPending() {
+        const res = await fetch(`${API}/references/${currentRefId}/unclassified_defects`);
+        if (!res.ok) return;
+        const defects = await res.json();
+
+        document.getElementById('stat-pending').textContent = defects.length;
+        document.getElementById('stats-bar').classList.remove('hidden');
+
+        const grid = document.getElementById('queue-grid');
+        const emptyEl = document.getElementById('empty-pending');
+        const doneEl = document.getElementById('all-done');
+        const btnAll = document.getElementById('btn-classify-all');
+
+        if (defects.length === 0) {
+            grid.classList.add('hidden');
+            emptyEl.classList.add('hidden');
+            doneEl.classList.remove('hidden');
+            btnAll.classList.add('hidden');
+            return;
         }
 
-        async function loadDefectTypes() {
-            const res = await fetch(`${API}/references/defect_types`);
-            defectTypes = await res.json();
+        doneEl.classList.add('hidden');
+        emptyEl.classList.add('hidden');
+        grid.classList.remove('hidden');
+        btnAll.classList.remove('hidden');
+        grid.innerHTML = defects.map(d => buildPendingCard(d)).join('');
+    }
+
+    async function loadClassified() {
+        const res = await fetch(`${API}/references/${currentRefId}/classified_defects?limit=200`);
+        if (!res.ok) return;
+        const defects = await res.json();
+
+        document.getElementById('stat-classified').textContent = defects.length;
+
+        const grid = document.getElementById('classified-grid');
+        const emptyEl = document.getElementById('empty-classified');
+
+        if (defects.length === 0) {
+            grid.classList.add('hidden');
+            emptyEl.classList.remove('hidden');
+            return;
         }
 
-        async function loadQueue() {
-            const refId = document.getElementById('refSelect').value;
-            if (!refId) return alert('Seleccione una referencia');
-            const res = await fetch(`${API}/references/${refId}/unclassified_defects`);
-            const defects = await res.json();
-            document.getElementById('emptyState').classList.add('hidden');
-            document.getElementById('allDone').classList.add('hidden');
-            if (defects.length === 0) {
-                document.getElementById('queueStatus').classList.add('hidden');
-                document.getElementById('queueGrid').classList.add('hidden');
-                document.getElementById('allDone').classList.remove('hidden');
-                return;
-            }
-            document.getElementById('queueStatus').classList.remove('hidden');
-            document.getElementById('queueCount').textContent = defects.length;
-            document.getElementById('queueGrid').classList.remove('hidden');
-            const grid = document.getElementById('queueGrid');
-            grid.innerHTML = defects.map(d => `
-                <div class="bg-slate-800 rounded-lg border border-slate-700 p-4" data-id="${d.id}">
-                    <div class="mb-2 h-32 bg-slate-900 rounded flex items-center justify-center overflow-hidden">
-                        ${d.has_image
-                            ? `<img src="${API}/references/defect/${d.id}/image" alt="defecto" class="max-h-full max-w-full object-contain" onerror="this.parentElement.innerHTML='<span class=text-slate-500>Sin imagen</span>'"/>`
-                            : '<span class="text-slate-500">Sin imagen</span>'}
-                    </div>
-                    <p class="text-xs text-slate-500">ID: ${d.id} | Score: ${d.anomaly_score} | ${d.timestamp ? d.timestamp.slice(0, 19) : '-'}</p>
-                    <div class="mt-2 flex gap-2">
-                        <select class="defect-type-select flex-1 bg-slate-700 border border-slate-600 rounded p-2 text-sm" data-id="${d.id}">
-                            <option value="">-- Tipo --</option>
-                            ${defectTypes.map(t => `<option value="${t.name}">${t.name}</option>`).join('')}
-                        </select>
-                        <button onclick="classifyOne(${d.id})" class="bg-orange-600 hover:bg-orange-500 px-3 py-2 rounded text-sm font-bold">
-                            Clasificar
-                        </button>
-                    </div>
-                </div>
-            `).join('');
+        emptyEl.classList.add('hidden');
+        grid.classList.remove('hidden');
+        grid.innerHTML = defects.map(d => buildClassifiedCard(d)).join('');
+    }
+
+    // ── Card builders ─────────────────────────────────────────────────────────
+    function buildPendingCard(d) {
+        const imgUrl = d.has_image ? `${API}/references/defect/${d.id}/image` : null;
+        const ts = d.timestamp ? d.timestamp.slice(0, 19).replace('T', ' ') : '-';
+        const scoreColor = d.anomaly_score < 40 ? 'text-red-400' : 'text-orange-400';
+
+        const imgHtml = imgUrl
+            ? `<div class="relative overflow-hidden rounded-lg bg-slate-900 mb-3" style="height:180px">
+                 <img src="${imgUrl}" alt="defecto" class="defect-thumb" onclick="openLightbox(${d.id}, ${d.has_heatmap})"
+                      onerror="this.parentElement.innerHTML='<div class=\'flex items-center justify-center h-full text-slate-500 text-sm\'>Sin imagen</div>'"/>
+                 ${d.has_heatmap ? '<span class="absolute top-2 right-2 bg-orange-600 text-white text-[10px] px-2 py-0.5 rounded-full heatmap-badge">🌡️ Heatmap</span>' : ''}
+                 <div class="absolute inset-0 bg-black/20 opacity-0 hover:opacity-100 flex items-center justify-center transition-opacity pointer-events-none">
+                   <span class="text-white text-sm font-bold bg-black/60 px-3 py-1 rounded-full">🔍 Ver ampliado</span>
+                 </div>
+               </div>`
+            : `<div class="flex items-center justify-center rounded-lg bg-slate-900 mb-3 text-slate-500 text-sm" style="height:180px">Sin imagen</div>`;
+
+        const opts = defectTypes.map(t =>
+            `<option value="${escHtml(t.name)}">${escHtml(t.name)}</option>`
+        ).join('');
+
+        return `
+        <div class="bg-slate-800 rounded-xl border border-slate-700 p-3 flex flex-col" data-id="${d.id}">
+          ${imgHtml}
+          <div class="flex items-center gap-2 mb-2">
+            <span class="text-xs text-slate-500 flex-1">🕐 ${ts}</span>
+            <span class="text-xs font-bold ${scoreColor}">Score: ${d.anomaly_score}</span>
+          </div>
+          <div class="flex gap-2 mt-auto">
+            <select class="defect-type-sel flex-1 bg-slate-700 border border-slate-600 rounded px-2 py-1.5 text-sm" data-id="${d.id}">
+              <option value="">-- Tipo de defecto --</option>
+              ${opts}
+            </select>
+            <button onclick="classifyOne(${d.id})" class="bg-orange-600 hover:bg-orange-500 px-3 py-1.5 rounded text-sm font-bold whitespace-nowrap">
+              ✓ OK
+            </button>
+          </div>
+        </div>`;
+    }
+
+    function buildClassifiedCard(d) {
+        const imgUrl = d.has_image ? `${API}/references/defect/${d.id}/image` : null;
+        const ts = d.timestamp ? d.timestamp.slice(0, 19).replace('T', ' ') : '-';
+
+        const imgHtml = imgUrl
+            ? `<div class="relative overflow-hidden rounded-lg bg-slate-900 mb-3" style="height:180px">
+                 <img src="${imgUrl}" alt="defecto" class="defect-thumb" onclick="openLightbox(${d.id}, ${d.has_heatmap})"
+                      onerror="this.parentElement.innerHTML='<div class=\'flex items-center justify-center h-full text-slate-500 text-sm\'>Sin imagen</div>'"/>
+                 ${d.has_heatmap ? '<span class="absolute top-2 right-2 bg-orange-600 text-white text-[10px] px-2 py-0.5 rounded-full">🌡️</span>' : ''}
+                 <div class="absolute inset-0 bg-black/20 opacity-0 hover:opacity-100 flex items-center justify-center transition-opacity pointer-events-none">
+                   <span class="text-white text-sm font-bold bg-black/60 px-3 py-1 rounded-full">🔍 Ver ampliado</span>
+                 </div>
+               </div>`
+            : `<div class="flex items-center justify-center rounded-lg bg-slate-900 mb-3 text-slate-500 text-sm" style="height:180px">Sin imagen</div>`;
+
+        return `
+        <div class="bg-slate-800 rounded-xl border border-green-900/50 p-3 flex flex-col card-classified">
+          ${imgHtml}
+          <div class="flex items-center gap-2 mb-2">
+            <span class="text-xs text-slate-500 flex-1">🕐 ${ts}</span>
+            <span class="text-xs text-orange-400">Score: ${d.anomaly_score}</span>
+          </div>
+          <div class="flex items-center gap-2">
+            <span class="flex-1 px-3 py-1.5 bg-green-900/40 text-green-300 border border-green-800 rounded text-sm font-semibold text-center">
+              ✅ ${escHtml(d.defect_type)}
+            </span>
+          </div>
+        </div>`;
+    }
+
+    // ── Classification ────────────────────────────────────────────────────────
+    async function classifyOne(defectLogId) {
+        const card = document.querySelector(`[data-id="${defectLogId}"]`);
+        if (!card) return;
+        const sel = card.querySelector('.defect-type-sel');
+        const defectType = sel ? sel.value : null;
+        if (!defectType) return showToast('Seleccione un tipo de defecto', true);
+
+        await doClassify(defectLogId, defectType);
+        card.remove();
+        await refreshCounts();
+    }
+
+    async function classifyFromLightbox() {
+        if (!lbCurrentId) return;
+        const sel = document.getElementById('lb-defect-type');
+        const defectType = sel.value;
+        if (!defectType) return showToast('Seleccione un tipo', true);
+        await doClassify(lbCurrentId, defectType);
+        // Remove card from grid
+        const card = document.querySelector(`[data-id="${lbCurrentId}"]`);
+        if (card) card.remove();
+        closeLightbox();
+        await refreshCounts();
+    }
+
+    async function classifyAllAs() {
+        const type = prompt('Clasificar todos los pendientes como (escriba el nombre del tipo):');
+        if (!type) return;
+        const validType = defectTypes.find(t => t.name.toLowerCase() === type.trim().toLowerCase());
+        if (!validType) return showToast('Tipo no encontrado en el catálogo', true);
+        const cards = document.querySelectorAll('#queue-grid [data-id]');
+        let count = 0;
+        for (const card of cards) {
+            const id = parseInt(card.getAttribute('data-id'));
+            await doClassify(id, validType.name);
+            card.remove();
+            count++;
+        }
+        await refreshCounts();
+        showToast(`${count} defectos clasificados como "${validType.name}"`);
+    }
+
+    async function doClassify(defectLogId, defectType) {
+        const refId = currentRefId;
+        const res = await fetch(`${API}/inference/log_defect`, {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({
+                reference_id: parseInt(refId),
+                defect_type: defectType,
+                defect_log_id: defectLogId,
+                score: 0,
+                embedding: null
+            })
+        });
+        if (!res.ok) {
+            let data = {};
+            try { data = await res.json(); } catch (_) {}
+            showToast('Error: ' + (data.detail || 'Error al clasificar'), true);
+            return false;
+        }
+        showToast(`✓ Clasificado: ${defectType}`);
+        return true;
+    }
+
+    async function refreshCounts() {
+        const pRes = await fetch(`${API}/references/${currentRefId}/unclassified_defects`);
+        const pending = pRes.ok ? await pRes.json() : [];
+        document.getElementById('stat-pending').textContent = pending.length;
+        if (pending.length === 0) {
+            document.getElementById('queue-grid').classList.add('hidden');
+            document.getElementById('all-done').classList.remove('hidden');
+            document.getElementById('btn-classify-all').classList.add('hidden');
+        }
+        // Refresh classified tab count
+        const cRes = await fetch(`${API}/references/${currentRefId}/classified_defects?limit=1`);
+        if (cRes.ok) {
+            const hdr = cRes.headers.get('X-Total-Count');
+            // We don't have total-count header; just reload classified if tab is active
+            if (activeTab === 'classified') loadClassified();
+        }
+    }
+
+    // ── Lightbox ──────────────────────────────────────────────────────────────
+    function openLightbox(defectId, hasHeatmap) {
+        lbCurrentId = defectId;
+        lbHasHeatmap = hasHeatmap;
+
+        const lb = document.getElementById('lightbox');
+        const img = document.getElementById('lb-img');
+        const heat = document.getElementById('lb-heatmap');
+        const toggle = document.getElementById('lb-heat-toggle');
+        const heatNa = document.getElementById('lb-heat-na');
+        const metaEl = document.getElementById('lb-meta');
+
+        img.src = `${API}/references/defect/${defectId}/image`;
+        heat.style.display = 'none';
+        toggle.checked = false;
+
+        if (hasHeatmap) {
+            heat.src = `${API}/references/defect/${defectId}/heatmap`;
+            toggle.parentElement.classList.remove('hidden');
+            heatNa.classList.add('hidden');
+        } else {
+            heat.src = '';
+            toggle.parentElement.classList.add('hidden');
+            heatNa.classList.remove('hidden');
         }
 
-        function parseErrorDetail(detail) {
-            if (typeof detail === 'string') return detail;
-            if (Array.isArray(detail) && detail.length > 0) {
-                const first = detail[0];
-                return (first && first.msg) ? first.msg : JSON.stringify(detail);
-            }
-            if (detail && typeof detail === 'object') return JSON.stringify(detail);
-            return 'Error al clasificar';
+        metaEl.textContent = `ID: ${defectId}`;
+
+        // Fill lightbox type selector
+        const sel = document.getElementById('lb-defect-type');
+        sel.innerHTML = '<option value="">-- Clasificar --</option>' +
+            defectTypes.map(t => `<option value="${escHtml(t.name)}">${escHtml(t.name)}</option>`).join('');
+
+        // Pre-select type if card has selection
+        const card = document.querySelector(`[data-id="${defectId}"]`);
+        if (card) {
+            const cardSel = card.querySelector('.defect-type-sel');
+            if (cardSel && cardSel.value) sel.value = cardSel.value;
         }
 
-        async function classifyOne(defectLogId) {
-            const card = document.querySelector(`[data-id="${defectLogId}"]`);
-            if (!card) return;
-            const select = card.querySelector('.defect-type-select');
-            const defectType = select.value;
-            if (!defectType) return alert('Seleccione un tipo de defecto');
-            const refId = document.getElementById('refSelect').value;
-            if (!refId) return alert('Seleccione una referencia');
-            const btn = card.querySelector('button');
-            if (btn) { btn.disabled = true; btn.textContent = '...'; }
-            try {
-                const res = await fetch(`${API}/inference/log_defect`, {
-                    method: 'POST',
-                    headers: { 'Content-Type': 'application/json' },
-                    body: JSON.stringify({
-                        reference_id: parseInt(refId),
-                        defect_type: defectType,
-                        defect_log_id: defectLogId,
-                        score: 0,
-                        embedding: null
-                    })
-                });
-                let data = {};
-                try { data = await res.json(); } catch (_) {}
-                if (!res.ok) {
-                    const msg = parseErrorDetail(data.detail);
-                    if (btn) { btn.disabled = false; btn.textContent = 'Clasificar'; }
-                    return alert('Error: ' + msg);
-                }
-                card.remove();
-                const remaining = document.querySelectorAll('#queueGrid > div').length;
-                document.getElementById('queueCount').textContent = remaining;
-                if (remaining === 0) {
-                    document.getElementById('queueStatus').classList.add('hidden');
-                    document.getElementById('queueGrid').classList.add('hidden');
-                    document.getElementById('allDone').classList.remove('hidden');
-                }
-                const toast = document.getElementById('toast');
-                if (toast) {
-                    toast.textContent = '✓ Clasificado: ' + defectType;
-                    toast.classList.remove('hidden');
-                    setTimeout(() => toast.classList.add('hidden'), 2000);
-                }
-            } catch (e) {
-                if (btn) { btn.disabled = false; btn.textContent = 'Clasificar'; }
-                alert('Error de conexión: ' + (e.message || String(e)));
-            }
-        }
+        lb.classList.add('open');
+        document.body.style.overflow = 'hidden';
+    }
 
-        document.addEventListener('DOMContentLoaded', async () => {
-            try {
-                await loadDefectTypes();
-                await loadRefs();
-            } catch (e) {
-                console.error('Init error:', e);
-                alert('Error al cargar datos. Revise la consola (F12).');
+    function closeLightbox() {
+        document.getElementById('lightbox').classList.remove('open');
+        document.body.style.overflow = '';
+        lbCurrentId = null;
+    }
+
+    function toggleLbHeatmap(show) {
+        const heat = document.getElementById('lb-heatmap');
+        if (show && lbHasHeatmap) {
+            heat.style.display = 'block';
+        } else {
+            heat.style.display = 'none';
+        }
+    }
+
+    // Close lightbox with Escape
+    document.addEventListener('keydown', e => { if (e.key === 'Escape') closeLightbox(); });
+
+    // ── Tabs ──────────────────────────────────────────────────────────────────
+    function switchTab(tab) {
+        activeTab = tab;
+        const panels = { pending: 'panel-pending', classified: 'panel-classified' };
+        const tabs = { pending: 'tab-pending', classified: 'tab-classified' };
+        const activeTabCls = ['bg-orange-700', 'text-white', 'border-orange-500'];
+        const inactiveTabCls = ['bg-slate-700', 'text-slate-400', 'border-transparent', 'hover:bg-slate-600'];
+
+        Object.keys(panels).forEach(t => {
+            const panel = document.getElementById(panels[t]);
+            const tabEl = document.getElementById(tabs[t]);
+            if (t === tab) {
+                panel.classList.remove('hidden');
+                tabEl.classList.add(...activeTabCls);
+                tabEl.classList.remove(...inactiveTabCls);
+            } else {
+                panel.classList.add('hidden');
+                tabEl.classList.remove(...activeTabCls);
+                tabEl.classList.add(...inactiveTabCls);
             }
         });
-    </script>
+
+        if (tab === 'classified' && currentRefId) loadClassified();
+    }
+
+    // ── Toast ─────────────────────────────────────────────────────────────────
+    function showToast(msg, isError = false) {
+        const toast = document.getElementById('toast');
+        toast.textContent = msg;
+        toast.className = `fixed bottom-5 right-5 px-5 py-3 rounded-lg text-white text-sm font-bold shadow-xl z-50 transition-all ${isError ? 'bg-red-700' : 'bg-green-700'}`;
+        toast.classList.remove('hidden');
+        clearTimeout(window._toastTimer);
+        window._toastTimer = setTimeout(() => toast.classList.add('hidden'), 3000);
+    }
+
+    function escHtml(s) {
+        return String(s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;');
+    }
+</script>
 </body>
 </html>

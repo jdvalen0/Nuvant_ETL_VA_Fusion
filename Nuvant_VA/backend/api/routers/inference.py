@@ -52,6 +52,10 @@ _auto_resume_tasks: Dict[tuple, asyncio.Task] = {}
 _inspect_metrics_counter: Dict[tuple, int] = {}
 _last_plc_defect: Dict[tuple, bool] = {}
 
+# Temporal debounce: require N consecutive anomalous frames before saving/alerting
+_defect_consec_count: Dict[tuple, int] = {}   # consecutive anomaly frame count
+_defect_active_flag: Dict[tuple, bool] = {}   # True = defect event already saved this burst
+
 
 def get_db():
     db = SessionLocal()
@@ -160,17 +164,29 @@ def _save_defect_on_detect(
     ref_id: int, line_id: int, point_id: int,
     jpeg_bytes: bytes, score: float, embedding: Optional[list],
     inspection_id: Optional[int] = None,
+    heatmap_b64: Optional[str] = None,
 ) -> Optional[int]:
-    """Guarda defecto detectado (sin clasificar). Retorna defect_log_id."""
+    """Guarda defecto detectado (sin clasificar) + heatmap PNG. Retorna defect_log_id."""
     try:
         storage = get_storage_path(ref_id, point_id, line_id)
         defects_dir = storage / "defects"
         defects_dir.mkdir(parents=True, exist_ok=True)
-        ts = datetime.utcnow().strftime("%Y%m%d_%H%M%S")
-        fname = f"defect_{ts}_{os.getpid()}.jpg"
-        img_path = defects_dir / fname
+        ts = datetime.utcnow().strftime("%Y%m%d_%H%M%S_%f")
+        stem = f"defect_{ts}_{os.getpid()}"
+        img_path = defects_dir / f"{stem}.jpg"
+        heatmap_path = defects_dir / f"{stem}_heatmap.png"
+
         with open(img_path, "wb") as f:
             f.write(jpeg_bytes)
+
+        # Persistir heatmap para mostrar en cola de clasificación
+        if heatmap_b64:
+            try:
+                heatmap_bytes = base64.b64decode(heatmap_b64)
+                with open(heatmap_path, "wb") as f:
+                    f.write(heatmap_bytes)
+            except Exception as he:
+                print(f"[DefectLog] Heatmap no guardado: {he}")
 
         with SessionLocal() as db:
             sin_clasificar = db.query(DefectType).filter(DefectType.name == "Sin clasificar").first()
@@ -180,7 +196,7 @@ def _save_defect_on_detect(
                 inspection_id=inspection_id,
                 anomaly_score=score,
                 is_defect=1,
-                defect_type_id=dtype_id,  # Sin clasificar (tipo en catálogo)
+                defect_type_id=dtype_id,
                 image_path=str(img_path),
                 embedding=embedding,
             )
@@ -572,15 +588,36 @@ async def camera_feed(websocket: WebSocket):
                             "ref_id": ref_id_to_use, "line_id": current_line_id,
                             "point_id": current_point_id, "source": "camera"
                         })
-                        # Guardar defecto al detectar (defect_type_id=NULL = sin clasificar)
+                        # Debounce temporal: N frames consecutivos para confirmar defecto
+                        debounce_n = int(os.getenv("INSPECT_DEBOUNCE_FRAMES", "3"))
+                        buf_key = (current_line_id, current_point_id)
                         if result.get("is_defect"):
-                            defect_id = _save_defect_on_detect(
-                                ref_id_to_use, current_line_id, current_point_id,
-                                jpeg_bytes, result.get("score", 0.0), result.get("embedding"),
-                                inspection_id=current_inspection_id,
-                            )
-                            if defect_id:
-                                result["defect_log_id"] = defect_id
+                            _defect_consec_count[buf_key] = _defect_consec_count.get(buf_key, 0) + 1
+                            confirmed = _defect_consec_count[buf_key] >= debounce_n
+                            already_saved = _defect_active_flag.get(buf_key, False)
+                            if confirmed and not already_saved:
+                                _defect_active_flag[buf_key] = True
+                                defect_id = _save_defect_on_detect(
+                                    ref_id_to_use, current_line_id, current_point_id,
+                                    jpeg_bytes, result.get("score", 0.0), result.get("embedding"),
+                                    inspection_id=current_inspection_id,
+                                    heatmap_b64=result.get("heatmap"),
+                                )
+                                if defect_id:
+                                    result["defect_log_id"] = defect_id
+                                    print(
+                                        f"[DefectLog] Guardado id={defect_id} ref={ref_id_to_use} "
+                                        f"insp={current_inspection_id} score={result.get('score', 0):.2f}"
+                                    )
+                            result["debounce_count"] = _defect_consec_count[buf_key]
+                            result["debounce_confirmed"] = confirmed
+                        else:
+                            _defect_consec_count[buf_key] = 0
+                            _defect_active_flag[buf_key] = False
+                            # Siempre incluir campos de debounce para que el frontend
+                            # pueda distinguir estado (es_defecto=False → count/confirmed=0/False)
+                            result["debounce_count"] = 0
+                            result["debounce_confirmed"] = False
                         # Señal PLC S7 (solo escribe si cambió)
                         # Capturar valores en closure para evitar bug: lambda ejecuta async, variables pueden haber cambiado
                         _lid, _pid = current_line_id, current_point_id
@@ -646,30 +683,34 @@ def _sync_process_frame(jpeg_bytes, detector, extractor, sensitivity,
     img = cv2.imdecode(nparr, cv2.IMREAD_COLOR)
     if img is None: return {"is_defect": False, "score": 0.0, "fps": 0, "error": "decode_failed"}
 
-    try:
-        features = extractor.extract(img)
-    except Exception as e:
-        return {"is_defect": False, "score": 0.0, "fps": 0, "frame_rejected": True, "error": str(e)}
-
-    heatmap_b64 = None
+    features = None
     if is_patchcore:
+        # BUG FIX: PatchCore NO depende del extractor para detección. Ejecutar predict() PRIMERO.
+        # Antes: extractor fallaba (ej. filtro calidad) → return is_defect=False sin ejecutar PatchCore.
         is_anomaly, score, heatmap = detector.predict(image=img, sensitivity_offset=sensitivity)
+        heatmap_b64 = None
         if heatmap is not None:
             heatmap_colored = cv2.applyColorMap((heatmap * 255).astype(np.uint8), cv2.COLORMAP_JET)
             _, buf = cv2.imencode(".png", heatmap_colored)
             heatmap_b64 = base64.b64encode(buf).decode("utf-8")
+        if is_anomaly:
+            try:
+                features = extractor.extract(img)
+            except Exception:
+                pass
     else:
+        try:
+            features = extractor.extract(img)
+        except Exception as e:
+            return {"is_defect": False, "score": 0.0, "fps": 0, "frame_rejected": True, "error": str(e)}
         is_anomaly, score = detector.predict(features, sensitivity_offset=sensitivity)
+        heatmap_b64 = None
 
     proc_ms = (time.time() - start) * 1000
-    
-    # RECONOCIMIENTO (Sincrónico)
-    # Nota: _recognize_defect necesita DB. Para simplificar, lo llamamos fuera o pasamos sesión.
-    # Pero para inferencia rápida, a menudo se omite o se cachea.
-    # Aquí abrimos una mini-sesión si es necesario o lo dejamos para después.
+
     recognition = None
     with SessionLocal() as db:
-        recognition = _recognize_defect(db, ref_id, features) if is_anomaly else None
+        recognition = _recognize_defect(db, ref_id, features) if (is_anomaly and features is not None) else None
 
     return {
         "is_defect": bool(is_anomaly),
@@ -677,7 +718,7 @@ def _sync_process_frame(jpeg_bytes, detector, extractor, sensitivity,
         "anomaly_index": float(max(0.0, min(100.0, 100.0 - float(score)))),
         "fps": round(1000.0 / (proc_ms + 1e-1), 1),
         "timestamp": time.time(),
-        "embedding": features.tolist() if is_anomaly else None,
+        "embedding": features.tolist() if (is_anomaly and features is not None) else None,
         "recognition": recognition,
         "heatmap": heatmap_b64,
         "model_version": model_version,
@@ -908,6 +949,10 @@ async def set_bridge_mode(req: BridgeModeRequest):
     }
     key = (req.line_id, req.point_id)
     if req.mode == "INSPECT":
+        # Reiniciar debounce: evita que el estado de la sesión anterior
+        # contamine la nueva inspección (e.g. count=2 → confirmaría en 1 frame)
+        _defect_consec_count[key] = 0
+        _defect_active_flag[key] = False
         with SessionLocal() as db:
             insp = Inspection(reference_id=req.ref_id)  # nullable si ref no seleccionada
             db.add(insp)
@@ -1005,27 +1050,33 @@ async def _process_frame(jpeg_bytes, detector, extractor, sensitivity,
     if img is None:
         return {"is_defect": False, "score": 0.0, "fps": 0, "error": "decode_failed"}
 
-    try:
-        features = extractor.extract(img)
-    except ValueError as qe:
-        return {
-            "is_defect": False, "score": 0.0, "fps": 0,
-            "frame_rejected": True, "quality_warning": str(qe),
-            "model_version": model_version,
-        }
-
-    heatmap_b64 = None
+    features = None
     if is_patchcore:
         is_anomaly, score, heatmap = detector.predict(image=img, sensitivity_offset=sensitivity)
+        heatmap_b64 = None
         if heatmap is not None:
             heatmap_colored = cv2.applyColorMap((heatmap * 255).astype(np.uint8), cv2.COLORMAP_JET)
             _, buf = cv2.imencode(".png", heatmap_colored)
             heatmap_b64 = base64.b64encode(buf).decode("utf-8")
+        if is_anomaly:
+            try:
+                features = extractor.extract(img)
+            except Exception:
+                pass
     else:
+        try:
+            features = extractor.extract(img)
+        except ValueError as qe:
+            return {
+                "is_defect": False, "score": 0.0, "fps": 0,
+                "frame_rejected": True, "quality_warning": str(qe),
+                "model_version": model_version,
+            }
         is_anomaly, score = detector.predict(features, sensitivity_offset=sensitivity)
+        heatmap_b64 = None
 
     proc_ms = (time.time() - start) * 1000
-    recognition = _recognize_defect(db, ref_id, features) if is_anomaly else None
+    recognition = _recognize_defect(db, ref_id, features) if (is_anomaly and features is not None) else None
 
     return {
         "is_defect": bool(is_anomaly),
@@ -1033,7 +1084,7 @@ async def _process_frame(jpeg_bytes, detector, extractor, sensitivity,
         "anomaly_index": float(max(0.0, min(100.0, 100.0 - float(score)))),
         "fps": round(1000.0 / (proc_ms + 1e-1), 1),
         "timestamp": time.time(),
-        "embedding": features.tolist() if is_anomaly else None,
+        "embedding": features.tolist() if (is_anomaly and features is not None) else None,
         "recognition": recognition,
         "heatmap": heatmap_b64,
         "model_version": model_version,

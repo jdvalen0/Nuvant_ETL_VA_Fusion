@@ -71,12 +71,24 @@ def _convert_to_numpy(st_image):
 
 
 def _grab_one_frame(ds, timeout_ms=5000, max_tries=30):
-    """Intenta obtener un frame completo; retorna numpy BGR o None."""
-    for _ in range(max_tries):
-        with ds.retrieve_buffer(timeout=timeout_ms) as buf:
-            if buf.info.is_incomplete or not buf.info.is_image_present:
+    """Intenta obtener un frame completo; retorna numpy BGR o None.
+    Timeouts de RetrieveBuffer se reintentan; otras excepciones se propagan.
+    Nota: bloquea el event loop durante captura (StApiPy no es thread-safe)."""
+    for attempt in range(max_tries):
+        try:
+            with ds.retrieve_buffer(timeout=timeout_ms) as buf:
+                if buf.info.is_incomplete or not buf.info.is_image_present:
+                    continue
+                return _convert_to_numpy(buf.get_image())
+        except Exception as e:
+            err_str = str(e).lower()
+            is_timeout = any(
+                x in err_str for x in ("timeout", "retrievebuffer", "retrieve_buffer", "istdatastream")
+            )
+            if is_timeout and attempt < max_tries - 1:
+                time.sleep(0.1)
                 continue
-            return _convert_to_numpy(buf.get_image())
+            raise
     return None
 
 
@@ -313,8 +325,8 @@ async def bridge_loop():
                             frame = camera.grab()
                         except Exception as grab_err:
                             err_str = str(grab_err).lower()
-                            if "timeout" in err_str or "retrievebuffer" in err_str:
-                                print("[Bridge] Timeout captura (reintentando): {}".format(grab_err)[:80])
+                            if any(x in err_str for x in ("timeout", "retrievebuffer", "retrieve_buffer", "istdatastream")):
+                                print("[Bridge] Timeout captura (reintentando): {}".format(grab_err)[:100])
                                 await asyncio.sleep(0.5)
                                 continue
                             raise
@@ -369,8 +381,13 @@ async def bridge_loop():
             retry_delay = min(retry_delay * 2, 30.0)  # backoff exponencial
 
         except Exception as e:
-            print("[Bridge] Error inesperado: {}".format(e))
+            err_str = str(e).lower()
+            if any(x in err_str for x in ("timeout", "retrievebuffer", "retrieve_buffer")):
+                print("[Bridge] Error captura (reintentando conexión en {}s): {}".format(retry_delay, e)[:120])
+            else:
+                print("[Bridge] Error inesperado (reintentando en {}s): {}".format(retry_delay, e))
             await asyncio.sleep(retry_delay)
+            retry_delay = min(retry_delay * 1.5, 30.0)
 
     camera.disconnect()
 
