@@ -35,9 +35,8 @@ UI:
 |-----------|-----------|
 | `INSTRUCCIONES_OPERATIVAS.md` | Comandos Docker, flujo operativo completo, PLC, cámara. |
 | `DOCUMENTACION_TECNICA.md` | Arquitectura, API, frontend y parámetros. |
-| `AUDITORIA_CAMBIOS_INSPECCION.md` | Modelo inspección, informe por sesión, correcciones BUG-1 a BUG-6. |
+| `CHANGELOG_ESTADO_ACTUAL.md` | Flujo vigente, correcciones aplicadas, rebuild. |
 | `CAPTURA_LOGS_PRUEBAS.md` | Cómo capturar y guardar logs durante pruebas. |
 | `OPERACION_SERVIDOR_REMOTO.md` | Despliegue, operación en servidor y recuperación. |
 | `GUIA_AJUSTES_PRODUCCION.md` | Metodología de tuning (`contamination`, `sensOffset`). |
 | `ARQUITECTURA_Y_TEORIA_PHD.md` | Fundamento científico PatchCore. |
-| `AUDITORIA_PRE_PRUEBAS.md` | Checklist pre-pruebas, cuándo reconstruir. |

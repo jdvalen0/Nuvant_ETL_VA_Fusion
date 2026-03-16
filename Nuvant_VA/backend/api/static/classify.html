@@ -118,13 +118,16 @@
     </header>
 
     <!-- Controles superiores -->
-    <div class="flex flex-wrap gap-3 items-center mb-6 bg-slate-800 p-4 rounded-xl border border-slate-700">
+        <div class="flex flex-wrap gap-3 items-center mb-6 bg-slate-800 p-4 rounded-xl border border-slate-700">
         <div class="flex items-center gap-2">
             <label class="text-slate-400 text-sm">Referencia:</label>
             <select id="refSelect" onchange="onRefChange()" class="bg-slate-900 border border-slate-600 rounded px-3 py-2 text-sm min-w-[220px]">
                 <option value="">Seleccione...</option>
             </select>
         </div>
+        <span id="inspection-filter-badge" class="hidden text-xs bg-amber-900/60 text-amber-300 px-3 py-1.5 rounded border border-amber-800">
+            Inspección #<span id="inspection-filter-id">-</span>
+        </span>
         <button onclick="loadQueue()" class="bg-cyan-600 hover:bg-cyan-500 px-4 py-2 rounded text-sm font-semibold">
             🔄 Actualizar
         </button>
@@ -183,19 +186,32 @@
     const API = `${window.location.origin}/api`;
     let defectTypes = [];
     let currentRefId = null;
+    let currentInspectionId = null;
     let lbCurrentId = null;
     let lbHasHeatmap = false;
     let activeTab = 'pending';
 
     // ── Init ─────────────────────────────────────────────────────────────────
     document.addEventListener('DOMContentLoaded', async () => {
-        await Promise.all([loadDefectTypes(), loadRefs()]);
-        // Auto-select from URL param or localStorage
-        const savedRef = localStorage.getItem('nuvant_classify_ref');
-        if (savedRef) {
-            document.getElementById('refSelect').value = savedRef;
-            onRefChange();
+        const params = new URLSearchParams(window.location.search);
+        const urlRef = params.get('ref_id');
+        const urlInsp = params.get('inspection_id');
+        if (urlRef) currentRefId = urlRef;
+        if (urlInsp) currentInspectionId = urlInsp;
+        const badge = document.getElementById('inspection-filter-badge');
+        const badgeId = document.getElementById('inspection-filter-id');
+        if (currentInspectionId && badge && badgeId) {
+            badge.classList.remove('hidden');
+            badgeId.textContent = currentInspectionId;
         }
+
+        await Promise.all([loadDefectTypes(), loadRefs()]);
+        if (urlRef) document.getElementById('refSelect').value = urlRef;
+        else {
+            const savedRef = localStorage.getItem('nuvant_classify_ref');
+            if (savedRef) document.getElementById('refSelect').value = savedRef;
+        }
+        onRefChange(true);
     });
 
     async function loadRefs() {
@@ -214,9 +230,14 @@
         defectTypes = (await res.json()).filter(t => t.name !== 'Sin clasificar');
     }
 
-    function onRefChange() {
+    function onRefChange(preserveInspection) {
         const refId = document.getElementById('refSelect').value;
         currentRefId = refId;
+        if (!preserveInspection) {
+            currentInspectionId = null;
+            const badge = document.getElementById('inspection-filter-badge');
+            if (badge) badge.classList.add('hidden');
+        }
         if (refId) {
             localStorage.setItem('nuvant_classify_ref', refId);
             loadQueue();
@@ -230,7 +251,9 @@
     }
 
     async function loadPending() {
-        const res = await fetch(`${API}/references/${currentRefId}/unclassified_defects`);
+        let url = `${API}/references/${currentRefId}/unclassified_defects`;
+        if (currentInspectionId) url += `?inspection_id=${currentInspectionId}`;
+        const res = await fetch(url);
         if (!res.ok) return;
         const defects = await res.json();
 
@@ -415,7 +438,9 @@
     }
 
     async function refreshCounts() {
-        const pRes = await fetch(`${API}/references/${currentRefId}/unclassified_defects`);
+        let pUrl = `${API}/references/${currentRefId}/unclassified_defects`;
+        if (currentInspectionId) pUrl += `?inspection_id=${currentInspectionId}`;
+        const pRes = await fetch(pUrl);
         const pending = pRes.ok ? await pRes.json() : [];
         document.getElementById('stat-pending').textContent = pending.length;
         if (pending.length === 0) {

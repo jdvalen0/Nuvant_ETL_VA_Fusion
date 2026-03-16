@@ -20,7 +20,7 @@ Documento canónico del comportamiento real de la solución en producción.
 5. `PAUSE` (post-entrenamiento).
 6. `INSPECT` (inferencia continua + score + defect flag + reconocimiento opcional + heatmap + señal PLC si está configurada).
 
-**Inspección por sesión:** Cada "Iniciar Inspección" crea un registro `Inspection`; "Detener" cierra la sesión. Los defectos se asocian a la inspección activa. El informe se genera por inspección (solo defectos de esa sesión).
+**Inspección por sesión:** Cada "Iniciar Inspección" crea un registro `Inspection`; "Detener" cierra la sesión. Los defectos se asocian a la inspección activa (`inspection_id`). El informe se genera por inspección (solo defectos de esa sesión). Defectos reconocidos (similitud > 95% con clasificados previos) se guardan con tipo; los no reconocidos van a la cola como "Sin clasificar". La cola admite filtro por inspección (`?inspection_id=X`).
 
 Transporte:
 - `WS /api/inference/camera_feed`: bridge -> backend (metadata+JPEG, incl. `inspection_id`).

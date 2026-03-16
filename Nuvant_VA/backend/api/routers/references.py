@@ -1,6 +1,7 @@
 import base64
 import os
 from datetime import datetime
+from typing import Optional
 from fastapi import APIRouter, Depends, HTTPException, UploadFile, File, BackgroundTasks, Query
 from fastapi.responses import StreamingResponse, FileResponse
 from sqlalchemy.orm import Session
@@ -256,8 +257,12 @@ def get_defect_heatmap(defect_log_id: int, db: Session = Depends(get_db)):
 
 
 @router.get("/{ref_id}/unclassified_defects")
-def list_unclassified_defects(ref_id: int, db: Session = Depends(get_db)):
-    """Cola de defectos sin clasificar. Incluye has_image y has_heatmap para la UI."""
+def list_unclassified_defects(
+    ref_id: int,
+    inspection_id: Optional[int] = None,
+    db: Session = Depends(get_db),
+):
+    """Cola de defectos sin clasificar. Si inspection_id se indica, solo defectos de esa inspección."""
     ref = db.query(Reference).filter(Reference.id == ref_id).first()
     if not ref:
         raise HTTPException(404, "Referencia no encontrada")
@@ -267,6 +272,8 @@ def list_unclassified_defects(ref_id: int, db: Session = Depends(get_db)):
         q = q.filter((DefectLog.defect_type_id.is_(None)) | (DefectLog.defect_type_id == sin_clasificar.id))
     else:
         q = q.filter(DefectLog.defect_type_id.is_(None))
+    if inspection_id is not None:
+        q = q.filter(DefectLog.inspection_id == inspection_id)
     rows = q.order_by(DefectLog.timestamp.desc()).all()
 
     result = []
@@ -276,7 +283,7 @@ def list_unclassified_defects(ref_id: int, db: Session = Depends(get_db)):
         has_heatmap = bool(img_path) and os.path.isfile(img_path.rsplit(".", 1)[0] + "_heatmap.png")
         result.append({
             "id": r.id,
-            "timestamp": r.timestamp.isoformat() if r.timestamp else None,
+            "timestamp": r.timestamp.strftime("%Y-%m-%dT%H:%M:%SZ") if r.timestamp else None,
             "anomaly_score": round(r.anomaly_score, 4),
             "inspection_id": r.inspection_id,
             "has_image": has_image,
@@ -306,7 +313,7 @@ def list_classified_defects(ref_id: int, limit: int = 100, db: Session = Depends
         has_heatmap = bool(img_path) and os.path.isfile(img_path.rsplit(".", 1)[0] + "_heatmap.png")
         result.append({
             "id": r.id,
-            "timestamp": r.timestamp.isoformat() if r.timestamp else None,
+            "timestamp": r.timestamp.strftime("%Y-%m-%dT%H:%M:%SZ") if r.timestamp else None,
             "anomaly_score": round(r.anomaly_score, 4),
             "defect_type": dtype.name if dtype else "Desconocido",
             "inspection_id": r.inspection_id,
@@ -426,7 +433,7 @@ def _build_report_html(ref_name: str, ref_id: int, rows: list, db, unclassified_
         heatmap_data = _read_heatmap_base64(r.image_path) if r.image_path else ""
         rows_data.append({
             "id": r.id,
-            "timestamp": r.timestamp.strftime("%Y-%m-%d %H:%M:%S") if r.timestamp else "-",
+            "timestamp": r.timestamp.strftime("%Y-%m-%dT%H:%M:%SZ") if r.timestamp else "-",
             "score": round(r.anomaly_score, 4),
             "clasificacion": dtype.name if dtype else "Sin clasificar",
             "img_src": img_data,
@@ -475,11 +482,12 @@ def _build_report_html(ref_name: str, ref_id: int, rows: list, db, unclassified_
             img_tag = '<span class="no-img">Sin imagen</span>'
 
         badge_cls = "badge-ok" if d["clasificacion"] != "Sin clasificar" else "badge-pending"
+        ts_display = d['timestamp'] if d['timestamp'] == "-" else d['timestamp']
         rows_html += f"""
         <div class="defect-card">
           <div class="defect-meta">
-            <span class="defect-id">#{ d['id']}</span>
-            <span class="defect-ts">{d['timestamp']}</span>
+            <span class="defect-id">#{d['id']}</span>
+            <time class="defect-ts" datetime="{d['timestamp']}">{ts_display}</time>
             <span class="defect-score">Score: {d['score']}</span>
             <span class="badge {badge_cls}">{d['clasificacion']}</span>
           </div>
@@ -554,6 +562,20 @@ function toggleHeatmapLb(uid,showHeat){{
   if(img)img.style.display=showHeat?'none':'block';
   if(heat)heat.style.display=showHeat?'block':'none';
 }}
+// Convierte timestamps UTC almacenados en DB a hora local del navegador
+document.querySelectorAll('time.defect-ts[datetime]').forEach(function(el){{
+  var iso = el.getAttribute('datetime');
+  if(!iso || iso === '-') return;
+  try {{
+    var d = new Date(iso);
+    if(isNaN(d.getTime())) return;
+    el.textContent = d.toLocaleString(undefined, {{
+      year:'numeric', month:'2-digit', day:'2-digit',
+      hour:'2-digit', minute:'2-digit', second:'2-digit'
+    }});
+    el.title = 'UTC: ' + iso;
+  }} catch(e) {{}}
+}});
 </script>
 </body>
 </html>"""
@@ -631,11 +653,25 @@ def list_inspections(ref_id: int, db: Session = Depends(get_db)):
         {
             "id": r.id,
             "reference_id": r.reference_id,
-            "started_at": r.started_at.isoformat() if r.started_at else None,
-            "stopped_at": r.stopped_at.isoformat() if r.stopped_at else None,
+            "started_at": r.started_at.strftime("%Y-%m-%dT%H:%M:%SZ") if r.started_at else None,
+            "stopped_at": r.stopped_at.strftime("%Y-%m-%dT%H:%M:%SZ") if r.stopped_at else None,
         }
         for r in rows
     ]
+
+
+@router.get("/{ref_id}/inspections/{inspection_id}/unclassified_count")
+def unclassified_count(ref_id: int, inspection_id: int, db: Session = Depends(get_db)):
+    """Devuelve el número de defectos sin clasificar en una inspección."""
+    sin_cls_type = db.query(DefectType).filter(DefectType.name == "Sin clasificar").first()
+    sin_cls_id = sin_cls_type.id if sin_cls_type else None
+    rows = (
+        db.query(DefectLog)
+        .filter(DefectLog.reference_id == ref_id, DefectLog.inspection_id == inspection_id, DefectLog.is_defect == 1)
+        .all()
+    )
+    uncl = sum(1 for r in rows if r.defect_type_id is None or (sin_cls_id and r.defect_type_id == sin_cls_id))
+    return {"unclassified": uncl, "total": len(rows)}
 
 
 @router.get("/{ref_id}/inspections/{inspection_id}/report")
@@ -668,27 +704,18 @@ def report_by_inspection(
         .order_by(DefectLog.timestamp)
         .all()
     )
-    if not rows and insp.started_at:
-        # Fallback: defectos con inspection_id=NULL guardados dentro del rango de esta inspección.
-        # Acotado por started_at/stopped_at para evitar incluir entradas de otras sesiones.
-        stopped = insp.stopped_at or datetime.utcnow()
-        rows = (
-            db.query(DefectLog)
-            .filter(
-                DefectLog.reference_id == ref_id,
-                DefectLog.inspection_id.is_(None),
-                DefectLog.is_defect == 1,
-                DefectLog.timestamp >= insp.started_at,
-                DefectLog.timestamp <= stopped,
-            )
-            .order_by(DefectLog.timestamp)
-            .all()
-        )
-    # Permitir defectos sin clasificar en el informe (mostrar ambos)
+    # Sin fallback: el informe solo muestra defectos vinculados a esta inspección concreta.
+    # El fallback temporal fue eliminado porque generaba contaminación de defectos de otras sesiones.
+    # Bloquear informe si quedan defectos sin clasificar
     sin_cls_type = db.query(DefectType).filter(DefectType.name == "Sin clasificar").first()
     sin_cls_id = sin_cls_type.id if sin_cls_type else None
     uncl = sum(1 for r in rows if r.defect_type_id is None or (sin_cls_id and r.defect_type_id == sin_cls_id))
-    html, _ = _build_report_html(ref.name, ref_id, rows, db, unclassified_count=uncl)
+    if uncl > 0:
+        raise HTTPException(
+            status_code=409,
+            detail=f"Hay {uncl} defecto(s) sin clasificar. Clasifícalos en la cola antes de generar el informe."
+        )
+    html, _ = _build_report_html(ref.name, ref_id, rows, db, unclassified_count=0)
     images_deleted = _delete_defect_images(rows, db)
 
     fname = f"reporte_inspeccion_{inspection_id}_{datetime.utcnow().strftime('%Y%m%d_%H%M%S')}.html"

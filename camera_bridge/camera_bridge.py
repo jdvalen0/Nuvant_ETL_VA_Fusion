@@ -346,7 +346,11 @@ async def bridge_loop():
                             "camera_id":     CAMERA_ID,
                             "timestamp":     time.time()
                         })
-                        await ws.send(meta)
+                        try:
+                            await asyncio.wait_for(ws.send(meta), timeout=10.0)
+                        except asyncio.TimeoutError:
+                            print("[Bridge] Timeout enviando meta — backend no consume. Reconectando.")
+                            raise ConnectionError("Send timeout on meta")
 
                         # Frame como segundo mensaje (bytes JPEG)
                         ret, buf = cv2.imencode(".jpg", frame, encode_params)
@@ -355,7 +359,11 @@ async def bridge_loop():
                             continue
                         
                         jpeg_bytes = buf.tobytes()
-                        await ws.send(jpeg_bytes)
+                        try:
+                            await asyncio.wait_for(ws.send(jpeg_bytes), timeout=15.0)
+                        except asyncio.TimeoutError:
+                            print("[Bridge] Timeout enviando frame JPEG — backend no consume. Reconectando.")
+                            raise ConnectionError("Send timeout on frame")
                         
                         frame_count += 1
                         if frame_count % 10 == 0:
@@ -369,12 +377,13 @@ async def bridge_loop():
                 finally:
                     recv_task.cancel()
                     try:
-                        await recv_task
-                    except asyncio.CancelledError:
+                        await asyncio.wait_for(recv_task, timeout=5.0)
+                    except (asyncio.CancelledError, asyncio.TimeoutError):
                         pass
 
         except (websockets.exceptions.ConnectionClosed,
                 websockets.exceptions.InvalidURI,
+                ConnectionError,
                 OSError) as e:
             print("[Bridge] Desconexión: {}. Reintentando en {}s...".format(e, retry_delay))
             await asyncio.sleep(retry_delay)

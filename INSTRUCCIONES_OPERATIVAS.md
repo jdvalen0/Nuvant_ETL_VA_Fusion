@@ -75,9 +75,10 @@ docker compose up -d
    - **Iniciar Inspección**.
 
 7. **Durante la inspección**
-   - Los defectos se guardan automáticamente (sin clasificar).
+   - Defectos reconocidos (similitud > 95% con defectos ya clasificados): se guardan con tipo y van al informe.
+   - Defectos no reconocidos: se guardan como "Sin clasificar" y pasan a la cola.
    - Si pausa > 0: se pausa en defectos no reconocidos.
-   - Si pausa = 0: inspección continua, todo se guarda en cola.
+   - Si pausa = 0: inspección continua.
 
 8. **Detener inspección**  
    - **Detener** cuando termine el lote.
@@ -87,12 +88,15 @@ docker compose up -d
 ### Fase 3: Clasificación (obligatoria antes del informe)
 
 9. **Abrir cola de clasificación**  
-   - **Cola clasificación** (abre nueva pestaña).
+   - Seleccionar **inspección** en el desplegable.
+   - **Cola clasificación** (abre pestaña filtrada por esa inspección).
+   - Si no selecciona inspección antes, la cola muestra todos los defectos sin clasificar de la referencia.
 
-10. **Clasificar todos los defectos**
-    - Seleccionar referencia → **Cargar cola**.
-    - Para cada defecto: elegir tipo → **Clasificar**.
-    - Repetir hasta que la cola esté vacía.
+10. **Clasificar defectos no reconocidos**
+    - Los defectos que el sistema reconoce (similitud > 95% con defectos ya clasificados) se guardan con tipo y van directo al informe.
+    - Los no reconocidos aparecen en la cola como "Sin clasificar".
+    - Para cada uno: elegir tipo → **Clasificar**.
+    - Repetir hasta que la cola de esa inspección esté vacía.
 
 11. **Cerrar la pestaña** cuando aparezca:  
     "✓ Todos los defectos clasificados".
@@ -103,11 +107,14 @@ docker compose up -d
 
 12. **Generar informe**
     - En la pantalla principal: seleccionar **inspección** en el desplegable (junto al botón Informe).
+    - Si hay defectos sin clasificar en esa inspección, el botón Informe se deshabilita y muestra "⚠ N sin clasificar".
+    - Clasificar todos en la cola antes de poder generar.
     - Pulsar **Informe**.
 
 13. **Resultado**
-    - Se descarga un HTML con imágenes embebidas y clasificaciones.
-    - Solo se borran las imágenes de defectos de **esa inspección**.
+    - Se descarga un HTML con imágenes embebidas, clasificaciones y timestamps en hora local.
+    - Solo incluye defectos de **esa inspección** (reconocidos + clasificados manualmente).
+    - Tras generar, se borran las imágenes de defectos de esa inspección.
     - El informe se guarda en `Nuvant_VA/backend/local_storage/reports/`.
 
 **Nota:** El desplegable de inspecciones se actualiza al cambiar de referencia y al detener una inspección. Si no aparece ninguna inspección, asegúrese de haber pulsado **Detener** tras una sesión de inspección.
@@ -341,9 +348,9 @@ O en `docker-compose.yml` (bridge-l1-final, environment).
 | Mensaje | Acción |
 |---------|--------|
 | "Seleccione una inspección para generar el informe" | Elegir una inspección en el desplegable antes de **Informe**. |
-| "Debe clasificar TODOS los defectos" | Abrir **Cola clasificación** y clasificar todos (incl. tipo "Sin clasificar"). |
+| "Hay N defecto(s) sin clasificar" | Abrir **Cola clasificación** (con inspección seleccionada) y clasificar todos. |
 | "Seleccione un tipo de defecto" | Elegir un tipo en el desplegable antes de **Clasificar**. |
 | "Error de conexión" | Comprobar que el backend esté en marcha (`docker compose ps`). |
 | "Imagen no disponible" | El defecto se guardó sin imagen; se puede clasificar igual. |
-| Informe en blanco | Verificar que la inspección tenga defectos; si persiste, revisar rutas en `local_storage`. |
+| Informe en blanco | Verificar que la inspección tenga defectos detectados; clasificar los pendientes. |
 | "Timeout captura" / RetrieveBuffer | La cámara no entrega frames. Verificar: (1) host y cámara en misma subred; (2) si usas Force IP, la interfaz del host debe estar en 169.254.x.x; (3) probar sin Force IP: `CAMERA_FORCE_IP=` en .env. |

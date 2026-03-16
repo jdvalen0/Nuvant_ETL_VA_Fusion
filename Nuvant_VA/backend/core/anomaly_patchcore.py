@@ -426,6 +426,7 @@ class PatchCoreDetector:
             "image_size": self.image_size,
             "version": "V32_PatchCore",
             "calibration": "per_image_max_V32.5",
+            "train_margin": float(os.getenv("PATCHCORE_THRESHOLD_MARGIN", "1.0")),
         }
         joblib.dump(save_dict, path)
         print(f"[PatchCore V32] Model saved to {path}")
@@ -442,21 +443,23 @@ class PatchCoreDetector:
 
         raw_threshold = float(save_dict["threshold"])
         calibration = save_dict.get("calibration", "unknown")
+        saved_margin = float(save_dict.get("train_margin", 3.0))
+        target_margin = float(os.getenv("PATCHCORE_THRESHOLD_MARGIN", "1.0"))
 
-        # Load-time margin override for models calibrated with old per-patch method.
-        # Models calibrated with V32.5 (per_image_max) don't need this correction
-        # because their threshold already includes the margin.
-        # For legacy models: apply PATCHCORE_THRESHOLD_MARGIN to compensate.
-        load_margin = float(os.getenv("PATCHCORE_THRESHOLD_MARGIN", "3.0"))
         if "per_image_max" in calibration:
-            # New calibration: threshold already correct, no extra margin needed
-            self.threshold = raw_threshold
-            print(f"[PatchCore V32] Calibration: per-image-max (V32.5). Threshold: {self.threshold:.4f}")
+            # El threshold guardado incluye el margen de entrenamiento (saved_margin).
+            # Normalizamos al base y aplicamos el margen actual del entorno.
+            # Esto permite cambiar PATCHCORE_THRESHOLD_MARGIN sin reentrenar.
+            base_threshold = raw_threshold / saved_margin
+            self.threshold = base_threshold * target_margin
+            print(f"[PatchCore V32] Threshold: raw={raw_threshold:.4f} "
+                  f"(train_margin={saved_margin}×) → base={base_threshold:.4f} "
+                  f"× target_margin={target_margin} = {self.threshold:.4f}")
         else:
             # Legacy per-patch calibration: apply load-time margin correction
-            self.threshold = raw_threshold * load_margin
+            self.threshold = raw_threshold * target_margin
             print(f"[PatchCore V32] Calibration: legacy per-patch. "
-                  f"Raw: {raw_threshold:.4f} × {load_margin} = {self.threshold:.4f}")
+                  f"Raw: {raw_threshold:.4f} × {target_margin} = {self.threshold:.4f}")
 
         self.backbone_name = save_dict.get("backbone", "wide_resnet50_2")
         self.image_size = save_dict.get("image_size", (224, 224))

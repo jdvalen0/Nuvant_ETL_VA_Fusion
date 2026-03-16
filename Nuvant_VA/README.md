@@ -25,6 +25,6 @@ UI:
 
 - `../INSTRUCCIONES_OPERATIVAS.md` — operación, Docker, **señal PLC**, flujo inspección/informe
 - `../DOCUMENTACION_TECNICA.md` — arquitectura, API
-- `../AUDITORIA_CAMBIOS_INSPECCION.md` — modelo inspección, correcciones
+- `../CHANGELOG_ESTADO_ACTUAL.md` — flujo vigente, correcciones aplicadas
 - `../OPERACION_SERVIDOR_REMOTO.md`
 - `../GUIA_AJUSTES_PRODUCCION.md`

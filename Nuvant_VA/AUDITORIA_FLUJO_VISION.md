@@ -42,20 +42,26 @@
 
 ### ✅ Guardado de defectos al detectar
 - `_save_defect_on_detect()` en inference.py
-- Defecto detectado → DefectLog con tipo "Sin clasificar" y `inspection_id`
+- Defecto reconocido (similitud > 95% con clasificado previo) → DefectLog con ese tipo y `inspection_id`
+- Defecto no reconocido → DefectLog con tipo "Sin clasificar" y `inspection_id`
 - Imagen en `local_storage/line_N/point_M/ref_id/defects/`
 - `defect_log_id` enviado al frontend para clasificación posterior
 
+### ✅ Cola de clasificación
+- `GET /references/{ref_id}/unclassified_defects?inspection_id=X` — defectos sin clasificar (filtrable por inspección)
+- Abrir "Cola clasificación" con ref+inspección seleccionados → cola filtrada por esa inspección
+
 ### ✅ Clasificación de defectos
-- `log_defect` acepta `defect_log_id` opcional
+- `log_defect` acepta `defect_log_id` opcional y `inspection_id`
 - Con `defect_log_id` → actualiza defecto existente
 - Sin `defect_log_id` → crea nuevo (flujo manual/drag-drop)
 
 ### ✅ Informe con imágenes embebidas
 - **Por inspección**: seleccionar inspección → Informe
-- **Documento HTML** con imágenes embebidas (base64) y clasificaciones
+- **Bloqueado** si hay defectos sin clasificar en esa inspección (HTTP 409)
+- **Documento HTML** con imágenes embebidas (base64), clasificaciones y timestamps en hora local
 - **Tras generar**: borra solo imágenes de defectos de esa inspección
-- Fallback: si no hay defectos con `inspection_id`, incluye defectos con `inspection_id=NULL`
+- Solo defectos con `inspection_id` de esa inspección (sin fallback)
 
 ---
 
