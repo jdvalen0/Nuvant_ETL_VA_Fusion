@@ -57,6 +57,7 @@ _PLC_RETRY_INTERVAL = 30.0       # segundos mínimos entre reintentos si el PLC 
 # Temporal debounce: require N consecutive anomalous frames before saving/alerting
 _defect_consec_count: Dict[tuple, int] = {}   # consecutive anomaly frame count
 _defect_active_flag: Dict[tuple, bool] = {}   # True = defect event already saved this burst
+_lag_skip_count: Dict[tuple, int] = {}         # frames skipped by lag prevention
 
 
 def get_db():
@@ -505,10 +506,16 @@ async def camera_feed(websocket: WebSocket):
                 jpeg_bytes = message["bytes"]
                 buf_key = (current_line_id, current_point_id)
 
-                # LAG PREVENTION: INSPECT_LAG_SKIP_SEC=0 desactiva (procesa todos). >0 salta frames viejos.
-                lag_skip = float(os.getenv("INSPECT_LAG_SKIP_SEC", "0"))
+                # LAG PREVENTION: skip stale frames to always process the freshest available.
+                # 0.3s ≈ slightly above one inference cycle (~220ms on CPU).
+                lag_skip = float(os.getenv("INSPECT_LAG_SKIP_SEC", "0.3"))
                 if current_mode == "INSPECT" and lag_skip > 0:
-                    if time.time() - current_frame_ts > lag_skip:
+                    frame_age = time.time() - current_frame_ts
+                    if frame_age > lag_skip:
+                        _lag_skip_count[buf_key] = _lag_skip_count.get(buf_key, 0) + 1
+                        sc = _lag_skip_count[buf_key]
+                        if sc <= 5 or sc % 100 == 0:
+                            print(f"[LagSkip] L{current_line_id}P{current_point_id} frame age={frame_age:.3f}s > {lag_skip}s → skip (total={sc})")
                         continue
 
                 if current_mode == "TRAIN":
@@ -974,6 +981,9 @@ def _close_inspection(line_id: int, point_id: int):
     """Cierra la inspección activa (stopped_at) y la quita de _active_inspection."""
     key = (line_id, point_id)
     insp_id = _active_inspection.pop(key, None)
+    _defect_consec_count.pop(key, None)
+    _defect_active_flag.pop(key, None)
+    _lag_skip_count.pop(key, None)
     if insp_id is None:
         return
     try:
@@ -1011,6 +1021,7 @@ async def set_bridge_mode(req: BridgeModeRequest):
         # contamine la nueva inspección (e.g. count=2 → confirmaría en 1 frame)
         _defect_consec_count[key] = 0
         _defect_active_flag[key] = False
+        _lag_skip_count[key] = 0
         with SessionLocal() as db:
             insp = Inspection(reference_id=req.ref_id)  # nullable si ref no seleccionada
             db.add(insp)

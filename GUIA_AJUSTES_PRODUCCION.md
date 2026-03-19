@@ -1,104 +1,87 @@
-# Guía de Ajustes en Producción (Tuning Operativo)
+# Guía de Ajustes en Producción
 
-Guía de tuning sin modificar algoritmo.
+## 1. Parámetros y su uso
 
-## 1) Qué parámetro se usa, cuándo y para qué
+### 1.1 Entrenamiento
 
-### 1.1 `TRAIN_CAPTURE_LIMIT` (captura)
+| Parámetro | Dónde | Cuándo | Efecto |
+|-----------|-------|--------|--------|
+| `capture_limit` | UI / `TRAIN_CAPTURE_LIMIT` | TRAIN | Frames totales en buffer de captura |
+| `train_sample_size` | UI / `TRAIN_SAMPLE_SIZE` | train_from_camera | Muestra aleatoria del buffer para entrenar |
+| `contamination` | UI (Rigor) | Entrenamiento | Calibra umbral base. Mayor = más estricto |
 
-- Dónde: `docker-compose.yml` / runtime UI (`Captura (frames)`).
-- Cuándo actúa: modo `TRAIN`.
-- Para qué sirve: limita cuántos frames totales se guardan en buffer.
+### 1.2 Inspección en caliente
 
-### 1.2 `TRAIN_SAMPLE_SIZE` (muestra usada en entrenamiento)
+| Parámetro | Dónde | Cuándo | Efecto |
+|-----------|-------|--------|--------|
+| `sensOffset` | UI (Ajuste Umbral) | INSPECT | Modifica umbral sin reentrenar. Positivo = más estricto |
+| `pause_on_unknown_sec` | UI (Pausa defecto) | INSPECT | Pausa N segundos ante defecto no reconocido. 0 = continuo |
 
-- Dónde: `docker-compose.yml` / runtime UI (`Entrenar (frames)`).
-- Cuándo actúa: `train_from_camera`.
-- Para qué sirve: toma una muestra aleatoria de tamaño fijo desde lo capturado.
+### 1.3 Pipeline de detección (variables de entorno)
 
-### 1.3 `contamination` (rigor base del modelo)
+| Variable | Default | Requiere reentrenar | Efecto |
+|----------|---------|---------------------|--------|
+| `PATCHCORE_THRESHOLD_MARGIN` | 1.5 | Sí | Multiplicador de producción sobre umbral base |
+| `PATCHCORE_SCORE_PERCENTILE` | 99 | Sí | Percentil para agregación. 99 = robusto; 95 = más sensible |
+| `PATCHCORE_CORESET_RATIO` | 0.1 | Sí | Fracción de memory bank. Mayor = más preciso pero más lento |
+| `PATCHCORE_NEIGHBORS` | 9 | No | Vecinos k-NN. Mayor = scoring más estable, más lento |
+| `PATCHCORE_ROI_CROP` | 0.08 | Sí | Recorte de bordes. 0 = sin recorte |
+| `PATCHCORE_USE_CLAHE` | true | Sí | Normalización de contraste |
 
-- Dónde: UI (`Rigor / Contaminación`).
-- Cuándo actúa: entrenamiento (no inspección live).
-- Para qué sirve: calibrar el umbral base del modelo entrenado.
-- Sentido correcto:
-  - `contamination` mayor -> percentil menor -> umbral más bajo -> modelo más estricto.
-  - `contamination` menor -> percentil mayor -> umbral más alto -> modelo más tolerante.
+### 1.4 Control temporal (variables de entorno)
 
-### 1.4 `sensOffset` (sensibilidad en caliente)
+| Variable | Default | Requiere reentrenar | Efecto |
+|----------|---------|---------------------|--------|
+| `INSPECT_DEBOUNCE_FRAMES` | 1 | No | Frames anómalos consecutivos para confirmar defecto |
+| `INSPECT_LAG_SKIP_SEC` | 0.3 | No | Descarta frames con lag > N segundos. 0 = desactivado |
+| `INSPECT_OK_FRAMES_TO_RESET` | 5 | No | Frames OK para resetear flag de defecto activo |
 
-- Dónde: UI (`Ajuste de Umbral en Caliente`, rango -1000..1000).
-- Cuándo actúa: inspección live.
-- Para qué sirve: mover umbral sin reentrenar.
-- Sentido:
-  - positivo -> más estricto.
-  - negativo -> más tolerante.
+### 1.5 PLC S7 (archivo `.env` en raíz)
 
-### 1.5 `pca_variance` (compatibilidad)
+| Variable | Default | Descripción |
+|----------|---------|-------------|
+| `PLC_IP` | (vacío) | IP del PLC. Vacío = PLC deshabilitado |
+| `PLC_DB` | 1 | Data Block |
+| `PLC_BYTE` | 0 | Offset byte |
+| `PLC_BIT` | 0 | Bit (0–7) |
 
-- Dónde: UI (`Sensibilidad Varianza PCA`).
-- Estado actual: relevante para flujo legacy V31; en flujo dinámico V32 no es control principal de decisión.
+## 2. Rangos iniciales recomendados
 
-### 1.6 `pause_on_unknown_sec` (control operativo)
+- `capture_limit`: 100–300
+- `train_sample_size`: 30–150 (mínimo funcional: 5)
+- `contamination`: 0.01–0.03
+- `sensOffset`: iniciar en 0, ajustar durante inspección
+- `pause_on_unknown_sec`: 0 para inspección continua; 5–15 para clasificación asistida
+- `INSPECT_LAG_SKIP_SEC`: 0.3 (óptimo para ~220ms de inferencia en CPU)
 
-- Dónde: UI (`Pausa defecto (s)`).
-- Cuándo actúa: inspección, cuando hay anomalía sin reconocimiento previo.
-- Para qué sirve: dar tiempo al operador para clasificar antes de reanudar.
-
-### 1.7 PLC S7 (señal externa, opcional)
-
-- Dónde: `.env` en raíz del proyecto (`PLC_IP`, `PLC_DB`, `PLC_BYTE`, `PLC_BIT`).
-- Cuándo actúa: durante inspección, por cada frame procesado.
-- Para qué sirve: escribir un bit en el PLC: 1 = defecto, 0 = sin defecto. Permite integrar con línea (parada, señalización, etc.).
-- Configuración y pasos de prueba: `INSTRUCCIONES_OPERATIVAS.md` sección 3.
-
-## 2) Rango inicial recomendado
-
-- `capture_limit`: 100-300
-- `train_sample_size`: 30-100 (mínimo funcional: 5)
-- `contamination`: 0.01-0.03
-- `sensOffset`: iniciar en -100 y ajustar en operación
-- `pause_on_unknown_sec`: 5-15s según operación
-
-## 3) Estrategia de ajuste
+## 3. Estrategia de ajuste
 
 1. Fijar iluminación y posición de cámara.
-2. Ejecutar `CALIBRATE`.
-3. Capturar y entrenar con muestra representativa.
-4. Probar `INSPECT` mínimo 2-3 minutos en estático + eventos reales.
+2. `CALIBRATE`: verificar imagen en vivo.
+3. Capturar y entrenar con muestra representativa (mínimo 50 imágenes).
+4. `INSPECT` mínimo 2–3 minutos con rollo real.
 5. Ajustar en este orden:
-   - primero `sensOffset` (rápido, sin reentrenar),
-   - después `contamination` (requiere reentrenar) si el slider queda en extremos.
+   - **Primero `sensOffset`** (sin reentrenar, efecto inmediato).
+   - **Después `contamination`** (requiere reentrenar) si sensOffset queda en extremos.
+   - **`PATCHCORE_THRESHOLD_MARGIN`** si el rango de sensOffset no es suficiente.
 
-## 4) Matriz síntoma -> acción
+## 4. Matriz síntoma → acción
 
-- Muchos falsos positivos:
-  - mover `sensOffset` más negativo,
-  - si persiste, reducir `contamination` y reentrenar.
+| Síntoma | Acción rápida | Acción estructural |
+|---------|---------------|-------------------|
+| Muchos falsos positivos | `sensOffset` más negativo | Reducir `contamination`, reentrenar |
+| No detecta defectos reales | `sensOffset` más positivo | Aumentar `contamination`, reentrenar |
+| Score oscila en estático | Normal (ruido sensor). Verificar que el debounce de salida funciona | Reducir `PATCHCORE_SCORE_PERCENTILE` a 95 |
+| Lag en detección (procesa frames viejos) | `INSPECT_LAG_SKIP_SEC=0.2` | Reducir `CAMERA_FPS` o usar GPU |
+| Defectos duplicados en un evento | Aumentar `INSPECT_OK_FRAMES_TO_RESET` | — |
+| Defectos se pasan sin detectar | Reducir `INSPECT_DEBOUNCE_FRAMES` a 1 | Verificar FOV vs velocidad rollo |
 
-- No detecta defectos reales:
-  - mover `sensOffset` hacia 0/positivo,
-  - si persiste, aumentar `contamination` y reentrenar.
+## 5. Despliegue de cambios
 
-- Comportamiento inestable por lote/luz:
-  - repetir entrenamiento con muestra más representativa,
-  - verificar `PATCHCORE_USE_CLAHE=true`.
-
-## 5) Despliegue de cambios
-
-Cambios de código/config estática:
-
-```bash
-docker compose up -d --build --force-recreate nuvant-backend bridge-l1-final
-```
-
-Cambios solo operativos en UI:
-- no requieren rebuild.
-
-## 6) Puntos de código
-
-- `Nuvant_VA/backend/api/routers/inference.py`
-- `Nuvant_VA/backend/api/static/index.html`
-- `Nuvant_VA/backend/core/anomaly_patchcore.py`
-- `camera_bridge/camera_bridge.py`
-
+| Tipo de cambio | Acción |
+|----------------|--------|
+| Código Python/JS/HTML | `docker compose build --no-cache nuvant-backend && docker compose up -d` + reentrenar |
+| Variables en `docker-compose.yml` con "Requiere reentrenar=Sí" | Rebuild + reentrenar |
+| Variables con "Requiere reentrenar=No" | Solo restart: `docker compose down && docker compose up -d` |
+| Ajustes en UI (sensOffset, pausa) | Sin restart, efecto inmediato |
+| Variables en `.env` (PLC_IP, CAMERA_IP) | Solo restart |

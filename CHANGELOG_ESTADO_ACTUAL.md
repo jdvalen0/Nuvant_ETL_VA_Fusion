@@ -1,35 +1,77 @@
-# Changelog — Estado actual del sistema
+# Changelog — Estado Actual del Sistema
 
-**Última actualización:** 2026-03
-
----
-
-## Flujo vigente por inspección
-
-1. **Detección:** PatchCore marca anomalía → se guarda con `inspection_id` de la inspección activa.
-2. **Reconocimiento:** Si similitud > 95% con defecto ya clasificado → se guarda con ese tipo → va al informe.
-3. **Sin reconocer:** Se guarda como "Sin clasificar" → va a la cola para clasificación manual.
-4. **Cola:** Filtrable por inspección. Abrir "Cola clasificación" con ref+inspección seleccionados.
-5. **Informe:** Solo defectos de esa inspección. Bloqueado si hay defectos sin clasificar.
+**Última actualización:** 2026-03-18
 
 ---
 
-## Correcciones aplicadas (resumen)
+## Versión vigente: PatchCore V32.5
+
+### Motor de detección
+
+- **Re-weighting alineado al paper**: `_compute_distances` usa `(1-w)·d` (Eq. 3 del paper, arXiv:2106.08265) en lugar de la fórmula anterior `(2-w)·d`. Suprime scores de patches normales con match confiable, reduce falsos positivos.
+- **Agregación por percentil**: `np.percentile(score_map, 99)` reemplaza `np.max`. Robusto contra patches ruidosos aislados.
+- **Suavizado espacial**: GaussianBlur(3x3, σ=1.0) sobre el distance_map antes de calcular score. Preserva clusters de defecto, promedia ruido.
+- **Denoising de entrada**: GaussianBlur(3x3, σ=0.7) antes de CLAHE. Reduce ruido de sensor/JPEG sin degradar texturas.
+- **Calibración consistente**: `train()` aplica idéntico pipeline (smoothing + percentil) que `predict()`.
+- **Margen configurable**: `PATCHCORE_THRESHOLD_MARGIN` default 3.0 en `save()`, configurable vía env.
+
+### Lag prevention
+
+- **`INSPECT_LAG_SKIP_SEC=0.3`**: descarta frames con más de 300ms de antigüedad durante INSPECT. Elimina lag acumulado cuando la inferencia (~220ms) no alcanza los 15 FPS de captura. La cámara sigue a 15 FPS (necesario para TRAIN), pero el backend siempre procesa frames frescos.
+
+### Inspección y defectos
+
+- **Inspección por sesión**: cada Iniciar/Detener crea un registro `Inspection`. Defectos asociados por `inspection_id`.
+- **Debounce de entrada**: `INSPECT_DEBOUNCE_FRAMES=1` (confirma en primer frame anómalo).
+- **Debounce de salida**: `_defect_active_flag` previene re-guardar el mismo defecto en oscilación. Se resetea tras N frames OK consecutivos.
+- **Reconocimiento automático**: defectos con similitud >95% con clasificados previos se guardan con tipo automáticamente.
+- **Cola de clasificación**: filtrable por inspección.
+
+### Informes
+
+- Los informes **excluyen** defectos "Sin clasificar". Solo incluyen defectos reconocidos automáticamente y clasificados manualmente.
+- El botón de informe se **deshabilita** si hay defectos pendientes de clasificación.
+- HTML con imágenes embebidas (base64), clasificaciones, timestamps en hora local.
+- Tras generar, se borran las imágenes de defectos de esa inspección.
+
+### WebSocket y bridge
+
+- Reconexión del bridge preserva inspección activa (`_unregister_bridge` no cierra inspección).
+- `connectWs()` en frontend: nullifica handlers `onclose`/`onerror` antes de cerrar conexiones antiguas (previene loop de reconexión).
+- Broadcast con timeout de 5s para prevenir bloqueo por clientes lentos.
+- Inferencia ejecutada en `ThreadPoolExecutor` (no bloquea event loop).
+
+### Frontend
+
+- Badges diferenciados: "NUEVO DEFECTO REGISTRADO" (rojo) vs "DEFECTO EN SEGUIMIENTO" (ámbar) para el mismo evento.
+- Guard contra frames INSPECT tardíos tras detener inspección.
+- `window.focus` listener para actualizar estado del botón de informe al volver de cola de clasificación.
+
+---
+
+## Correcciones aplicadas (resumen acumulado)
 
 | Área | Corrección |
 |------|------------|
-| `inspection_id` | Se usa `_active_inspection` del backend (no frame_meta del bridge) para evitar NULL. |
-| Debounce | `INSPECT_DEBOUNCE_FRAMES=1` — primer frame anómalo guarda. |
-| Reconocimiento | `_recognize_defect` solo considera defectos ya clasificados (excluye "Sin clasificar"). |
-| Informe | Sin fallback por `inspection_id=NULL`; solo defectos vinculados a la inspección. |
-| Cola | `unclassified_defects?inspection_id=X` filtra por inspección. |
-| Timestamps | ISO 8601 con Z; conversión a hora local en informe y UI. |
-| Extractor | PatchCore se ejecuta antes que el extractor; no bloquea detección. |
+| Re-weighting | Alineado al paper (Eq. 3): `(1-w)·d` en vez de `(2-w)·d` |
+| Score aggregation | Percentil 99 en vez de max |
+| Spatial smoothing | GaussianBlur en distance_map para scoring |
+| Input denoising | GaussianBlur σ=0.7 antes de CLAHE |
+| Lag skip | Frames >0.3s descartados en INSPECT |
+| Defect tracking | `defect_log_id` broadcast para UX de seguimiento |
+| Report filter | Excluye "Sin clasificar" del informe |
+| Report button | Bloqueado si hay pendientes |
+| WS reconnect | Sin loop de reconexión |
+| Train buffer | Reset explícito al iniciar nueva captura |
+| Inference thread | `run_in_executor` para no bloquear event loop |
+| DB sessions | Localizadas por frame, sin lock de SQLite |
 
 ---
 
-## Rebuild tras cambios de código
+## Rebuild obligatorio
 
 ```bash
-docker compose build nuvant-backend && docker compose up -d --force-recreate nuvant-backend
+docker compose build --no-cache nuvant-backend && docker compose up -d
 ```
+
+**Después de rebuild con cambios en el pipeline de detección: reentrenar obligatoriamente cada referencia.**

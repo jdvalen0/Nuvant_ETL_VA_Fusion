@@ -1,175 +1,188 @@
-# Documentación Técnica (Estado Operativo Vigente)
+# Documentación Técnica — Estado Operativo Vigente
 
-Documento canónico del comportamiento real de la solución en producción.
-
-## 1) Topología y responsabilidades
+## 1. Topología
 
 | Componente | Ruta | Responsabilidad |
 |---|---|---|
-| Orquestación | `docker-compose.yml` | Arranque de backend y bridge, red, volúmenes, variables de entorno. |
-| Backend IA | `Nuvant_VA/backend/` | API FastAPI, entrenamiento, inferencia, WebSockets y persistencia. |
-| Bridge cámara | `camera_bridge/` | Captura frame BGR de cámara, codifica JPEG y envía por WS al backend. |
-| Frontend operativo | `Nuvant_VA/backend/api/static/index.html` | Flujo operativo (referencia, calibración, captura, entrenamiento, inspección, clasificación). |
+| Orquestación | `docker-compose.yml` | Servicios, red, volúmenes, variables de entorno |
+| Backend IA | `Nuvant_VA/backend/` | API FastAPI, entrenamiento, inferencia, WebSockets, persistencia |
+| Bridge cámara | `camera_bridge/` | Captura GigE Vision (stapipy), codifica JPEG, envía por WS |
+| Frontend | `Nuvant_VA/backend/api/static/` | `index.html` (operación), `classify.html` (cola clasificación) |
+| Motor detección | `Nuvant_VA/backend/core/anomaly_patchcore.py` | PatchCore V32.5 |
+| PLC S7 | `Nuvant_VA/backend/core/plc_s7.py` | Señal de defecto a PLC Siemens (opcional) |
 
-## 2) Flujo dinámico real
+## 2. Flujo dinámico
 
-1. `PAUSE` (estado seguro inicial al seleccionar referencia).
-2. `CALIBRATE` (video en vivo sin decisión de defecto).
-3. `TRAIN` (captura automática de frames hasta límite).
-4. `train_from_camera` (submuestreo aleatorio + entrenamiento PatchCore V32).
-5. `PAUSE` (post-entrenamiento).
-6. `INSPECT` (inferencia continua + score + defect flag + reconocimiento opcional + heatmap + señal PLC si está configurada).
+### Modos de operación
 
-**Inspección por sesión:** Cada "Iniciar Inspección" crea un registro `Inspection`; "Detener" cierra la sesión. Los defectos se asocian a la inspección activa (`inspection_id`). El informe se genera por inspección (solo defectos de esa sesión). Defectos reconocidos (similitud > 95% con clasificados previos) se guardan con tipo; los no reconocidos van a la cola como "Sin clasificar". La cola admite filtro por inspección (`?inspection_id=X`).
+1. **PAUSE**: estado seguro inicial.
+2. **CALIBRATE**: video en vivo sin procesamiento ML. Para ajustar foco/encuadre/iluminación.
+3. **TRAIN**: captura automática de frames hasta `capture_limit`. Buffer en memoria.
+4. **train_from_camera**: submuestreo aleatorio del buffer + entrenamiento PatchCore V32.5.
+5. **INSPECT**: inferencia continua con lag skip + debounce + guardado de defectos + heatmap + señal PLC.
 
-Transporte:
-- `WS /api/inference/camera_feed`: bridge -> backend (metadata+JPEG, incl. `inspection_id`).
-- `WS /api/inference/live/{line_id}/{point_id}`: backend -> UI (broadcast de estado y resultados).
-- `POST /api/inference/bridge/set_mode`: comando operativo hacia bridge.
+### Inspección por sesión
 
-## 3) Frontend: función exacta de cada control
+- Cada "Iniciar Inspección" crea un registro `Inspection` en DB.
+- "Detener" cierra la sesión (`stopped_at`).
+- Todos los defectos se asocian a la inspección activa (`inspection_id`).
+- El informe se genera por inspección.
 
-### 3.1 Panel referencia
+### Transporte
 
-- `Nombre de Nueva Referencia` + `Crear`: crea entidad de referencia en DB.
-- `Referencia Activa`: selecciona referencia para entrenar/inspeccionar.
-- `Eliminar`: borra referencia y datos asociados.
-- `Detener`: fuerza `PAUSE`.
+| Canal | Dirección | Contenido |
+|-------|-----------|-----------|
+| `WS /api/inference/camera_feed` | bridge → backend | Metadata JSON + JPEG binario |
+| `WS /api/inference/live/{line_id}/{point_id}` | backend → browser | Estado, resultados, imágenes |
+| `POST /api/inference/bridge/set_mode` | backend → bridge | Comandos de modo |
 
-### 3.2 Botones de cámara
+## 3. Motor PatchCore V32.5
 
-- `Calibrar Cámara`: envía `mode=CALIBRATE`; habilita validación visual de foco/encuadre/iluminación.
-- `Iniciar Captura Entrenamiento`: envía `mode=TRAIN` con límites configurados.
-- `Entrenar Modelo`: ejecuta `train_from_camera` con `contamination` y `sample_size`.
-- `Iniciar Inspección`: envía `mode=INSPECT` con parámetros runtime aplicables.
+### Pipeline de inferencia
 
-### 3.3 Parámetros de entrenamiento (Fase 1)
+```
+Imagen JPEG
+  → cv2.imdecode
+  → ROI crop (8% bordes)
+  → GaussianBlur(3x3, σ=0.7)    ← denoising sensor/JPEG
+  → CLAHE (clipLimit=2.0)        ← normalización lumínica
+  → Resize 224×224
+  → WideResNet50_2 (layer2+3)   ← extracción de features
+  → k-NN vs memory bank          ← distancias
+  → Density re-weighting (1-w)·d ← paper Eq. 3
+  → Reshape H×W
+  → GaussianBlur(3x3, σ=1.0)    ← smoothing espacial
+  → Percentil 99                 ← score robusto
+  → score vs threshold           ← decisión
+```
 
-- `Rigor / Contaminación` (`contRange`):
-  - etapa: entrenamiento.
-  - uso: calibración base del umbral del modelo.
-  - se aplica al entrenar; no cambia inferencia ya entrenada hasta nuevo entrenamiento.
+### Density re-weighting (Eq. 3 del paper)
 
-- `Sensibilidad (Varianza PCA)` (`pcaRange`):
-  - etapa: entrenamiento en flujo legacy V31.
-  - en flujo dinámico V32 (`train_from_camera`) no gobierna la detección final; se mantiene por compatibilidad histórica.
+```
+w = max(exp(d_j)) / Σ exp(d_j)     para j ∈ k-NN
+score = (1 - w) · base_dist
+```
 
-- `Captura (frames)` (`captureLimitInput`):
-  - etapa: `TRAIN`.
-  - uso: límite de frames que se guardan en buffer de entrenamiento.
+- `w` captura qué tan dominante es el vecino más lejano.
+- `(1-w)` suprime scores de patches con match confiable (normal bien cubierto).
+- Rango típico de `(1-w)`: 0.65–0.89.
 
-- `Entrenar (frames)` (`trainSampleSizeInput`):
-  - etapa: `train_from_camera`.
-  - uso: tamaño de muestra aleatoria tomada desde el buffer capturado.
+### Calibración de umbral
 
-- `Pausa defecto (s)` (`pauseOnUnknownInput`):
-  - etapa: `INSPECT`.
-  - uso: al detectar anomalía no reconocida, pasa a `PAUSE` por N segundos y luego reanuda `INSPECT`.
+- Se calcula sobre las distancias **máximas por imagen** del set de entrenamiento.
+- Percentil 97% (con `contamination=0.03`) × margen de producción (default 3.0×).
+- El mismo pipeline (smoothing + percentil) se aplica en `train()` y `predict()`.
 
-### 3.4 Parámetro de operación en caliente (Fase 2)
+## 4. Mecanismos de control temporal
 
-- `Ajuste de Umbral en Caliente` (`sensOffset`, rango -1000..1000):
-  - etapa: inspección.
-  - uso: modificar umbral sin reentrenar.
-  - efecto:
-    - positivo: más estricto (más detecciones).
-    - negativo: más tolerante (menos detecciones).
+### Lag skip (`INSPECT_LAG_SKIP_SEC`)
 
-### 3.5 Métricas en pantalla
+La cámara captura a 15 FPS (66ms/frame) pero la inferencia toma ~220ms/frame en CPU. Sin lag skip, el buffer WS acumula frames y el backend procesa frames obsoletos con lag creciente.
 
-- `Puntaje / Velocidad`:
-  - puntaje mostrado: calidad (0..100), donde menor valor implica mayor anomalía relativa.
-  - fps: velocidad de procesamiento inferencia.
+Con `INSPECT_LAG_SKIP_SEC=0.3`: frames con >300ms de antigüedad se descartan. El backend siempre procesa el frame más reciente disponible. Solo aplica en modo INSPECT.
 
-- `Tendencia de Anomalía`:
-  - señal graficada: `anomaly_index` (0=normal, 100=crítico), derivado de `100 - score`.
-  - actualización por cada mensaje live con score/anomaly index.
+### Debounce de entrada (`INSPECT_DEBOUNCE_FRAMES`)
 
-### 3.6 Clasificación de defectos
+N frames consecutivos anómalos requeridos para confirmar un defecto. Default: 1 (inmediato). Con N=1, el umbral `PATCHCORE_THRESHOLD_MARGIN` controla falsos positivos.
 
-- `Guardar Defecto`: persiste tipo seleccionado + score + embedding para reconocimiento posterior.
-- Si la anomalía no tiene coincidencia previa, puede activarse pausa temporal según configuración.
-- Tipo "Sin clasificar" existe en el catálogo; defectos nuevos se guardan con ese tipo.
+### Debounce de salida (`_defect_active_flag`)
 
-### 3.7 Informe por inspección
+Una vez guardado un defecto, el flag permanece activo. Se requieren N frames OK consecutivos (`INSPECT_OK_FRAMES_TO_RESET`, default 5) para resetear. Previene re-guardar el mismo defecto en oscilación de score. Para rollo a 15 FPS, 5 frames OK = 0.33s de material nuevo sin defecto.
 
-- Desplegable **Inspección**: lista sesiones (Iniciar→Detener) de la referencia seleccionada.
-- **Informe**: genera HTML con defectos de la inspección elegida; borra solo imágenes de esa inspección.
+## 5. Variables de entorno
 
-## 4) Parámetros y dónde se aplican
+### Backend (`docker-compose.yml`)
 
-### 4.1 Variables de entorno backend (`docker-compose.yml`)
+| Variable | Default | Descripción |
+|----------|---------|-------------|
+| `PATCHCORE_CORESET_RATIO` | 0.1 | Fracción de patches retenidos en memory bank |
+| `PATCHCORE_NEIGHBORS` | 9 | Vecinos k-NN para scoring |
+| `PATCHCORE_ROI_CROP` | 0.08 | Recorte perimetral (fracción) |
+| `PATCHCORE_USE_CLAHE` | true | Normalización local de contraste |
+| `PATCHCORE_THRESHOLD_MARGIN` | 1.5 | Multiplicador de producción sobre umbral base |
+| `PATCHCORE_SCORE_PERCENTILE` | 99 | Percentil para agregación de score |
+| `INSPECT_DEBOUNCE_FRAMES` | 1 | Frames anómalos para confirmar defecto |
+| `INSPECT_LAG_SKIP_SEC` | 0.3 | Descarta frames más viejos que N segundos |
+| `INSPECT_OK_FRAMES_TO_RESET` | 5 | Frames OK para resetear flag de defecto |
+| `TRAIN_CAPTURE_LIMIT` | 200 | Frames máximos en buffer de captura |
+| `TRAIN_SAMPLE_SIZE` | 150 | Muestra aleatoria para entrenamiento |
+| `PLC_IP` | (vacío) | IP del PLC S7. Vacío = PLC deshabilitado |
+| `PLC_DB` | 1 | Data Block del PLC |
+| `PLC_BYTE` | 0 | Offset byte |
+| `PLC_BIT` | 0 | Bit dentro del byte (0–7) |
 
-- `TRAIN_CAPTURE_LIMIT`: valor por defecto de captura máxima en `TRAIN`.
-- `TRAIN_SAMPLE_SIZE`: valor por defecto de muestra usada en entrenamiento dinámico.
-- `PATCHCORE_CORESET_RATIO`: fracción de parches retenidos en memory bank.
-- `PATCHCORE_NEIGHBORS`: vecinos para cálculo de distancia en PatchCore.
-- `PATCHCORE_ROI_CROP`: recorte perimetral para eliminar borde no útil.
-- `PATCHCORE_USE_CLAHE`: normalización local de contraste para robustez lumínica.
+### Bridge
 
-**PLC S7 (opcional, vía `.env`):**
-- `PLC_IP`: IP del PLC Siemens S7. Si no se define, el PLC queda deshabilitado.
-- `PLC_DB`, `PLC_BYTE`, `PLC_BIT`: dirección del bit (ej. DB1.DBX0.0).
-- `PLC_RACK`, `PLC_SLOT`: rack y slot S7.
-- La señal se escribe durante inspección: bit 1 = defecto, bit 0 = sin defecto.
-- Detalle completo: `INSTRUCCIONES_OPERATIVAS.md` sección 3.
+| Variable | Default | Descripción |
+|----------|---------|-------------|
+| `CAMERA_MODE` | live | `live` o `simulate` |
+| `CAMERA_FPS` | 15.0 | Tasa de captura objetivo |
+| `CAMERA_LINE_ID` | 1 | ID de línea |
+| `CAMERA_POINT_ID` | 1 | ID de punto de inspección |
+| `CAMERA_IP` | (vacío) | IP cámara GigE (vacío = primera disponible) |
+| `CAMERA_FORCE_IP` | (vacío) | Forzar IP a la cámara al conectar |
 
-### 4.2 Variables de entorno bridge
+## 6. API principal
 
-- `CAMERA_MODE`: `live` o `simulate`.
-- `CAMERA_FPS`: tasa de captura objetivo.
-- `VA_BACKEND_WS_URL`: endpoint WS backend.
-- `CAMERA_LINE_ID`, `CAMERA_POINT_ID`, `CAMERA_ID`, `CAMERA_IP`: identificación y selección de dispositivo.
-
-## 5) API de inspección
+### Inspección
 
 | Endpoint | Descripción |
 |----------|-------------|
-| `GET /api/references/{ref_id}/inspections` | Lista inspecciones de una referencia. |
-| `GET /api/references/{ref_id}/inspections/{inspection_id}/report` | Informe HTML de una inspección (solo defectos de esa sesión). |
-| `GET /api/references/{ref_id}/report` | Informe legacy por referencia (todos los defectos, requiere clasificación completa). |
+| `GET /api/references/{ref_id}/inspections` | Lista inspecciones |
+| `GET /api/references/{ref_id}/inspections/{insp_id}/report` | Informe HTML |
+| `GET /api/references/{ref_id}/unclassified_defects?inspection_id=X` | Cola clasificación |
+| `POST /api/inference/bridge/set_mode` | Cambiar modo (INSPECT, TRAIN, CALIBRATE, PAUSE) |
+| `POST /api/inference/train_from_camera` | Entrenar desde buffer de cámara |
+| `GET /api/inference/bridge/status` | Estado del bridge |
 
-## 6) Persistencia
+### Informes
 
-Volúmenes activos:
-- `./Nuvant_VA/backend/local_storage:/app/local_storage`
-- `./Nuvant_VA/backend/db:/app/db`
-- `./Nuvant_VA/backend/logs:/app/logs`
+- Solo incluyen defectos **clasificados** (automáticamente reconocidos + clasificados manualmente).
+- Defectos "Sin clasificar" se **excluyen** del informe.
+- El botón de informe se deshabilita si hay defectos pendientes de clasificación en esa inspección.
+- Tras generar, se borran las imágenes de defectos de esa inspección.
 
-Persisten modelos (`model.pkl`), base SQLite y logs al recrear contenedores.
+## 7. Frontend
 
-## 7) Comportamiento de detección y control
+### Badges de detección
 
-- Modelo principal para referencias nuevas: PatchCore V32.
-- V31 se mantiene solo para compatibilidad con modelos legacy.
-- El umbral cargado para inferencia es el guardado en el modelo entrenado.
-- `contamination` define umbral base en entrenamiento.
-- `sensOffset` modifica el umbral base en caliente durante inspección.
-- `pause_on_unknown_sec` añade control operativo para clasificación humana antes de reanudar.
+| Estado | Badge | Color |
+|--------|-------|-------|
+| Defecto nuevo guardado | "NUEVO DEFECTO REGISTRADO #N" | Rojo |
+| Mismo defecto en seguimiento | "DEFECTO #N EN SEGUIMIENTO" | Ámbar |
+| Sin defecto | "CALIDAD OK" | Verde |
+| Error de modelo | Mensaje de error | Naranja |
 
-## 8) Salud y diagnóstico operativo
+### Parámetros de UI
 
-Checks mínimos:
-- `docker compose ps`
-- `curl -s http://localhost:8000/api/inference/bridge/status`
-- `docker compose logs --tail=80 bridge-l1-final`
-- `docker compose logs --tail=120 nuvant-backend`
+- **Rigor/Contaminación**: calibración base del umbral (solo al entrenar).
+- **Sensibilidad (sensOffset)**: ajuste de umbral en caliente durante inspección. Positivo = más estricto.
+- **Captura (frames)**: límite de frames en TRAIN.
+- **Entrenar (frames)**: muestra aleatoria para entrenamiento.
+- **Pausa defecto (s)**: pausa al detectar defecto no reconocido (0 = continuo).
 
-Condición de video en calibración:
-- bridge conectado (`count >= 1`),
-- modo `CALIBRATE` entregado (`bridge_delivered=true`),
-- frames enviados por bridge.
+## 8. Persistencia
 
-## 9) Riesgos controlados y límites
+| Contenido | Ruta (host) |
+|-----------|-------------|
+| Base de datos | `Nuvant_VA/backend/db/nuvant.db` |
+| Modelos | `Nuvant_VA/backend/local_storage/line_N/point_M/{ref_id}/model.pkl` |
+| Defectos | `Nuvant_VA/backend/local_storage/line_N/point_M/{ref_id}/defects/` |
+| Reportes | `Nuvant_VA/backend/local_storage/reports/` |
 
-- Deriva de iluminación/exposición entre entrenamiento e inspección.
-- Set de entrenamiento pequeño (alto riesgo de sobreajuste al lote).
-- Configuraciones extremas de `sensOffset` pueden sesgar operación (mucho FP o FN).
-- Transiciones frecuentes `INSPECT/PAUSE` reducen continuidad visual de la tendencia.
+Persisten entre recreaciones de contenedores (volúmenes bind).
 
-## 10) Documentos relacionados
+## 9. Diagnóstico
 
-- `INSTRUCCIONES_OPERATIVAS.md`: comandos Docker, flujo operativo, **configuración y prueba de señal PLC**.
-- `OPERACION_SERVIDOR_REMOTO.md`
-- `GUIA_AJUSTES_PRODUCCION.md`
-- `ARQUITECTURA_Y_TEORIA_PHD.md`
+```bash
+docker compose ps
+curl -s http://localhost:8000/api/inference/bridge/status
+docker compose logs --tail=100 nuvant-backend
+docker compose logs --tail=100 bridge-l1-final
+```
+
+Patrones de log relevantes:
+- `[InspectMetrics]`: score, threshold, is_defect por frame.
+- `[LagSkip]`: frames descartados por lag.
+- `[DefectLog]`: defectos guardados.
+- `[PLC]`: errores de conexión PLC.

@@ -1,115 +1,104 @@
 # Arquitectura y Fundamentación Científica
 
-Documento de fundamento técnico-científico alineado al código vigente.
+## 1. Arquitectura de ejecución
 
-## 1) Arquitectura de ejecución
+El sistema se desacopla en dos procesos Docker:
 
-El sistema está desacoplado en dos procesos:
+1. **`camera_bridge`**: captura imagen desde cámara GigE Vision (stapipy), codifica JPEG, envía metadata+frame por WebSocket al backend.
+2. **`nuvant-backend`**: recibe frames, ejecuta entrenamiento/inferencia, publica resultados al frontend, persiste estado en SQLite + filesystem.
 
-1. `camera_bridge`
-   - captura imagen desde cámara GigE (`stapipy`),
-   - codifica JPEG,
-   - publica metadata+frame por WebSocket.
+Motivo del desacople: aislar fallos de hardware de la lógica ML; permitir evolución independiente.
 
-2. `nuvant-backend`
-   - recibe frames, ejecuta entrenamiento/inferencia,
-   - publica resultados live al frontend,
-   - persiste referencia/modelo/defectos en SQLite+filesystem.
+## 2. Base científica: PatchCore (CVPR 2022)
 
-Motivo del desacople:
-- aislar fallos de hardware de la lógica de inferencia,
-- permitir evolución del backend sin alterar driver/captura.
+**Referencia**: Roth, K. et al. *"Towards Total Recall in Industrial Anomaly Detection"* (arXiv:2106.08265).
 
-## 2) Base científica del detector principal (PatchCore V32)
+### 2.1 Hipótesis
 
-Referencia: *Towards Total Recall in Industrial Anomaly Detection* (CVPR 2022).
+Se modela exclusivamente la distribución de normalidad. Cualquier observación fuera de esa distribución es anomalía. No se requieren imágenes de defectos para entrenar.
 
-### 2.1 Hipótesis de trabajo
+### 2.2 Extracción de features
 
-Se modela solo la distribución de normalidad (tela buena).  
-Una observación fuera de esa distribución se considera anomalía.
+- Backbone congelado `WideResNet50_2` preentrenado en ImageNet.
+- Capas intermedias (`layer2` + `layer3`): capturan textura y estructura a escala media.
+- `layer3` se interpola al tamaño espacial de `layer2` y se concatena → 1536 canales por patch.
+- Agregación local (`AvgPool2d`, kernel 3×3, stride 1) para robustez posicional.
 
-### 2.2 Extracción de representación
+### 2.3 Memory bank (coreset)
 
-- Backbone congelado `WideResNet50_2` preentrenado.
-- Uso de capas intermedias (`layer2`, `layer3`) para capturar textura estructural.
-- Agregación local (`AvgPool2d`) para robustez espacial.
+- Se extraen features de todas las imágenes de entrenamiento.
+- Coreset subsampling (k-center greedy): selecciona un subconjunto que maximiza la cobertura geométrica del manifold normal.
+- Ratio configurable (`PATCHCORE_CORESET_RATIO`, default 0.1).
+- Normalización L2 de todos los vectores para usar similitud coseno como distancia.
 
-### 2.3 Coreset
+### 2.4 Inferencia con density re-weighting
 
-- Los patches normales se reducen mediante k-center greedy.
-- Se conserva cobertura geométrica del manifold normal con menor memoria.
+Para cada patch de la imagen de prueba:
 
-### 2.4 Inferencia
+1. Se calcula similitud coseno con los k vecinos más cercanos del memory bank.
+2. `base_dist = 1 - max_similarity` (distancia al vecino más cercano).
+3. **Re-weighting** (Ecuación 3 del paper):
 
-- Para cada patch de prueba se calcula distancia al vecino más cercano del memory bank.
-- Score de imagen: máximo de distancias de patch.
-- Decisión: score vs umbral calibrado en entrenamiento.
+```
+d_j = 1 - sim_j                     para j ∈ k-NN
+w = max(exp(d_j)) / Σ exp(d_j)      peso del vecino más lejano
+score_patch = (1 - w) · base_dist
+```
 
-## 3) Calibración y puntajes implementados
+- Si el vecindario k-NN es compacto: `w ≈ 1/k` → `(1-w) ≈ 0.89` → score preservado.
+- Si el vecindario es disperso (zona frontera): `w` aumenta → `(1-w)` baja → score suprimido.
+- Efecto: reduce falsos positivos en regiones mal cubiertas por el memory bank.
 
-### 3.1 Umbral base en entrenamiento
+4. Score de imagen: `percentile(score_map_smoothed, 99)` (robusto contra patches ruidosos individuales).
 
-El umbral se calcula desde la distribución de distancias del set normal de entrenamiento, con factor de seguridad técnico sobre máximo observado.
+### 2.5 Heatmap de localización
 
-### 3.2 Puntaje operativo
+- El mapa de distancias por patch se redimensiona al tamaño original de la imagen.
+- Se aplica GaussianBlur (σ=4, paper) para suavizar bordes de patches.
+- Se normaliza relativo al umbral ajustado para visualización.
+- Permite localizar visualmente la región anómala.
 
-El backend expone:
-- `score` (calidad relativa, 0..100; menor valor implica mayor anomalía),
-- `anomaly_index` (0..100; mayor valor implica mayor anomalía), donde:
+### 2.6 Calibración del umbral
 
-`anomaly_index = 100 - score`
+- Para cada imagen de entrenamiento: se calcula su score (mismo pipeline que `predict()`).
+- Se toma el percentil correspondiente a `1 - contamination` de los scores por imagen.
+- Se multiplica por un margen de producción (`PATCHCORE_THRESHOLD_MARGIN`).
+- Resultado: un umbral que, aplicado al set de entrenamiento, produciría `contamination × 100%` de falsos positivos.
 
-### 3.3 Heatmap
+## 3. Preprocesamiento industrial
 
-Se genera mapa de distancias de patch, se interpola a imagen y se normaliza relativo al umbral ajustado.
+Adaptaciones respecto al paper original para el contexto de inspección de tela:
 
-## 4) Parámetros de control y su fundamento
+| Etapa | Implementación | Motivo |
+|-------|---------------|--------|
+| ROI crop | 8% bordes recortados | Eliminar zona no útil del sensor |
+| Denoising | GaussianBlur(3×3, σ=0.7) | Reducir ruido sensor/JPEG antes de features |
+| CLAHE | clipLimit=2.0, tileGrid=8×8 | Robustez a variaciones de iluminación |
+| Spatial smoothing | GaussianBlur(3×3, σ=1.0) en score_map | Promediar patches ruidosos aislados |
+| Score aggregation | Percentil 99 (configurable) | Robusto vs max puro contra outliers |
 
-### 4.1 `contamination` (rigor en entrenamiento)
+## 4. Control temporal en producción
 
-Uso:
-- define percentil de calibración del umbral base.
+### Lag skip
 
-Efecto:
-- mayor `contamination` -> umbral más bajo -> detector más estricto.
-- menor `contamination` -> umbral más alto -> detector más tolerante.
+A 15 FPS de captura y ~220ms de inferencia (CPU), el backend solo procesa ~4.5 FPS. Sin control, los frames se acumulan en buffer WebSocket con lag creciente. `INSPECT_LAG_SKIP_SEC=0.3` descarta frames >300ms de antigüedad, garantizando que cada inferencia sea sobre contenido actual.
 
-### 4.2 `sensOffset` (rigor en inspección)
+### Debounce de entrada
 
-Uso:
-- ajuste en caliente del umbral sin reentrenar.
+`INSPECT_DEBOUNCE_FRAMES=1`: un solo frame anómalo basta para guardar defecto. El margen del umbral controla la tasa de falsos positivos.
 
-Ecuación V32:
-- `adjusted_threshold = threshold * (1 - sensitivity_offset/1000)`
+### Debounce de salida
 
-Efecto:
-- positivo: más estricto.
-- negativo: más tolerante.
+Una vez detectado un defecto, `_defect_active_flag` previene re-guardarlo mientras el score oscile. Se requieren 5 frames OK consecutivos (~0.33s a 15 FPS) para resetear. En rollo en movimiento, esto corresponde a material nuevo; en imagen estática, previene duplicados.
 
-### 4.3 `pca_variance`
+## 5. Señal PLC S7
 
-Se mantiene por compatibilidad con rutas legacy V31; en flujo dinámico V32 no es el control principal de decisión.
+Comunicación directa con PLC Siemens S7 vía snap7. Un bit en `DB{N}.DBX{B}.{b}` indica defecto (1) o normal (0) por cada frame procesado. Solo se escribe si el valor cambió. Ejecución en `ThreadPoolExecutor` (no bloquea event loop). Opcional: sin `PLC_IP` definido, no se intenta conexión.
 
-## 5) Compatibilidad V31
+## 6. Límites y buenas prácticas
 
-El código mantiene compatibilidad para modelos legacy Mahalanobis V31:
-- carga de modelos previos,
-- fallback controlado.
-
-No se recomienda entrenar nuevas referencias en V31 cuando V32 está disponible.
-
-## 6) Implementación real en código
-
-Rutas principales:
-- `Nuvant_VA/backend/core/anomaly_patchcore.py`
-- `Nuvant_VA/backend/api/routers/inference.py`
-- `Nuvant_VA/backend/api/static/index.html`
-- `camera_bridge/camera_bridge.py`
-
-## 7) Límites y buenas prácticas experimentales
-
-- Entrenamiento con muy pocas imágenes reduce robustez (sobreajuste).
-- Cambios de iluminación entre entrenamiento e inspección alteran la distribución.
-- Ajustes extremos de `sensOffset` sesgan operación (FP/FN).
-- Para estabilidad: fijar setup físico, entrenar con muestra representativa y usar slider como ajuste fino.
+- **Entrenamiento con pocas imágenes**: alta varianza del umbral, sobreajuste al lote.
+- **Cambios de iluminación**: entre entrenamiento e inspección alteran la distribución → falsos positivos.
+- **Velocidad del rollo**: el sistema es agnóstico a la velocidad, pero la cobertura depende de FOV vs velocidad/FPS_efectivo.
+- **sensOffset extremo**: valores muy positivos/negativos sesgan la operación.
+- **Mitigación**: entrenar con muestra representativa, mantener setup físico estable, usar sensOffset para ajuste fino.

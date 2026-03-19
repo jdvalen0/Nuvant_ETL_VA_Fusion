@@ -307,28 +307,18 @@ class PatchCoreDetector:
         best_sim = np.max(topk_sim, axis=1)  # (N_patches,)
         base_dist = np.clip(1.0 - best_sim, 0, None)
 
-        # Density re-weighting:
-        # If the k neighbors are all very similar → dense region → reduce score
-        # (the patch is well-covered by the training distribution)
-        # If neighbors are far → sparse region → increase score
-        # Implementation: multiply by (1 - softmax_weight of the best match)
-        # where softmax is computed over k-NN distances
         dists_k = np.clip(1.0 - topk_sim, 0, None)  # (N_patches, k)
 
-        # Softmax over k-NN distances (temperature=1)
-        # Higher weight = closer neighbor
-        exp_neg_d = np.exp(-dists_k * 10.0)  # scale for numerical stability
-        softmax_w = exp_neg_d / (np.sum(exp_neg_d, axis=1, keepdims=True) + 1e-9)
+        # Paper Eq. 3 (arXiv:2106.08265): positive exponentials of distances.
+        # w = max(exp(d_j)) / Σ exp(d_j) captures how dominant the farthest
+        # k-NN is. Factor (1 - w) suppresses scores for confident normal
+        # patches (~0.85-0.89) while preserving anomaly signals.
+        exp_d = np.exp(dists_k)
+        sum_exp = np.sum(exp_d, axis=1, keepdims=True) + 1e-9
+        w = np.max(exp_d, axis=1) / sum_exp.squeeze(1)
 
-        # Weight for the nearest neighbor (best match)
-        # Higher softmax weight = more confident the patch is normal
-        best_match_weight = np.max(softmax_w, axis=1)  # (N_patches,)
-
-        # Density-aware score: raw distance scaled by (1 - confidence)
-        # Confident normal patches get reduced scores → fewer FP
-        density_aware_dist = base_dist * (2.0 - best_match_weight)
-
-        return np.clip(density_aware_dist, 0, None)
+        density_factor = np.clip(1.0 - w, 0, None)
+        return np.clip(base_dist * density_factor, 0, None)
 
     def predict(self,
                 image: Optional[np.ndarray] = None,

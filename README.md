@@ -1,42 +1,76 @@
 # Nuvant Vision System
 
-Sistema de inspección industrial en tiempo real con detección de anomalías no supervisada (PatchCore V32), backend FastAPI y bridge de cámara GigE.
+Sistema de inspección visual industrial en tiempo real con detección de anomalías no supervisada basada en PatchCore (CVPR 2022), backend FastAPI y bridge de cámara GigE Vision.
 
-## Estado vigente
+## Objetivo
 
-- Flujo productivo: `CALIBRATE -> TRAIN -> PAUSE -> INSPECT`.
-- **Inspección por sesión**: cada "Iniciar → Detener" crea una inspección; el informe se genera por inspección.
-- Entrenamiento dinámico: captura desde cámara con límite configurable + submuestreo aleatorio.
-- Ajuste en caliente: slider de sensibilidad (`sensOffset`) aplicado sobre umbral ya entrenado.
-- Persistencia: modelos, SQLite (referencias, inspecciones, defectos) en volúmenes locales.
-- Señal PLC S7 (opcional): bit de defecto en PLC Siemens vía snap7; configuración en `.env`.
+Detectar defectos en rollos de tela en movimiento a velocidad variable usando una cámara industrial GigE Vision, un modelo PatchCore entrenado únicamente con imágenes de tela normal, y comunicación PLC S7 opcional para integración con la línea de producción.
 
-## Servicios activos
+## Arquitectura
 
-- `nuvant-backend`: API, entrenamiento, inferencia y UI.
-- `bridge-l1-final`: adquisición de cámara (`stapipy`) y envío WS a backend.
-- Orquestación: `docker-compose.yml` en la raíz.
+```
+┌──────────────┐   WS (meta+JPEG)   ┌──────────────────┐   WS (live)   ┌─────────┐
+│ camera_bridge │ ─────────────────> │  nuvant-backend   │ ───────────> │ Browser │
+│  (GigE cam)  │                    │  (FastAPI + ML)   │              │   UI    │
+└──────────────┘                    └──────────────────┘              └─────────┘
+                                           │
+                                    ┌──────┴──────┐
+                                    │  SQLite DB  │
+                                    │  + Modelos  │
+                                    │  + Imágenes │
+                                    └─────────────┘
+```
 
-## Arranque rápido
+## Flujo operativo
+
+`CALIBRATE` → `TRAIN` → `PAUSE` → `INSPECT`
+
+1. **Calibrar**: video en vivo para ajustar foco/encuadre/iluminación.
+2. **Capturar**: acumular frames de tela normal (configurable, default 200).
+3. **Entrenar**: submuestreo aleatorio + PatchCore V32 con re-weighting del paper.
+4. **Inspeccionar**: inferencia continua por frame con lag skip, debounce de entrada y salida, guardado de defectos, heatmap, señal PLC.
+
+## Motor de detección (PatchCore V32.5)
+
+- Backbone: WideResNet50_2 congelado (layers 2-3).
+- Memory bank: coreset subsampling (k-center greedy).
+- Scoring: k-NN con density re-weighting alineado al paper original (Eq. 3).
+- Preprocesamiento: GaussianBlur denoising + CLAHE + ROI crop.
+- Agregación: percentil 99 sobre score_map suavizado espacialmente.
+- Umbral: calibrado por imagen durante entrenamiento con margen de producción configurable.
+
+## Servicios Docker
+
+| Servicio | Contenedor | Función |
+|----------|-----------|---------|
+| `nuvant-backend` | `nuvant-backend` | API, ML, UI, persistencia |
+| `bridge-l1-final` | `bridge-linea1-final` | Captura GigE Vision + envío WS |
+
+## Arranque
 
 ```bash
-chmod +x init_deploy.sh
-./init_deploy.sh
 docker compose up -d --build
 ```
 
-UI:
-- `http://localhost:8000/static/`
-- `http://<IP_SERVIDOR>:8000/static/`
+UI: `http://localhost:8000/static/` o `http://<IP_SERVIDOR>:8000/static/`
 
-## Documentación canónica
+## Rebuild tras cambios de código
+
+```bash
+docker compose build --no-cache nuvant-backend && docker compose up -d
+```
+
+**Importante**: después de cambios en el pipeline de detección, es obligatorio reentrenar cada referencia activa.
+
+## Documentación
 
 | Documento | Contenido |
 |-----------|-----------|
-| `INSTRUCCIONES_OPERATIVAS.md` | Comandos Docker, flujo operativo completo, PLC, cámara. |
-| `DOCUMENTACION_TECNICA.md` | Arquitectura, API, frontend y parámetros. |
-| `CHANGELOG_ESTADO_ACTUAL.md` | Flujo vigente, correcciones aplicadas, rebuild. |
-| `CAPTURA_LOGS_PRUEBAS.md` | Cómo capturar y guardar logs durante pruebas. |
-| `OPERACION_SERVIDOR_REMOTO.md` | Despliegue, operación en servidor y recuperación. |
-| `GUIA_AJUSTES_PRODUCCION.md` | Metodología de tuning (`contamination`, `sensOffset`). |
-| `ARQUITECTURA_Y_TEORIA_PHD.md` | Fundamento científico PatchCore. |
+| `DOCUMENTACION_TECNICA.md` | Arquitectura, API, frontend, parámetros, variables de entorno |
+| `INSTRUCCIONES_OPERATIVAS.md` | Comandos Docker, flujo operativo completo, PLC, cámara |
+| `CHANGELOG_ESTADO_ACTUAL.md` | Correcciones aplicadas, estado vigente |
+| `GUIA_AJUSTES_PRODUCCION.md` | Tuning de parámetros para producción |
+| `OPERACION_SERVIDOR_REMOTO.md` | Despliegue, recuperación, acceso remoto |
+| `CAPTURA_LOGS_PRUEBAS.md` | Captura y análisis de logs |
+| `ARQUITECTURA_Y_TEORIA_PHD.md` | Fundamento científico PatchCore |
+| `COMPARATIVA_PATCHCORE_PAPER.md` | Análisis comparativo vs paper original |

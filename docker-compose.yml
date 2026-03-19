@@ -49,6 +49,9 @@ services:
       # Debounce: N frames consecutivos anómalos para confirmar y guardar un defecto.
       # N=1: guarda en el primer frame anómalo. El umbral margin=1.5 controla los falsos positivos.
       - INSPECT_DEBOUNCE_FRAMES=1
+      # Lag prevention: descarta frames más viejos que 0.3s durante INSPECT.
+      # Evita lag acumulado cuando la inferencia (~220ms) no alcanza a los 15 FPS de captura.
+      - INSPECT_LAG_SKIP_SEC=0.3
       - TRAIN_CAPTURE_LIMIT=200
       - TRAIN_SAMPLE_SIZE=150
       # PLC S7: definir PLC_IP en .env para activar (ej. PLC_IP=192.168.1.10)

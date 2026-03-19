@@ -1,30 +1,26 @@
 # Nuvant_VA (Backend + UI)
 
-Este módulo contiene:
+Módulo principal del sistema de visión artificial.
 
-- API FastAPI de entrenamiento/inferencia.
-- UI operativa en `backend/api/static/index.html`.
-- Persistencia local (`backend/db`, `backend/local_storage`).
-- Modelo de inspección por sesión (Inicio → Detener).
+## Contenido
 
-## Nota de despliegue
+- **`backend/api/`**: API FastAPI (inferencia, entrenamiento, referencias, inspecciones, reportes).
+- **`backend/core/`**: Motor PatchCore V32.5 (`anomaly_patchcore.py`), extractor de features, PLC S7.
+- **`backend/api/static/`**: UI operativa (`index.html`, `classify.html`).
+- **`backend/db/`**: SQLite + modelos SQLAlchemy.
+- **`backend/local_storage/`**: Modelos entrenados, imágenes de defectos, reportes.
 
-El despliegue operativo actual del proyecto completo se hace desde la raíz del repositorio con `docker-compose.yml` principal, no desde `Nuvant_VA/docker/docker-compose.yml`.
+## Despliegue
 
-Comando recomendado:
+El despliegue se hace desde la **raíz del repositorio**, no desde `Nuvant_VA/docker/`.
 
 ```bash
+cd ~/Escritorio/Nuvant_ETL_VA_Fusion
 docker compose up -d --build
 ```
 
-UI:
+UI: `http://localhost:8000/static/`
 
-- `http://localhost:8000/static/`
+## Documentación
 
-## Documentos de referencia
-
-- `../INSTRUCCIONES_OPERATIVAS.md` — operación, Docker, **señal PLC**, flujo inspección/informe
-- `../DOCUMENTACION_TECNICA.md` — arquitectura, API
-- `../CHANGELOG_ESTADO_ACTUAL.md` — flujo vigente, correcciones aplicadas
-- `../OPERACION_SERVIDOR_REMOTO.md`
-- `../GUIA_AJUSTES_PRODUCCION.md`
+Toda la documentación canónica está en la raíz del repositorio (`../`).
