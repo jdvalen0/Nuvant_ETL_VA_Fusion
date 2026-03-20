@@ -337,6 +337,7 @@
         let hasProcessedImage = false;
         let cameraMode = 'NONE';   // 'NONE' | 'CALIBRATE' | 'TRAIN' | 'INSPECT' | 'PAUSE'
         let captureLimitNotified = false;
+        let trainCompleteHandled = false;
         let framesCaptured = 0;
         let framesReceivedByBrowser = 0;
         let lastPacketReceived = 0;
@@ -702,17 +703,23 @@
             }
 
             if (t === 'train_complete' || t === 'train_finished') {
-                updateCameraBanner('PAUSE');
-                refreshRefs();
-                alert("✅ ¡Modelo Entrenado y Listo!");
+                if (!trainCompleteHandled) {
+                    trainCompleteHandled = true;
+                    updateCameraBanner('PAUSE');
+                    refreshRefs();
+                    alert("✅ ¡Modelo Entrenado y Listo!");
+                }
                 return;
             }
             
             if (t === 'train_capture_complete') {
                 framesCaptured = data.frames_captured || framesCaptured;
                 document.getElementById('frameCount').textContent = framesCaptured;
-                updateCameraBanner('PAUSE');
-                alert(`✅ Captura completada: ${framesCaptured}/${data.capture_limit} imágenes.`);
+                if (!captureLimitNotified) {
+                    captureLimitNotified = true;
+                    updateCameraBanner('PAUSE');
+                    alert(`✅ Captura completada: ${framesCaptured}/${data.capture_limit} imágenes.`);
+                }
                 return;
             }
 
@@ -829,21 +836,41 @@
             const trainSampleSize = parseInt(document.getElementById('trainSampleSizeInput').value || '50');
 
             updateCameraBanner('TRAINING_MODEL');
-            const res = await fetch(`${API}/inference/train_from_camera`, {
-                method: 'POST',
-                headers: { 'Content-Type': 'application/json' },
-                body: JSON.stringify({
-                    line_id: DEFAULT_LINE_ID,
-                    point_id: DEFAULT_POINT_ID,
-                    ref_id: parseInt(refId),
-                    contamination: parseFloat(document.getElementById('contRange').value),
-                    sample_size: trainSampleSize
-                })
-            });
-            const data = await res.json();
-            if (!res.ok || data.status === 'error') {
-                alert('Error: ' + (data.message || data.detail));
-                updateCameraBanner('NONE');
+            trainCompleteHandled = false;
+            enableCameraButtons(false);
+            const btnTrain = document.getElementById('btnTrainFromCamera');
+            if (btnTrain) btnTrain.disabled = true;
+            try {
+                const res = await fetch(`${API}/inference/train_from_camera`, {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({
+                        line_id: DEFAULT_LINE_ID,
+                        point_id: DEFAULT_POINT_ID,
+                        ref_id: parseInt(refId),
+                        contamination: parseFloat(document.getElementById('contRange').value),
+                        sample_size: trainSampleSize
+                    })
+                });
+                const data = await res.json();
+                if (!res.ok || data.status === 'error') {
+                    alert('Error: ' + (data.message || data.detail));
+                    updateCameraBanner('NONE');
+                } else if (!trainCompleteHandled) {
+                    trainCompleteHandled = true;
+                    updateCameraBanner('PAUSE');
+                    refreshRefs();
+                    const info = data.frames_used ? ` (${data.frames_used} imágenes, threshold: ${data.threshold})` : '';
+                    alert(`✅ ¡Modelo Entrenado y Listo!${info}`);
+                }
+            } catch (err) {
+                console.error('[trainFromCamera] Error:', err);
+                if (!trainCompleteHandled) {
+                    updateCameraBanner('PAUSE');
+                    alert('⚠️ El entrenamiento puede haber finalizado pero se perdió la conexión. Refresque la página para verificar.');
+                }
+            } finally {
+                enableCameraButtons(true);
             }
         }
 
@@ -1084,7 +1111,7 @@
                 headers: { 'Content-Type': 'application/json' },
                 body: JSON.stringify(payload)
             });
-            if (res.ok) { alert(`Defecto #${lastDefectData.defect_log_id} clasificado como: ${defectType}`); document.getElementById('defectTypeSelect').value = ""; lastDefectData = null; }
+            if (res.ok) { alert(`Defecto #${lastDefectData.defect_log_id} clasificado como: ${defectType}`); document.getElementById('defectTypeSelect').value = ""; lastDefectData = null; checkUnclassified(); }
         }
 
         async function loadInspections() {

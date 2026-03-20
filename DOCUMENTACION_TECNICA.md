@@ -83,7 +83,7 @@ Con `INSPECT_LAG_SKIP_SEC=0.3`: frames con >300ms de antigüedad se descartan. E
 
 ### Debounce de entrada (`INSPECT_DEBOUNCE_FRAMES`)
 
-N frames consecutivos anómalos requeridos para confirmar un defecto. Default: 1 (inmediato). Con N=1, el umbral `PATCHCORE_THRESHOLD_MARGIN` controla falsos positivos.
+N frames consecutivos anómalos requeridos para confirmar un defecto. Default: 1 (inmediato). Con N=1, el umbral `PATCHCORE_THRESHOLD_MARGIN` (default 3.0) controla falsos positivos.
 
 ### Debounce de salida (`_defect_active_flag`)
 
@@ -99,7 +99,7 @@ Una vez guardado un defecto, el flag permanece activo. Se requieren N frames OK 
 | `PATCHCORE_NEIGHBORS` | 9 | Vecinos k-NN para scoring |
 | `PATCHCORE_ROI_CROP` | 0.08 | Recorte perimetral (fracción) |
 | `PATCHCORE_USE_CLAHE` | true | Normalización local de contraste |
-| `PATCHCORE_THRESHOLD_MARGIN` | 1.5 | Multiplicador de producción sobre umbral base |
+| `PATCHCORE_THRESHOLD_MARGIN` | 3.0 | Multiplicador de producción sobre umbral base (sin reentrenar) |
 | `PATCHCORE_SCORE_PERCENTILE` | 99 | Percentil para agregación de score |
 | `INSPECT_DEBOUNCE_FRAMES` | 1 | Frames anómalos para confirmar defecto |
 | `INSPECT_LAG_SKIP_SEC` | 0.3 | Descarta frames más viejos que N segundos |

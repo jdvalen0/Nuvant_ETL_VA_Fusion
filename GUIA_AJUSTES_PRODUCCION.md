@@ -21,7 +21,7 @@
 
 | Variable | Default | Requiere reentrenar | Efecto |
 |----------|---------|---------------------|--------|
-| `PATCHCORE_THRESHOLD_MARGIN` | 1.5 | Sí | Multiplicador de producción sobre umbral base |
+| `PATCHCORE_THRESHOLD_MARGIN` | 3.0 | No (solo reiniciar) | Multiplicador de producción sobre umbral base |
 | `PATCHCORE_SCORE_PERCENTILE` | 99 | Sí | Percentil para agregación. 99 = robusto; 95 = más sensible |
 | `PATCHCORE_CORESET_RATIO` | 0.1 | Sí | Fracción de memory bank. Mayor = más preciso pero más lento |
 | `PATCHCORE_NEIGHBORS` | 9 | No | Vecinos k-NN. Mayor = scoring más estable, más lento |

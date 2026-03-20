@@ -45,9 +45,9 @@ services:
       - PATCHCORE_NEIGHBORS=9
       - PATCHCORE_ROI_CROP=0.08
       - PATCHCORE_USE_CLAHE=true
-      - PATCHCORE_THRESHOLD_MARGIN=1.5
+      - PATCHCORE_THRESHOLD_MARGIN=3.0
       # Debounce: N frames consecutivos anómalos para confirmar y guardar un defecto.
-      # N=1: guarda en el primer frame anómalo. El umbral margin=1.5 controla los falsos positivos.
+      # N=1: guarda en el primer frame anómalo. El umbral margin=3.0 controla los falsos positivos.
       - INSPECT_DEBOUNCE_FRAMES=1
       # Lag prevention: descarta frames más viejos que 0.3s durante INSPECT.
       # Evita lag acumulado cuando la inferencia (~220ms) no alcanza a los 15 FPS de captura.

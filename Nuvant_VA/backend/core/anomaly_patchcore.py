@@ -416,7 +416,7 @@ class PatchCoreDetector:
             "image_size": self.image_size,
             "version": "V32_PatchCore",
             "calibration": "per_image_max_V32.5",
-            "train_margin": float(os.getenv("PATCHCORE_THRESHOLD_MARGIN", "1.0")),
+            "train_margin": float(os.getenv("PATCHCORE_THRESHOLD_MARGIN", "3.0")),
         }
         joblib.dump(save_dict, path)
         print(f"[PatchCore V32] Model saved to {path}")
@@ -434,7 +434,7 @@ class PatchCoreDetector:
         raw_threshold = float(save_dict["threshold"])
         calibration = save_dict.get("calibration", "unknown")
         saved_margin = float(save_dict.get("train_margin", 3.0))
-        target_margin = float(os.getenv("PATCHCORE_THRESHOLD_MARGIN", "1.0"))
+        target_margin = float(os.getenv("PATCHCORE_THRESHOLD_MARGIN", "3.0"))
 
         if "per_image_max" in calibration:
             # El threshold guardado incluye el margen de entrenamiento (saved_margin).

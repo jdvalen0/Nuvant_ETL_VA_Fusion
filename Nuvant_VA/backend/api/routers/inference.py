@@ -58,6 +58,7 @@ _PLC_RETRY_INTERVAL = 30.0       # segundos mínimos entre reintentos si el PLC 
 _defect_consec_count: Dict[tuple, int] = {}   # consecutive anomaly frame count
 _defect_active_flag: Dict[tuple, bool] = {}   # True = defect event already saved this burst
 _lag_skip_count: Dict[tuple, int] = {}         # frames skipped by lag prevention
+_train_session_reset: set = set()              # signal from REST to camera_feed to clear train_limit_notified
 
 
 def get_db():
@@ -229,12 +230,12 @@ def _plc_write_defect_signal(line_id: int, point_id: int, value: bool):
     if now - _plc_last_attempt < _PLC_RETRY_INTERVAL:
         return
     _plc_last_attempt = now
-    _last_plc_defect[key] = value
     try:
         from backend.core.plc_s7 import write_defect_signal
         write_defect_signal(value)
+        _last_plc_defect[key] = value
     except ImportError:
-        pass
+        _last_plc_defect[key] = value
     except Exception as e:
         print(f"[PLC] Conexión fallida: {e}")
 
@@ -311,12 +312,21 @@ async def _register_bridge(line_id: int, point_id: int, ws: WebSocket):
 
 
 async def _unregister_bridge(ws: WebSocket):
+    from backend.api.main import manager
     async with _bridge_lock:
         dead_keys = [k for k, v in _bridge_connections.items() if v is ws]
         for k in dead_keys:
             _bridge_connections.pop(k, None)
     for line_id, point_id in dead_keys:
+        _cancel_auto_resume(line_id, point_id)
         _close_inspection(line_id, point_id)
+        await manager.broadcast(line_id, point_id, {
+            "type": "mode_changed",
+            "mode": "PAUSE",
+            "line_id": line_id,
+            "point_id": point_id,
+            "reason": "bridge_disconnected",
+        })
 
 
 async def _send_to_bridge(line_id: int, point_id: int, payload: dict) -> bool:
@@ -464,6 +474,15 @@ async def camera_feed(websocket: WebSocket):
                                 current_mode = "INSPECT"
                             else:
                                 current_mode = "PAUSE"
+                        elif reported_mode == "TRAIN":
+                            bk = (current_line_id, current_point_id)
+                            if bk in _train_session_reset:
+                                _train_session_reset.discard(bk)
+                                train_limit_notified.discard(bk)
+                            if bk in train_limit_notified:
+                                current_mode = "PAUSE"
+                            else:
+                                current_mode = reported_mode
                         else:
                             current_mode = reported_mode
                         try:
@@ -471,28 +490,21 @@ async def camera_feed(websocket: WebSocket):
                         except (TypeError, ValueError):
                             current_frame_ts = time.time()
                         expecting_bytes  = True
-                        if current_mode == "TRAIN" and prev_mode != "TRAIN":
-                            async with train_buffer_lock:
-                                train_buffer[(current_line_id, current_point_id)] = []
-                            train_limit_notified.discard((current_line_id, current_point_id))
-                            print(f"[CameraFeed] Buffer RESET for L{current_line_id}P{current_point_id}")
                         if (current_line_id, current_point_id) != prev_key:
                             await _register_bridge(current_line_id, current_point_id, websocket)
                     elif t == "set_mode":
-                        _cancel_auto_resume(
-                            int(data.get("line_id") or current_line_id or 1),
-                            int(data.get("point_id") or current_point_id or 1),
-                        )
+                        target_lid = int(data.get("line_id") or current_line_id or 1)
+                        target_pid = int(data.get("point_id") or current_point_id or 1)
+                        _cancel_auto_resume(target_lid, target_pid)
                         new_mode = data.get("mode", current_mode)
                         if new_mode == "TRAIN" and current_mode != "TRAIN":
-                            # Reset buffer when starting a new training session
                             async with train_buffer_lock:
-                                train_buffer[(current_line_id, current_point_id)] = []
-                                print(f"[CameraFeed] Buffer RESET for L{current_line_id}P{current_point_id}")
-                            train_limit_notified.discard((current_line_id, current_point_id))
+                                train_buffer[(target_lid, target_pid)] = []
+                                print(f"[CameraFeed] Buffer RESET for L{target_lid}P{target_pid}")
+                            train_limit_notified.discard((target_lid, target_pid))
                         current_mode          = new_mode
-                        current_line_id       = int(data.get("line_id") or current_line_id or 1)
-                        current_point_id      = int(data.get("point_id") or current_point_id or 1)
+                        current_line_id       = target_lid
+                        current_point_id      = target_pid
                         current_ref_id        = data.get("ref_id", current_ref_id)
                         current_inspection_id = data.get("inspection_id", current_inspection_id)
                     elif t == "ping":
@@ -607,7 +619,9 @@ async def camera_feed(websocket: WebSocket):
                             continue
 
                         detector, sensitivity, model_version = load_model_for_point(current_point_id, ref_id_to_use, db_session)
-                        if not detector: continue
+                        if not detector:
+                            await manager.broadcast(current_line_id, current_point_id, {"type":"error","message":"Modelo no cargado. Entrene la referencia primero."})
+                            continue
 
                         is_patchcore = model_version and "V32" in model_version
                         
@@ -797,12 +811,24 @@ def _sync_process_frame(jpeg_bytes, detector, extractor, sensitivity,
 @router.websocket("/live/{line_id}/{point_id}")
 async def live_results(websocket: WebSocket, line_id: int, point_id: int):
     """Frontend se suscribe aquí para recibir resultados de la cámara en tiempo real."""
-    from backend.api.main import manager
+    from backend.api.main import manager, train_buffer, train_buffer_lock
 
     await manager.connect(line_id, point_id, websocket)
     try:
+        key = (line_id, point_id)
+        async with train_buffer_lock:
+            buf_count = len(train_buffer.get(key, []))
+        if buf_count > 0:
+            runtime = _get_runtime_control(line_id, point_id)
+            await websocket.send_json({
+                "type": "train_progress",
+                "line_id": line_id,
+                "point_id": point_id,
+                "frames_captured": buf_count,
+                "mode": "TRAIN",
+                "capture_limit": runtime.get("capture_limit", 200),
+            })
         while True:
-            # Mantener conexión abierta
             message = await websocket.receive()
             if message["type"] == "websocket.disconnect":
                 break
@@ -838,12 +864,12 @@ async def live_results(websocket: WebSocket, line_id: int, point_id: int):
                         if ref_id is not None:
                             with SessionLocal() as db:
                                 _persist_sensitivity(db, int(ref_id), sensitivity, point_id=point_id)
-                except Exception:
-                    pass
+                except Exception as cmd_err:
+                    print(f"[LiveWS] Error procesando comando: {cmd_err}")
     except WebSocketDisconnect:
-        manager.disconnect(line_id, point_id, websocket)
-    except Exception:
-        manager.disconnect(line_id, point_id, websocket)
+        pass
+    except Exception as e:
+        print(f"[LiveWS] Error: {e}")
     finally:
         manager.disconnect(line_id, point_id, websocket)
 
@@ -984,6 +1010,8 @@ def _close_inspection(line_id: int, point_id: int):
     _defect_consec_count.pop(key, None)
     _defect_active_flag.pop(key, None)
     _lag_skip_count.pop(key, None)
+    _inspect_metrics_counter.pop(key, None)
+    _last_plc_defect.pop(key, None)
     if insp_id is None:
         return
     try:
@@ -999,7 +1027,7 @@ def _close_inspection(line_id: int, point_id: int):
 
 @router.post("/bridge/set_mode")
 async def set_bridge_mode(req: BridgeModeRequest):
-    from backend.api.main import manager
+    from backend.api.main import manager, train_buffer, train_buffer_lock
     _cancel_auto_resume(req.line_id, req.point_id)
     runtime = _set_runtime_control(
         req.line_id,
@@ -1033,8 +1061,12 @@ async def set_bridge_mode(req: BridgeModeRequest):
     elif req.mode == "PAUSE":
         _close_inspection(req.line_id, req.point_id)
     elif req.mode in ("TRAIN", "CALIBRATE"):
-        # Al cambiar a TRAIN/CALIBRATE sin detener explícitamente, cerrar inspección abierta
         _close_inspection(req.line_id, req.point_id)
+        if req.mode == "TRAIN":
+            async with train_buffer_lock:
+                train_buffer[(req.line_id, req.point_id)] = []
+            _train_session_reset.add((req.line_id, req.point_id))
+            print(f"[CameraFeed] Buffer RESET (REST) for L{req.line_id}P{req.point_id}")
     delivered = await _send_to_bridge(req.line_id, req.point_id, payload)
     await manager.broadcast(req.line_id, req.point_id, {
         "type": "mode_changed",
