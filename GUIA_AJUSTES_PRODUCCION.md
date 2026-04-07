@@ -80,7 +80,7 @@
 
 | Tipo de cambio | Acción |
 |----------------|--------|
-| Código Python/JS/HTML | `docker compose build --no-cache nuvant-backend && docker compose up -d` + reentrenar |
+| Código Python/JS/HTML | `docker compose build --no-cache nuvant-backend && docker compose up -d`; **reentrenar** solo si el cambio rompe compatibilidad del `.pkl` o del pipeline de entrenamiento (p. ej. `anomaly_patchcore`), no por cambios solo de UI o inspección |
 | Variables en `docker-compose.yml` con "Requiere reentrenar=Sí" | Rebuild + reentrenar |
 | Variables con "Requiere reentrenar=No" | Solo restart: `docker compose down && docker compose up -d` |
 | Ajustes en UI (sensOffset, pausa) | Sin restart, efecto inmediato |

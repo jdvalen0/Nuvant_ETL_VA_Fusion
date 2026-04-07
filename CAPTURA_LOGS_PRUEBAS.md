@@ -46,7 +46,7 @@ cd ~/Escritorio/Nuvant_ETL_VA_Fusion
 ./save_test_logs.sh inspeccion_lote_001
 ./save_test_logs.sh error_conexion_camara
 ```
-Genera: `logs_pruebas/2025-03-01_14-30-00_prueba_plc.log`, etc.
+Genera: `logs_pruebas/2026-03-01_14-30-00_prueba_plc.log`, etc.
 
 ---
 
@@ -94,5 +94,5 @@ docker compose logs --tail=500 --no-color > logs_pruebas/ultimos_500.log
 | No hay video en calibración | bridge | "Conectado a:", "Cámara con IP ... no encontrada" |
 | Error PLC | backend | `[PLC] Conexión fallida`, `[PLC] Error escribiendo` |
 | Inspección no detecta | backend | `[InspectMetrics]`, `score`, `is_defect` |
-| Bridge desconectado | backend | "No hay conexión para L1P1" |
+| Bridge desconectado | backend | `mode_changed` / `bridge_disconnected`, cierre de WS cámara; al enviar comando sin bridge: `No hay conexión para L1P1` |
 | Cámara no encontrada | bridge | "Cámaras detectadas:", "No se encontraron cámaras" |

@@ -206,7 +206,7 @@ threshold = base_threshold * margin
 
 1. Para cada imagen de entrenamiento, se calcula su score usando **el mismo pipeline** que `predict()`.
 2. Se toma el percentil `(1-contamination)` de los scores por imagen.
-3. Se multiplica por un margen de producción (default 1.5× en docker-compose, 3.0× internamente).
+3. Se multiplica por un margen de producción (`PATCHCORE_THRESHOLD_MARGIN`, default **3.0** en `docker-compose.yml` y en código `save`/`load`/`train`).
 
 ### Veredicto: ✅ Extensión válida
 

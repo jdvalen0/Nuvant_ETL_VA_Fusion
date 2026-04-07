@@ -120,7 +120,7 @@ Una vez guardado un defecto, el flag permanece activo. Se requieren N frames OK 
 | `CAMERA_LINE_ID` | 1 | ID de línea |
 | `CAMERA_POINT_ID` | 1 | ID de punto de inspección |
 | `CAMERA_IP` | (vacío) | IP cámara GigE (vacío = primera disponible) |
-| `CAMERA_FORCE_IP` | (vacío) | Forzar IP a la cámara al conectar |
+| `CAMERA_FORCE_IP` | En `docker-compose.yml` (`bridge-l1-final`): `169.254.75.178` si no se define en `.env` | Forzar IP al conectar la cámara GigE |
 
 ## 6. API principal
 
@@ -129,7 +129,8 @@ Una vez guardado un defecto, el flag permanece activo. Se requieren N frames OK 
 | Endpoint | Descripción |
 |----------|-------------|
 | `GET /api/references/{ref_id}/inspections` | Lista inspecciones |
-| `GET /api/references/{ref_id}/inspections/{insp_id}/report` | Informe HTML |
+| `GET /api/references/{ref_id}/inspections/{insp_id}/report` | Informe HTML por inspección (409 si hay sin clasificar) |
+| `GET /api/references/{ref_id}/report` | Informe por referencia + filtros fecha (puede incluir sin clasificar con aviso; borra imágenes de todo el query) |
 | `GET /api/references/{ref_id}/unclassified_defects?inspection_id=X` | Cola clasificación |
 | `POST /api/inference/bridge/set_mode` | Cambiar modo (INSPECT, TRAIN, CALIBRATE, PAUSE) |
 | `POST /api/inference/train_from_camera` | Entrenar desde buffer de cámara |
@@ -137,10 +138,13 @@ Una vez guardado un defecto, el flag permanece activo. Se requieren N frames OK 
 
 ### Informes
 
-- Solo incluyen defectos **clasificados** (automáticamente reconocidos + clasificados manualmente).
-- Defectos "Sin clasificar" se **excluyen** del informe.
-- El botón de informe se deshabilita si hay defectos pendientes de clasificación en esa inspección.
-- Tras generar, se borran las imágenes de defectos de esa inspección.
+| Ruta | Uso en UI | Sin clasificar |
+|------|-----------|----------------|
+| `GET /api/references/{ref_id}/inspections/{inspection_id}/report` | Botón **Informe** (por inspección) | **409** si queda alguno sin clasificar; no genera archivo. |
+| `GET /api/references/{ref_id}/report` | API directa / integraciones (histórico por referencia y fechas opcionales) | **Permite** generar HTML; si hay pendientes, el HTML incluye **aviso** y listado mezclado (no sustituye el flujo operativo por inspección). |
+
+- Informe **operativo** (por inspección): solo defectos ya clasificados (automático + cola); borra archivos de imagen/heatmap **solo** de esos registros de esa inspección.
+- Informe por referencia (`/report`): borra imágenes de **todos** los defectos incluidos en el query (filtros de fecha opcionales); puede afectar a muchas sesiones — uso avanzado, no es el flujo estándar de la UI.
 
 ## 7. Frontend
 

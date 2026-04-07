@@ -60,7 +60,7 @@ UI: `http://localhost:8000/static/` o `http://<IP_SERVIDOR>:8000/static/`
 docker compose build --no-cache nuvant-backend && docker compose up -d
 ```
 
-**Importante**: después de cambios en el pipeline de detección, es obligatorio reentrenar cada referencia activa.
+**Reentrenar** solo cuando cambien hiperparámetros o arquitectura del modelo en entrenamiento (coreset, CLAHE/ROI si afectan el `.pkl`, rigor/contaminación al volver a entrenar, etc.). Variables como `PATCHCORE_THRESHOLD_MARGIN`, `INSPECT_LAG_SKIP_SEC`, `INSPECT_DEBOUNCE_FRAMES` y `INSPECT_OK_FRAMES_TO_RESET` **no** exigen reentrenar (reinicio del contenedor). Detalle: `GUIA_AJUSTES_PRODUCCION.md`.
 
 ## Documentación
 

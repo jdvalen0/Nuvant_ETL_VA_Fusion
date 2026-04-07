@@ -590,8 +590,10 @@ def report_by_reference(
     date_to: str = Query(None, description="YYYY-MM-DD"),
 ):
     """
-    Informe solo tras clasificación. Documento HTML con imágenes embebidas. Tras generar: borra imágenes, conserva informe.
-    Requiere TODOS los defectos clasificados.
+    Informe HTML por referencia (opcionalmente filtrado por fecha). Incluye todos los defectos del query;
+    si hay sin clasificar, el HTML muestra aviso. Tras generar: borra archivos de imagen/heatmap de
+    esos registros. Para flujo operativo por inspección con bloqueo 409, usar
+    `GET /{ref_id}/inspections/{inspection_id}/report`.
     """
     ref = db.query(Reference).filter(Reference.id == ref_id).first()
     if not ref:

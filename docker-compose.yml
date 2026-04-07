@@ -16,7 +16,7 @@ x-bridge-base: &bridge-base
       condition: service_healthy
   # NOTA: network_mode host es recomendado para GigE Vision (UDP discovery/stream)
   network_mode: host
-  restart: unless-stopped
+  restart: always
   environment: &bridge-env-base
     VA_BACKEND_WS_URL: "ws://localhost:8000/api/inference/camera_feed"
     SIMULATE_DIR: "/simulate_images"
@@ -63,7 +63,7 @@ services:
       - PLC_SLOT=${PLC_SLOT:-1}
     networks:
       - nuvant-net
-    restart: unless-stopped
+    restart: always
     healthcheck:
       test: [ "CMD", "python3", "-c", "import urllib.request; urllib.request.urlopen('http://localhost:8000/')" ]
       interval: 20s

@@ -27,16 +27,16 @@ docker compose up -d
 docker compose ps
 ```
 
-**Importante**: si los cambios afectan el pipeline de detección (anomaly_patchcore.py, preprocesamiento, scoring), es **obligatorio reentrenar** cada referencia activa después del rebuild.
+**Importante**: reentrenar solo si cambian parámetros **persistidos en el `.pkl`** o el proceso de entrenamiento (coreset, ROI/CLAHE en entrenamiento, rigor al reentrenar, etc.). Ver columna «Requiere reentrenar» en `GUIA_AJUSTES_PRODUCCION.md`.
 
 ### ¿Cuándo rebuild vs restart?
 
 | Cambio | Acción |
 |--------|--------|
 | Código Python/JS/HTML | Rebuild + up |
-| `.env` (PLC_IP, CAMERA_IP) | Solo restart |
-| `docker-compose.yml` (env vars) | Solo restart |
-| Variables que afectan pipeline (CORESET_RATIO, CLAHE, etc.) | Restart + reentrenar |
+| `.env` (PLC_IP, CAMERA_IP, CAMERA_FORCE_IP, CAMERA_FPS) | `docker compose up -d` (recreate bridge si aplica) |
+| `docker-compose.yml`: vars **sin** reentrenar (`PATCHCORE_THRESHOLD_MARGIN`, `INSPECT_*`, `PLC_*`) | Restart / recreate backend |
+| `docker-compose.yml`: vars **con** reentrenar (`PATCHCORE_CORESET_RATIO`, `PATCHCORE_USE_CLAHE`, …) | Restart + **reentrenar** referencias |
 
 **Acceso:** `http://<IP_SERVIDOR>:8000/static/`
 
@@ -101,8 +101,8 @@ docker compose exec nuvant-backend env | grep PLC
 
 ### Comportamiento
 
-- Escribe un bit por cada frame durante INSPECT: 1 = defecto, 0 = normal.
-- Solo escribe si el valor cambió respecto al frame anterior.
+- Durante **INSPECT**, el backend calcula si hay defecto activo; la escritura al PLC ocurre **solo cuando el valor lógico cambia** (defecto ↔ OK), no en cada frame.
+- Throttle entre reintentos si la escritura falla (evita spam en logs).
 - Si `PLC_IP` no está definido → PLC deshabilitado.
 
 ### Verificación

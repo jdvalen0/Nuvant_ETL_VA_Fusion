@@ -29,23 +29,34 @@
 
 ### Informes
 
-- Los informes **excluyen** defectos "Sin clasificar". Solo incluyen defectos reconocidos automáticamente y clasificados manualmente.
-- El botón de informe se **deshabilita** si hay defectos pendientes de clasificación.
+- **Por inspección** (`.../inspections/{id}/report`): **excluye** generación si queda "Sin clasificar" (HTTP 409). Contenido HTML solo clasificados.
+- **Por referencia** (`/references/{id}/report`): puede generar con pendientes y muestra **aviso** en el HTML (uso no estándar; la UI usa el flujo por inspección).
+- El botón de informe se **deshabilita** si hay pendientes en la inspección seleccionada.
 - HTML con imágenes embebidas (base64), clasificaciones, timestamps en hora local.
 - Tras generar, se borran las imágenes de defectos de esa inspección.
 
 ### WebSocket y bridge
 
-- Reconexión del bridge preserva inspección activa (`_unregister_bridge` no cierra inspección).
-- `connectWs()` en frontend: nullifica handlers `onclose`/`onerror` antes de cerrar conexiones antiguas (previene loop de reconexión).
-- Broadcast con timeout de 5s para prevenir bloqueo por clientes lentos.
-- Inferencia ejecutada en `ThreadPoolExecutor` (no bloquea event loop).
+- **Desconexión del bridge**: se llama `_close_inspection` por `(line_id, point_id)`, se cancela auto-resume y se hace `broadcast` `mode_changed` → `PAUSE` con `reason: bridge_disconnected` (la UI no queda en estado de inspección fantasma).
+- `connectWs()` en frontend: handlers `onclose`/`onerror` a null antes de cerrar sockets viejos (evita bucles de reconexión).
+- Broadcast con timeout para no bloquear por clientes lentos.
+- Inferencia en `ThreadPoolExecutor` (no bloquea el event loop).
+
+### Entrenamiento (captura + UI)
+
+- Reset explícito de `train_buffer` al iniciar `TRAIN` vía REST (`set_bridge_mode`) y señal `_train_session_reset` para convivir con `frame_meta` del bridge.
+- Evita segundo reset del buffer por `TRAIN` obsoleto tras auto-pause al límite (`train_limit_notified`).
+- `set_mode` desde bridge usa `target_lid` / `target_pid` antes de vaciar el buffer (no mezcla línea/punto).
+- Al abrir `WS live`, si ya hay frames en buffer se envía `train_progress` (sincroniza contador tras refresh).
+- `trainFromCamera`: manejo de éxito por HTTP + `trainCompleteHandled` para no duplicar alertas con WS; botones de cámara deshabilitados durante entrenamiento.
 
 ### Frontend
 
-- Badges diferenciados: "NUEVO DEFECTO REGISTRADO" (rojo) vs "DEFECTO EN SEGUIMIENTO" (ámbar) para el mismo evento.
-- Guard contra frames INSPECT tardíos tras detener inspección.
-- `window.focus` listener para actualizar estado del botón de informe al volver de cola de clasificación.
+- Badges: "NUEVO DEFECTO REGISTRADO" (rojo) vs "DEFECTO EN SEGUIMIENTO" (ámbar).
+- Guard contra frames `INSPECT` tardíos tras detener inspección.
+- `train_capture_complete` no duplica alerta si ya se notificó por `train_progress` al límite.
+- Tras clasificar en cola, `checkUnclassified()` refresca el botón Informe.
+- `window.focus` para refrescar estado del informe al volver de `classify.html`.
 
 ---
 
@@ -62,16 +73,18 @@
 | Report filter | Excluye "Sin clasificar" del informe |
 | Report button | Bloqueado si hay pendientes |
 | WS reconnect | Sin loop de reconexión |
-| Train buffer | Reset explícito al iniciar nueva captura |
+| Train buffer | Reset al iniciar TRAIN (REST + bridge); sin wipe por meta obsoleta |
+| Bridge off | Cierra inspección + PAUSE al frontend |
+| Modelo no carga | `broadcast` error a UI (no drop silencioso) |
 | Inference thread | `run_in_executor` para no bloquear event loop |
 | DB sessions | Localizadas por frame, sin lock de SQLite |
 
 ---
 
-## Rebuild obligatorio
+## Rebuild
 
 ```bash
 docker compose build --no-cache nuvant-backend && docker compose up -d
 ```
 
-**Después de rebuild con cambios en el pipeline de detección: reentrenar obligatoriamente cada referencia.**
+**Reentrenar** referencias activas solo si cambian parámetros de entrenamiento / modelo persistido (ver `GUIA_AJUSTES_PRODUCCION.md`, columna «Requiere reentrenar»). Cambios solo de inspección o margen de umbral en env no obligan a reentrenar.
